@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
 import { Heart, Users, Briefcase, Sun, HandHeart } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 
 const pillars = [
   {
@@ -33,18 +34,27 @@ const Index = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email) return;
     setIsSubmitting(true);
-    setTimeout(() => {
-      toast({
-        title: "נרשמת בהצלחה! 💕",
-        description: "נשמח לעדכן אותך על הפעילויות הקרובות שלנו",
-      });
+    try {
+      const { error } = await supabase.from("leads").insert({ email: email.trim().toLowerCase() });
+      if (error) {
+        if (error.code === "23505") {
+          toast({ title: "כבר נרשמת! 😊", description: "המייל הזה כבר קיים ברשימה שלנו" });
+        } else {
+          throw error;
+        }
+      } else {
+        toast({ title: "נרשמת בהצלחה! 💕", description: "נשמח לעדכן אותך על הפעילויות הקרובות שלנו" });
+      }
       setEmail("");
+    } catch {
+      toast({ title: "שגיאה", description: "משהו השתבש, נסי שוב מאוחר יותר", variant: "destructive" });
+    } finally {
       setIsSubmitting(false);
-    }, 800);
+    }
   };
 
   return (
