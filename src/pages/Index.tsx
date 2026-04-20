@@ -1,12 +1,12 @@
 import heroBg from "@/assets/hero-bg.jpg";
 
 const topNav = [
-  { label: "פודקאסט" },
-  { label: "בלוג" },
-  { label: "סדנאות והרצאות" },
-  { label: "הפרוייקטים שלי" },
-  { label: "יזמות קשובה" },
   { label: "הסנטר שלי", active: true },
+  { label: "יזמות קשובה" },
+  { label: "הפרוייקטים שלי" },
+  { label: "סדנאות והרצאות" },
+  { label: "בלוג" },
+  { label: "פודקאסט" },
 ];
 
 const heroNav = ["הרצאות", "סדנאות", "יזמות קשובה", "בלוג", "פודקאסט"];
@@ -76,8 +76,8 @@ const Index = () => {
         </div>
 
         {/* Floating bottom nav bar */}
-        <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 w-[min(1100px,90%)] z-20">
-          <div className="bg-card rounded-2xl shadow-[0_15px_50px_-10px_hsl(0_0%_0%_/_0.15)] px-12 py-6 flex items-center justify-center gap-8">
+        <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 w-[min(900px,75%)] z-20">
+          <div className="bg-card rounded-2xl shadow-[0_15px_50px_-10px_hsl(0_0%_0%_/_0.15)] px-12 py-[31px] flex items-center justify-center gap-8">
             {heroNav.map((label, idx) => (
               <div key={label} className="flex items-center gap-8">
                 <button className="text-foreground/80 hover:text-primary transition-colors text-base font-light">
