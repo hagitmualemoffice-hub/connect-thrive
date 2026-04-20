@@ -63,7 +63,7 @@ const Index = () => {
         <div className="absolute inset-0 bg-black/25" />
 
         {/* Hero content */}
-        <div className="relative z-10 h-full flex flex-col items-center justify-center text-center px-6 pb-20">
+        <div className="relative z-10 h-full flex flex-col items-center justify-end text-center px-6 pb-[123px]">
           <p className="text-white/90 text-sm font-light mb-1">
             קצת עליי&nbsp;&nbsp;|&nbsp;&nbsp;חגית מועלם פסיכולוגית קלינית
           </p>
