@@ -87,63 +87,86 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background" dir="rtl">
+      {/* Top Navigation Bar */}
+      <header className="absolute top-0 inset-x-0 z-30">
+        <div className="container mx-auto px-8 lg:px-12 py-6 flex items-center justify-between">
+          <div className="text-foreground text-2xl font-bold tracking-tight">
+            חגית מועלם
+          </div>
+
+          <nav className="hidden lg:flex items-center gap-10 text-[15px] font-medium">
+            {navLinks.map((link) => (
+              <a
+                key={link.label}
+                href={link.href}
+                className={`relative pb-1.5 transition-colors ${
+                  link.active
+                    ? "text-primary after:absolute after:bottom-0 after:right-0 after:left-0 after:h-[2px] after:bg-primary"
+                    : "text-foreground/85 hover:text-primary"
+                }`}
+              >
+                {link.label}
+              </a>
+            ))}
+          </nav>
+
+          <div className="flex items-center gap-3">
+            <Button
+              variant="ghost"
+              className="rounded-full bg-secondary text-foreground/80 hover:bg-secondary/80 px-5 h-10 text-sm font-normal"
+            >
+              להצטרפות לתפוצה
+            </Button>
+            <Button className="rounded-full px-6 h-10 text-sm font-medium shadow-none">
+              דברו איתי
+            </Button>
+          </div>
+        </div>
+      </header>
+
       {/* Hero with image background */}
       <section className="relative">
-        <div className="relative h-[80vh] min-h-[600px] w-full overflow-hidden">
+        <div className="relative h-screen min-h-[680px] w-full overflow-hidden">
           <img
             src={heroPortrait}
-            alt="כשחיבור מחולל תנועה"
+            alt="חגית מועלם – כשחיבור מחולל תנועה"
             width={1920}
             height={1080}
             className="absolute inset-0 w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/20 to-black/50" />
+          <div className="absolute inset-0 bg-black/25" />
 
-          {/* Top nav */}
-          <header className="relative z-10 container mx-auto px-6 pt-6">
-            <div className="flex items-center justify-between">
-              <nav className="hidden md:flex items-center gap-7 text-sm text-white/95">
-                {navLinks.map((link) => (
-                  <a key={link.label} href={link.href} className="hover:text-primary-foreground transition-colors">
-                    {link.label}
-                  </a>
-                ))}
-              </nav>
-              <div className="flex items-center gap-3">
-                <Button size="sm" variant="secondary" className="rounded-full bg-white text-foreground hover:bg-white/90">
-                  חזרה למעלה
-                </Button>
-                <span className="text-white text-sm hidden sm:inline">חזית מועלם</span>
-              </div>
-            </div>
-          </header>
-
-          {/* Hero text */}
-          <div className="relative z-10 h-full flex flex-col items-center justify-center text-center px-6 -mt-16">
-            <p className="text-white/90 text-sm mb-4 tracking-wide">פסיכולוגית קלינית • יזמת חברתית</p>
-            <h1 className="text-white text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
+          <div className="relative z-10 h-full flex flex-col items-center justify-center text-center px-6">
+            <p className="text-white/95 text-sm md:text-[15px] mb-5 tracking-wide font-light">
+              חגית מועלם פסיכולוגית קלינית
+              <span className="mx-3 text-white/60">|</span>
+              קצת עלי
+            </p>
+            <h1 className="text-white text-5xl md:text-7xl lg:text-[88px] font-light mb-6 leading-[1.1] tracking-tight">
               כשחיבור מחולל תנועה
             </h1>
-            <p className="text-white/90 text-base md:text-lg max-w-2xl leading-relaxed">
-              על התחברות, יצירה, קהילה שיש בה כל הלב נעים בקסם יחודי לחיות לקבל ולהעצים
+            <p className="text-white/95 text-base md:text-lg max-w-2xl leading-relaxed font-light">
+              על התפתחות, יזמות, קהילה ושינוי שנולדים מעומק נפשי-רוחני וחיבור לייעוד ולמשמעות
             </p>
+          </div>
+
+          {/* Floating section pills */}
+          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-full px-6 z-20">
+            <div className="bg-white shadow-soft rounded-2xl max-w-4xl mx-auto py-6 px-10 flex flex-wrap items-center justify-center gap-x-10 gap-y-3 text-[15px] font-medium text-foreground">
+              {pillLinks.map((label, idx) => (
+                <div key={label} className="flex items-center gap-x-10">
+                  <a href={`#${label}`} className="hover:text-primary transition-colors">
+                    {label}
+                  </a>
+                  {idx < pillLinks.length - 1 && <span className="text-border/70">|</span>}
+                </div>
+              ))}
+            </div>
           </div>
         </div>
 
-        {/* Floating section pills */}
-        <div className="container mx-auto px-6 -mt-10 relative z-20">
-          <div className="bg-white shadow-soft rounded-full max-w-3xl mx-auto py-4 px-6 flex flex-wrap items-center justify-center gap-x-8 gap-y-2 text-sm font-medium text-foreground">
-            <a href="#lectures" className="hover:text-primary transition-colors">הרצאות</a>
-            <span className="text-border">|</span>
-            <a href="#workshops" className="hover:text-primary transition-colors">סדנאות</a>
-            <span className="text-border">|</span>
-            <a href="#contact" className="hover:text-primary transition-colors">יצירת קשר</a>
-            <span className="text-border">|</span>
-            <a href="#blog" className="hover:text-primary transition-colors">בלוג</a>
-            <span className="text-border">|</span>
-            <a href="#podcast" className="hover:text-primary transition-colors">פודקאסט</a>
-          </div>
-        </div>
+        {/* Spacer for floating pill */}
+        <div className="h-20" />
       </section>
 
       {/* About 1 */}
