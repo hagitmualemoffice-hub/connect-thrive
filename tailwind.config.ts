@@ -16,7 +16,10 @@ export default {
       fontFamily: {
         sans: ["'Noto Sans Hebrew'", "'Noto Sans'", "sans-serif"],
       },
+      colors: {
         border: "hsl(var(--border))",
+        input: "hsl(var(--input))",
+        ring: "hsl(var(--ring))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
