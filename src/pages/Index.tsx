@@ -8,12 +8,15 @@ import heroPortrait from "@/assets/hero-portrait.jpg";
 import lecturesPortrait from "@/assets/lectures-portrait.jpg";
 
 const navLinks = [
-  { label: "פודקאסט", href: "#podcast" },
+  { label: "הסנטר שלי", href: "#center", active: true },
+  { label: "יזמות קשובה", href: "#entrepreneurship" },
+  { label: "הפרויקטים שלי", href: "#projects" },
+  { label: "סדנאות והרצאות", href: "#lectures" },
   { label: "בלוג", href: "#blog" },
-  { label: "יצירת קשר", href: "#contact" },
-  { label: "סדנאות", href: "#workshops" },
-  { label: "הרצאות", href: "#lectures" },
+  { label: "פודקאסט", href: "#podcast" },
 ];
+
+const pillLinks = ["הרצאות", "סדנאות", "יזמות קשובה", "בלוג", "פודקאסט"];
 
 const lectures = [
   {
