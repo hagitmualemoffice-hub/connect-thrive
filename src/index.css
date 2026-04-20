@@ -15,17 +15,22 @@
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 20%;
 
-    --primary: 340 60% 65%;
+    --primary: 340 70% 70%;
     --primary-foreground: 0 0% 100%;
+    --primary-glow: 340 80% 80%;
 
-    --secondary: 0 0% 94%;
+    --secondary: 0 0% 96%;
     --secondary-foreground: 0 0% 25%;
 
-    --muted: 0 0% 96%;
+    --muted: 0 0% 97%;
     --muted-foreground: 0 0% 45%;
 
-    --accent: 340 40% 92%;
+    --accent: 340 50% 95%;
     --accent-foreground: 340 50% 35%;
+
+    --gradient-cta: linear-gradient(135deg, hsl(180 45% 75%), hsl(340 70% 75%));
+    --shadow-soft: 0 10px 40px -10px hsl(0 0% 0% / 0.08);
+    --shadow-card: 0 4px 20px -4px hsl(0 0% 0% / 0.06);
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
