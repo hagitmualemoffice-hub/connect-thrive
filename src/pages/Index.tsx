@@ -86,23 +86,25 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background" dir="rtl">
-      {/* Top Navigation Bar */}
-      <header className="absolute top-0 inset-x-0 z-30">
-        <div className="container mx-auto px-8 lg:px-12 py-6 flex items-center justify-between">
-          <div className="text-foreground text-2xl font-bold tracking-tight">
+    <div className="min-h-screen bg-background font-sans" dir="rtl">
+      {/* Top Navigation Bar — white background, separate from hero */}
+      <header className="bg-white border-b border-border/30">
+        <div className="max-w-[1400px] mx-auto px-8 lg:px-16 h-[72px] flex items-center justify-between">
+          {/* Brand — right side (RTL) */}
+          <h2 className="text-[22px] font-bold text-[#1a3a5c] tracking-tight leading-none">
             חגית מועלם
-          </div>
+          </h2>
 
-          <nav className="hidden lg:flex items-center gap-10 text-[15px] font-medium">
+          {/* Center nav links */}
+          <nav className="hidden lg:flex items-center gap-9 text-[14px] font-normal text-[#3a3a3a]">
             {navLinks.map((link) => (
               <a
                 key={link.label}
                 href={link.href}
-                className={`relative pb-1.5 transition-colors ${
+                className={`relative py-1 transition-colors hover:text-primary ${
                   link.active
-                    ? "text-primary after:absolute after:bottom-0 after:right-0 after:left-0 after:h-[2px] after:bg-primary"
-                    : "text-foreground/85 hover:text-primary"
+                    ? "text-primary after:absolute after:-bottom-1 after:right-0 after:left-0 after:h-[2.5px] after:bg-primary after:rounded-full"
+                    : ""
                 }`}
               >
                 {link.label}
@@ -110,14 +112,15 @@ const Index = () => {
             ))}
           </nav>
 
+          {/* Left side buttons */}
           <div className="flex items-center gap-3">
             <Button
-              variant="ghost"
-              className="rounded-full bg-secondary text-foreground/80 hover:bg-secondary/80 px-5 h-10 text-sm font-normal"
+              variant="outline"
+              className="rounded-full border-[#3a3a3a]/30 text-[#3a3a3a] hover:bg-secondary/60 px-5 h-9 text-[13px] font-normal"
             >
               להצטרפות לתפוצה
             </Button>
-            <Button className="rounded-full px-6 h-10 text-sm font-medium shadow-none">
+            <Button className="rounded-full px-6 h-9 text-[13px] font-normal shadow-none bg-primary hover:bg-primary/90">
               דברו איתי
             </Button>
           </div>
@@ -126,47 +129,53 @@ const Index = () => {
 
       {/* Hero with image background */}
       <section className="relative">
-        <div className="relative h-screen min-h-[680px] w-full overflow-hidden">
+        <div className="relative h-[85vh] min-h-[580px] max-h-[800px] w-full overflow-hidden">
           <img
             src={heroPortrait}
             alt="חגית מועלם – כשחיבור מחולל תנועה"
             width={1920}
             height={1080}
-            className="absolute inset-0 w-full h-full object-cover"
+            className="absolute inset-0 w-full h-full object-cover object-top"
           />
-          <div className="absolute inset-0 bg-black/25" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-black/20 to-black/50" />
 
-          <div className="relative z-10 h-full flex flex-col items-center justify-center text-center px-6">
-            <p className="text-white/95 text-sm md:text-[15px] mb-5 tracking-wide font-light">
-              חגית מועלם פסיכולוגית קלינית
-              <span className="mx-3 text-white/60">|</span>
+          {/* Hero text — centered vertically in lower half */}
+          <div className="relative z-10 h-full flex flex-col items-center justify-end pb-32 text-center px-6">
+            <p className="text-white/90 text-[14px] mb-5 font-light tracking-[0.04em] leading-relaxed">
               קצת עלי
+              <span className="mx-3 text-white/50">|</span>
+              חגית מועלם פסיכולוגית קלינית
             </p>
-            <h1 className="text-white text-5xl md:text-7xl lg:text-[88px] font-light mb-6 leading-[1.1] tracking-tight">
+            <h1 className="text-white text-[42px] md:text-[62px] lg:text-[78px] font-extralight mb-5 leading-[1.15] tracking-[-0.01em]">
               כשחיבור מחולל תנועה
             </h1>
-            <p className="text-white/95 text-base md:text-lg max-w-2xl leading-relaxed font-light">
+            <p className="text-white/90 text-[15px] md:text-[17px] max-w-[680px] leading-[1.8] font-light tracking-wide">
               על התפתחות, יזמות, קהילה ושינוי שנולדים מעומק נפשי-רוחני וחיבור לייעוד ולמשמעות
             </p>
           </div>
 
-          {/* Floating section pills */}
-          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-full px-6 z-20">
-            <div className="bg-white shadow-soft rounded-2xl max-w-4xl mx-auto py-6 px-10 flex flex-wrap items-center justify-center gap-x-10 gap-y-3 text-[15px] font-medium text-foreground">
+          {/* Floating section pills — overlapping bottom edge */}
+          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-full max-w-[920px] px-6 z-20">
+            <div className="bg-white rounded-2xl shadow-[0_4px_30px_rgba(0,0,0,0.08)] py-5 px-8 flex items-center justify-center">
               {pillLinks.map((label, idx) => (
-                <div key={label} className="flex items-center gap-x-10">
-                  <a href={`#${label}`} className="hover:text-primary transition-colors">
+                <div key={label} className="flex items-center">
+                  <a
+                    href={`#${label}`}
+                    className="text-[16px] font-normal text-[#2a2a2a] hover:text-primary transition-colors px-5"
+                  >
                     {label}
                   </a>
-                  {idx < pillLinks.length - 1 && <span className="text-border/70">|</span>}
+                  {idx < pillLinks.length - 1 && (
+                    <span className="text-[#d0d0d0] text-lg">|</span>
+                  )}
                 </div>
               ))}
             </div>
           </div>
         </div>
 
-        {/* Spacer for floating pill */}
-        <div className="h-20" />
+        {/* Spacer for floating pill overlap */}
+        <div className="h-14" />
       </section>
 
       {/* About 1 */}

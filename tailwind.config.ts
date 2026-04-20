@@ -13,7 +13,9 @@ export default {
       },
     },
     extend: {
-      colors: {
+      fontFamily: {
+        sans: ["'Noto Sans Hebrew'", "'Noto Sans'", "sans-serif"],
+      },
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
