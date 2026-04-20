@@ -15,8 +15,8 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background" dir="rtl">
       {/* Top navigation */}
-      <header className="absolute top-0 left-0 right-0 z-20">
-        <div className="flex items-center justify-between px-10 py-6">
+      <header className="absolute top-0 left-0 right-0 z-20 bg-white">
+        <div className="flex items-center justify-between px-10 py-5">
           {/* Logo */}
           <div className="text-foreground text-xl font-semibold tracking-tight">
             חגית מועלם
@@ -30,7 +30,7 @@ const Index = () => {
                 className={`text-sm font-light transition-colors relative pb-1 ${
                   item.active
                     ? "text-primary"
-                    : "text-foreground/80 hover:text-foreground"
+                    : "text-foreground hover:text-primary"
                 }`}
               >
                 {item.label}
@@ -63,11 +63,11 @@ const Index = () => {
         <div className="absolute inset-0 bg-black/25" />
 
         {/* Hero content */}
-        <div className="relative z-10 h-full flex flex-col items-center justify-center text-center px-6">
-          <p className="text-white/90 text-sm font-light mb-3">
-            חגית מועלם פסיכולוגית קלינית
+        <div className="relative z-10 h-full flex flex-col items-center justify-center text-center px-6 pb-20">
+          <p className="text-white/90 text-sm font-light mb-1">
+            קצת עליי&nbsp;&nbsp;|&nbsp;&nbsp;חגית מועלם פסיכולוגית קלינית
           </p>
-          <h1 className="text-white text-5xl md:text-6xl font-extralight tracking-wide mb-3">
+          <h1 className="text-white text-5xl md:text-6xl font-extralight tracking-wide mb-1">
             כשחיבור מחולל תנועה
           </h1>
           <p className="text-white/90 text-base md:text-lg font-light max-w-2xl leading-relaxed">
