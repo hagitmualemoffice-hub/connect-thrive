@@ -63,14 +63,14 @@ const Index = () => {
         <div className="absolute inset-0 bg-black/25" />
 
         {/* Hero content */}
-        <div className="relative z-10 h-full flex flex-col items-center justify-end text-center px-6 pb-[103px]">
+        <div className="relative z-10 h-full flex flex-col items-center justify-end text-center px-6 pb-[88px]">
           <p className="text-white/90 text-base font-light mb-[10px]">
             חגית מועלם פסיכולוגית בהתמחות קלינית
           </p>
-          <h1 className="text-white text-5xl md:text-6xl font-extralight tracking-wide mb-[10px]">
+          <h1 className="text-white text-5xl md:text-6xl font-extralight tracking-wide mb-[40px]">
             כשחיבור מחולל תנועה
           </h1>
-          <p className="text-white/90 text-lg md:text-xl font-light max-w-2xl leading-relaxed">
+          <p className="text-white/90 text-lg md:text-xl font-light max-w-4xl whitespace-nowrap leading-relaxed">
             על התפתחות, יזמות, קהילה ושינוי שנולדים מעומק נפשי-רוחני וחיבור לייעוד ולמשמעות
           </p>
         </div>
