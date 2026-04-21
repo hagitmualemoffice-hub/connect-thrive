@@ -165,11 +165,11 @@ const Index = () => {
       </header>
 
       {/* Hero */}
-      <section className="relative w-full h-[640px]">
+      <section className="relative w-full h-[640px] overflow-hidden group">
         <img
           src={heroBg}
           alt="חגית מועלם - פסיכולוגית קלינית"
-          className="absolute inset-0 w-full h-full object-cover"
+          className="absolute inset-0 w-full h-full object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-105"
         />
         <div className="absolute inset-0 bg-black/25" />
 
