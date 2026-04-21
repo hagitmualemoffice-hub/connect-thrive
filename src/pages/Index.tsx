@@ -188,7 +188,7 @@ const Index = () => {
         <div className="absolute inset-0 bg-black/25" />
 
         {/* Title overlay */}
-        <div className="relative z-10 h-full flex flex-col items-center justify-center text-center px-6">
+        <div className="relative z-10 h-full flex flex-col items-center justify-start text-center px-6 pt-24">
           <h2 className="text-white text-4xl md:text-5xl font-light tracking-wide">
             <span className="font-semibold">הרצאות</span>
             <span className="mx-3 font-extralight">|</span>
@@ -200,43 +200,45 @@ const Index = () => {
           </p>
         </div>
 
-        {/* Floating white card */}
-        <div className="absolute left-1/2 -translate-x-1/2 -bottom-24 w-[min(900px,80%)] z-20">
-          <div className="bg-card rounded-3xl shadow-[0_20px_60px_-15px_hsl(0_0%_0%_/_0.18)] px-12 py-12">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 text-right" dir="rtl">
-              {/* Right column */}
-              <div>
-                <h3 className="text-foreground text-2xl font-semibold mb-4">החיים שנועדו לי</h3>
-                <p className="text-foreground text-base font-medium leading-relaxed mb-6">
-                  אמונה, ביטחון וחיבור לייעוד ככוח לחיים מאושרים ומימוש עצמי עמוק
-                </p>
-                <p className="text-foreground/75 text-sm font-light leading-relaxed">
-                  הרצאה על הקשר העמוק בין אמונה, ביטחון והיכולת לחיות חיים מלאים - כאלה שיש בהם גם שמחה, גם משמעות, וגם תנועה בעולם. לא כוויתור על עשייה, אלא כעשייה שנובעת מחיבור, הקשבה ואמון.
-                </p>
-              </div>
-
-              {/* Left column */}
-              <div className="space-y-6">
+        {/* Floating white card - right aligned to match upper sections */}
+        <div className="absolute -bottom-24 right-0 left-0 z-20 px-6">
+          <div className="w-[min(780px,65%)] mx-auto">
+            <div className="bg-card rounded-3xl shadow-[0_20px_60px_-15px_hsl(0_0%_0%_/_0.18)] px-10 py-9">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-10 text-right" dir="rtl">
+                {/* Right column */}
                 <div>
-                  <h4 className="text-foreground text-base font-semibold mb-2">קהל יעד</h4>
+                  <h3 className="text-foreground text-xl font-semibold mb-2">החיים שנועדו לי</h3>
+                  <p className="text-foreground text-sm font-medium leading-relaxed mb-4">
+                    אמונה, ביטחון וחיבור לייעוד ככוח לחיים מאושרים ומימוש עצמי עמוק
+                  </p>
                   <p className="text-foreground/75 text-sm font-light leading-relaxed">
-                    נשים, ארגונים, קהילות עומק, ימי כיף, ערבי השראה, צעירות, קבוצות מתמודדות
+                    הרצאה על הקשר העמוק בין אמונה, ביטחון והיכולת לחיות חיים מלאים - כאלה שיש בהם גם שמחה, גם משמעות, וגם תנועה בעולם. לא כוויתור על עשייה, אלא כעשייה שנובעת מחיבור, הקשבה ואמון.
                   </p>
                 </div>
-                <div>
-                  <h4 className="text-foreground text-base font-semibold mb-2">סוג פעילות</h4>
-                  <div className="text-foreground/75 text-sm font-light space-y-1">
-                    <p>הרצאה <span className="mx-2 text-border">|</span> עד 1.5 שעות</p>
-                    <p>סדנה אינטימית <span className="mx-2 text-border">|</span> עד שעתיים</p>
+
+                {/* Left column */}
+                <div className="space-y-4">
+                  <div>
+                    <h4 className="text-foreground text-base font-semibold mb-1.5">קהל יעד</h4>
+                    <p className="text-foreground/75 text-sm font-light leading-relaxed">
+                      נשים, ארגונים, קהילות עומק, ימי כיף, ערבי השראה, צעירות, קבוצות מתמודדות
+                    </p>
+                  </div>
+                  <div>
+                    <h4 className="text-foreground text-base font-semibold mb-1.5">סוג פעילות</h4>
+                    <div className="text-foreground/75 text-sm font-light space-y-0.5">
+                      <p>הרצאה <span className="mx-2 text-border">|</span> עד 1.5 שעות</p>
+                      <p>סדנה אינטימית <span className="mx-2 text-border">|</span> עד שעתיים</p>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
 
-            <div className="mt-10 flex justify-center">
-              <button className="px-10 py-3 rounded-full bg-primary text-primary-foreground text-base font-light hover:bg-primary/90 transition-colors">
-                להזמנת הרצאה
-              </button>
+              <div className="mt-6 flex justify-start" dir="rtl">
+                <button className="px-8 py-2.5 rounded-full bg-primary text-primary-foreground text-sm font-light hover:bg-primary/90 transition-colors">
+                  להזמנת הרצאה
+                </button>
+              </div>
             </div>
           </div>
         </div>
