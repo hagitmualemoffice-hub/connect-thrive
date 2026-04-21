@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import pesachFreedom from "@/assets/blog-pesach-freedom.jpg";
 import bereshitImg from "@/assets/blog-bereshit.jpg";
+import lechLechaImg from "@/assets/blog-lech-lecha.jpg";
 
 const featuredPost = {
   category: "פרשה ופסיכולוגיה",
@@ -19,6 +20,16 @@ const posts = [
     excerpt:
       "לאברהם אבינו היה ילד בגיל 100. יצחק התחתן בגיל 40, יעקב 87. מאיפה נגזר הסטנדרט שלנו? מחשבות על סיום חומש בראשית, על החיים האישיים שלנו ועל ההבנה שנסיונות לא באים כי השם כועס - אלא כי הוא אוהב.",
     image: bereshitImg,
+    slug: "bereshit-end",
+  },
+  {
+    category: "פרשה ופסיכולוגיה",
+    date: "נובמבר 2025",
+    title: "פרשת לך לך - הינני, השתמש בי",
+    excerpt:
+      "אברהם אבינו אומר להקב״ה 'הינני'. צ'ארלי קירק תרגם את זה ל-'use me' - תשתמש בי. מבט פסיכולוגי על הרצון שלנו לייעוד בתנאים שלנו, מול היכולת להתבטל לתפקיד כפי שהקב״ה רואה אותו.",
+    image: lechLechaImg,
+    slug: "lech-lecha-hineni",
   },
   {
     category: "טיפול בחרדה",
@@ -185,9 +196,9 @@ const Blog = () => {
       <section className="w-full pb-24 px-6">
         <div className="w-[min(1100px,82%)] mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {posts.map((post, idx) => (
+            {posts.map((post: any, idx) => (
               <Link
-                to={idx === 0 ? "/blog/bereshit-end" : `/blog/${idx + 1}`}
+                to={post.slug ? `/blog/${post.slug}` : `/blog/${idx + 1}`}
                 key={idx}
                 className="group bg-card rounded-3xl overflow-hidden shadow-[0_10px_30px_-15px_hsl(0_0%_0%_/_0.1)] hover:shadow-[0_20px_45px_-15px_hsl(var(--primary)/0.22)] transition-all duration-300 hover:-translate-y-1 flex flex-col"
               >
