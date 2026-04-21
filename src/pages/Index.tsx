@@ -1,5 +1,35 @@
 import heroBg from "@/assets/hero-bg.jpg";
 import lectureBg from "@/assets/woman-beach.jpg";
+import projectsBg from "@/assets/woman-beach-projects.jpg";
+
+const projectCards = [
+  {
+    title: "אחותי כלה- פרויקט חדשני לרווקות מאוחרת",
+    paragraphs: [
+      "אחותי כלה הוא פרויקט יוזמי-קהילתי שנבנה מתוך הקשבה עמוקה לצורך ממשי, חי ופועם. מעטפת חדשנית לנשים רווקות מהמגזר החרדי מעל גיל 28, הפרויקט נולד מתוך הקשבה לצורך ממשי, עמוק ומתמשך - צורך שלא קיבל מענה מערכתי, רגשי וקהילתי, על אף היקפו הרחב.",
+      "היוזמה אינה תוצר של מבנה ארגוני קיים, אלא תהליך יוזמי מודע שנבנה צעד-צעד: מתוך אפיון עמוק של הצרכים, הקשבה מתמשכת לנשים עצמן, עבודה עם אמפתיה ודיוק עצמי - והתאמה מתמדת של הפתרונות תוך כדי תנועה. זהו ביטוי חי ליזמות קשובה: יזמות שאינה מתחילה בפתרון, אלא בהבנה. לא במודל מראש, אלא בנכונות לשהות בשאלה, לדייק, ולהנהיג תהליך שיש בו אחריות, עומק וראייה אנושית.",
+      "כיום, אחותי כלה היא תנועה חיה של קרוב ל-1,000 נשים, תנועה שמתרחבת הודות לכוח המיוחד של השותפות לפרויקט הזה ומתמשכת מתוך הקשבה, דיוק והליכה עקבית בדרך.",
+    ],
+    buttons: ["להצטרף לתפוצה", "בקרו באתר אחותי כלה"],
+  },
+  {
+    title: "שימור פוריות - מוצאות בתוכנו דרך להתחבר לזה.\nפרויקט שנולד מתוך מחקר אקדמי, הקשבה ויישום בשטח.",
+    paragraphs: [
+      "הפרויקט צמח מתוך עבודת התזה שלי, שעסקה בשימור פוריות ובחוויה הנפשית של נשים ושאלה שאלה בסיסית שעוד לא נשאלה: איך אישה מרגישה אחרי שימור פוריות?",
+      "המחקר חשף את האתגרים הרגשיים והחרדה המלווים את התהליך, והצביע על הצורך בליווי, החזקה וכלים שיאפשרו לנשים להיות בתוך התהליך ולא להישאר בו לבד. כיישום של המחקר, אני מפתחת ומובילה פרויקטים המשלבים הבנה פסיכולוגית, מחקר אקדמי ויישום מדויק בשדה.",
+      "בין הפרויקטים: פודקאסט ייעודי, קובץ מידע נגיש, מקרר תרופות שיתופי, יזמות ליווי קהילתיות, פעילות לשינוי מדיניות, והכשרת צוותים רפואיים על החוויה הנפשית בתהליכי שימור פוריות.",
+    ],
+    buttons: ["מקרר התרופות השיתופי", "קובץ מידע", "הפודקאסט"],
+  },
+  {
+    title: "רפואה רגישה: כשידע רפואי פוגש חוויה אנושית",
+    paragraphs: [
+      "סדנאות והרצאות לצוותות רפואיים המלווים תהליכים נשיים ותהליכי פריון - בהם מחלקות IVF, צוותי אולטרסאונד, מרפאות נשים וצוותים רב-מקצועיים בבתי חולים. העבודה מבוססת על מחקר, ידע פסיכולוגי וחשיבה מערכתית, וממוקדת בהבנת החוויה הנפשית של נשים בתוך תהליכים רפואיים אינטנסיביים. הסדנאות מעניקות כלים להקשבה, הכלה ותקשורת מותאמת, מתוך הבנה שהמפגש האנושי משפיע באופן ישיר על איכות הטיפול, שיתוף הפעולה וההתליך הרפואי כולו.",
+      "העבודה מותאמת לצרכים הייחודיים של כל צוות - במטרה לאפשר טיפול מקצועי, אנושי ומדויק יותר. מתאים לישיבות צוות, כנסים אירועים מחלקתיים או הרצאת אורח כחלק מתהליך עומק.",
+    ],
+    buttons: ["אשמח להתארח אצלכם במחלקה"],
+  },
+];
 
 const lectureCards = [
   {
@@ -351,6 +381,58 @@ const Index = () => {
                 בואו נתכנן לכם סדנא
               </button>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Projects section - Listening Entrepreneurship */}
+      <section className="relative w-full py-24 px-6 overflow-hidden">
+        <img
+          src={projectsBg}
+          alt="יזמות קשובה - פרויקטים"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+
+        <div className="relative z-10 w-[min(1100px,82%)] mx-auto" dir="rtl">
+          <div className="text-right mb-10">
+            <h2 className="text-foreground text-4xl md:text-5xl font-light leading-tight mb-3">
+              <span className="font-extralight">יזמות קשובה</span>{" "}
+              <span className="font-bold">פרויקטים</span>
+            </h2>
+            <p className="text-base md:text-lg font-light">
+              <span className="text-primary font-normal">אמפתיה, הקשבה ויצירתיות -</span>
+              <span className="text-foreground/80 mx-1">פתרונות שנולדים מתוך צורך אמיתי.</span>
+            </p>
+          </div>
+
+          <div className="space-y-10">
+            {projectCards.map((card, idx) => (
+              <div
+                key={idx}
+                className={`bg-card rounded-3xl shadow-[0_20px_60px_-15px_hsl(0_0%_0%_/_0.18)] px-12 md:px-20 py-14 md:py-16 text-right w-[min(720px,90%)] ${
+                  idx % 2 === 0 ? "mr-auto ml-0" : "ml-auto mr-0"
+                }`}
+              >
+                <h3 className="text-foreground text-2xl md:text-3xl font-bold leading-tight mb-6 whitespace-pre-line">
+                  {card.title}
+                </h3>
+                <div className="space-y-4 text-foreground/80 text-sm md:text-base font-light leading-relaxed mb-8">
+                  {card.paragraphs.map((p, i) => (
+                    <p key={i}>{p}</p>
+                  ))}
+                </div>
+                <div className="flex flex-wrap justify-start gap-3">
+                  {card.buttons.map((btn) => (
+                    <button
+                      key={btn}
+                      className="px-7 py-2.5 rounded-lg bg-primary text-primary-foreground text-sm font-light hover:bg-[hsl(var(--primary-dark))] transition-colors"
+                    >
+                      {btn}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
