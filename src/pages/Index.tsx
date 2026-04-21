@@ -24,10 +24,10 @@ const Index = () => {
 
           {/* Center nav */}
           <nav className="flex items-center gap-10">
-            {topNav.map((item) => (
+          {topNav.map((item) => (
               <button
                 key={item.label}
-                className={`text-sm font-light transition-colors relative pb-1 ${
+                className={`text-sm font-normal transition-colors relative pb-1 ${
                   item.active
                     ? "text-primary"
                     : "text-foreground hover:text-primary"
@@ -63,14 +63,14 @@ const Index = () => {
         <div className="absolute inset-0 bg-black/25" />
 
         {/* Hero content */}
-        <div className="relative z-10 h-full flex flex-col items-center justify-end text-center px-6 pb-[123px]">
-          <p className="text-white/90 text-sm font-light mb-1">
-            קצת עליי&nbsp;&nbsp;|&nbsp;&nbsp;חגית מועלם פסיכולוגית קלינית
+        <div className="relative z-10 h-full flex flex-col items-center justify-end text-center px-6 pb-[103px]">
+          <p className="text-white/90 text-base font-light mb-[10px]">
+            חגית מועלם פסיכולוגית בהתמחות קלינית
           </p>
-          <h1 className="text-white text-5xl md:text-6xl font-extralight tracking-wide mb-1">
+          <h1 className="text-white text-5xl md:text-6xl font-extralight tracking-wide mb-[10px]">
             כשחיבור מחולל תנועה
           </h1>
-          <p className="text-white/90 text-base md:text-lg font-light max-w-2xl leading-relaxed">
+          <p className="text-white/90 text-lg md:text-xl font-light max-w-2xl leading-relaxed">
             על התפתחות, יזמות, קהילה ושינוי שנולדים מעומק נפשי-רוחני וחיבור לייעוד ולמשמעות
           </p>
         </div>
