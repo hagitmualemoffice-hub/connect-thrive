@@ -189,11 +189,11 @@ const Index = () => {
         {/* Floating bottom nav bar */}
         <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 w-[min(900px,90%)] z-20">
           <div className="bg-card rounded-2xl shadow-[0_15px_50px_-10px_hsl(0_0%_0%_/_0.15)] px-8 py-[31px] flex items-center justify-center gap-6 flex-nowrap">
-            {heroNav.map((label, idx) => (
-              <div key={label} className="flex items-center gap-6 whitespace-nowrap">
-                <button className="text-foreground/80 hover:text-primary transition-colors text-base font-light whitespace-nowrap">
-                  {label}
-                </button>
+            {heroNav.map((item, idx) => (
+              <div key={item.label} className="flex items-center gap-6 whitespace-nowrap">
+                <a href={item.href} className="text-foreground/80 hover:text-primary transition-colors text-base font-light whitespace-nowrap">
+                  {item.label}
+                </a>
                 {idx < heroNav.length - 1 && (
                   <span className="text-border">|</span>
                 )}
