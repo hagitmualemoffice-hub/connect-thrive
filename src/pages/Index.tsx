@@ -262,20 +262,20 @@ const Index = () => {
           </p>
         </div>
 
-        <div className="max-w-6xl mx-auto" dir="rtl">
+        <div className="w-[min(1000px,72%)] mx-auto" dir="rtl">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {lectureCards.map((card) => (
               <div
                 key={card.title}
-                className="bg-card rounded-3xl shadow-[0_15px_40px_-15px_hsl(0_0%_0%_/_0.12)] p-10 text-right flex flex-col"
+                className="bg-card rounded-3xl shadow-[0_15px_40px_-15px_hsl(0_0%_0%_/_0.12)] px-12 py-14 text-right flex flex-col"
               >
-                <h3 className="text-foreground text-2xl font-bold leading-tight mb-4 whitespace-pre-line">
+                <h3 className="text-foreground text-2xl font-bold leading-tight mb-6 whitespace-pre-line">
                   {card.title}
                 </h3>
-                <p className="text-foreground text-sm font-medium leading-relaxed mb-4">
+                <p className="text-foreground text-sm font-medium leading-relaxed mb-2">
                   {card.subtitle}
                 </p>
-                <p className="text-foreground/70 text-sm font-light leading-relaxed mb-6 flex-1">
+                <p className="text-foreground/70 text-sm font-light leading-relaxed mb-8 flex-1">
                   {card.desc}
                 </p>
                 <div className="mb-6">
