@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import pesachFreedom from "@/assets/blog-pesach-freedom.jpg";
 import bereshitImg from "@/assets/blog-bereshit.jpg";
 import lechLechaImg from "@/assets/blog-lech-lecha.jpg";
+import akedaTearsImg from "@/assets/blog-akeda-tears.jpg";
 
 const featuredPost = {
   category: "פרשה ופסיכולוגיה",
