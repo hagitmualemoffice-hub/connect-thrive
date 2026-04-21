@@ -65,10 +65,10 @@ const Index = () => {
 
           {/* CTA buttons */}
           <div className="flex items-center gap-3">
-            <button className="px-5 py-2.5 rounded-full bg-muted text-foreground/70 text-sm font-light hover:bg-muted/80 transition-colors">
+            <button className="px-5 py-2.5 rounded-lg bg-muted text-foreground/70 text-sm font-light hover:bg-muted/80 transition-colors">
               להצטרפות לתפוצה
             </button>
-            <button className="px-6 py-2.5 rounded-full bg-primary text-primary-foreground text-sm font-light hover:bg-[hsl(var(--primary-dark))] transition-colors">
+            <button className="px-6 py-2.5 rounded-lg bg-primary text-primary-foreground text-sm font-light hover:bg-[hsl(var(--primary-dark))] transition-colors">
               דברו איתי
             </button>
           </div>
@@ -139,7 +139,7 @@ const Index = () => {
           </div>
 
           <div className="mt-10 flex justify-start">
-            <button className="px-10 py-3 rounded-full bg-primary text-primary-foreground text-base font-light hover:bg-[hsl(var(--primary-dark))] transition-colors">
+            <button className="px-10 py-3 rounded-lg bg-primary text-primary-foreground text-base font-light hover:bg-[hsl(var(--primary-dark))] transition-colors">
               לקרוא עוד
             </button>
           </div>
@@ -171,7 +171,7 @@ const Index = () => {
           </div>
 
           <div className="mt-10 flex justify-start">
-            <button className="px-10 py-3 rounded-full bg-primary text-primary-foreground text-base font-light hover:bg-[hsl(var(--primary-dark))] transition-colors">
+            <button className="px-10 py-3 rounded-lg bg-primary text-primary-foreground text-base font-light hover:bg-[hsl(var(--primary-dark))] transition-colors">
               לקרוא עוד
             </button>
           </div>
@@ -237,7 +237,7 @@ const Index = () => {
               </div>
 
               <div className="mt-6 flex justify-start" dir="rtl">
-                <button className="px-8 py-2.5 rounded-full bg-primary text-primary-foreground text-sm font-light hover:bg-[hsl(var(--primary-dark))] transition-colors">
+                <button className="px-8 py-2.5 rounded-lg bg-primary text-primary-foreground text-sm font-light hover:bg-[hsl(var(--primary-dark))] transition-colors">
                   להזמנת הרצאה
                 </button>
               </div>
@@ -285,7 +285,7 @@ const Index = () => {
                   </p>
                 </div>
                 <div className="flex justify-start mt-auto">
-                  <button className="px-8 py-2.5 rounded-full bg-primary text-primary-foreground text-sm font-light hover:bg-[hsl(var(--primary-dark))] transition-colors">
+                  <button className="px-8 py-2.5 rounded-lg bg-primary text-primary-foreground text-sm font-light hover:bg-[hsl(var(--primary-dark))] transition-colors">
                     להזמנת הרצאה
                   </button>
                 </div>
@@ -303,7 +303,7 @@ const Index = () => {
             dir="rtl"
             style={{
               background:
-                "linear-gradient(90deg, hsl(170 65% 75%) 0%, hsl(220 50% 80%) 35%, hsl(280 45% 80%) 60%, hsl(330 75% 75%) 100%)",
+                "linear-gradient(90deg, hsl(170 80% 60%) 0%, hsl(220 70% 70%) 35%, hsl(290 65% 70%) 60%, hsl(330 90% 65%) 100%)",
             }}
           >
             <div className="w-[min(720px,75%)] mr-0">
@@ -330,7 +330,7 @@ const Index = () => {
                 לחולל תנועה, חיבור ודיוק דרך הקשבה, טקסט ושיח.
               </p>
 
-              <button className="px-10 py-3 rounded-full bg-white text-foreground text-sm md:text-base font-light hover:bg-white/90 transition-colors">
+              <button className="px-10 py-3 rounded-lg bg-white text-foreground text-sm md:text-base font-light shadow-md hover:bg-primary hover:text-primary-foreground hover:shadow-lg transition-all">
                 בואו נתכנן לכם סדנא
               </button>
             </div>
