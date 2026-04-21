@@ -343,61 +343,6 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Projects section - Listening Entrepreneurship */}
-      <section className="relative w-full py-24 px-6 overflow-hidden">
-        {/* Background image - only top portion (ends ~1/3 into 2nd card) */}
-        <div className="absolute top-0 left-0 right-0 h-[820px] overflow-hidden">
-          <img
-            src={projectsBg}
-            alt="יזמות קשובה - פרויקטים"
-            className="absolute inset-0 w-full h-full object-cover"
-          />
-        </div>
-
-        <div className="relative z-10 w-[min(1000px,72%)] mx-auto" dir="rtl">
-          <div className="text-right mb-10">
-            <h2 className="text-foreground text-4xl md:text-5xl font-light leading-tight mb-3">
-              <span className="font-extralight">יזמות קשובה</span>{" "}
-              <span className="font-bold">פרויקטים</span>
-            </h2>
-            <p className="text-base md:text-lg font-light">
-              <span className="text-primary font-normal">אמפתיה, הקשבה ויצירתיות -</span>
-              <span className="text-foreground/80 mx-1">פתרונות שנולדים מתוך צורך אמיתי.</span>
-            </p>
-          </div>
-
-          <div className="space-y-10">
-            {projectCards.map((card, idx) => (
-              <div
-                key={idx}
-                className="bg-card rounded-3xl shadow-[0_20px_60px_-15px_hsl(0_0%_0%_/_0.18)] px-12 md:px-20 py-14 md:py-16 text-right w-full"
-              >
-                <div className="w-[min(696px,100%)] mr-0 ml-auto">
-                  <h3 className="text-foreground text-2xl md:text-3xl font-bold leading-tight mb-6 whitespace-pre-line">
-                    {card.title}
-                  </h3>
-                  <div className="space-y-4 text-foreground/80 text-sm md:text-base font-light leading-relaxed mb-8">
-                    {card.paragraphs.map((p, i) => (
-                      <p key={i}>{p}</p>
-                    ))}
-                  </div>
-                  <div className="flex flex-wrap justify-start gap-3">
-                    {card.buttons.map((btn) => (
-                      <button
-                        key={btn}
-                        className="px-7 py-2.5 rounded-lg bg-primary text-primary-foreground text-sm font-light hover:bg-[hsl(var(--primary-dark))] transition-colors"
-                      >
-                        {btn}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Unique offering - Bibliotherapy gradient section */}
       <section className="w-full py-20 px-6">
         <div className="w-[min(1200px,82%)] mx-auto">
@@ -486,8 +431,60 @@ const Index = () => {
           </div>
         </div>
       </section>
-    </div>
-  );
-};
+
+      {/* Projects section - Listening Entrepreneurship */}
+      <section className="relative w-full py-24 px-6 overflow-hidden">
+        {/* Background image - only top portion (ends ~1/3 into 2nd card) */}
+        <div className="absolute top-0 left-0 right-0 h-[820px] overflow-hidden">
+          <img
+            src={projectsBg}
+            alt="יזמות קשובה - פרויקטים"
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+        </div>
+
+        <div className="relative z-10 w-[min(1000px,72%)] mx-auto" dir="rtl">
+          <div className="text-right mb-10">
+            <h2 className="text-foreground text-4xl md:text-5xl font-light leading-tight mb-3">
+              <span className="font-extralight">יזמות קשובה</span>{" "}
+              <span className="font-bold">פרויקטים</span>
+            </h2>
+            <p className="text-base md:text-lg font-light">
+              <span className="text-primary font-normal">אמפתיה, הקשבה ויצירתיות -</span>
+              <span className="text-foreground/80 mx-1">פתרונות שנולדים מתוך צורך אמיתי.</span>
+            </p>
+          </div>
+
+          <div className="space-y-10">
+            {projectCards.map((card, idx) => (
+              <div
+                key={idx}
+                className="bg-card rounded-3xl shadow-[0_20px_60px_-15px_hsl(0_0%_0%_/_0.18)] px-12 md:px-20 py-14 md:py-16 text-right w-full"
+              >
+                <div className="w-[min(696px,100%)] mr-0 ml-auto">
+                  <h3 className="text-foreground text-2xl md:text-3xl font-bold leading-tight mb-6 whitespace-pre-line">
+                    {card.title}
+                  </h3>
+                  <div className="space-y-4 text-foreground/80 text-sm md:text-base font-light leading-relaxed mb-8">
+                    {card.paragraphs.map((p, i) => (
+                      <p key={i}>{p}</p>
+                    ))}
+                  </div>
+                  <div className="flex flex-wrap justify-start gap-3">
+                    {card.buttons.map((btn) => (
+                      <button
+                        key={btn}
+                        className="px-7 py-2.5 rounded-lg bg-primary text-primary-foreground text-sm font-light hover:bg-[hsl(var(--primary-dark))] transition-colors"
+                      >
+                        {btn}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
 export default Index;
