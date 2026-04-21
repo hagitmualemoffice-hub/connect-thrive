@@ -342,8 +342,8 @@ const Index = () => {
       <section className="w-full py-20 px-6">
         <div className="w-[min(1000px,72%)] mx-auto text-right mb-8" dir="rtl">
           <h2 className="text-foreground text-4xl md:text-5xl font-light leading-tight mb-3">
-            <span className="font-extralight">מפרט</span>{" "}
-            <span className="font-semibold">הרצאות</span>
+            <span className="font-light">מפרט</span>{" "}
+            <span className="font-light">הרצאות</span>
           </h2>
           <p className="text-base md:text-lg font-light">
             <span className="text-primary font-normal">פסיכולוגיה של עשייה -</span>
