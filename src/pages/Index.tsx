@@ -396,7 +396,7 @@ const Index = () => {
           >
             <div className="w-[min(720px,75%)] mr-0">
               <h2 className="text-white text-3xl md:text-5xl font-light leading-tight mb-10">
-                <span className="font-bold">מוצר ייחודי-</span>{" "}
+                <span className="font-light">מוצר ייחודי-</span>{" "}
                 <span className="font-light">סדנאות ביבליותרפיה</span>
                 <br />
                 <span className="font-light">הנבנות בקשב לצורך שלכם</span>
