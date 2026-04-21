@@ -1,17 +1,16 @@
 import { Link, useParams } from "react-router-dom";
 import { ArrowRight, Share2 } from "lucide-react";
 import lectureBg from "@/assets/woman-beach.jpg";
+import pesachFreedom from "@/assets/blog-pesach-freedom.jpg";
 
 const post = {
   category: "פרשה ופסיכולוגיה",
-  date: "10 במרץ 2026",
+  date: "אפריל 2026",
   author: "חגית מועלם",
   authorTitle: "פסיכולוגית קלינית ויזמת",
-  title: "פרשת וארא ופתיחת הלב - על תהליכים פנימיים שמבקשים להיוולד",
-  subtitle: "על הרגעים שבהם הלב מבקש להיפתח, לנוע ולהתחיל מחדש",
-  cover: lectureBg,
-  intro:
-    "פרשת וארא פותחת בקריאה עמוקה לפתיחת הלב, להקשבה פנימית ולתנועה שמתחילה במקום הרגיש ביותר. במאמר הזה אני מתבוננת על הקשר בין הטקסט המקראי לבין תהליכים פסיכולוגיים של שינוי.",
+  title: "במחשבה נוספת - נקודת מבט פסיכולוגית",
+  subtitle: "על גאולה פנימית, חרדה, והכוח לעשות מעשה לפני שאנחנו מרגישות מוכנות",
+  cover: pesachFreedom,
 };
 
 const relatedPosts = [
