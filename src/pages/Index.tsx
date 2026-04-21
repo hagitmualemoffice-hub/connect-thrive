@@ -538,12 +538,9 @@ const Index = () => {
               <span className="font-light">יודעת</span>{" "}
               <span className="font-light">פודקאסט</span>
             </h2>
-            <p className="text-foreground/80 text-base md:text-lg font-light mb-8">
+            <p className="text-foreground/80 text-base md:text-lg font-light">
               פודקאסט על שימור פוריות וחוויה נפשית - בואי לרכוש ידע, חיבור, כוח ויכולת להיות על התהליך.
             </p>
-            <button className="px-10 py-3 rounded-lg bg-primary text-primary-foreground text-sm md:text-base font-light hover:bg-[hsl(var(--primary-glow))] transition-colors">
-              לכל הפרקים
-            </button>
           </div>
         </div>
 
