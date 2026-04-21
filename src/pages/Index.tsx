@@ -165,11 +165,11 @@ const Index = () => {
       </header>
 
       {/* Hero */}
-      <section className="relative w-full h-[640px]">
+      <section className="relative w-full h-[640px] overflow-hidden group">
         <img
           src={heroBg}
           alt="חגית מועלם - פסיכולוגית קלינית"
-          className="absolute inset-0 w-full h-full object-cover"
+          className="absolute inset-0 w-full h-full object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-105"
         />
         <div className="absolute inset-0 bg-black/25" />
 
@@ -294,7 +294,7 @@ const Index = () => {
         {/* Floating white card */}
         <div className="absolute -bottom-16 right-0 left-0 z-20 px-6">
           <div className="w-[min(1000px,72%)] mx-auto">
-            <div className="bg-card rounded-3xl shadow-[0_20px_60px_-15px_hsl(0_0%_0%_/_0.18)] px-32 py-20">
+            <div className="bg-card rounded-3xl shadow-[0_20px_60px_-15px_hsl(0_0%_0%_/_0.18)] px-32 py-20 transition-all duration-500 ease-out hover:shadow-[0_28px_70px_-15px_hsl(var(--primary)/0.25)] hover:-translate-y-1">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-16 text-right" dir="rtl">
                 {/* Right column */}
                 <div>
@@ -356,7 +356,7 @@ const Index = () => {
             {lectureCards.map((card) => (
               <div
                 key={card.title}
-                className="bg-card rounded-3xl shadow-[0_15px_40px_-15px_hsl(0_0%_0%_/_0.12)] px-12 py-14 text-right flex flex-col"
+                className="bg-card rounded-3xl shadow-[0_15px_40px_-15px_hsl(0_0%_0%_/_0.12)] px-12 py-14 text-right flex flex-col transition-all duration-300 ease-out hover:scale-[1.03] hover:shadow-[0_25px_50px_-15px_hsl(var(--primary)/0.25)] cursor-pointer"
               >
                 <h3 className="text-foreground text-2xl font-bold leading-tight mb-6 whitespace-pre-line">
                   {card.title}
@@ -446,9 +446,10 @@ const Index = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {blogPosts.map((post, idx) => (
-              <article
+              <a
+                href="#"
                 key={idx}
-                className="bg-card rounded-3xl shadow-[0_15px_40px_-15px_hsl(0_0%_0%_/_0.12)] px-10 py-12 text-right flex flex-col"
+                className="bg-card rounded-3xl shadow-[0_15px_40px_-15px_hsl(0_0%_0%_/_0.12)] px-10 py-12 text-right flex flex-col transition-all duration-300 ease-out hover:scale-[1.03] hover:shadow-[0_25px_50px_-15px_hsl(var(--primary)/0.25)] cursor-pointer"
               >
                 <div className="mb-6">
                   <span className="inline-block px-4 py-1.5 rounded-md bg-accent text-primary text-xs font-light">
@@ -467,7 +468,7 @@ const Index = () => {
                 >
                   להמשיך לקרוא
                 </a>
-              </article>
+              </a>
             ))}
           </div>
         </div>
@@ -549,21 +550,25 @@ const Index = () => {
         <div className="w-[min(1000px,72%)] mx-auto" dir="rtl">
           <div className="grid grid-cols-3 gap-6">
             {podcastEpisodes.map((ep, idx) => (
-              <div key={idx} className="flex flex-col">
+              <a
+                href="#"
+                key={idx}
+                className="flex flex-col group cursor-pointer transition-all duration-300 ease-out hover:scale-[1.03]"
+              >
                 <img
                   src={podcastCover}
                   alt="יודעת פודקאסט"
                   loading="lazy"
                   width={1080}
                   height={607}
-                  className="w-full h-auto rounded-3xl shadow-[0_15px_40px_-15px_hsl(0_0%_0%_/_0.15)]"
+                  className="w-full h-auto rounded-3xl shadow-[0_15px_40px_-15px_hsl(0_0%_0%_/_0.15)] transition-shadow duration-300 group-hover:shadow-[0_25px_50px_-15px_hsl(var(--primary)/0.3)]"
                 />
                 <div className="mt-5 text-right text-foreground text-sm md:text-base">
                   <span className="font-bold">פרק {ep.num}</span>
                   <span className="text-foreground/50 mx-2">|</span>
-                  <span className="font-light">{ep.title}</span>
+                  <span className="font-light group-hover:text-primary transition-colors">{ep.title}</span>
                 </div>
-              </div>
+              </a>
             ))}
           </div>
         </div>
