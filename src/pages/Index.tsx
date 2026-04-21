@@ -209,7 +209,8 @@ const Index = () => {
       <div className="h-24" />
 
       {/* About section */}
-      <section className="w-full py-20 px-6">
+      <section id="about" className="w-full py-20 px-6">
+
         <div className="w-[min(1000px,72%)] mx-auto"><div className="w-[min(720px,76%)] mr-0 text-right">
           <h2 className="text-foreground text-4xl md:text-5xl font-light leading-tight mb-8">
             נעים מאוד, חגית מועלם פסיכולוגית בהתמחות קלינית, מרצה ויזמת.
