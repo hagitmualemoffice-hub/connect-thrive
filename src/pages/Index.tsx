@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { z } from "zod";
-import { Heart, MessageCircle } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "@/hooks/use-toast";
 import heroBg from "@/assets/hero-bg.jpg";
