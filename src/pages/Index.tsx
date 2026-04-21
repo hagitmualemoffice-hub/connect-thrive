@@ -439,7 +439,7 @@ const Index = () => {
           <img
             src={projectsBg}
             alt="יזמות קשובה - פרויקטים"
-            className="absolute inset-0 w-full h-full object-cover"
+            className="absolute inset-0 w-full h-full object-cover [object-position:center_85%]"
           />
         </div>
 
