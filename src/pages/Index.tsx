@@ -2,6 +2,7 @@ import { useState } from "react";
 import { z } from "zod";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "@/hooks/use-toast";
+import MailingListPopup from "@/components/MailingListPopup";
 import heroBg from "@/assets/hero-bg.jpg";
 import lectureBg from "@/assets/woman-beach.jpg";
 import projectsBg from "@/assets/woman-beach-projects.jpg";
@@ -110,6 +111,7 @@ const heroNav: { label: string; href: string }[] = [
 const Index = () => {
   const [form, setForm] = useState({ name: "", email: "", phone: "", message: "" });
   const [submitting, setSubmitting] = useState(false);
+  const [popupOpen, setPopupOpen] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -154,7 +156,10 @@ const Index = () => {
 
           {/* CTA buttons */}
           <div className="flex items-center gap-3">
-            <button className="px-5 py-2.5 rounded-lg bg-muted text-foreground/70 text-sm font-light hover:bg-muted/80 transition-colors">
+            <button
+              onClick={() => setPopupOpen(true)}
+              className="px-5 py-2.5 rounded-lg bg-muted text-foreground/70 text-sm font-light hover:bg-muted/80 transition-colors"
+            >
               להצטרפות לתפוצה
             </button>
             <a href="#contact" className="px-6 py-2.5 rounded-lg bg-primary text-primary-foreground text-sm font-light hover:bg-[hsl(var(--primary-glow))] transition-colors">
@@ -667,6 +672,8 @@ const Index = () => {
           </div>
         </div>
       </section>
+
+      <MailingListPopup open={popupOpen} onOpenChange={setPopupOpen} />
     </div>
   );
 };
