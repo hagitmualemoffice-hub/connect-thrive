@@ -98,7 +98,7 @@ const topNav = [
   { label: "הפרוייקטים שלי", href: "#projects" },
   { label: "סדנאות והרצאות", href: "#lectures" },
   { label: "בלוג", href: "/blog" },
-  { label: "פודקאסט", href: "#podcast" },
+  { label: "פודקאסט", href: "/podcast" },
 ];
 
 const heroNav: { label: string; href: string }[] = [
@@ -106,7 +106,7 @@ const heroNav: { label: string; href: string }[] = [
   { label: "סדנאות", href: "#workshops" },
   { label: "יזמות קשובה", href: "#projects" },
   { label: "בלוג", href: "#blog" },
-  { label: "פודקאסט", href: "#podcast" },
+  { label: "פודקאסט", href: "/podcast" },
 ];
 
 const Index = () => {
