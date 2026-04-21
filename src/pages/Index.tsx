@@ -183,12 +183,12 @@ const Index = () => {
         <img
           src={lectureBg}
           alt="הרצאות - להעיר את הכוח מבפנים"
-          className="absolute inset-0 w-full h-full object-cover"
+          className="absolute inset-0 w-full h-full object-cover object-left"
         />
         <div className="absolute inset-0 bg-black/25" />
 
         {/* Title + Card aligned to same right edge as upper sections */}
-        <div className="absolute inset-x-0 bottom-[340px] z-10 px-6">
+        <div className="absolute inset-x-0 bottom-[380px] z-10 px-6">
           <div className="w-[min(780px,65%)] mx-auto text-right" dir="rtl">
             <h2 className="text-white text-4xl md:text-5xl font-light tracking-wide">
               <span className="font-semibold">הרצאות</span>
