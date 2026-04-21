@@ -91,8 +91,8 @@ const blogPosts = [
 ];
 
 const topNav = [
-  { label: "הסנטר שלי", href: "#top" },
-  { label: "יזמות קשובה", href: "#projects" },
+  { label: "הסנטר שלי", href: "#about" },
+  { label: "יזמות קשובה", href: "#entrepreneurship" },
   { label: "הפרוייקטים שלי", href: "#projects" },
   { label: "סדנאות והרצאות", href: "#lectures" },
   { label: "בלוג", href: "#blog" },
