@@ -143,7 +143,7 @@ const Blog = () => {
       <section className="w-full pb-16 px-6">
         <div className="w-[min(1100px,82%)] mx-auto">
           <Link
-            to="/blog/featured"
+            to="/blog/pesach-freedom"
             className="group block bg-card rounded-3xl overflow-hidden shadow-[0_15px_50px_-15px_hsl(0_0%_0%_/_0.12)] hover:shadow-[0_25px_60px_-15px_hsl(var(--primary)/0.25)] transition-all duration-300"
           >
             <div className="grid grid-cols-1 md:grid-cols-2 gap-0">
@@ -187,7 +187,7 @@ const Blog = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {posts.map((post, idx) => (
               <Link
-                to={`/blog/${idx + 1}`}
+                to={idx === 0 ? "/blog/bereshit-end" : `/blog/${idx + 1}`}
                 key={idx}
                 className="group bg-card rounded-3xl overflow-hidden shadow-[0_10px_30px_-15px_hsl(0_0%_0%_/_0.1)] hover:shadow-[0_20px_45px_-15px_hsl(var(--primary)/0.22)] transition-all duration-300 hover:-translate-y-1 flex flex-col"
               >
