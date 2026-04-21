@@ -157,7 +157,7 @@ const Index = () => {
             <button className="px-5 py-2.5 rounded-lg bg-muted text-foreground/70 text-sm font-light hover:bg-muted/80 transition-colors">
               להצטרפות לתפוצה
             </button>
-            <button className="px-6 py-2.5 rounded-lg bg-primary text-primary-foreground text-sm font-light hover:bg-[hsl(var(--primary-dark))] transition-colors">
+            <button className="px-6 py-2.5 rounded-lg bg-primary text-primary-foreground text-sm font-light hover:bg-[hsl(var(--primary-glow))] transition-colors">
               דברו איתי
             </button>
           </div>
@@ -169,7 +169,7 @@ const Index = () => {
         <img
           src={heroBg}
           alt="חגית מועלם - פסיכולוגית קלינית"
-          className="absolute inset-0 w-full h-full object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-105"
+          className="absolute inset-0 w-full h-full object-cover transition-transform duration-[2500ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.04]"
         />
         <div className="absolute inset-0 bg-black/25" />
 
@@ -178,7 +178,7 @@ const Index = () => {
           <p className="text-white/90 text-base font-light mb-[2px]">
             חגית מועלם פסיכולוגית בהתמחות קלינית
           </p>
-          <h1 className="text-white text-5xl md:text-6xl font-extralight tracking-wide mb-[14px]">
+          <h1 className="text-white text-5xl md:text-6xl font-light tracking-wide mb-[14px]">
             כשחיבור מחולל תנועה
           </h1>
           <p className="text-white/90 text-lg md:text-xl font-light max-w-4xl whitespace-nowrap leading-relaxed">
@@ -187,11 +187,11 @@ const Index = () => {
         </div>
 
         {/* Floating bottom nav bar */}
-        <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 w-[min(900px,75%)] z-20">
-          <div className="bg-card rounded-2xl shadow-[0_15px_50px_-10px_hsl(0_0%_0%_/_0.15)] px-12 py-[31px] flex items-center justify-center gap-8">
+        <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 w-[min(900px,90%)] z-20">
+          <div className="bg-card rounded-2xl shadow-[0_15px_50px_-10px_hsl(0_0%_0%_/_0.15)] px-8 py-[31px] flex items-center justify-center gap-6 flex-nowrap">
             {heroNav.map((label, idx) => (
-              <div key={label} className="flex items-center gap-8">
-                <button className="text-foreground/80 hover:text-primary transition-colors text-base font-light">
+              <div key={label} className="flex items-center gap-6 whitespace-nowrap">
+                <button className="text-foreground/80 hover:text-primary transition-colors text-base font-light whitespace-nowrap">
                   {label}
                 </button>
                 {idx < heroNav.length - 1 && (
@@ -209,7 +209,7 @@ const Index = () => {
       {/* About section */}
       <section className="w-full py-20 px-6">
         <div className="w-[min(1000px,72%)] mx-auto"><div className="w-[min(720px,76%)] mr-0 text-right">
-          <h2 className="text-foreground text-4xl md:text-5xl font-extralight leading-tight mb-8">
+          <h2 className="text-foreground text-4xl md:text-5xl font-light leading-tight mb-8">
             נעים מאוד, חגית מועלם פסיכולוגית בהתמחות קלינית, מרצה ויזמת.
           </h2>
 
@@ -228,7 +228,7 @@ const Index = () => {
           </div>
 
           <div className="mt-10 flex justify-start">
-            <button className="px-10 py-3 rounded-lg bg-primary text-primary-foreground text-base font-light hover:bg-[hsl(var(--primary-dark))] transition-colors">
+            <button className="px-10 py-3 rounded-lg bg-primary text-primary-foreground text-base font-light hover:bg-[hsl(var(--primary-glow))] transition-colors">
               לקרוא עוד
             </button>
           </div>
@@ -238,7 +238,7 @@ const Index = () => {
       {/* Movement section */}
       <section className="w-full py-20 px-6">
         <div className="w-[min(1000px,72%)] mx-auto"><div className="w-[min(720px,76%)] mr-0 text-right">
-          <h2 className="text-foreground text-4xl md:text-5xl font-extralight leading-tight mb-8">
+          <h2 className="text-foreground text-4xl md:text-5xl font-light leading-tight mb-8">
             של יצירה ועשייה תוך כדי תנועה
           </h2>
 
@@ -260,7 +260,7 @@ const Index = () => {
           </div>
 
           <div className="mt-10 flex justify-start">
-            <button className="px-10 py-3 rounded-lg bg-primary text-primary-foreground text-base font-light hover:bg-[hsl(var(--primary-dark))] transition-colors">
+            <button className="px-10 py-3 rounded-lg bg-primary text-primary-foreground text-base font-light hover:bg-[hsl(var(--primary-glow))] transition-colors">
               לקרוא עוד
             </button>
           </div>
@@ -280,9 +280,9 @@ const Index = () => {
         <div className="absolute inset-x-0 bottom-[390px] z-10 px-6">
           <div className="w-[min(1000px,72%)] mx-auto text-right" dir="rtl">
             <h2 className="text-white text-4xl md:text-5xl font-light tracking-wide">
-              <span className="font-semibold">הרצאות</span>
-              <span className="mx-3 font-extralight">|</span>
-              <span className="font-extralight">להעיר את הכוח מבפנים</span>
+              <span className="font-light">הרצאות</span>
+              <span className="mx-3 font-light">|</span>
+              <span className="font-light">להעיר את הכוח מבפנים</span>
             </h2>
             <p className="mt-3 text-white/95 text-base md:text-lg font-light">
               <span className="text-primary font-normal">אמונה, פסיכולוגיה וייעוד</span>
@@ -326,7 +326,7 @@ const Index = () => {
               </div>
 
               <div className="mt-6 flex justify-start" dir="rtl">
-                <button className="px-8 py-2.5 rounded-lg bg-primary text-primary-foreground text-sm font-light hover:bg-[hsl(var(--primary-dark))] transition-colors">
+                <button className="px-8 py-2.5 rounded-lg bg-primary text-primary-foreground text-sm font-light hover:bg-[hsl(var(--primary-glow))] transition-colors">
                   להזמנת הרצאה
                 </button>
               </div>
@@ -342,8 +342,8 @@ const Index = () => {
       <section className="w-full py-20 px-6">
         <div className="w-[min(1000px,72%)] mx-auto text-right mb-8" dir="rtl">
           <h2 className="text-foreground text-4xl md:text-5xl font-light leading-tight mb-3">
-            <span className="font-extralight">מפרט</span>{" "}
-            <span className="font-semibold">הרצאות</span>
+            <span className="font-light">מפרט</span>{" "}
+            <span className="font-light">הרצאות</span>
           </h2>
           <p className="text-base md:text-lg font-light">
             <span className="text-primary font-normal">פסיכולוגיה של עשייה -</span>
@@ -374,7 +374,7 @@ const Index = () => {
                   </p>
                 </div>
                 <div className="flex justify-start mt-auto">
-                  <button className="px-8 py-2.5 rounded-lg bg-primary text-primary-foreground text-sm font-light hover:bg-[hsl(var(--primary-dark))] transition-colors">
+                  <button className="px-8 py-2.5 rounded-lg bg-primary text-primary-foreground text-sm font-light hover:bg-[hsl(var(--primary-glow))] transition-colors">
                     להזמנת הרצאה
                   </button>
                 </div>
@@ -396,7 +396,7 @@ const Index = () => {
           >
             <div className="w-[min(720px,75%)] mr-0">
               <h2 className="text-white text-3xl md:text-5xl font-light leading-tight mb-10">
-                <span className="font-bold">מוצר ייחודי-</span>{" "}
+                <span className="font-light">מוצר ייחודי-</span>{" "}
                 <span className="font-light">סדנאות ביבליותרפיה</span>
                 <br />
                 <span className="font-light">הנבנות בקשב לצורך שלכם</span>
@@ -429,19 +429,14 @@ const Index = () => {
       {/* Blog section */}
       <section className="w-full py-20 px-6">
         <div className="w-[min(1000px,72%)] mx-auto" dir="rtl">
-          <div className="flex items-start justify-between gap-8 mb-12">
-            <div className="text-right">
-              <h2 className="text-foreground text-4xl md:text-5xl font-light leading-tight mb-3">
-                <span className="font-extralight">מרחב פנימי</span>{" "}
-                <span className="font-bold">בלוג</span>
-              </h2>
-              <p className="text-foreground/80 text-base md:text-lg font-light">
-                על נפש, תנועה ומשמעות כפי שהן פוגשות חיים.
-              </p>
-            </div>
-            <button className="px-10 py-3 rounded-lg bg-primary text-primary-foreground text-sm md:text-base font-light hover:bg-[hsl(var(--primary-dark))] transition-colors shrink-0">
-              לכל הפוסטים
-            </button>
+          <div className="text-right mb-12">
+            <h2 className="text-foreground text-4xl md:text-5xl font-light leading-tight mb-3">
+              <span className="font-light">מרחב פנימי</span>{" "}
+              <span className="font-light">בלוג</span>
+            </h2>
+            <p className="text-foreground/80 text-base md:text-lg font-light">
+              על נפש, תנועה ומשמעות כפי שהן פוגשות חיים.
+            </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -464,12 +459,18 @@ const Index = () => {
                 </p>
                 <a
                   href="#"
-                  className="text-primary text-sm font-medium hover:text-[hsl(var(--primary-dark))] transition-colors text-right"
+                  className="text-primary text-sm font-medium hover:text-[hsl(var(--primary-glow))] transition-colors text-right"
                 >
                   להמשיך לקרוא
                 </a>
               </a>
             ))}
+          </div>
+
+          <div className="mt-12 flex justify-center">
+            <button className="px-10 py-3 rounded-lg bg-primary text-primary-foreground text-sm md:text-base font-light hover:bg-[hsl(var(--primary-glow))] transition-colors">
+              לכל הפוסטים
+            </button>
           </div>
         </div>
       </section>
@@ -488,8 +489,8 @@ const Index = () => {
         <div className="relative z-10 w-[min(1000px,72%)] mx-auto" dir="rtl">
           <div className="text-right mb-10">
             <h2 className="text-foreground text-4xl md:text-5xl font-light leading-tight mb-3">
-              <span className="font-extralight">יזמות קשובה</span>{" "}
-              <span className="font-bold">פרויקטים</span>
+              <span className="font-light">יזמות קשובה</span>{" "}
+              <span className="font-light">פרויקטים</span>
             </h2>
             <p className="text-base md:text-lg font-light">
               <span className="text-primary font-normal">אמפתיה, הקשבה ויצירתיות -</span>
@@ -516,7 +517,7 @@ const Index = () => {
                     {card.buttons.map((btn) => (
                       <button
                         key={btn}
-                        className="px-7 py-2.5 rounded-lg bg-primary text-primary-foreground text-sm font-light hover:bg-[hsl(var(--primary-dark))] transition-colors"
+                        className="px-7 py-2.5 rounded-lg bg-primary text-primary-foreground text-sm font-light hover:bg-[hsl(var(--primary-glow))] transition-colors"
                       >
                         {btn}
                       </button>
@@ -534,15 +535,12 @@ const Index = () => {
         <div className="w-[min(1000px,72%)] mx-auto" dir="rtl">
           <div className="text-right mb-12">
             <h2 className="text-foreground text-4xl md:text-5xl font-light leading-tight mb-3">
-              <span className="font-extralight">יודעת</span>{" "}
-              <span className="font-bold">פודקאסט</span>
+              <span className="font-light">יודעת</span>{" "}
+              <span className="font-light">פודקאסט</span>
             </h2>
-            <p className="text-foreground/80 text-base md:text-lg font-light mb-8">
+            <p className="text-foreground/80 text-base md:text-lg font-light">
               פודקאסט על שימור פוריות וחוויה נפשית - בואי לרכוש ידע, חיבור, כוח ויכולת להיות על התהליך.
             </p>
-            <button className="px-10 py-3 rounded-lg bg-primary text-primary-foreground text-sm md:text-base font-light hover:bg-[hsl(var(--primary-dark))] transition-colors">
-              לכל הפרקים
-            </button>
           </div>
         </div>
 
@@ -570,6 +568,12 @@ const Index = () => {
                 </div>
               </a>
             ))}
+          </div>
+
+          <div className="mt-12 flex justify-center">
+            <button className="px-10 py-3 rounded-lg bg-primary text-primary-foreground text-sm md:text-base font-light hover:bg-[hsl(var(--primary-glow))] transition-colors">
+              לכל הפרקים
+            </button>
           </div>
         </div>
       </section>
@@ -649,7 +653,7 @@ const Index = () => {
                 <button
                   type="submit"
                   disabled={submitting}
-                  className="w-full py-3 rounded-md bg-primary text-primary-foreground text-base font-light hover:bg-[hsl(var(--primary-dark))] transition-colors disabled:opacity-60"
+                  className="w-full py-3 rounded-md bg-primary text-primary-foreground text-base font-light hover:bg-[hsl(var(--primary-glow))] transition-colors disabled:opacity-60"
                 >
                   {submitting ? "שולח..." : "שליחה"}
                 </button>
