@@ -214,15 +214,13 @@ const Index = () => {
 
           <div className="space-y-6 text-foreground/80 text-base font-light leading-relaxed">
             <p>
-              העוגן המקצועי והאישי שלי נטוע בפסיכולוגיה של העצמי של קוהוט, בגישות אינטגרטיביות
-              עכשוויות המבוססות על ערכים, משמעות וקבלה, ובחיבורים חיים ומשמעותיים למקורות יהודיים.
+              העוגן המקצועי והאישי שלי נטוע בגישה דינמית-אינטגרטיבית, בשילוב גישות עכשוויות
+              המבוססות על ערכים, משמעות וקבלה, ובחיבור חי ומשמעותי למקורות יהודיים.
             </p>
             <p>
-              אני מאמינה שחיבור עמוק לעצמנו - לרגשות, תכונות, תחושות גוף ולייעוד הגבוה שלנו- הוא
-              הבסיס לתנועה שיש בה משמעות-בחיים האישיים, בעשייה מקצועית, ביזמות ובהנהגה.
-              <br />
-              כש"הסנטר" הפנימי שלנו ברור, כשיש חיבור למהות ולערכים, התנועה שאנחנו מחוללות בתוכנו
-              ומתוכה בעולם נעשית מדויקת, יציבה ומשפיעה.
+              אני מאמינה שחיבור עמוק לעצמנו ולייעוד הגבוה שלנו הוא הבסיס לתנועה שיש בה משמעות –
+              בחיים האישיים, בעשייה מקצועית, ביזמות ובהנהגה. כש"הסנטר" הפנימי שלנו ברור, התנועה
+              שנובעת מתוכנו אל העולם נעשית מדויקת יותר, יציבה יותר ובעלת השפעה עמוקה.
             </p>
           </div>
 
@@ -239,23 +237,23 @@ const Index = () => {
 
         <div className="w-[min(1000px,72%)] mx-auto"><div className="w-[min(720px,76%)] mr-0 text-right">
           <h2 className="text-foreground text-4xl md:text-5xl font-light leading-tight mb-8">
-            של יצירה ועשייה תוך כדי תנועה
+            אני מאמינה בכוח של יצירה ועשייה מתוך קשיבות ותוך כדי תנועה
           </h2>
 
           <div className="space-y-6 text-foreground/80 text-base font-light leading-relaxed">
             <p>
-              העשייה שלי נעה בין עומק נפשי לפעולה בעולם: הרצאות, יוזמות חברתיות, אקטיביזם
-              ותהליכי ליווי. אני מאמינה ביצירה תוך כדי תנועה - לא כהמתנה לבהירות מושלמת, אלא
-              כהיכרות מתמשכת עם עצמנו דרך בחירה, עשייה והליכה בדרך.
+              העשייה שלי נעה בין עומק נפשי לפעולה בעולם: יזמות חברתית, אקטיביזם, הרצאות
+              ותהליכי ליווי. אני מאמינה ביצירה תוך כדי תנועה – לא כהמתנה לבהירות מושלמת, אלא
+              כהיכרות מתמשכת עם עצמנו דרך בחירה, עשייה והליכה בדרך. עבורי, תנועה, חיבור
+              לייעוד והעמקה נפשית אינם שלבים נפרדים, אלא תהליך אחד חי ומתפתח – שמאפשר שינוי
+              אישי, קהילתי וחברתי.
             </p>
             <p>
-              עבורי, תנועה, חיבור לייעוד והעמקה נפשית אינם שלבים נפרדים, אלא תהליך אחד חי
-              ומתפתח - שמאפשר שינוי אישי, קהילתי וחברתי.
-            </p>
-            <p>
-              מבחינה טיפולית, אני עובדת בגישה דינמית-אינטגרטיבית, עם התמחות בליווי תהליכי
-              חרדה.העבודה משלבת עומק רגשי, קשב לחוויה ולגוף, וכלים המותאמים לאדם ולשלב שבו
-              הוא נמצא - מתוך ראייה רחבה של הנפש והחיים.
+              אני מאמינה ביזמות קשובה – יזמות שמחוברת לשטח, נובעת מתוך צורך אמיתי, חותרת
+              לפתרון נקודות כאב, וקשובה לעצמה תוך כדי תנועה ומתוך דיוק מתמשך. זו יזמות שלא
+              ממהרת לייצר פתרונות מהירים, אלא עוצרת להקשיב, להבין לעומק את האנשים וההקשר,
+              ולפעול מתוך אחריות וחיבור. היא מתפתחת יחד עם המציאות, לומדת ממנה, ומשתנה
+              בהתאם – מתוך מחויבות אמיתית ליצירת ערך, רלוונטיות והשפעה.
             </p>
           </div>
 
@@ -281,7 +279,8 @@ const Index = () => {
         <div className="relative z-10 w-[min(1000px,72%)] mx-auto" dir="rtl">
           <div className="text-right mb-10">
             <h2 className="text-foreground text-4xl md:text-5xl font-light leading-tight mb-3">
-              <span className="font-light">יזמות קשובה</span>{" "}
+              <span className="font-light">יזמות קשובה</span>
+              <span className="mx-3 font-light">|</span>
               <span className="font-light">פרויקטים</span>
             </h2>
             <p className="text-base md:text-lg font-light">
@@ -335,9 +334,9 @@ const Index = () => {
         <div className="absolute inset-x-0 bottom-[390px] z-10 px-6">
           <div className="w-[min(1000px,72%)] mx-auto text-right" dir="rtl">
             <h2 className="text-white text-4xl md:text-5xl font-light tracking-wide">
-              <span className="font-light">הרצאות</span>
-              <span className="mx-3 font-light">|</span>
               <span className="font-light">להעיר את הכוח מבפנים</span>
+              <span className="mx-3 font-light">|</span>
+              <span className="font-light">הרצאת הדגל</span>
             </h2>
             <p className="mt-3 text-white/95 text-base md:text-lg font-light">
               <span className="text-primary font-normal">אמונה, פסיכולוגיה וייעוד</span>
@@ -397,7 +396,6 @@ const Index = () => {
       <section className="w-full py-20 px-6">
         <div className="w-[min(1000px,72%)] mx-auto text-right mb-8" dir="rtl">
           <h2 className="text-foreground text-4xl md:text-5xl font-light leading-tight mb-3">
-            <span className="font-light">מפרט</span>{" "}
             <span className="font-light">הרצאות</span>
           </h2>
           <p className="text-base md:text-lg font-light">
@@ -486,7 +484,8 @@ const Index = () => {
         <div className="w-[min(1000px,72%)] mx-auto" dir="rtl">
           <div className="text-right mb-12">
             <h2 className="text-foreground text-4xl md:text-5xl font-light leading-tight mb-3">
-              <span className="font-light">מרחב פנימי</span>{" "}
+              <span className="font-light">מרחב פנימי</span>
+              <span className="mx-3 font-light">|</span>
               <span className="font-light">בלוג</span>
             </h2>
             <p className="text-foreground/80 text-base md:text-lg font-light">
@@ -542,7 +541,8 @@ const Index = () => {
         <div className="w-[min(1000px,72%)] mx-auto" dir="rtl">
           <div className="text-right mb-12">
             <h2 className="text-foreground text-4xl md:text-5xl font-light leading-tight mb-3">
-              <span className="font-light">יודעת</span>{" "}
+              <span className="font-light">יודעת</span>
+              <span className="mx-3 font-light">|</span>
               <span className="font-light">פודקאסט</span>
             </h2>
             <p className="text-foreground/80 text-base md:text-lg font-light">
