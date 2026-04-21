@@ -428,13 +428,13 @@ const Index = () => {
                 key={card.title}
                 className="bg-card rounded-3xl shadow-[0_15px_40px_-15px_hsl(0_0%_0%_/_0.12)] px-12 py-14 text-right flex flex-col transition-all duration-300 ease-out hover:scale-[1.03] hover:shadow-[0_25px_50px_-15px_hsl(var(--primary)/0.25)] cursor-pointer"
               >
-                <h3 className="text-foreground text-2xl font-bold leading-tight mb-3 whitespace-pre-line">
+                <h3 className="text-foreground text-2xl font-bold leading-tight mb-1 whitespace-pre-line">
                   {card.title}
                 </h3>
-                <p className="text-foreground text-sm font-medium leading-relaxed mb-1">
+                <p className="text-foreground text-sm font-medium leading-relaxed mb-0.5">
                   {card.subtitle}
                 </p>
-                <p className="text-foreground/70 text-sm font-light leading-relaxed mb-2 flex-1">
+                <p className="text-foreground/70 text-sm font-light leading-relaxed mb-1 flex-1">
                   {card.desc}
                 </p>
                 <div className="mb-6">
