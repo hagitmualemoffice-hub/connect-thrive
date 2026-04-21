@@ -4,7 +4,7 @@ import { X } from "lucide-react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "@/hooks/use-toast";
-import popupImage from "@/assets/popup-birds.jpg";
+import popupImage from "@/assets/popup-shells.jpg";
 
 const schema = z.object({
   name: z.string().trim().min(1, "נא להזין שם").max(100, "שם ארוך מדי"),
