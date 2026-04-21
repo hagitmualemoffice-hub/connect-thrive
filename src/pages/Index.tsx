@@ -1,4 +1,26 @@
 import heroBg from "@/assets/hero-bg.jpg";
+import lectureBg from "@/assets/woman-beach.jpg";
+
+const lectureCards = [
+  {
+    title: "הנהגה שמתחילה\nמבפנים",
+    subtitle: "הנהגה פנימית, ביקורת, ובניית ערך עצמי שלא תלוי באישור חיצוני",
+    desc: "הרצאה מקרקעת על המתח בין קבלה עצמית לצמיחה, ועל הובלה מבפנים והחזקה לאורך זמן.",
+    audience: "נשים יזמיות, פעילות חברתיות, סדנאות עומק, קבוצות הנהגה נשית.",
+  },
+  {
+    title: "כשחרדה עובדת\nבשבילך",
+    subtitle: "יזמות נשית, חוסן, והמתח בין הקשבה לעצמך לפריצת גבולות",
+    desc: 'הרצאה שמחליפה את השאלה "איך נפטרים מחרדה" ב-"איך משתמשים בה בלי שהיא תנהל אותנו".',
+    audience: "יזמיות, פעילות חברתיות, צוותים יזמיים, קהילות עשייה.",
+  },
+  {
+    title: "להרוג\nחלומות",
+    subtitle: "איך מגיעים להגשמה בלי לדעת מראש לאן הולכים.",
+    desc: "הרצאה על קיפאון, פחד משינוי, החלטות לא מושלמות, תנועה שמחזירה חיים והרגע שהו החיים מזמינים אותנו לזוז",
+    audience: "צעירות, יזמיות, אנשים בתחילת או אמצע קריירה, קבוצות חיפוש דרך.",
+  },
+];
 
 const topNav = [
   { label: "הסנטר שלי", active: true },
@@ -152,6 +174,117 @@ const Index = () => {
             <button className="px-10 py-3 rounded-full bg-primary text-primary-foreground text-base font-light hover:bg-primary/90 transition-colors">
               לקרוא עוד
             </button>
+          </div>
+        </div>
+      </section>
+
+      {/* Lecture hero section */}
+      <section className="relative w-full h-[560px] mt-10">
+        <img
+          src={lectureBg}
+          alt="הרצאות - להעיר את הכוח מבפנים"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-black/25" />
+
+        {/* Title overlay */}
+        <div className="relative z-10 h-full flex flex-col items-center justify-center text-center px-6">
+          <h2 className="text-white text-4xl md:text-5xl font-light tracking-wide">
+            <span className="font-semibold">הרצאות</span>
+            <span className="mx-3 font-extralight">|</span>
+            <span className="font-extralight">להעיר את הכוח מבפנים</span>
+          </h2>
+          <p className="mt-3 text-white/95 text-base md:text-lg font-light">
+            <span className="text-primary font-normal">אמונה, פסיכולוגיה וייעוד</span>
+            <span className="mx-3">הנהגה פנימית ותנועה מתוך משמעות ומימוש</span>
+          </p>
+        </div>
+
+        {/* Floating white card */}
+        <div className="absolute left-1/2 -translate-x-1/2 -bottom-24 w-[min(900px,80%)] z-20">
+          <div className="bg-card rounded-3xl shadow-[0_20px_60px_-15px_hsl(0_0%_0%_/_0.18)] px-12 py-12">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 text-right" dir="rtl">
+              {/* Right column */}
+              <div>
+                <h3 className="text-foreground text-2xl font-semibold mb-4">החיים שנועדו לי</h3>
+                <p className="text-foreground text-base font-medium leading-relaxed mb-6">
+                  אמונה, ביטחון וחיבור לייעוד ככוח לחיים מאושרים ומימוש עצמי עמוק
+                </p>
+                <p className="text-foreground/75 text-sm font-light leading-relaxed">
+                  הרצאה על הקשר העמוק בין אמונה, ביטחון והיכולת לחיות חיים מלאים - כאלה שיש בהם גם שמחה, גם משמעות, וגם תנועה בעולם. לא כוויתור על עשייה, אלא כעשייה שנובעת מחיבור, הקשבה ואמון.
+                </p>
+              </div>
+
+              {/* Left column */}
+              <div className="space-y-6">
+                <div>
+                  <h4 className="text-foreground text-base font-semibold mb-2">קהל יעד</h4>
+                  <p className="text-foreground/75 text-sm font-light leading-relaxed">
+                    נשים, ארגונים, קהילות עומק, ימי כיף, ערבי השראה, צעירות, קבוצות מתמודדות
+                  </p>
+                </div>
+                <div>
+                  <h4 className="text-foreground text-base font-semibold mb-2">סוג פעילות</h4>
+                  <div className="text-foreground/75 text-sm font-light space-y-1">
+                    <p>הרצאה <span className="mx-2 text-border">|</span> עד 1.5 שעות</p>
+                    <p>סדנה אינטימית <span className="mx-2 text-border">|</span> עד שעתיים</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-10 flex justify-center">
+              <button className="px-10 py-3 rounded-full bg-primary text-primary-foreground text-base font-light hover:bg-primary/90 transition-colors">
+                להזמנת הרצאה
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Spacer for floating card */}
+      <div className="h-32" />
+
+      {/* Lecture details section */}
+      <section className="w-full py-16 px-6">
+        <div className="max-w-6xl mx-auto" dir="rtl">
+          <h2 className="text-foreground text-4xl md:text-5xl font-light text-center mb-4">
+            <span className="font-extralight">מפרט</span>{" "}
+            <span className="font-semibold">הרצאות</span>
+          </h2>
+          <p className="text-center text-base md:text-lg font-light mb-14">
+            <span className="text-primary font-normal">פסיכולוגיה של עשייה -</span>
+            <span className="text-foreground/80 mx-2">הנהגה פנימית ותנועה בעולם של יזמות ועשייה</span>
+          </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {lectureCards.map((card) => (
+              <div
+                key={card.title}
+                className="bg-card rounded-3xl shadow-[0_15px_40px_-15px_hsl(0_0%_0%_/_0.12)] p-10 text-right flex flex-col"
+              >
+                <h3 className="text-foreground text-2xl font-semibold leading-tight mb-4 whitespace-pre-line">
+                  {card.title}
+                </h3>
+                <p className="text-foreground text-sm font-medium leading-relaxed mb-4">
+                  {card.subtitle}
+                </p>
+                <p className="text-foreground/70 text-sm font-light leading-relaxed mb-6 flex-1">
+                  {card.desc}
+                </p>
+                <div className="mb-6">
+                  <h4 className="text-foreground text-sm font-semibold mb-2">קהל יעד</h4>
+                  <p className="text-foreground/70 text-sm font-light leading-relaxed">
+                    {card.audience}
+                  </p>
+                </div>
+                <div className="flex justify-center mt-auto">
+                  <button className="px-8 py-2.5 rounded-full bg-primary text-primary-foreground text-sm font-light hover:bg-primary/90 transition-colors">
+                    להזמנת הרצאה
+                  </button>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
