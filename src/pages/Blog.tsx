@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import pesachFreedom from "@/assets/blog-pesach-freedom.jpg";
+import bereshitImg from "@/assets/blog-bereshit.jpg";
 
 const featuredPost = {
   category: "פרשה ופסיכולוגיה",
@@ -11,6 +12,14 @@ const featuredPost = {
 };
 
 const posts = [
+  {
+    category: "פרשה ופסיכולוגיה",
+    date: "מרץ 2026",
+    title: "מסיימות חומש בראשית - על סטנדרטים, נסיונות ואהבה",
+    excerpt:
+      "לאברהם אבינו היה ילד בגיל 100. יצחק התחתן בגיל 40, יעקב 87. מאיפה נגזר הסטנדרט שלנו? מחשבות על סיום חומש בראשית, על החיים האישיים שלנו ועל ההבנה שנסיונות לא באים כי השם כועס - אלא כי הוא אוהב.",
+    image: bereshitImg,
+  },
   {
     category: "טיפול בחרדה",
     date: "4 במרץ 2026",
