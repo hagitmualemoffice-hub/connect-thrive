@@ -119,7 +119,7 @@ const Index = () => {
 
       {/* About section */}
       <section className="w-full py-20 px-6">
-        <div className="w-[min(720px,55%)] mx-auto text-right">
+        <div className="w-[min(1000px,72%)] mx-auto"><div className="w-[min(720px,76%)] mr-0 text-right">
           <h2 className="text-foreground text-4xl md:text-5xl font-extralight leading-tight mb-8">
             נעים מאוד, חגית מועלם פסיכולוגית בהתמחות קלינית, מרצה ויזמת.
           </h2>
@@ -143,12 +143,12 @@ const Index = () => {
               לקרוא עוד
             </button>
           </div>
-        </div>
+        </div></div>
       </section>
 
       {/* Movement section */}
       <section className="w-full py-20 px-6">
-        <div className="w-[min(720px,55%)] mx-auto text-right">
+        <div className="w-[min(1000px,72%)] mx-auto"><div className="w-[min(720px,76%)] mr-0 text-right">
           <h2 className="text-foreground text-4xl md:text-5xl font-extralight leading-tight mb-8">
             של יצירה ועשייה תוך כדי תנועה
           </h2>
@@ -175,7 +175,7 @@ const Index = () => {
               לקרוא עוד
             </button>
           </div>
-        </div>
+        </div></div>
       </section>
 
       {/* Lecture hero section */}
@@ -188,7 +188,7 @@ const Index = () => {
         <div className="absolute inset-0 bg-black/25" />
 
         {/* Title + Card aligned to same right edge as upper sections */}
-        <div className="absolute inset-x-0 bottom-[340px] z-10 px-6">
+        <div className="absolute inset-x-0 bottom-[360px] z-10 px-6">
           <div className="w-[min(1000px,72%)] mx-auto text-right" dir="rtl">
             <h2 className="text-white text-4xl md:text-5xl font-light tracking-wide">
               <span className="font-semibold">הרצאות</span>
