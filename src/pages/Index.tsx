@@ -25,17 +25,17 @@ const lectureCards = [
 const blogPosts = [
   {
     category: "פרשה ופסיכולוגיה",
-    title: "פרשת וארא ופתיחת לב",
+    title: "פרשת וארא\nופתיחת הלב",
     body: "קבוצת  כתיבה יצירתית\nאתגרי כתיבה דו שבועיים, סדנאות\nמקצועיות תערוכות ומרחב וירטואלי",
   },
   {
     category: "טיפול בחרדה",
-    title: "רצון להימנע",
+    title: "הרצון הפנימי\nלהימנע",
     body: "קבוצת  כתיבה יצירתית\nאתגרי כתיבה דו שבועיים, סדנאות\nמקצועיות תערוכות ומרחב וירטואלי",
   },
   {
     category: "מימוש עצמי",
-    title: "פרשת וארא ופתיחת לב",
+    title: "פרשת וארא\nופתיחת הלב",
     body: "קבוצת  כתיבה יצירתית\nאתגרי כתיבה דו שבועיים, סדנאות\nמקצועיות תערוכות ומרחב וירטואלי",
   },
 ];
@@ -380,11 +380,11 @@ const Index = () => {
                 className="bg-card rounded-3xl shadow-[0_15px_40px_-15px_hsl(0_0%_0%_/_0.12)] px-10 py-12 text-right flex flex-col"
               >
                 <div className="mb-6">
-                  <span className="inline-block px-4 py-1.5 rounded-md bg-accent text-primary text-xs font-medium">
+                  <span className="inline-block px-4 py-1.5 rounded-md bg-accent text-primary text-xs font-light">
                     {post.category}
                   </span>
                 </div>
-                <h3 className="text-foreground text-xl md:text-2xl font-bold leading-tight mb-5">
+                <h3 className="text-foreground text-xl md:text-2xl font-bold leading-tight mb-5 whitespace-pre-line">
                   {post.title}
                 </h3>
                 <p className="text-foreground/75 text-sm font-light leading-relaxed mb-8 whitespace-pre-line flex-1">
@@ -392,7 +392,7 @@ const Index = () => {
                 </p>
                 <a
                   href="#"
-                  className="text-primary text-sm font-medium hover:text-[hsl(var(--primary-dark))] transition-colors text-center"
+                  className="text-primary text-sm font-medium hover:text-[hsl(var(--primary-dark))] transition-colors text-right"
                 >
                   להמשיך לקרוא
                 </a>
