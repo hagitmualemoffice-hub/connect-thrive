@@ -132,29 +132,23 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background" dir="rtl">
       {/* Top navigation */}
-      <header className="absolute top-0 left-0 right-0 z-20 bg-white">
+      <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm shadow-sm">
         <div className="flex items-center justify-between px-10 py-5">
           {/* Logo */}
-          <div className="text-foreground text-xl font-semibold tracking-tight">
+          <a href="#top" className="text-foreground text-xl font-semibold tracking-tight">
             חגית מועלם
-          </div>
+          </a>
 
           {/* Center nav */}
           <nav className="flex items-center gap-10">
           {topNav.map((item) => (
-              <button
+              <a
                 key={item.label}
-                className={`text-sm font-normal transition-colors relative pb-1 ${
-                  item.active
-                    ? "text-primary"
-                    : "text-foreground hover:text-primary"
-                }`}
+                href={item.href}
+                className="text-sm font-normal text-foreground hover:text-primary transition-colors relative pb-1"
               >
                 {item.label}
-                {item.active && (
-                  <span className="absolute bottom-0 right-0 left-0 h-px bg-primary" />
-                )}
-              </button>
+              </a>
             ))}
           </nav>
 
@@ -163,9 +157,9 @@ const Index = () => {
             <button className="px-5 py-2.5 rounded-lg bg-muted text-foreground/70 text-sm font-light hover:bg-muted/80 transition-colors">
               להצטרפות לתפוצה
             </button>
-            <button className="px-6 py-2.5 rounded-lg bg-primary text-primary-foreground text-sm font-light hover:bg-[hsl(var(--primary-glow))] transition-colors">
+            <a href="#contact" className="px-6 py-2.5 rounded-lg bg-primary text-primary-foreground text-sm font-light hover:bg-[hsl(var(--primary-glow))] transition-colors">
               דברו איתי
-            </button>
+            </a>
           </div>
         </div>
       </header>
