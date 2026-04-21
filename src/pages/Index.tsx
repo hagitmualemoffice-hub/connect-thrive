@@ -67,7 +67,7 @@ const Index = () => {
           <p className="text-white/90 text-base font-light mb-[2px]">
             חגית מועלם פסיכולוגית בהתמחות קלינית
           </p>
-          <h1 className="text-white text-5xl md:text-6xl font-extralight tracking-wide mb-[2px]">
+          <h1 className="text-white text-5xl md:text-6xl font-extralight tracking-wide mb-[14px]">
             כשחיבור מחולל תנועה
           </h1>
           <p className="text-white/90 text-lg md:text-xl font-light max-w-4xl whitespace-nowrap leading-relaxed">
@@ -97,11 +97,9 @@ const Index = () => {
 
       {/* About section */}
       <section className="w-full py-20 px-6">
-        <div className="max-w-3xl mx-auto text-right">
+        <div className="w-[min(900px,75%)] mx-auto text-right">
           <h2 className="text-foreground text-4xl md:text-5xl font-extralight leading-tight mb-8">
-            נעים מאוד, חגית מועלם
-            <br />
-            פסיכולוגית בהתמחות קלינית, מרצה ויזמת.
+            נעים מאוד, חגית מועלם פסיכולוגית בהתמחות קלינית, מרצה ויזמת.
           </h2>
 
           <div className="space-y-6 text-foreground/80 text-base font-light leading-relaxed">
@@ -118,7 +116,7 @@ const Index = () => {
             </p>
           </div>
 
-          <div className="mt-10 flex justify-center">
+          <div className="mt-10 flex justify-end">
             <button className="px-10 py-3 rounded-full bg-primary text-primary-foreground text-base font-light hover:bg-primary/90 transition-colors">
               לקרוא עוד
             </button>
@@ -128,8 +126,8 @@ const Index = () => {
 
       {/* Movement section */}
       <section className="w-full py-20 px-6">
-        <div className="max-w-3xl mx-auto text-right">
-          <h2 className="text-foreground text-4xl md:text-5xl font-extralight leading-tight mb-8 text-center">
+        <div className="w-[min(900px,75%)] mx-auto text-right">
+          <h2 className="text-foreground text-4xl md:text-5xl font-extralight leading-tight mb-8">
             של יצירה ועשייה תוך כדי תנועה
           </h2>
 
@@ -150,7 +148,7 @@ const Index = () => {
             </p>
           </div>
 
-          <div className="mt-10 flex justify-center">
+          <div className="mt-10 flex justify-end">
             <button className="px-10 py-3 rounded-full bg-primary text-primary-foreground text-base font-light hover:bg-primary/90 transition-colors">
               לקרוא עוד
             </button>
