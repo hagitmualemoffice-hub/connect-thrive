@@ -251,7 +251,7 @@ const Index = () => {
 
       {/* Lecture details section */}
       <section className="w-full py-20 px-6">
-        <div className="w-[min(1000px,72%)] mx-auto text-right mb-14" dir="rtl">
+        <div className="w-[min(1000px,72%)] mx-auto text-right mb-8" dir="rtl">
           <h2 className="text-foreground text-4xl md:text-5xl font-light leading-tight mb-3">
             <span className="font-extralight">מפרט</span>{" "}
             <span className="font-semibold">הרצאות</span>
