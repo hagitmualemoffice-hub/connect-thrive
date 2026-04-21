@@ -112,7 +112,7 @@ const Blog = () => {
       {/* Category filters */}
       <section className="w-full pb-10 px-6">
         <div className="w-[min(1100px,82%)] mx-auto">
-          <div className="flex flex-wrap items-center gap-3 justify-end">
+          <div className="flex flex-wrap items-center gap-3 justify-start">
             {categories.map((cat, idx) => (
               <button
                 key={cat}
