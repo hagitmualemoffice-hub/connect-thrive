@@ -156,7 +156,10 @@ const Index = () => {
 
           {/* CTA buttons */}
           <div className="flex items-center gap-3">
-            <button className="px-5 py-2.5 rounded-lg bg-muted text-foreground/70 text-sm font-light hover:bg-muted/80 transition-colors">
+            <button
+              onClick={() => setPopupOpen(true)}
+              className="px-5 py-2.5 rounded-lg bg-muted text-foreground/70 text-sm font-light hover:bg-muted/80 transition-colors"
+            >
               להצטרפות לתפוצה
             </button>
             <a href="#contact" className="px-6 py-2.5 rounded-lg bg-primary text-primary-foreground text-sm font-light hover:bg-[hsl(var(--primary-glow))] transition-colors">
