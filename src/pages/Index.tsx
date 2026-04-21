@@ -303,7 +303,7 @@ const Index = () => {
             dir="rtl"
             style={{
               background:
-                "linear-gradient(90deg, hsl(170 80% 60%) 0%, hsl(220 70% 70%) 35%, hsl(290 65% 70%) 60%, hsl(330 90% 65%) 100%)",
+                "linear-gradient(90deg, hsl(170 60% 70%) 0%, hsl(220 50% 78%) 35%, hsl(290 45% 78%) 60%, hsl(330 70% 72%) 100%)",
             }}
           >
             <div className="w-[min(720px,75%)] mr-0">
