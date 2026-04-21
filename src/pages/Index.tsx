@@ -414,7 +414,7 @@ const Index = () => {
                 key={idx}
                 className="bg-card rounded-3xl shadow-[0_20px_60px_-15px_hsl(0_0%_0%_/_0.18)] px-12 md:px-20 py-14 md:py-16 text-right w-full"
               >
-                <div className="w-[min(830px,100%)] mr-0 ml-auto">
+                <div className="w-[min(580px,100%)] mr-0 ml-auto">
                   <h3 className="text-foreground text-2xl md:text-3xl font-bold leading-tight mb-6 whitespace-pre-line">
                     {card.title}
                   </h3>
