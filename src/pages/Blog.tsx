@@ -205,7 +205,7 @@ const Blog = () => {
                     להמשיך לקרוא ←
                   </span>
                 </div>
-              </a>
+              </Link>
             ))}
           </div>
 
