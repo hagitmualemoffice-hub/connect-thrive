@@ -102,7 +102,7 @@ const Podcast = () => {
               className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-card border border-border text-foreground text-sm font-light hover:bg-accent hover:text-accent-foreground transition-colors"
             >
               <ExternalLink className="w-4 h-4" />
-              הורדה מ-Google Drive
+              צפייה ב-Google Drive
             </a>
           </div>
         </div>
@@ -116,9 +116,9 @@ const Podcast = () => {
               key={ep.num}
               className="group bg-card rounded-3xl overflow-hidden shadow-[0_10px_30px_-15px_hsl(0_0%_0%_/_0.1)] hover:shadow-[0_20px_45px_-15px_hsl(var(--primary)/0.22)] transition-all duration-300"
             >
-              <div className="grid grid-cols-1 md:grid-cols-[260px_1fr] gap-0">
+              <div className="grid grid-cols-1 md:grid-cols-[420px_1fr] gap-0">
                 {/* Cover */}
-                <div className="relative h-56 md:h-auto overflow-hidden bg-accent">
+                <div className="relative h-72 md:h-auto md:min-h-[360px] overflow-hidden bg-accent">
                   <img
                     src={podcastCover}
                     alt={ep.title}
@@ -167,7 +167,7 @@ const Podcast = () => {
                       className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-card border border-border text-foreground text-sm font-light hover:bg-accent hover:text-accent-foreground transition-colors"
                     >
                       <ExternalLink className="w-4 h-4" />
-                      הורדה מ-Drive
+                      צפייה ב-Drive
                     </a>
                   </div>
                 </div>
