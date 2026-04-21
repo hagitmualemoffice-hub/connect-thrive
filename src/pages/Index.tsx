@@ -188,7 +188,7 @@ const Index = () => {
         <div className="absolute inset-0 bg-black/25" />
 
         {/* Title + Card aligned to same right edge as upper sections */}
-        <div className="absolute inset-x-0 bottom-[380px] z-10 px-6">
+        <div className="absolute inset-x-0 bottom-[340px] z-10 px-6">
           <div className="w-[min(780px,65%)] mx-auto text-right" dir="rtl">
             <h2 className="text-white text-4xl md:text-5xl font-light tracking-wide">
               <span className="font-semibold">הרצאות</span>
@@ -203,7 +203,7 @@ const Index = () => {
         </div>
 
         {/* Floating white card */}
-        <div className="absolute -bottom-24 right-0 left-0 z-20 px-6">
+        <div className="absolute -bottom-16 right-0 left-0 z-20 px-6">
           <div className="w-[min(780px,65%)] mx-auto">
             <div className="bg-card rounded-3xl shadow-[0_20px_60px_-15px_hsl(0_0%_0%_/_0.18)] px-24 py-16">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-right" dir="rtl">
