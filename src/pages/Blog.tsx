@@ -189,11 +189,11 @@ const Blog = () => {
                   />
                 </div>
                 <div className="p-7 text-right flex flex-col flex-1">
-                  <div className="flex items-center justify-end gap-3 mb-3">
-                    <span className="text-foreground/50 text-xs font-light">{post.date}</span>
+                  <div className="flex items-center justify-start gap-3 mb-3">
                     <span className="inline-block px-3 py-1 rounded-md bg-accent text-primary text-xs font-light">
                       {post.category}
                     </span>
+                    <span className="text-foreground/50 text-xs font-light">{post.date}</span>
                   </div>
                   <h3 className="text-foreground text-lg md:text-xl font-light leading-tight mb-3 group-hover:text-primary transition-colors">
                     {post.title}
@@ -201,7 +201,7 @@ const Blog = () => {
                   <p className="text-foreground/70 text-sm font-light leading-relaxed mb-6 flex-1">
                     {post.excerpt}
                   </p>
-                  <span className="self-end text-primary text-sm font-medium group-hover:text-[hsl(var(--primary-glow))] transition-colors">
+                  <span className="self-start text-primary text-sm font-medium group-hover:text-[hsl(var(--primary-glow))] transition-colors">
                     להמשיך לקרוא ←
                   </span>
                 </div>
