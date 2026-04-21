@@ -167,7 +167,7 @@ const Blog = () => {
                 </div>
               </div>
             </div>
-          </a>
+          </Link>
         </div>
       </section>
 
