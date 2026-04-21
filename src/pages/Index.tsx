@@ -10,6 +10,7 @@ import projectsBg from "@/assets/woman-beach-projects.jpg";
 import podcastCover from "@/assets/podcast-cover.png";
 import contactBg from "@/assets/contact-coffee.jpg";
 import contactHeart from "@/assets/contact-heart.png";
+import { blogPosts as allBlogPosts } from "@/data/blogPosts";
 
 const podcastEpisodes = [
   { num: "1", title: "על חיבור לגוף עם נועם ארז" },
