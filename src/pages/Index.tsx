@@ -10,6 +10,7 @@ import projectsBg from "@/assets/woman-beach-projects.jpg";
 import podcastCover from "@/assets/podcast-cover.png";
 import contactBg from "@/assets/contact-coffee.jpg";
 import contactHeart from "@/assets/contact-heart.png";
+import { blogPosts as allBlogPosts } from "@/data/blogPosts";
 
 const podcastEpisodes = [
   { num: "1", title: "על חיבור לגוף עם נועם ארז" },
@@ -74,23 +75,7 @@ const lectureCards = [
   },
 ];
 
-const blogPosts = [
-  {
-    category: "פרשה ופסיכולוגיה",
-    title: "פרשת וארא\nופתיחת הלב",
-    body: "קבוצת  כתיבה יצירתית\nאתגרי כתיבה דו שבועיים, סדנאות\nמקצועיות תערוכות ומרחב וירטואלי",
-  },
-  {
-    category: "טיפול בחרדה",
-    title: "הרצון הפנימי\nלהימנע",
-    body: "קבוצת  כתיבה יצירתית\nאתגרי כתיבה דו שבועיים, סדנאות\nמקצועיות תערוכות ומרחב וירטואלי",
-  },
-  {
-    category: "מימוש עצמי",
-    title: "פרשת וארא\nופתיחת הלב",
-    body: "קבוצת  כתיבה יצירתית\nאתגרי כתיבה דו שבועיים, סדנאות\nמקצועיות תערוכות ומרחב וירטואלי",
-  },
-];
+const blogPosts = allBlogPosts.slice(0, 3);
 
 const topNav = [
   { label: "הסנטר שלי", href: "#about" },
@@ -510,30 +495,36 @@ const Index = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {blogPosts.map((post, idx) => (
-              <a
-                href="#"
-                key={idx}
-                className="bg-card rounded-3xl shadow-[0_15px_40px_-15px_hsl(0_0%_0%_/_0.12)] px-10 py-12 text-right flex flex-col transition-all duration-300 ease-out hover:scale-[1.03] hover:shadow-[0_25px_50px_-15px_hsl(var(--primary)/0.25)] cursor-pointer"
+            {blogPosts.map((post) => (
+              <Link
+                to={`/blog/${post.slug}`}
+                key={post.slug}
+                className="group bg-card rounded-3xl shadow-[0_15px_40px_-15px_hsl(0_0%_0%_/_0.12)] overflow-hidden text-right flex flex-col transition-all duration-300 ease-out hover:scale-[1.03] hover:shadow-[0_25px_50px_-15px_hsl(var(--primary)/0.25)] cursor-pointer"
               >
-                <div className="mb-6">
-                  <span className="inline-block px-4 py-1.5 rounded-md bg-accent text-primary text-xs font-light">
-                    {post.category}
+                <div className="h-44 overflow-hidden bg-accent">
+                  <img
+                    src={post.image}
+                    alt={post.title}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                </div>
+                <div className="px-8 py-8 flex flex-col flex-1">
+                  <div className="mb-4">
+                    <span className="inline-block px-4 py-1.5 rounded-md bg-accent text-primary text-xs font-light">
+                      {post.category}
+                    </span>
+                  </div>
+                  <h3 className="text-foreground text-lg md:text-xl font-bold leading-tight mb-3 group-hover:text-primary transition-colors">
+                    {post.title}
+                  </h3>
+                  <p className="text-foreground/75 text-sm font-light leading-relaxed mb-6 flex-1">
+                    {post.subtitle}
+                  </p>
+                  <span className="text-primary text-sm font-medium group-hover:text-[hsl(var(--primary-glow))] transition-colors text-right">
+                    להמשיך לקרוא ←
                   </span>
                 </div>
-                <h3 className="text-foreground text-xl md:text-2xl font-bold leading-tight mb-5 whitespace-pre-line">
-                  {post.title}
-                </h3>
-                <p className="text-foreground/75 text-sm font-light leading-relaxed mb-8 whitespace-pre-line flex-1">
-                  {post.body}
-                </p>
-                <a
-                  href="#"
-                  className="text-primary text-sm font-medium hover:text-[hsl(var(--primary-glow))] transition-colors text-right"
-                >
-                  להמשיך לקרוא
-                </a>
-              </a>
+              </Link>
             ))}
           </div>
 
