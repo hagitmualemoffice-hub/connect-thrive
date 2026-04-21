@@ -1,13 +1,26 @@
+import { useState } from "react";
+import { z } from "zod";
+import { Heart, MessageCircle } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
+import { toast } from "@/hooks/use-toast";
 import heroBg from "@/assets/hero-bg.jpg";
 import lectureBg from "@/assets/woman-beach.jpg";
 import projectsBg from "@/assets/woman-beach-projects.jpg";
 import podcastCover from "@/assets/podcast-cover.png";
+import contactBg from "@/assets/contact-coffee.jpg";
 
 const podcastEpisodes = [
   { num: "1", title: "על חיבור לגוף עם נועם ארז" },
   { num: "2", title: "על חיבור לגוף עם נועם ארז" },
   { num: "3", title: "על חרדה והימנעות עם דנה לוי" },
 ];
+
+const contactSchema = z.object({
+  name: z.string().trim().min(1, "נא להזין שם").max(100, "שם ארוך מדי"),
+  email: z.string().trim().email("כתובת מייל לא תקינה").max(255, "מייל ארוך מדי"),
+  phone: z.string().trim().min(1, "נא להזין טלפון").max(20, "טלפון ארוך מדי"),
+  message: z.string().trim().min(1, "נא לכתוב הודעה").max(1000, "הודעה ארוכה מדי"),
+});
 
 const projectCards = [
   {
