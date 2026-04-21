@@ -412,25 +412,27 @@ const Index = () => {
             {projectCards.map((card, idx) => (
               <div
                 key={idx}
-                className="bg-card rounded-3xl shadow-[0_20px_60px_-15px_hsl(0_0%_0%_/_0.18)] px-12 md:px-20 py-14 md:py-16 text-right w-[min(720px,90%)] mr-0 ml-auto"
+                className="bg-card rounded-3xl shadow-[0_20px_60px_-15px_hsl(0_0%_0%_/_0.18)] px-12 md:px-20 py-14 md:py-16 text-right w-full"
               >
-                <h3 className="text-foreground text-2xl md:text-3xl font-bold leading-tight mb-6 whitespace-pre-line">
-                  {card.title}
-                </h3>
-                <div className="space-y-4 text-foreground/80 text-sm md:text-base font-light leading-relaxed mb-8">
-                  {card.paragraphs.map((p, i) => (
-                    <p key={i}>{p}</p>
-                  ))}
-                </div>
-                <div className="flex flex-wrap justify-start gap-3">
-                  {card.buttons.map((btn) => (
-                    <button
-                      key={btn}
-                      className="px-7 py-2.5 rounded-lg bg-primary text-primary-foreground text-sm font-light hover:bg-[hsl(var(--primary-dark))] transition-colors"
-                    >
-                      {btn}
-                    </button>
-                  ))}
+                <div className="w-[min(830px,100%)] mr-0 ml-auto">
+                  <h3 className="text-foreground text-2xl md:text-3xl font-bold leading-tight mb-6 whitespace-pre-line">
+                    {card.title}
+                  </h3>
+                  <div className="space-y-4 text-foreground/80 text-sm md:text-base font-light leading-relaxed mb-8">
+                    {card.paragraphs.map((p, i) => (
+                      <p key={i}>{p}</p>
+                    ))}
+                  </div>
+                  <div className="flex flex-wrap justify-start gap-3">
+                    {card.buttons.map((btn) => (
+                      <button
+                        key={btn}
+                        className="px-7 py-2.5 rounded-lg bg-primary text-primary-foreground text-sm font-light hover:bg-[hsl(var(--primary-dark))] transition-colors"
+                      >
+                        {btn}
+                      </button>
+                    ))}
+                  </div>
                 </div>
               </div>
             ))}
