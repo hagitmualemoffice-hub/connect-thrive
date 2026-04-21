@@ -68,7 +68,7 @@ const Index = () => {
             <button className="px-5 py-2.5 rounded-full bg-muted text-foreground/70 text-sm font-light hover:bg-muted/80 transition-colors">
               להצטרפות לתפוצה
             </button>
-            <button className="px-6 py-2.5 rounded-full bg-primary text-primary-foreground text-sm font-light hover:bg-primary/90 transition-colors">
+            <button className="px-6 py-2.5 rounded-full bg-primary text-primary-foreground text-sm font-light hover:bg-[hsl(var(--primary-dark))] transition-colors">
               דברו איתי
             </button>
           </div>
@@ -139,7 +139,7 @@ const Index = () => {
           </div>
 
           <div className="mt-10 flex justify-start">
-            <button className="px-10 py-3 rounded-full bg-primary text-primary-foreground text-base font-light hover:bg-primary/90 transition-colors">
+            <button className="px-10 py-3 rounded-full bg-primary text-primary-foreground text-base font-light hover:bg-[hsl(var(--primary-dark))] transition-colors">
               לקרוא עוד
             </button>
           </div>
@@ -171,7 +171,7 @@ const Index = () => {
           </div>
 
           <div className="mt-10 flex justify-start">
-            <button className="px-10 py-3 rounded-full bg-primary text-primary-foreground text-base font-light hover:bg-primary/90 transition-colors">
+            <button className="px-10 py-3 rounded-full bg-primary text-primary-foreground text-base font-light hover:bg-[hsl(var(--primary-dark))] transition-colors">
               לקרוא עוד
             </button>
           </div>
@@ -237,7 +237,7 @@ const Index = () => {
               </div>
 
               <div className="mt-6 flex justify-start" dir="rtl">
-                <button className="px-8 py-2.5 rounded-full bg-primary text-primary-foreground text-sm font-light hover:bg-primary/90 transition-colors">
+                <button className="px-8 py-2.5 rounded-full bg-primary text-primary-foreground text-sm font-light hover:bg-[hsl(var(--primary-dark))] transition-colors">
                   להזמנת הרצאה
                 </button>
               </div>
@@ -283,7 +283,7 @@ const Index = () => {
                   </p>
                 </div>
                 <div className="flex justify-center mt-auto">
-                  <button className="px-8 py-2.5 rounded-full bg-primary text-primary-foreground text-sm font-light hover:bg-primary/90 transition-colors">
+                  <button className="px-8 py-2.5 rounded-full bg-primary text-primary-foreground text-sm font-light hover:bg-[hsl(var(--primary-dark))] transition-colors">
                     להזמנת הרצאה
                   </button>
                 </div>
