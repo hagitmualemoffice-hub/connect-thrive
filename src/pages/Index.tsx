@@ -91,15 +91,21 @@ const blogPosts = [
 ];
 
 const topNav = [
-  { label: "הסנטר שלי", active: true },
-  { label: "יזמות קשובה" },
-  { label: "הפרוייקטים שלי" },
-  { label: "סדנאות והרצאות" },
-  { label: "בלוג" },
-  { label: "פודקאסט" },
+  { label: "הסנטר שלי", href: "#top" },
+  { label: "יזמות קשובה", href: "#projects" },
+  { label: "הפרוייקטים שלי", href: "#projects" },
+  { label: "סדנאות והרצאות", href: "#lectures" },
+  { label: "בלוג", href: "#blog" },
+  { label: "פודקאסט", href: "#podcast" },
 ];
 
-const heroNav = ["הרצאות", "סדנאות", "יזמות קשובה", "בלוג", "פודקאסט"];
+const heroNav: { label: string; href: string }[] = [
+  { label: "הרצאות", href: "#lectures" },
+  { label: "סדנאות", href: "#workshops" },
+  { label: "יזמות קשובה", href: "#projects" },
+  { label: "בלוג", href: "#blog" },
+  { label: "פודקאסט", href: "#podcast" },
+];
 
 const Index = () => {
   const [form, setForm] = useState({ name: "", email: "", phone: "", message: "" });
@@ -126,29 +132,23 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background" dir="rtl">
       {/* Top navigation */}
-      <header className="absolute top-0 left-0 right-0 z-20 bg-white">
+      <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm shadow-sm">
         <div className="flex items-center justify-between px-10 py-5">
           {/* Logo */}
-          <div className="text-foreground text-xl font-semibold tracking-tight">
+          <a href="#top" className="text-foreground text-xl font-semibold tracking-tight">
             חגית מועלם
-          </div>
+          </a>
 
           {/* Center nav */}
           <nav className="flex items-center gap-10">
           {topNav.map((item) => (
-              <button
+              <a
                 key={item.label}
-                className={`text-sm font-normal transition-colors relative pb-1 ${
-                  item.active
-                    ? "text-primary"
-                    : "text-foreground hover:text-primary"
-                }`}
+                href={item.href}
+                className="text-sm font-normal text-foreground hover:text-primary transition-colors relative pb-1"
               >
                 {item.label}
-                {item.active && (
-                  <span className="absolute bottom-0 right-0 left-0 h-px bg-primary" />
-                )}
-              </button>
+              </a>
             ))}
           </nav>
 
@@ -157,15 +157,15 @@ const Index = () => {
             <button className="px-5 py-2.5 rounded-lg bg-muted text-foreground/70 text-sm font-light hover:bg-muted/80 transition-colors">
               להצטרפות לתפוצה
             </button>
-            <button className="px-6 py-2.5 rounded-lg bg-primary text-primary-foreground text-sm font-light hover:bg-[hsl(var(--primary-glow))] transition-colors">
+            <a href="#contact" className="px-6 py-2.5 rounded-lg bg-primary text-primary-foreground text-sm font-light hover:bg-[hsl(var(--primary-glow))] transition-colors">
               דברו איתי
-            </button>
+            </a>
           </div>
         </div>
       </header>
 
       {/* Hero */}
-      <section className="relative w-full h-[640px] overflow-hidden group">
+      <section id="top" className="relative w-full h-[640px] overflow-hidden group">
         <img
           src={heroBg}
           alt="חגית מועלם - פסיכולוגית קלינית"
@@ -189,11 +189,11 @@ const Index = () => {
         {/* Floating bottom nav bar */}
         <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 w-[min(900px,90%)] z-20">
           <div className="bg-card rounded-2xl shadow-[0_15px_50px_-10px_hsl(0_0%_0%_/_0.15)] px-8 py-[31px] flex items-center justify-center gap-6 flex-nowrap">
-            {heroNav.map((label, idx) => (
-              <div key={label} className="flex items-center gap-6 whitespace-nowrap">
-                <button className="text-foreground/80 hover:text-primary transition-colors text-base font-light whitespace-nowrap">
-                  {label}
-                </button>
+            {heroNav.map((item, idx) => (
+              <div key={item.label} className="flex items-center gap-6 whitespace-nowrap">
+                <a href={item.href} className="text-foreground/80 hover:text-primary transition-colors text-base font-light whitespace-nowrap">
+                  {item.label}
+                </a>
                 {idx < heroNav.length - 1 && (
                   <span className="text-border">|</span>
                 )}
@@ -268,7 +268,7 @@ const Index = () => {
       </section>
 
       {/* Lecture hero section */}
-      <section className="relative w-full h-[680px] mt-10">
+      <section id="lectures" className="relative w-full h-[680px] mt-10">
         <img
           src={lectureBg}
           alt="הרצאות - להעיר את הכוח מבפנים"
@@ -385,7 +385,7 @@ const Index = () => {
       </section>
 
       {/* Unique offering - Bibliotherapy gradient section */}
-      <section className="w-full py-20 px-6">
+      <section id="workshops" className="w-full py-20 px-6">
         <div className="w-[min(1200px,82%)] mx-auto">
           <div
             className="rounded-[40px] px-16 md:px-24 py-20 md:py-24 text-right"
@@ -427,7 +427,7 @@ const Index = () => {
       </section>
 
       {/* Blog section */}
-      <section className="w-full py-20 px-6">
+      <section id="blog" className="w-full py-20 px-6">
         <div className="w-[min(1000px,72%)] mx-auto" dir="rtl">
           <div className="text-right mb-12">
             <h2 className="text-foreground text-4xl md:text-5xl font-light leading-tight mb-3">
@@ -476,7 +476,7 @@ const Index = () => {
       </section>
 
       {/* Projects section - Listening Entrepreneurship */}
-      <section className="relative w-full py-24 px-6 overflow-hidden">
+      <section id="projects" className="relative w-full py-24 px-6 overflow-hidden">
         {/* Background image - only top portion (ends ~1/3 into 2nd card) */}
         <div className="absolute top-0 left-0 right-0 h-[820px] overflow-hidden">
           <img
@@ -531,7 +531,7 @@ const Index = () => {
       </section>
 
       {/* Podcast section */}
-      <section className="w-full py-20 overflow-hidden">
+      <section id="podcast" className="w-full py-20 overflow-hidden">
         <div className="w-[min(1000px,72%)] mx-auto" dir="rtl">
           <div className="text-right mb-12">
             <h2 className="text-foreground text-4xl md:text-5xl font-light leading-tight mb-3">
@@ -579,7 +579,7 @@ const Index = () => {
       </section>
 
       {/* Contact section */}
-      <section className="relative w-full bg-white">
+      <section id="contact" className="relative w-full bg-white">
         {/* Background image - only top ~half */}
         <div
           className="w-full bg-cover bg-center h-[360px] md:h-[560px]"
