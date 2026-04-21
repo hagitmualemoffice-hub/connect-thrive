@@ -169,7 +169,7 @@ const Index = () => {
         <img
           src={heroBg}
           alt="חגית מועלם - פסיכולוגית קלינית"
-          className="absolute inset-0 w-full h-full object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-105"
+          className="absolute inset-0 w-full h-full object-cover transition-transform duration-[2500ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.04]"
         />
         <div className="absolute inset-0 bg-black/25" />
 
