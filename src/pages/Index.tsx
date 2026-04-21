@@ -302,7 +302,7 @@ const Index = () => {
             className="rounded-[40px] px-16 md:px-24 py-20 md:py-24 text-right"
             dir="rtl"
             style={{
-              background: "hsl(var(--primary))",
+              background: "linear-gradient(90deg, hsl(172 79% 79%) 0%, hsl(325 75% 69%) 100%)",
             }}
           >
             <div className="w-[min(720px,75%)] mr-0">
