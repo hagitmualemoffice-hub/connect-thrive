@@ -1,7 +1,7 @@
 import heroBg from "@/assets/hero-bg.jpg";
 import lectureBg from "@/assets/woman-beach.jpg";
 import projectsBg from "@/assets/woman-beach-projects.jpg";
-import brainFlowers from "@/assets/brain-flowers.png";
+import podcastCover from "@/assets/podcast-cover.png";
 
 const podcastEpisodes = [
   { num: "1", title: "על חיבור לגוף עם נועם ארז" },
