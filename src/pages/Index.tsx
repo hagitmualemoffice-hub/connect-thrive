@@ -280,9 +280,9 @@ const Index = () => {
         <div className="absolute inset-x-0 bottom-[390px] z-10 px-6">
           <div className="w-[min(1000px,72%)] mx-auto text-right" dir="rtl">
             <h2 className="text-white text-4xl md:text-5xl font-light tracking-wide">
-              <span className="font-semibold">הרצאות</span>
-              <span className="mx-3 font-extralight">|</span>
-              <span className="font-extralight">להעיר את הכוח מבפנים</span>
+              <span className="font-light">הרצאות</span>
+              <span className="mx-3 font-light">|</span>
+              <span className="font-light">להעיר את הכוח מבפנים</span>
             </h2>
             <p className="mt-3 text-white/95 text-base md:text-lg font-light">
               <span className="text-primary font-normal">אמונה, פסיכולוגיה וייעוד</span>
