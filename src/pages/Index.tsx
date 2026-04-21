@@ -99,7 +99,13 @@ const topNav = [
   { label: "פודקאסט", href: "#podcast" },
 ];
 
-const heroNav = ["הרצאות", "סדנאות", "יזמות קשובה", "בלוג", "פודקאסט"];
+const heroNav: { label: string; href: string }[] = [
+  { label: "הרצאות", href: "#lectures" },
+  { label: "סדנאות", href: "#workshops" },
+  { label: "יזמות קשובה", href: "#projects" },
+  { label: "בלוג", href: "#blog" },
+  { label: "פודקאסט", href: "#podcast" },
+];
 
 const Index = () => {
   const [form, setForm] = useState({ name: "", email: "", phone: "", message: "" });
