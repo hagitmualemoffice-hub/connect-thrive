@@ -432,8 +432,8 @@ const Index = () => {
           <div className="flex items-start justify-between gap-8 mb-12">
             <div className="text-right">
               <h2 className="text-foreground text-4xl md:text-5xl font-light leading-tight mb-3">
-                <span className="font-extralight">מרחב פנימי</span>{" "}
-                <span className="font-bold">בלוג</span>
+                <span className="font-light">מרחב פנימי</span>{" "}
+                <span className="font-light">בלוג</span>
               </h2>
               <p className="text-foreground/80 text-base md:text-lg font-light">
                 על נפש, תנועה ומשמעות כפי שהן פוגשות חיים.
