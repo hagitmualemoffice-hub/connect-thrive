@@ -22,6 +22,24 @@ const lectureCards = [
   },
 ];
 
+const blogPosts = [
+  {
+    category: "פרשה ופסיכולוגיה",
+    title: "פרשת וארא ופתיחת לב",
+    body: "קבוצת  כתיבה יצירתית\nאתגרי כתיבה דו שבועיים, סדנאות\nמקצועיות תערוכות ומרחב וירטואלי",
+  },
+  {
+    category: "טיפול בחרדה",
+    title: "רצון להימנע",
+    body: "קבוצת  כתיבה יצירתית\nאתגרי כתיבה דו שבועיים, סדנאות\nמקצועיות תערוכות ומרחב וירטואלי",
+  },
+  {
+    category: "מימוש עצמי",
+    title: "פרשת וארא ופתיחת לב",
+    body: "קבוצת  כתיבה יצירתית\nאתגרי כתיבה דו שבועיים, סדנאות\nמקצועיות תערוכות ומרחב וירטואלי",
+  },
+];
+
 const topNav = [
   { label: "הסנטר שלי", active: true },
   { label: "יזמות קשובה" },
@@ -333,6 +351,53 @@ const Index = () => {
                 בואו נתכנן לכם סדנא
               </button>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Blog section */}
+      <section className="w-full py-20 px-6">
+        <div className="w-[min(1000px,72%)] mx-auto" dir="rtl">
+          <div className="flex items-start justify-between gap-8 mb-12">
+            <div className="text-right">
+              <h2 className="text-foreground text-4xl md:text-5xl font-light leading-tight mb-3">
+                <span className="font-extralight">מרחב פנימי</span>{" "}
+                <span className="font-bold">בלוג</span>
+              </h2>
+              <p className="text-foreground/80 text-base md:text-lg font-light">
+                על נפש, תנועה ומשמעות כפי שהן פוגשות חיים.
+              </p>
+            </div>
+            <button className="px-10 py-3 rounded-lg bg-primary text-primary-foreground text-sm md:text-base font-light hover:bg-[hsl(var(--primary-dark))] transition-colors shrink-0">
+              לכל הפוסטים
+            </button>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {blogPosts.map((post, idx) => (
+              <article
+                key={idx}
+                className="bg-card rounded-3xl shadow-[0_15px_40px_-15px_hsl(0_0%_0%_/_0.12)] px-10 py-12 text-right flex flex-col"
+              >
+                <div className="mb-6">
+                  <span className="inline-block px-4 py-1.5 rounded-md bg-accent text-primary text-xs font-medium">
+                    {post.category}
+                  </span>
+                </div>
+                <h3 className="text-foreground text-xl md:text-2xl font-bold leading-tight mb-5">
+                  {post.title}
+                </h3>
+                <p className="text-foreground/75 text-sm font-light leading-relaxed mb-8 whitespace-pre-line flex-1">
+                  {post.body}
+                </p>
+                <a
+                  href="#"
+                  className="text-primary text-sm font-medium hover:text-[hsl(var(--primary-dark))] transition-colors text-center"
+                >
+                  להמשיך לקרוא
+                </a>
+              </article>
+            ))}
           </div>
         </div>
       </section>
