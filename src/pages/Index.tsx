@@ -97,7 +97,7 @@ const Index = () => {
 
       {/* About section */}
       <section className="w-full py-20 px-6">
-        <div className="w-[min(900px,75%)] mx-auto text-right">
+        <div className="w-[min(780px,65%)] mx-auto text-right">
           <h2 className="text-foreground text-4xl md:text-5xl font-extralight leading-tight mb-8">
             נעים מאוד, חגית מועלם פסיכולוגית בהתמחות קלינית, מרצה ויזמת.
           </h2>
@@ -116,7 +116,7 @@ const Index = () => {
             </p>
           </div>
 
-          <div className="mt-10 flex justify-end">
+          <div className="mt-10 flex justify-start">
             <button className="px-10 py-3 rounded-full bg-primary text-primary-foreground text-base font-light hover:bg-primary/90 transition-colors">
               לקרוא עוד
             </button>
@@ -126,7 +126,7 @@ const Index = () => {
 
       {/* Movement section */}
       <section className="w-full py-20 px-6">
-        <div className="w-[min(900px,75%)] mx-auto text-right">
+        <div className="w-[min(780px,65%)] mx-auto text-right">
           <h2 className="text-foreground text-4xl md:text-5xl font-extralight leading-tight mb-8">
             של יצירה ועשייה תוך כדי תנועה
           </h2>
@@ -148,7 +148,7 @@ const Index = () => {
             </p>
           </div>
 
-          <div className="mt-10 flex justify-end">
+          <div className="mt-10 flex justify-start">
             <button className="px-10 py-3 rounded-full bg-primary text-primary-foreground text-base font-light hover:bg-primary/90 transition-colors">
               לקרוא עוד
             </button>
