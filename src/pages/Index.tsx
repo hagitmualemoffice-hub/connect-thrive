@@ -64,10 +64,10 @@ const Index = () => {
 
         {/* Hero content */}
         <div className="relative z-10 h-full flex flex-col items-center justify-end text-center px-6 pb-[88px]">
-          <p className="text-white/90 text-base font-light mb-[10px]">
+          <p className="text-white/90 text-base font-light mb-[2px]">
             חגית מועלם פסיכולוגית בהתמחות קלינית
           </p>
-          <h1 className="text-white text-5xl md:text-6xl font-extralight tracking-wide mb-[6px]">
+          <h1 className="text-white text-5xl md:text-6xl font-extralight tracking-wide mb-[2px]">
             כשחיבור מחולל תנועה
           </h1>
           <p className="text-white/90 text-lg md:text-xl font-light max-w-4xl whitespace-nowrap leading-relaxed">
