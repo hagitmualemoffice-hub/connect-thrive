@@ -91,12 +91,12 @@ const blogPosts = [
 ];
 
 const topNav = [
-  { label: "הסנטר שלי", active: true },
-  { label: "יזמות קשובה" },
-  { label: "הפרוייקטים שלי" },
-  { label: "סדנאות והרצאות" },
-  { label: "בלוג" },
-  { label: "פודקאסט" },
+  { label: "הסנטר שלי", href: "#top" },
+  { label: "יזמות קשובה", href: "#projects" },
+  { label: "הפרוייקטים שלי", href: "#projects" },
+  { label: "סדנאות והרצאות", href: "#lectures" },
+  { label: "בלוג", href: "#blog" },
+  { label: "פודקאסט", href: "#podcast" },
 ];
 
 const heroNav = ["הרצאות", "סדנאות", "יזמות קשובה", "בלוג", "פודקאסט"];
