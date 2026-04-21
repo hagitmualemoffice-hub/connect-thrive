@@ -37,7 +37,7 @@ const BlogPost = () => {
             <Link to="/#projects" className="text-sm font-normal text-foreground hover:text-primary transition-colors">הפרוייקטים שלי</Link>
             <Link to="/#lectures" className="text-sm font-normal text-foreground hover:text-primary transition-colors">סדנאות והרצאות</Link>
             <Link to="/blog" className="text-sm font-normal text-primary transition-colors">בלוג</Link>
-            <Link to="/#podcast" className="text-sm font-normal text-foreground hover:text-primary transition-colors">פודקאסט</Link>
+            <Link to="/podcast" className="text-sm font-normal text-foreground hover:text-primary transition-colors">פודקאסט</Link>
           </nav>
           <div className="flex items-center gap-3">
             <Link
