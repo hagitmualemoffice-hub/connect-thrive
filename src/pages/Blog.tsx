@@ -145,13 +145,13 @@ const Blog = () => {
                 />
               </div>
               <div className="p-10 md:p-14 text-right flex flex-col justify-center">
-                <div className="flex items-center gap-3 justify-end mb-5">
-                  <span className="text-foreground/50 text-sm font-light">{featuredPost.date}</span>
+                <div className="flex items-center gap-3 justify-start mb-5">
                   <span className="inline-block px-4 py-1.5 rounded-full bg-accent text-primary text-xs font-light">
                     פוסט מומלץ
                   </span>
+                  <span className="text-foreground/50 text-sm font-light">{featuredPost.date}</span>
                 </div>
-                <span className="inline-block self-end px-3 py-1 rounded-md text-primary text-xs font-light mb-4">
+                <span className="inline-block self-start px-3 py-1 rounded-md text-primary text-xs font-light mb-4">
                   {featuredPost.category}
                 </span>
                 <h2 className="text-foreground text-2xl md:text-3xl font-light leading-tight mb-5 group-hover:text-primary transition-colors">
@@ -160,7 +160,7 @@ const Blog = () => {
                 <p className="text-foreground/70 text-base font-light leading-relaxed mb-8">
                   {featuredPost.excerpt}
                 </p>
-                <div className="self-end">
+                <div className="self-start">
                   <span className="text-primary text-sm font-medium border-b border-primary pb-0.5 group-hover:text-[hsl(var(--primary-glow))] group-hover:border-[hsl(var(--primary-glow))] transition-colors">
                     להמשיך לקרוא ←
                   </span>
