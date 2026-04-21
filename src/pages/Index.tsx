@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { z } from "zod";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "@/hooks/use-toast";
@@ -96,7 +97,7 @@ const topNav = [
   { label: "יזמות קשובה", href: "#entrepreneurship" },
   { label: "הפרוייקטים שלי", href: "#projects" },
   { label: "סדנאות והרצאות", href: "#lectures" },
-  { label: "בלוג", href: "#blog" },
+  { label: "בלוג", href: "/blog" },
   { label: "פודקאסט", href: "#podcast" },
 ];
 
@@ -143,15 +144,20 @@ const Index = () => {
 
           {/* Center nav */}
           <nav className="flex items-center gap-10">
-          {topNav.map((item) => (
-              <a
+          {topNav.map((item) => {
+            const isInternal = item.href.startsWith("/");
+            const Cmp: any = isInternal ? Link : "a";
+            const linkProps = isInternal ? { to: item.href } : { href: item.href };
+            return (
+              <Cmp
                 key={item.label}
-                href={item.href}
+                {...linkProps}
                 className="text-sm font-normal text-foreground hover:text-primary transition-colors relative pb-1"
               >
                 {item.label}
-              </a>
-            ))}
+              </Cmp>
+            );
+          })}
           </nav>
 
           {/* CTA buttons */}
@@ -532,9 +538,9 @@ const Index = () => {
           </div>
 
           <div className="mt-12 flex justify-center">
-            <button className="px-10 py-3 rounded-lg bg-primary text-primary-foreground text-sm md:text-base font-light hover:bg-[hsl(var(--primary-glow))] transition-colors">
+            <Link to="/blog" className="px-10 py-3 rounded-lg bg-primary text-primary-foreground text-sm md:text-base font-light hover:bg-[hsl(var(--primary-glow))] transition-colors">
               לכל הפוסטים
-            </button>
+            </Link>
           </div>
         </div>
       </section>
