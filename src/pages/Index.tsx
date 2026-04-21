@@ -488,8 +488,8 @@ const Index = () => {
         <div className="relative z-10 w-[min(1000px,72%)] mx-auto" dir="rtl">
           <div className="text-right mb-10">
             <h2 className="text-foreground text-4xl md:text-5xl font-light leading-tight mb-3">
-              <span className="font-extralight">יזמות קשובה</span>{" "}
-              <span className="font-bold">פרויקטים</span>
+              <span className="font-light">יזמות קשובה</span>{" "}
+              <span className="font-light">פרויקטים</span>
             </h2>
             <p className="text-base md:text-lg font-light">
               <span className="text-primary font-normal">אמפתיה, הקשבה ויצירתיות -</span>
