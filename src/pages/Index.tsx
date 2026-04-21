@@ -183,7 +183,7 @@ const Index = () => {
         <img
           src={lectureBg}
           alt="הרצאות - להעיר את הכוח מבפנים"
-          className="absolute inset-0 w-full h-full object-cover [object-position:25%_center]"
+          className="absolute inset-0 w-full h-full object-cover [object-position:5%_center]"
         />
         <div className="absolute inset-0 bg-black/25" />
 
