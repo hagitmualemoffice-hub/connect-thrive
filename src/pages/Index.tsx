@@ -238,7 +238,7 @@ const Index = () => {
       {/* Movement section */}
       <section className="w-full py-20 px-6">
         <div className="w-[min(1000px,72%)] mx-auto"><div className="w-[min(720px,76%)] mr-0 text-right">
-          <h2 className="text-foreground text-4xl md:text-5xl font-extralight leading-tight mb-8">
+          <h2 className="text-foreground text-4xl md:text-5xl font-light leading-tight mb-8">
             של יצירה ועשייה תוך כדי תנועה
           </h2>
 
