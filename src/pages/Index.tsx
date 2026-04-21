@@ -67,7 +67,7 @@ const Index = () => {
           <p className="text-white/90 text-base font-light mb-[10px]">
             חגית מועלם פסיכולוגית בהתמחות קלינית
           </p>
-          <h1 className="text-white text-5xl md:text-6xl font-extralight tracking-wide mb-[40px]">
+          <h1 className="text-white text-5xl md:text-6xl font-extralight tracking-wide mb-[15px]">
             כשחיבור מחולל תנועה
           </h1>
           <p className="text-white/90 text-lg md:text-xl font-light max-w-4xl whitespace-nowrap leading-relaxed">
