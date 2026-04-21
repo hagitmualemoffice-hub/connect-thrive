@@ -250,24 +250,26 @@ const Index = () => {
       <div className="h-32" />
 
       {/* Lecture details section */}
-      <section className="w-full py-16 px-6">
-        <div className="max-w-6xl mx-auto" dir="rtl">
-          <h2 className="text-foreground text-4xl md:text-5xl font-light text-center mb-4">
+      <section className="w-full py-20 px-6">
+        <div className="w-[min(780px,65%)] mx-auto text-right mb-14" dir="rtl">
+          <h2 className="text-foreground text-4xl md:text-5xl font-light leading-tight mb-3">
             <span className="font-extralight">מפרט</span>{" "}
             <span className="font-semibold">הרצאות</span>
           </h2>
-          <p className="text-center text-base md:text-lg font-light mb-14">
+          <p className="text-base md:text-lg font-light">
             <span className="text-primary font-normal">פסיכולוגיה של עשייה -</span>
             <span className="text-foreground/80 mx-2">הנהגה פנימית ותנועה בעולם של יזמות ועשייה</span>
           </p>
+        </div>
 
+        <div className="max-w-6xl mx-auto" dir="rtl">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {lectureCards.map((card) => (
               <div
                 key={card.title}
                 className="bg-card rounded-3xl shadow-[0_15px_40px_-15px_hsl(0_0%_0%_/_0.12)] p-10 text-right flex flex-col"
               >
-                <h3 className="text-foreground text-2xl font-semibold leading-tight mb-4 whitespace-pre-line">
+                <h3 className="text-foreground text-2xl font-bold leading-tight mb-4 whitespace-pre-line">
                   {card.title}
                 </h3>
                 <p className="text-foreground text-sm font-medium leading-relaxed mb-4">
@@ -282,7 +284,7 @@ const Index = () => {
                     {card.audience}
                   </p>
                 </div>
-                <div className="flex justify-center mt-auto">
+                <div className="flex justify-start mt-auto">
                   <button className="px-8 py-2.5 rounded-full bg-primary text-primary-foreground text-sm font-light hover:bg-[hsl(var(--primary-dark))] transition-colors">
                     להזמנת הרצאה
                   </button>
