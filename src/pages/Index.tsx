@@ -102,6 +102,27 @@ const topNav = [
 const heroNav = ["הרצאות", "סדנאות", "יזמות קשובה", "בלוג", "פודקאסט"];
 
 const Index = () => {
+  const [form, setForm] = useState({ name: "", email: "", phone: "", message: "" });
+  const [submitting, setSubmitting] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const result = contactSchema.safeParse(form);
+    if (!result.success) {
+      toast({ title: "שגיאה", description: result.error.issues[0].message, variant: "destructive" });
+      return;
+    }
+    setSubmitting(true);
+    const { error } = await supabase.from("leads").insert({ email: result.data.email });
+    setSubmitting(false);
+    if (error) {
+      toast({ title: "שגיאה", description: "אירעה שגיאה, נסי שוב", variant: "destructive" });
+      return;
+    }
+    toast({ title: "תודה!", description: "ההודעה נשלחה, אחזור אלייך בהקדם." });
+    setForm({ name: "", email: "", phone: "", message: "" });
+  };
+
   return (
     <div className="min-h-screen bg-background" dir="rtl">
       {/* Top navigation */}
