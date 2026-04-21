@@ -573,12 +573,12 @@ const Index = () => {
       <section className="relative w-full bg-white">
         {/* Background image - only top ~half */}
         <div
-          className="w-full bg-cover bg-center h-[280px] md:h-[420px]"
+          className="w-full bg-cover bg-center h-[360px] md:h-[560px]"
           style={{ backgroundImage: `url(${contactBg})` }}
         />
-        {/* White card overlapping */}
-        <div className="w-[min(900px,60%)] mx-auto -mt-24 md:-mt-40 relative z-10" dir="rtl">
-          <div className="bg-white rounded-t-[32px] shadow-[0_-15px_40px_-15px_hsl(0_0%_0%_/_0.15)] px-8 md:px-14 py-12 md:py-16">
+        {/* White card overlapping - covers ~half of bg image */}
+        <div className="w-[min(900px,60%)] mx-auto -mt-40 md:-mt-72 relative z-10" dir="rtl">
+          <div className="bg-white rounded-t-[32px] shadow-[0_-15px_40px_-15px_hsl(0_0%_0%_/_0.15)] px-12 md:px-24 py-12 md:py-16">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-14 items-start">
               {/* Right side - icon + heading */}
               <div className="text-right">
