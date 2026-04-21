@@ -672,6 +672,8 @@ const Index = () => {
           </div>
         </div>
       </section>
+
+      <MailingListPopup open={popupOpen} onOpenChange={setPopupOpen} />
     </div>
   );
 };
