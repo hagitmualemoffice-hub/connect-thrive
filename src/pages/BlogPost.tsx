@@ -60,11 +60,7 @@ const BlogPost = () => {
         </div>
 
         {/* Top utility bar over image */}
-        <div className="absolute top-6 left-0 right-0 px-10 flex items-center justify-between z-10">
-          <button className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/95 backdrop-blur-sm shadow-md text-foreground text-sm font-light hover:bg-white transition-colors">
-            <Share2 className="w-4 h-4" />
-            שיתוף
-          </button>
+        <div className="absolute top-6 left-0 right-0 px-10 flex items-center justify-start gap-3 z-10">
           <Link
             to="/blog"
             className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/95 backdrop-blur-sm shadow-md text-foreground text-sm font-light hover:bg-white transition-colors"
@@ -72,6 +68,10 @@ const BlogPost = () => {
             חזרה לבלוג
             <ArrowRight className="w-4 h-4" />
           </Link>
+          <button className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/95 backdrop-blur-sm shadow-md text-foreground text-sm font-light hover:bg-white transition-colors">
+            <Share2 className="w-4 h-4" />
+            שיתוף
+          </button>
         </div>
       </section>
 
