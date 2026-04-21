@@ -111,6 +111,7 @@ const heroNav: { label: string; href: string }[] = [
 const Index = () => {
   const [form, setForm] = useState({ name: "", email: "", phone: "", message: "" });
   const [submitting, setSubmitting] = useState(false);
+  const [popupOpen, setPopupOpen] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
