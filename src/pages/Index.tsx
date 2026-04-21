@@ -534,8 +534,8 @@ const Index = () => {
         <div className="w-[min(1000px,72%)] mx-auto" dir="rtl">
           <div className="text-right mb-12">
             <h2 className="text-foreground text-4xl md:text-5xl font-light leading-tight mb-3">
-              <span className="font-extralight">יודעת</span>{" "}
-              <span className="font-bold">פודקאסט</span>
+              <span className="font-light">יודעת</span>{" "}
+              <span className="font-light">פודקאסט</span>
             </h2>
             <p className="text-foreground/80 text-base md:text-lg font-light mb-8">
               פודקאסט על שימור פוריות וחוויה נפשית - בואי לרכוש ידע, חיבור, כוח ויכולת להיות על התהליך.
