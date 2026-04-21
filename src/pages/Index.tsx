@@ -294,6 +294,49 @@ const Index = () => {
           </div>
         </div>
       </section>
+
+      {/* Unique offering - Bibliotherapy gradient section */}
+      <section className="w-full py-20 px-6">
+        <div className="w-[min(1200px,82%)] mx-auto">
+          <div
+            className="rounded-[40px] px-16 md:px-24 py-20 md:py-24 text-right"
+            dir="rtl"
+            style={{
+              background:
+                "linear-gradient(90deg, hsl(170 65% 75%) 0%, hsl(220 50% 80%) 35%, hsl(280 45% 80%) 60%, hsl(330 75% 75%) 100%)",
+            }}
+          >
+            <div className="w-[min(720px,75%)] mr-0">
+              <h2 className="text-white text-3xl md:text-5xl font-light leading-tight mb-10">
+                <span className="font-bold">מוצר ייחודי-</span>{" "}
+                <span className="font-light">סדנאות ביבליותרפיה</span>
+                <br />
+                <span className="font-light">הנבנות בקשב לצורך שלכם</span>
+              </h2>
+
+              <p className="text-white/95 text-sm md:text-base font-light leading-relaxed mb-8">
+                סדנאות אינטימיות לקבוצות קטנות של עד 20 משתתפים, המאפשרות מרחב בטוח להתפתחות,
+                חשיבה ועבודה משותפת. הטקסטים נבחרים אחרי שיחה משותפת ומקדימה ומותאמים בקפידה
+                לצורך ולתנועה הספציפית של הקבוצה, ומשלבים מקורות פסיכולוגיים, ספרי הגות וטקסטים
+                מן המחשבה היהודית - כבסיס לשיח, הקשבה ותהליך.
+              </p>
+
+              <h3 className="text-white text-base md:text-lg font-bold mb-2">
+                איך תדעו אם זה מתאים לכם?
+              </h3>
+              <p className="text-white/95 text-sm md:text-base font-light leading-relaxed mb-10">
+                אם אתם מחפשים מרחב שמאפשר לעצור לרגע, להעמיק ולהניע שינוי - זה כנראה בשבילכם.
+                הסדנאות מתאימות לצוותים, לקבוצות עומק, ולספרינטים קצרים עבור ארגונים המבקשים
+                לחולל תנועה, חיבור ודיוק דרך הקשבה, טקסט ושיח.
+              </p>
+
+              <button className="px-10 py-3 rounded-full bg-white text-foreground text-sm md:text-base font-light hover:bg-white/90 transition-colors">
+                בואו נתכנן לכם סדנא
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 };
