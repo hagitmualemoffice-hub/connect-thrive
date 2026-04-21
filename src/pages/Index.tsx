@@ -569,6 +569,12 @@ const Index = () => {
               </a>
             ))}
           </div>
+
+          <div className="mt-12 flex justify-center">
+            <button className="px-10 py-3 rounded-lg bg-primary text-primary-foreground text-sm md:text-base font-light hover:bg-[hsl(var(--primary-glow))] transition-colors">
+              לכל הפרקים
+            </button>
+          </div>
         </div>
       </section>
 
