@@ -165,13 +165,15 @@ const Index = () => {
       </header>
 
       {/* Hero */}
-      <section id="top" className="relative w-full h-[640px] overflow-hidden group">
-        <img
-          src={heroBg}
-          alt="חגית מועלם - פסיכולוגית קלינית"
-          className="absolute inset-0 w-full h-full object-cover transition-transform duration-[2500ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.04]"
-        />
-        <div className="absolute inset-0 bg-black/25" />
+      <section id="top" className="relative w-full h-[640px] group">
+        <div className="absolute inset-0 overflow-hidden">
+          <img
+            src={heroBg}
+            alt="חגית מועלם - פסיכולוגית קלינית"
+            className="absolute inset-0 w-full h-full object-cover transition-transform duration-[2500ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.04]"
+          />
+          <div className="absolute inset-0 bg-black/25" />
+        </div>
 
         {/* Hero content */}
         <div className="relative z-10 h-full flex flex-col items-center justify-end text-center px-6 pb-[88px]">
