@@ -187,24 +187,26 @@ const Index = () => {
         />
         <div className="absolute inset-0 bg-black/25" />
 
-        {/* Title overlay */}
-        <div className="relative z-10 h-full flex flex-col items-center justify-start text-center px-6 pt-24">
-          <h2 className="text-white text-4xl md:text-5xl font-light tracking-wide">
-            <span className="font-semibold">הרצאות</span>
-            <span className="mx-3 font-extralight">|</span>
-            <span className="font-extralight">להעיר את הכוח מבפנים</span>
-          </h2>
-          <p className="mt-3 text-white/95 text-base md:text-lg font-light">
-            <span className="text-primary font-normal">אמונה, פסיכולוגיה וייעוד</span>
-            <span className="mx-3">הנהגה פנימית ותנועה מתוך משמעות ומימוש</span>
-          </p>
+        {/* Title + Card aligned to same right edge as upper sections */}
+        <div className="absolute inset-x-0 top-0 z-10 px-6 pt-28">
+          <div className="w-[min(780px,65%)] mx-auto text-right" dir="rtl">
+            <h2 className="text-white text-4xl md:text-5xl font-light tracking-wide">
+              <span className="font-semibold">הרצאות</span>
+              <span className="mx-3 font-extralight">|</span>
+              <span className="font-extralight">להעיר את הכוח מבפנים</span>
+            </h2>
+            <p className="mt-3 text-white/95 text-base md:text-lg font-light">
+              <span className="text-primary font-normal">אמונה, פסיכולוגיה וייעוד</span>
+              <span className="mx-3">הנהגה פנימית ותנועה מתוך משמעות ומימוש</span>
+            </p>
+          </div>
         </div>
 
-        {/* Floating white card - right aligned to match upper sections */}
+        {/* Floating white card */}
         <div className="absolute -bottom-24 right-0 left-0 z-20 px-6">
           <div className="w-[min(780px,65%)] mx-auto">
-            <div className="bg-card rounded-3xl shadow-[0_20px_60px_-15px_hsl(0_0%_0%_/_0.18)] px-10 py-9">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-10 text-right" dir="rtl">
+            <div className="bg-card rounded-3xl shadow-[0_20px_60px_-15px_hsl(0_0%_0%_/_0.18)] px-16 py-10">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-right" dir="rtl">
                 {/* Right column */}
                 <div>
                   <h3 className="text-foreground text-xl font-semibold mb-2">החיים שנועדו לי</h3>
