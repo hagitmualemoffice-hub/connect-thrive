@@ -179,7 +179,7 @@ const Index = () => {
       </section>
 
       {/* Lecture hero section */}
-      <section className="relative w-full h-[560px] mt-10">
+      <section className="relative w-full h-[680px] mt-10">
         <img
           src={lectureBg}
           alt="הרצאות - להעיר את הכוח מבפנים"
@@ -188,7 +188,7 @@ const Index = () => {
         <div className="absolute inset-0 bg-black/25" />
 
         {/* Title + Card aligned to same right edge as upper sections */}
-        <div className="absolute inset-x-0 bottom-[300px] z-10 px-6">
+        <div className="absolute inset-x-0 bottom-[380px] z-10 px-6">
           <div className="w-[min(780px,65%)] mx-auto text-right" dir="rtl">
             <h2 className="text-white text-4xl md:text-5xl font-light tracking-wide">
               <span className="font-semibold">הרצאות</span>
@@ -209,7 +209,7 @@ const Index = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-right" dir="rtl">
                 {/* Right column */}
                 <div>
-                  <h3 className="text-foreground text-xl font-semibold mb-2">החיים שנועדו לי</h3>
+                  <h3 className="text-foreground text-2xl font-bold mb-2">החיים שנועדו לי</h3>
                   <p className="text-foreground text-sm font-medium leading-relaxed mb-4">
                     אמונה, ביטחון וחיבור לייעוד ככוח לחיים מאושרים ומימוש עצמי עמוק
                   </p>
