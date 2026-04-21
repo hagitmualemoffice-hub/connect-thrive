@@ -429,19 +429,14 @@ const Index = () => {
       {/* Blog section */}
       <section className="w-full py-20 px-6">
         <div className="w-[min(1000px,72%)] mx-auto" dir="rtl">
-          <div className="flex items-start justify-between gap-8 mb-12">
-            <div className="text-right">
-              <h2 className="text-foreground text-4xl md:text-5xl font-light leading-tight mb-3">
-                <span className="font-light">מרחב פנימי</span>{" "}
-                <span className="font-light">בלוג</span>
-              </h2>
-              <p className="text-foreground/80 text-base md:text-lg font-light">
-                על נפש, תנועה ומשמעות כפי שהן פוגשות חיים.
-              </p>
-            </div>
-            <button className="px-10 py-3 rounded-lg bg-primary text-primary-foreground text-sm md:text-base font-light hover:bg-[hsl(var(--primary-glow))] transition-colors shrink-0">
-              לכל הפוסטים
-            </button>
+          <div className="text-right mb-12">
+            <h2 className="text-foreground text-4xl md:text-5xl font-light leading-tight mb-3">
+              <span className="font-light">מרחב פנימי</span>{" "}
+              <span className="font-light">בלוג</span>
+            </h2>
+            <p className="text-foreground/80 text-base md:text-lg font-light">
+              על נפש, תנועה ומשמעות כפי שהן פוגשות חיים.
+            </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
