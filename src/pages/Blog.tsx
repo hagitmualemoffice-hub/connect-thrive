@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import pesachFreedom from "@/assets/blog-pesach-freedom.jpg";
 import bereshitImg from "@/assets/blog-bereshit.jpg";
 import lechLechaImg from "@/assets/blog-lech-lecha.jpg";
+import akedaTearsImg from "@/assets/blog-akeda-tears.jpg";
 
 const featuredPost = {
   category: "פרשה ופסיכולוגיה",
@@ -30,6 +31,15 @@ const posts = [
       "אברהם אבינו אומר להקב״ה 'הינני'. צ'ארלי קירק תרגם את זה ל-'use me' - תשתמש בי. מבט פסיכולוגי על הרצון שלנו לייעוד בתנאים שלנו, מול היכולת להתבטל לתפקיד כפי שהקב״ה רואה אותו.",
     image: lechLechaImg,
     slug: "lech-lecha-hineni",
+  },
+  {
+    category: "פרשה ופסיכולוגיה",
+    date: "נובמבר 2025",
+    title: "עין במר בוכה ולב שמח - על עקדת יצחק",
+    excerpt:
+      "״עין במר בוכה ולב שמח״ - הפיוט הזה על עקדת יצחק נושא בתוכו אמת עמוקה. עמידה בניסיון אינה מחיקה של הרגש, אלא היכולת להרגיש את הכאב ולבחור בו זמנית בשמחה.",
+    image: akedaTearsImg,
+    slug: "akeda-ayin-bochah",
   },
   {
     category: "טיפול בחרדה",
