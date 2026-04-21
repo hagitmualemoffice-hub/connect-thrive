@@ -387,11 +387,14 @@ const Index = () => {
 
       {/* Projects section - Listening Entrepreneurship */}
       <section className="relative w-full py-24 px-6 overflow-hidden">
-        <img
-          src={projectsBg}
-          alt="יזמות קשובה - פרויקטים"
-          className="absolute inset-0 w-full h-full object-cover"
-        />
+        {/* Background image - only top portion (ends ~1/3 into 2nd card) */}
+        <div className="absolute top-0 left-0 right-0 h-[820px] overflow-hidden">
+          <img
+            src={projectsBg}
+            alt="יזמות קשובה - פרויקטים"
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+        </div>
 
         <div className="relative z-10 w-[min(1100px,82%)] mx-auto" dir="rtl">
           <div className="text-right mb-10">
@@ -409,9 +412,7 @@ const Index = () => {
             {projectCards.map((card, idx) => (
               <div
                 key={idx}
-                className={`bg-card rounded-3xl shadow-[0_20px_60px_-15px_hsl(0_0%_0%_/_0.18)] px-12 md:px-20 py-14 md:py-16 text-right w-[min(720px,90%)] ${
-                  idx % 2 === 0 ? "mr-auto ml-0" : "ml-auto mr-0"
-                }`}
+                className="bg-card rounded-3xl shadow-[0_20px_60px_-15px_hsl(0_0%_0%_/_0.18)] px-12 md:px-20 py-14 md:py-16 text-right w-[min(720px,90%)] mr-0 ml-auto"
               >
                 <h3 className="text-foreground text-2xl md:text-3xl font-bold leading-tight mb-6 whitespace-pre-line">
                   {card.title}
