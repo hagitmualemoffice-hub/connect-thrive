@@ -1,17 +1,16 @@
 import { Link, useParams } from "react-router-dom";
 import { ArrowRight, Share2 } from "lucide-react";
 import lectureBg from "@/assets/woman-beach.jpg";
+import pesachFreedom from "@/assets/blog-pesach-freedom.jpg";
 
 const post = {
   category: "פרשה ופסיכולוגיה",
-  date: "10 במרץ 2026",
+  date: "אפריל 2026",
   author: "חגית מועלם",
   authorTitle: "פסיכולוגית קלינית ויזמת",
-  title: "פרשת וארא ופתיחת הלב - על תהליכים פנימיים שמבקשים להיוולד",
-  subtitle: "על הרגעים שבהם הלב מבקש להיפתח, לנוע ולהתחיל מחדש",
-  cover: lectureBg,
-  intro:
-    "פרשת וארא פותחת בקריאה עמוקה לפתיחת הלב, להקשבה פנימית ולתנועה שמתחילה במקום הרגיש ביותר. במאמר הזה אני מתבוננת על הקשר בין הטקסט המקראי לבין תהליכים פסיכולוגיים של שינוי.",
+  title: "במחשבה נוספת - נקודת מבט פסיכולוגית",
+  subtitle: "על גאולה פנימית, חרדה, והכוח לעשות מעשה לפני שאנחנו מרגישות מוכנות",
+  cover: pesachFreedom,
 };
 
 const relatedPosts = [
@@ -112,83 +111,110 @@ const BlogPost = () => {
 
           {/* Body */}
           <div className="text-foreground/85 text-base md:text-lg font-light leading-loose space-y-6">
-            <p>{post.intro}</p>
-
             <p>
-              הפיתוי לפעול מהר הוא אמיתי. יש רעיון, יש דחיפות, יש רצון לראות תוצאה. אבל פעמים רבות,
-              דווקא הרגע של העצירה - הרגע שבו אנחנו בוחרות להקשיב פנימה לפני שאנחנו זזות החוצה - הוא
-              הרגע שמייצר את התנועה האמיתית.
+              לפני שעם ישראל יוצאים ממצרים, הקב״ה מצווה אותם לשחוט קרבן פסח. כמו שאנחנו יודעות, הכבש
+              הוא אלוהי מצרים. הדבר הכי קדוש עבורם. הקב״ה דורש מהם לשחוט את אלוהי מצרים, ואם זה לא
+              מספיק - לא לעשות את זה בהיחבא, אלא למשוח את המשקופים בדם, להכריז בגלוי שהם לא שייכים עוד
+              למצרים ולהישאר בתוך הבתים שלהם, ולא לברוח. לחשוב שמתודעה של עבדים, שלא הייתה להם פניות
+              נפשית אפילו להיאנח, הם מצליחים להביא את עצמם למקום של עצמאות פנימית ולעשות מעשה שהוא הכי
+              הפוך מעבדות.
             </p>
 
             <h3 className="text-foreground text-2xl md:text-3xl font-light leading-tight pt-4">
-              למה כל כך קשה לעצור?
+              החשיפה הראשונה הכי מהירה לפחד בהיסטוריה
             </h3>
 
             <p>
-              העצירה דורשת מאיתנו לשהות עם מה שיש - גם כשהוא לא נוח, לא ברור, או לא מה שתכננו.
-              היא מזמינה אותנו לפגוש את עצמנו במקום של חוסר ידיעה, ומשם להתחיל לבנות בסיס יציב יותר
-              לכל מה שיבוא אחר כך.
+              במחשבה שלי על זה, זו אולי החשיפה הראשונה הכי מהירה לפחד שהייתה בהיסטוריה. אני זוכרת
+              שכשלמדתי קורס CBT בתואר השני, מרצה מוערך מאוד אמר לנו: כשאני בונה מדרג חשיפה לחרדה -
+              מהקל לקשה - אני תמיד אומר למטופלים: אם אתם רוצים תהליך מהיר, זה תלוי רק בכם.
+            </p>
+
+            <p>
+              כמה מהר אתם מוכנים לפגוש את הפחד הכי גדול שלכם, ולהיחשף למה שמעורר בכם הכי הרבה חרדה.
+              כי פחד לא נשבר דרך מחשבה - הוא נשבר דרך מפגש. כל עוד אנחנו נמנעות ממגע עם החרדה - אנחנו
+              מלמדות את עצמנו שהפחד באמת מסוכן, שאנחנו לא מסוגלות ושמה שאנחנו חוששות ממנו אכן יקרה.
+              אבל ברגע שאנחנו נכנסות לתוך הסיטואציה, בלי להקטין אותה ובלי לברוח - משהו מתחיל להשתנות.
+              אנחנו מגלות כוחות אחרים. המוח לומד: אני יכולה להיות בתוך זה, ואני לא מתפרקת.{" "}
+              <strong className="font-medium text-foreground">
+                שם מתחילה גאולה נפשית
+              </strong>
+              , ואולי בגלל זה - הדבר כל כך קשה. כי הוא דורש מאיתנו לעשות מעשה לפני שאנחנו מרגישות
+              מוכנות.
             </p>
 
             <h3 className="text-foreground text-2xl md:text-3xl font-light leading-tight pt-4">
-              חמש תובנות מתוך תהליכים שליוויתי
+              לגאול את הנפש, לא רק את הגוף
             </h3>
 
-            <ol className="space-y-5 list-none counter-reset:item">
-              <li className="flex gap-4">
-                <span className="flex-shrink-0 w-9 h-9 rounded-full bg-accent text-primary flex items-center justify-center text-sm font-medium">1</span>
-                <div>
-                  <strong className="font-medium text-foreground">הקשבה פנימית קודמת לתנועה החיצונית.</strong>{" "}
-                  כשאנחנו יודעות מה אנחנו מרגישות, התנועה שלנו בעולם הופכת מדויקת יותר.
-                </div>
-              </li>
-              <li className="flex gap-4">
-                <span className="flex-shrink-0 w-9 h-9 rounded-full bg-accent text-primary flex items-center justify-center text-sm font-medium">2</span>
-                <div>
-                  <strong className="font-medium text-foreground">פתיחת הלב היא תהליך, לא אירוע.</strong>{" "}
-                  זה קורה לאט, בשכבות, מתוך אמון מצטבר ביכולת שלנו להחזיק את עצמנו.
-                </div>
-              </li>
-              <li className="flex gap-4">
-                <span className="flex-shrink-0 w-9 h-9 rounded-full bg-accent text-primary flex items-center justify-center text-sm font-medium">3</span>
-                <div>
-                  <strong className="font-medium text-foreground">הקושי הוא חלק מהדרך.</strong>{" "}
-                  לא צריך להיפטר ממנו - צריך ללמוד לנוע איתו, להכיר אותו, ולתת לו מקום.
-                </div>
-              </li>
-              <li className="flex gap-4">
-                <span className="flex-shrink-0 w-9 h-9 rounded-full bg-accent text-primary flex items-center justify-center text-sm font-medium">4</span>
-                <div>
-                  <strong className="font-medium text-foreground">הסנטר הפנימי מוביל את הדרך.</strong>{" "}
-                  כשהחיבור לערכים ולמהות ברור, הבחירות הופכות פשוטות יותר.
-                </div>
-              </li>
-              <li className="flex gap-4">
-                <span className="flex-shrink-0 w-9 h-9 rounded-full bg-accent text-primary flex items-center justify-center text-sm font-medium">5</span>
-                <div>
-                  <strong className="font-medium text-foreground">תנועה אמיתית נולדת מחיבור.</strong>{" "}
-                  כשאנחנו פועלות מתוך עצמנו ולא מתוך לחץ חיצוני, התנועה הופכת בת-קיימא.
-                </div>
-              </li>
-            </ol>
+            <p>
+              פתאום התיאור שבני ישראל יצאו ממצרים בחיפזון מקבל משמעות אחרת. הקב״ה רצה להוציא אותם
+              ממצרים בגוף - אבל בעיקר לגאול אותם בנפש. עשר המכות בנו בהם ביטחון, חיזקו את האמונה,
+              נתנו כוח. אבל הם עדיין בתודעה אינסטינקטיבית של עבדות ועם פחד עמוק מהמצרים שנגשו בהם
+              כל כך הרבה שנים, ובשביל זה הקב״ה מבקש מהם לעשות מעשה שמעמיד אותם בדיוק מול הפחד הזה.
+              לפגוש אותו ישירות ובצורה הכי עוצמתית שאפשר - 10 בסולם החרדה.
+            </p>
+
+            <p>
+              כפסיכולוגית, אני יודעת כמה קשה למטופלים להסכים לפגוש את הפחדים שלהם. אחד המקומות בהם
+              המומחיות שלנו נבחנת, זה כמה אנחנו יכולים להצליח לגרום להם לבטוח בנו ולהסכים לתרגילים
+              שלנו, כי זה קשה מאוד להיות במקומות מעוררי חרדה. ואם אמרנו שהקב״ה מבקש מעם ישראל להצליח
+              להיות בתרגיל החשיפה הכי קשה להם כדי לצאת מעבדות הנפש, הוא נותן להם כוח מיוחד -{" "}
+              <strong className="font-medium text-foreground">כוח האין ברירה</strong>, כי אחרת אי
+              אפשר. הקב״ה אומר להם: רק כך אדע לפסוח על הבתים שלכם ורק ככה תוכלו להינצל ממכת בכורות.
+              יש משמעות לזה שאת התרגול הזה הם עשו דווקא בתוך מצרים, כי מחוץ למצרים כבר לא הייתה להם
+              הזדמנות לתרגל חופש כזה. דווקא בתוך המקום הכי סוגר והכי מפחיד - שם נפתחה להם האפשרות
+              לבחור אחרת.
+            </p>
 
             {/* Pull quote */}
             <blockquote className="my-10 px-8 py-8 rounded-2xl bg-accent/50 border-r-4 border-primary text-foreground text-xl md:text-2xl font-light leading-relaxed text-right">
-              "כשהסנטר הפנימי שלנו ברור, התנועה שאנחנו מחוללות בעולם נעשית מדויקת, יציבה ומשפיעה."
+              "הגאולה לא מחכה לנו ב'אחרי'. הגאולה קורית דווקא בתוך מצרים שלנו. בתוך החרדה, בתוך הספק,
+              בתוך המקומות שעדיין לא פתורים."
             </blockquote>
 
+            <h3 className="text-foreground text-2xl md:text-3xl font-light leading-tight pt-4">
+              ומה זה אומר עלינו?
+            </h3>
+
             <p>
-              הזמנה שלי אלייך - לעצור לרגע. לשאול את עצמך מה באמת מבקש לזוז עכשיו בחיים שלך, ומה
-              צריך להיפתח כדי שזה יקרה. התשובה לא חייבת להגיע מיד. לפעמים מספיק רק לפתוח את השאלה.
+              וזה מעלה בי מחשבות על החיים שלנו. על הפחדים שיש לנו בהם, ועל איך חרדה לפעמים מונעת
+              מאיתנו לפרוח. כי לרוב אנחנו מחכות ל״אחרי״. אחרי שיהיה רגוע. אחרי שהלב יתייצב. אחרי
+              שהפחד ייעלם, אחרי ש...
+            </p>
+
+            <p>
+              אבל הגאולה לא מחכה לנו שם. הגאולה קורית דווקא בתוך מצרים שלנו. בתוך החרדה, בתוך הספק,
+              בתוך המקומות שעדיין לא פתורים. והשאלה היא לא אם יש פחד - אלא מה אנחנו מוכנות לעשות
+              בנוכחות שלו. אולי חופש נפשי לא נראה כמו רוגע מוחלט, אלא כמו היכולת לעשות צעד קטן,
+              אמיתי, גם כשהלב רועד. לא לשחוט את כל ״אלוהי מצרים״ בבת אחת, אבל כן לבחור רגע אחד שבו
+              אנחנו מפסיקות להיות מנוהלות מהפחד.
+            </p>
+
+            <p>
+              ואולי נוכל לגייס את כוח ה״אין ברירה״ - גם בתוך החיים שלנו. לא כי באמת אין, אלא כי אנחנו
+              בוחרות ליצור לעצמנו מחויבות. לקבוע משהו מראש. להגיד כן לדבר שקשה לנו יחד עם הספק האם
+              נעמוד בו. להירשם, להתחייב, לשים את עצמנו בתוך סיטואציה שמבקשת מאיתנו לגדול.
+            </p>
+
+            <p className="text-foreground text-lg md:text-xl font-light leading-relaxed pt-4">
+              מזמינה אותך לתרגל את כוח החירות של פסח, בתוך אתגרי החיים שלך.
+            </p>
+
+            <p className="text-foreground/80 text-base font-light pt-2">
+              אוהבת אותך,
+              <br />
+              <span className="text-primary font-medium">חגית</span>
             </p>
           </div>
 
           {/* Tags */}
           <div className="mt-12 pt-8 border-t border-border flex flex-wrap gap-3 justify-end">
-            <span className="px-4 py-1.5 rounded-full bg-accent text-primary text-xs font-light">פסיכולוגיה</span>
             <span className="px-4 py-1.5 rounded-full bg-accent text-primary text-xs font-light">פרשת השבוע</span>
-            <span className="px-4 py-1.5 rounded-full bg-accent text-primary text-xs font-light">תנועה פנימית</span>
-            <span className="px-4 py-1.5 rounded-full bg-accent text-primary text-xs font-light">קשב</span>
+            <span className="px-4 py-1.5 rounded-full bg-accent text-primary text-xs font-light">פסח</span>
+            <span className="px-4 py-1.5 rounded-full bg-accent text-primary text-xs font-light">חרדה</span>
+            <span className="px-4 py-1.5 rounded-full bg-accent text-primary text-xs font-light">חשיפה</span>
+            <span className="px-4 py-1.5 rounded-full bg-accent text-primary text-xs font-light">גאולה פנימית</span>
           </div>
         </article>
       </section>
