@@ -7,6 +7,7 @@ import lectureBg from "@/assets/woman-beach.jpg";
 import projectsBg from "@/assets/woman-beach-projects.jpg";
 import podcastCover from "@/assets/podcast-cover.png";
 import contactBg from "@/assets/contact-coffee.jpg";
+import contactHeart from "@/assets/contact-heart.png";
 
 const podcastEpisodes = [
   { num: "1", title: "על חיבור לגוף עם נועם ארז" },
@@ -569,40 +570,37 @@ const Index = () => {
       </section>
 
       {/* Contact section */}
-      <section
-        className="relative w-full bg-cover bg-center pt-32 md:pt-48 pb-0"
-        style={{ backgroundImage: `url(${contactBg})` }}
-      >
-        <div className="w-[min(1200px,88%)] mx-auto" dir="rtl">
-          <div className="bg-white rounded-t-[32px] shadow-[0_-15px_40px_-15px_hsl(0_0%_0%_/_0.15)] px-10 md:px-20 py-16 md:py-20">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-center">
-              {/* Right side - icon + heading (visually first in RTL) */}
-              <div className="text-right order-1 md:order-2">
-                <div className="flex justify-start mb-8">
-                  <div className="relative w-32 h-32 md:w-40 md:h-40">
-                    <MessageCircle
-                      className="w-full h-full text-primary"
-                      fill="hsl(var(--primary))"
-                      strokeWidth={0}
-                      style={{ transform: "scaleX(-1)" }}
-                    />
-                    <Heart
-                      className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[60%] w-10 h-10 md:w-12 md:h-12 text-white"
-                      fill="white"
-                      strokeWidth={0}
-                    />
-                  </div>
+      <section className="relative w-full bg-white">
+        {/* Background image - only top ~half */}
+        <div
+          className="w-full bg-cover bg-center h-[280px] md:h-[420px]"
+          style={{ backgroundImage: `url(${contactBg})` }}
+        />
+        {/* White card overlapping */}
+        <div className="w-[min(900px,60%)] mx-auto -mt-24 md:-mt-40 relative z-10" dir="rtl">
+          <div className="bg-white rounded-t-[32px] shadow-[0_-15px_40px_-15px_hsl(0_0%_0%_/_0.15)] px-8 md:px-14 py-12 md:py-16">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-14 items-start">
+              {/* Right side - icon + heading */}
+              <div className="text-right">
+                <div className="flex justify-start mb-6">
+                  <img
+                    src={contactHeart}
+                    alt="דברי איתי"
+                    width={160}
+                    height={120}
+                    className="w-28 md:w-36 h-auto"
+                  />
                 </div>
                 <h2 className="text-foreground text-4xl md:text-5xl font-light mb-5">
                   דברי איתי
                 </h2>
-                <p className="text-foreground/75 text-base md:text-lg font-light leading-relaxed max-w-md">
+                <p className="text-foreground/75 text-base md:text-lg font-light leading-relaxed">
                   כאן לכל שאלה, להזמנת הרצאה, בניית סדנה מותאמת אליכם או שיתופי פעולה לפרויקטים שלי.
                 </p>
               </div>
 
               {/* Left side - form */}
-              <form onSubmit={handleSubmit} className="text-right order-2 md:order-1 space-y-5">
+              <form onSubmit={handleSubmit} className="text-right space-y-4">
                 <div>
                   <label className="block text-foreground text-sm font-light mb-2">השם שלך</label>
                   <input
