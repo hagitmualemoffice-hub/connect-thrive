@@ -112,7 +112,7 @@ const Blog = () => {
       {/* Category filters */}
       <section className="w-full pb-10 px-6">
         <div className="w-[min(1100px,82%)] mx-auto">
-          <div className="flex flex-wrap items-center gap-3 justify-end">
+          <div className="flex flex-wrap items-center gap-3 justify-start">
             {categories.map((cat, idx) => (
               <button
                 key={cat}
@@ -145,13 +145,13 @@ const Blog = () => {
                 />
               </div>
               <div className="p-10 md:p-14 text-right flex flex-col justify-center">
-                <div className="flex items-center gap-3 justify-end mb-5">
-                  <span className="text-foreground/50 text-sm font-light">{featuredPost.date}</span>
+                <div className="flex items-center gap-3 justify-start mb-5">
                   <span className="inline-block px-4 py-1.5 rounded-full bg-accent text-primary text-xs font-light">
                     פוסט מומלץ
                   </span>
+                  <span className="text-foreground/50 text-sm font-light">{featuredPost.date}</span>
                 </div>
-                <span className="inline-block self-end px-3 py-1 rounded-md text-primary text-xs font-light mb-4">
+                <span className="inline-block self-start px-3 py-1 rounded-md text-primary text-xs font-light mb-4">
                   {featuredPost.category}
                 </span>
                 <h2 className="text-foreground text-2xl md:text-3xl font-light leading-tight mb-5 group-hover:text-primary transition-colors">
@@ -160,7 +160,7 @@ const Blog = () => {
                 <p className="text-foreground/70 text-base font-light leading-relaxed mb-8">
                   {featuredPost.excerpt}
                 </p>
-                <div className="self-end">
+                <div className="self-start">
                   <span className="text-primary text-sm font-medium border-b border-primary pb-0.5 group-hover:text-[hsl(var(--primary-glow))] group-hover:border-[hsl(var(--primary-glow))] transition-colors">
                     להמשיך לקרוא ←
                   </span>
@@ -189,11 +189,11 @@ const Blog = () => {
                   />
                 </div>
                 <div className="p-7 text-right flex flex-col flex-1">
-                  <div className="flex items-center justify-end gap-3 mb-3">
-                    <span className="text-foreground/50 text-xs font-light">{post.date}</span>
+                  <div className="flex items-center justify-start gap-3 mb-3">
                     <span className="inline-block px-3 py-1 rounded-md bg-accent text-primary text-xs font-light">
                       {post.category}
                     </span>
+                    <span className="text-foreground/50 text-xs font-light">{post.date}</span>
                   </div>
                   <h3 className="text-foreground text-lg md:text-xl font-light leading-tight mb-3 group-hover:text-primary transition-colors">
                     {post.title}
@@ -201,7 +201,7 @@ const Blog = () => {
                   <p className="text-foreground/70 text-sm font-light leading-relaxed mb-6 flex-1">
                     {post.excerpt}
                   </p>
-                  <span className="self-end text-primary text-sm font-medium group-hover:text-[hsl(var(--primary-glow))] transition-colors">
+                  <span className="self-start text-primary text-sm font-medium group-hover:text-[hsl(var(--primary-glow))] transition-colors">
                     להמשיך לקרוא ←
                   </span>
                 </div>
