@@ -157,7 +157,7 @@ const Index = () => {
             <button className="px-5 py-2.5 rounded-lg bg-muted text-foreground/70 text-sm font-light hover:bg-muted/80 transition-colors">
               להצטרפות לתפוצה
             </button>
-            <button className="px-6 py-2.5 rounded-lg bg-primary text-primary-foreground text-sm font-light hover:bg-[hsl(var(--primary-dark))] transition-colors">
+            <button className="px-6 py-2.5 rounded-lg bg-primary text-primary-foreground text-sm font-light hover:bg-[hsl(var(--primary-glow))] transition-colors">
               דברו איתי
             </button>
           </div>
@@ -228,7 +228,7 @@ const Index = () => {
           </div>
 
           <div className="mt-10 flex justify-start">
-            <button className="px-10 py-3 rounded-lg bg-primary text-primary-foreground text-base font-light hover:bg-[hsl(var(--primary-dark))] transition-colors">
+            <button className="px-10 py-3 rounded-lg bg-primary text-primary-foreground text-base font-light hover:bg-[hsl(var(--primary-glow))] transition-colors">
               לקרוא עוד
             </button>
           </div>
@@ -260,7 +260,7 @@ const Index = () => {
           </div>
 
           <div className="mt-10 flex justify-start">
-            <button className="px-10 py-3 rounded-lg bg-primary text-primary-foreground text-base font-light hover:bg-[hsl(var(--primary-dark))] transition-colors">
+            <button className="px-10 py-3 rounded-lg bg-primary text-primary-foreground text-base font-light hover:bg-[hsl(var(--primary-glow))] transition-colors">
               לקרוא עוד
             </button>
           </div>
@@ -326,7 +326,7 @@ const Index = () => {
               </div>
 
               <div className="mt-6 flex justify-start" dir="rtl">
-                <button className="px-8 py-2.5 rounded-lg bg-primary text-primary-foreground text-sm font-light hover:bg-[hsl(var(--primary-dark))] transition-colors">
+                <button className="px-8 py-2.5 rounded-lg bg-primary text-primary-foreground text-sm font-light hover:bg-[hsl(var(--primary-glow))] transition-colors">
                   להזמנת הרצאה
                 </button>
               </div>
@@ -374,7 +374,7 @@ const Index = () => {
                   </p>
                 </div>
                 <div className="flex justify-start mt-auto">
-                  <button className="px-8 py-2.5 rounded-lg bg-primary text-primary-foreground text-sm font-light hover:bg-[hsl(var(--primary-dark))] transition-colors">
+                  <button className="px-8 py-2.5 rounded-lg bg-primary text-primary-foreground text-sm font-light hover:bg-[hsl(var(--primary-glow))] transition-colors">
                     להזמנת הרצאה
                   </button>
                 </div>
@@ -439,7 +439,7 @@ const Index = () => {
                 על נפש, תנועה ומשמעות כפי שהן פוגשות חיים.
               </p>
             </div>
-            <button className="px-10 py-3 rounded-lg bg-primary text-primary-foreground text-sm md:text-base font-light hover:bg-[hsl(var(--primary-dark))] transition-colors shrink-0">
+            <button className="px-10 py-3 rounded-lg bg-primary text-primary-foreground text-sm md:text-base font-light hover:bg-[hsl(var(--primary-glow))] transition-colors shrink-0">
               לכל הפוסטים
             </button>
           </div>
@@ -464,7 +464,7 @@ const Index = () => {
                 </p>
                 <a
                   href="#"
-                  className="text-primary text-sm font-medium hover:text-[hsl(var(--primary-dark))] transition-colors text-right"
+                  className="text-primary text-sm font-medium hover:text-[hsl(var(--primary-glow))] transition-colors text-right"
                 >
                   להמשיך לקרוא
                 </a>
@@ -516,7 +516,7 @@ const Index = () => {
                     {card.buttons.map((btn) => (
                       <button
                         key={btn}
-                        className="px-7 py-2.5 rounded-lg bg-primary text-primary-foreground text-sm font-light hover:bg-[hsl(var(--primary-dark))] transition-colors"
+                        className="px-7 py-2.5 rounded-lg bg-primary text-primary-foreground text-sm font-light hover:bg-[hsl(var(--primary-glow))] transition-colors"
                       >
                         {btn}
                       </button>
@@ -540,7 +540,7 @@ const Index = () => {
             <p className="text-foreground/80 text-base md:text-lg font-light mb-8">
               פודקאסט על שימור פוריות וחוויה נפשית - בואי לרכוש ידע, חיבור, כוח ויכולת להיות על התהליך.
             </p>
-            <button className="px-10 py-3 rounded-lg bg-primary text-primary-foreground text-sm md:text-base font-light hover:bg-[hsl(var(--primary-dark))] transition-colors">
+            <button className="px-10 py-3 rounded-lg bg-primary text-primary-foreground text-sm md:text-base font-light hover:bg-[hsl(var(--primary-glow))] transition-colors">
               לכל הפרקים
             </button>
           </div>
@@ -649,7 +649,7 @@ const Index = () => {
                 <button
                   type="submit"
                   disabled={submitting}
-                  className="w-full py-3 rounded-md bg-primary text-primary-foreground text-base font-light hover:bg-[hsl(var(--primary-dark))] transition-colors disabled:opacity-60"
+                  className="w-full py-3 rounded-md bg-primary text-primary-foreground text-base font-light hover:bg-[hsl(var(--primary-glow))] transition-colors disabled:opacity-60"
                 >
                   {submitting ? "שולח..." : "שליחה"}
                 </button>
