@@ -1,13 +1,26 @@
+import { useState } from "react";
+import { z } from "zod";
+import { Heart, MessageCircle } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
+import { toast } from "@/hooks/use-toast";
 import heroBg from "@/assets/hero-bg.jpg";
 import lectureBg from "@/assets/woman-beach.jpg";
 import projectsBg from "@/assets/woman-beach-projects.jpg";
 import podcastCover from "@/assets/podcast-cover.png";
+import contactBg from "@/assets/contact-coffee.jpg";
 
 const podcastEpisodes = [
   { num: "1", title: "על חיבור לגוף עם נועם ארז" },
   { num: "2", title: "על חיבור לגוף עם נועם ארז" },
   { num: "3", title: "על חרדה והימנעות עם דנה לוי" },
 ];
+
+const contactSchema = z.object({
+  name: z.string().trim().min(1, "נא להזין שם").max(100, "שם ארוך מדי"),
+  email: z.string().trim().email("כתובת מייל לא תקינה").max(255, "מייל ארוך מדי"),
+  phone: z.string().trim().min(1, "נא להזין טלפון").max(20, "טלפון ארוך מדי"),
+  message: z.string().trim().min(1, "נא לכתוב הודעה").max(1000, "הודעה ארוכה מדי"),
+});
 
 const projectCards = [
   {
@@ -89,6 +102,27 @@ const topNav = [
 const heroNav = ["הרצאות", "סדנאות", "יזמות קשובה", "בלוג", "פודקאסט"];
 
 const Index = () => {
+  const [form, setForm] = useState({ name: "", email: "", phone: "", message: "" });
+  const [submitting, setSubmitting] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const result = contactSchema.safeParse(form);
+    if (!result.success) {
+      toast({ title: "שגיאה", description: result.error.issues[0].message, variant: "destructive" });
+      return;
+    }
+    setSubmitting(true);
+    const { error } = await supabase.from("leads").insert({ email: result.data.email });
+    setSubmitting(false);
+    if (error) {
+      toast({ title: "שגיאה", description: "אירעה שגיאה, נסי שוב", variant: "destructive" });
+      return;
+    }
+    toast({ title: "תודה!", description: "ההודעה נשלחה, אחזור אלייך בהקדם." });
+    setForm({ name: "", email: "", phone: "", message: "" });
+  };
+
   return (
     <div className="min-h-screen bg-background" dir="rtl">
       {/* Top navigation */}
@@ -531,6 +565,94 @@ const Index = () => {
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Contact section */}
+      <section
+        className="relative w-full bg-cover bg-center pt-32 md:pt-48 pb-0"
+        style={{ backgroundImage: `url(${contactBg})` }}
+      >
+        <div className="w-[min(1200px,88%)] mx-auto" dir="rtl">
+          <div className="bg-white rounded-t-[32px] shadow-[0_-15px_40px_-15px_hsl(0_0%_0%_/_0.15)] px-10 md:px-20 py-16 md:py-20">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-center">
+              {/* Right side - icon + heading (visually first in RTL) */}
+              <div className="text-right order-1 md:order-2">
+                <div className="flex justify-start mb-8">
+                  <div className="relative w-32 h-32 md:w-40 md:h-40">
+                    <MessageCircle
+                      className="w-full h-full text-primary"
+                      fill="hsl(var(--primary))"
+                      strokeWidth={0}
+                      style={{ transform: "scaleX(-1)" }}
+                    />
+                    <Heart
+                      className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[60%] w-10 h-10 md:w-12 md:h-12 text-white"
+                      fill="white"
+                      strokeWidth={0}
+                    />
+                  </div>
+                </div>
+                <h2 className="text-foreground text-4xl md:text-5xl font-light mb-5">
+                  דברי איתי
+                </h2>
+                <p className="text-foreground/75 text-base md:text-lg font-light leading-relaxed max-w-md">
+                  כאן לכל שאלה, להזמנת הרצאה, בניית סדנה מותאמת אליכם או שיתופי פעולה לפרויקטים שלי.
+                </p>
+              </div>
+
+              {/* Left side - form */}
+              <form onSubmit={handleSubmit} className="text-right order-2 md:order-1 space-y-5">
+                <div>
+                  <label className="block text-foreground text-sm font-light mb-2">השם שלך</label>
+                  <input
+                    type="text"
+                    value={form.name}
+                    onChange={(e) => setForm({ ...form, name: e.target.value })}
+                    maxLength={100}
+                    className="w-full h-11 px-4 rounded-md border border-input bg-white text-right text-sm focus:outline-none focus:ring-2 focus:ring-primary/40"
+                  />
+                </div>
+                <div>
+                  <label className="block text-foreground text-sm font-light mb-2">כתובת מייל</label>
+                  <input
+                    type="email"
+                    value={form.email}
+                    onChange={(e) => setForm({ ...form, email: e.target.value })}
+                    maxLength={255}
+                    className="w-full h-11 px-4 rounded-md border border-input bg-white text-right text-sm focus:outline-none focus:ring-2 focus:ring-primary/40"
+                  />
+                </div>
+                <div>
+                  <label className="block text-foreground text-sm font-light mb-2">טלפון</label>
+                  <input
+                    type="tel"
+                    value={form.phone}
+                    onChange={(e) => setForm({ ...form, phone: e.target.value })}
+                    maxLength={20}
+                    className="w-full h-11 px-4 rounded-md border border-input bg-white text-right text-sm focus:outline-none focus:ring-2 focus:ring-primary/40"
+                  />
+                </div>
+                <div>
+                  <label className="block text-foreground text-sm font-light mb-2">מה תרצי לכתוב לנו</label>
+                  <textarea
+                    value={form.message}
+                    onChange={(e) => setForm({ ...form, message: e.target.value })}
+                    maxLength={1000}
+                    rows={4}
+                    className="w-full px-4 py-3 rounded-md border border-input bg-white text-right text-sm focus:outline-none focus:ring-2 focus:ring-primary/40 resize-none"
+                  />
+                </div>
+                <button
+                  type="submit"
+                  disabled={submitting}
+                  className="w-full py-3 rounded-md bg-primary text-primary-foreground text-base font-light hover:bg-[hsl(var(--primary-dark))] transition-colors disabled:opacity-60"
+                >
+                  {submitting ? "שולח..." : "שליחה"}
+                </button>
+              </form>
+            </div>
           </div>
         </div>
       </section>
