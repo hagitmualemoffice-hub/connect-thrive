@@ -511,52 +511,26 @@ const Index = () => {
           </div>
         </div>
 
-        {/* Cards row */}
-        <div className="w-full px-6">
-          <div className="w-[min(1100px,82%)] mx-auto" dir="rtl">
-            <div className="grid grid-cols-3 gap-6">
-              {podcastEpisodes.map((ep, idx) => (
-                <div key={idx} className="flex flex-col">
-                  {/* Cover card */}
-                  <div
-                    className="rounded-3xl aspect-[16/10] flex items-center justify-between px-6 md:px-8 overflow-hidden shadow-[0_15px_40px_-15px_hsl(0_0%_0%_/_0.15)]"
-                    style={{ background: "hsl(30 30% 78%)" }}
-                  >
-                    {/* Brain illustration on the left */}
-                    <img
-                      src={brainFlowers}
-                      alt="יודעת פודקאסט"
-                      loading="lazy"
-                      width={1024}
-                      height={1024}
-                      className="h-[78%] w-auto object-contain shrink-0"
-                    />
-                    {/* Text on the right */}
-                    <div className="text-right flex-1 pr-2 md:pr-3">
-                      <p className="text-foreground/70 text-[9px] md:text-[10px] font-light mb-1">
-                        מוגש לך באהבה קובץ מידע
-                      </p>
-                      <div className="flex items-baseline justify-end gap-1">
-                        <span className="text-primary text-3xl md:text-4xl lg:text-5xl font-bold leading-none tracking-tight">
-                          יודעת
-                        </span>
-                        <span className="text-primary text-base md:text-lg leading-none">♥</span>
-                      </div>
-                      <p className="text-foreground/70 text-[9px] md:text-[10px] font-light mt-2 leading-tight">
-                        כל מה שאת רוצה לדעת על שימור פוריות
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* Episode caption below card */}
-                  <div className="mt-5 text-right text-foreground text-sm md:text-base">
-                    <span className="font-bold">פרק {ep.num}</span>
-                    <span className="text-foreground/50 mx-2">|</span>
-                    <span className="font-light">{ep.title}</span>
-                  </div>
+        {/* Cards row - aligned to same container as header */}
+        <div className="w-[min(1000px,72%)] mx-auto" dir="rtl">
+          <div className="grid grid-cols-3 gap-6">
+            {podcastEpisodes.map((ep, idx) => (
+              <div key={idx} className="flex flex-col">
+                <img
+                  src={podcastCover}
+                  alt="יודעת פודקאסט"
+                  loading="lazy"
+                  width={1080}
+                  height={607}
+                  className="w-full h-auto rounded-3xl shadow-[0_15px_40px_-15px_hsl(0_0%_0%_/_0.15)]"
+                />
+                <div className="mt-5 text-right text-foreground text-sm md:text-base">
+                  <span className="font-bold">פרק {ep.num}</span>
+                  <span className="text-foreground/50 mx-2">|</span>
+                  <span className="font-light">{ep.title}</span>
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
