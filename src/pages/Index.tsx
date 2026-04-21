@@ -68,7 +68,7 @@ const Index = () => {
             <button className="px-5 py-2.5 rounded-full bg-muted text-foreground/70 text-sm font-light hover:bg-muted/80 transition-colors">
               להצטרפות לתפוצה
             </button>
-            <button className="px-6 py-2.5 rounded-full bg-primary text-primary-foreground text-sm font-light hover:bg-primary/90 transition-colors">
+            <button className="px-6 py-2.5 rounded-full bg-primary text-primary-foreground text-sm font-light hover:bg-[hsl(var(--primary-dark))] transition-colors">
               דברו איתי
             </button>
           </div>
@@ -139,7 +139,7 @@ const Index = () => {
           </div>
 
           <div className="mt-10 flex justify-start">
-            <button className="px-10 py-3 rounded-full bg-primary text-primary-foreground text-base font-light hover:bg-primary/90 transition-colors">
+            <button className="px-10 py-3 rounded-full bg-primary text-primary-foreground text-base font-light hover:bg-[hsl(var(--primary-dark))] transition-colors">
               לקרוא עוד
             </button>
           </div>
@@ -171,7 +171,7 @@ const Index = () => {
           </div>
 
           <div className="mt-10 flex justify-start">
-            <button className="px-10 py-3 rounded-full bg-primary text-primary-foreground text-base font-light hover:bg-primary/90 transition-colors">
+            <button className="px-10 py-3 rounded-full bg-primary text-primary-foreground text-base font-light hover:bg-[hsl(var(--primary-dark))] transition-colors">
               לקרוא עוד
             </button>
           </div>
@@ -188,7 +188,7 @@ const Index = () => {
         <div className="absolute inset-0 bg-black/25" />
 
         {/* Title + Card aligned to same right edge as upper sections */}
-        <div className="absolute inset-x-0 bottom-[260px] z-10 px-6">
+        <div className="absolute inset-x-0 bottom-[300px] z-10 px-6">
           <div className="w-[min(780px,65%)] mx-auto text-right" dir="rtl">
             <h2 className="text-white text-4xl md:text-5xl font-light tracking-wide">
               <span className="font-semibold">הרצאות</span>
@@ -205,7 +205,7 @@ const Index = () => {
         {/* Floating white card */}
         <div className="absolute -bottom-24 right-0 left-0 z-20 px-6">
           <div className="w-[min(780px,65%)] mx-auto">
-            <div className="bg-card rounded-3xl shadow-[0_20px_60px_-15px_hsl(0_0%_0%_/_0.18)] px-24 py-10">
+            <div className="bg-card rounded-3xl shadow-[0_20px_60px_-15px_hsl(0_0%_0%_/_0.18)] px-24 py-16">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-right" dir="rtl">
                 {/* Right column */}
                 <div>
@@ -237,7 +237,7 @@ const Index = () => {
               </div>
 
               <div className="mt-6 flex justify-start" dir="rtl">
-                <button className="px-8 py-2.5 rounded-full bg-primary text-primary-foreground text-sm font-light hover:bg-primary/90 transition-colors">
+                <button className="px-8 py-2.5 rounded-full bg-primary text-primary-foreground text-sm font-light hover:bg-[hsl(var(--primary-dark))] transition-colors">
                   להזמנת הרצאה
                 </button>
               </div>
@@ -283,7 +283,7 @@ const Index = () => {
                   </p>
                 </div>
                 <div className="flex justify-center mt-auto">
-                  <button className="px-8 py-2.5 rounded-full bg-primary text-primary-foreground text-sm font-light hover:bg-primary/90 transition-colors">
+                  <button className="px-8 py-2.5 rounded-full bg-primary text-primary-foreground text-sm font-light hover:bg-[hsl(var(--primary-dark))] transition-colors">
                     להזמנת הרצאה
                   </button>
                 </div>
