@@ -165,7 +165,7 @@ const Index = () => {
       </header>
 
       {/* Hero */}
-      <section className="relative w-full h-[640px] overflow-hidden group">
+      <section id="top" className="relative w-full h-[640px] overflow-hidden group">
         <img
           src={heroBg}
           alt="חגית מועלם - פסיכולוגית קלינית"
@@ -268,7 +268,7 @@ const Index = () => {
       </section>
 
       {/* Lecture hero section */}
-      <section className="relative w-full h-[680px] mt-10">
+      <section id="lectures" className="relative w-full h-[680px] mt-10">
         <img
           src={lectureBg}
           alt="הרצאות - להעיר את הכוח מבפנים"
@@ -385,7 +385,7 @@ const Index = () => {
       </section>
 
       {/* Unique offering - Bibliotherapy gradient section */}
-      <section className="w-full py-20 px-6">
+      <section id="workshops" className="w-full py-20 px-6">
         <div className="w-[min(1200px,82%)] mx-auto">
           <div
             className="rounded-[40px] px-16 md:px-24 py-20 md:py-24 text-right"
@@ -427,7 +427,7 @@ const Index = () => {
       </section>
 
       {/* Blog section */}
-      <section className="w-full py-20 px-6">
+      <section id="blog" className="w-full py-20 px-6">
         <div className="w-[min(1000px,72%)] mx-auto" dir="rtl">
           <div className="text-right mb-12">
             <h2 className="text-foreground text-4xl md:text-5xl font-light leading-tight mb-3">
@@ -476,7 +476,7 @@ const Index = () => {
       </section>
 
       {/* Projects section - Listening Entrepreneurship */}
-      <section className="relative w-full py-24 px-6 overflow-hidden">
+      <section id="projects" className="relative w-full py-24 px-6 overflow-hidden">
         {/* Background image - only top portion (ends ~1/3 into 2nd card) */}
         <div className="absolute top-0 left-0 right-0 h-[820px] overflow-hidden">
           <img
@@ -531,7 +531,7 @@ const Index = () => {
       </section>
 
       {/* Podcast section */}
-      <section className="w-full py-20 overflow-hidden">
+      <section id="podcast" className="w-full py-20 overflow-hidden">
         <div className="w-[min(1000px,72%)] mx-auto" dir="rtl">
           <div className="text-right mb-12">
             <h2 className="text-foreground text-4xl md:text-5xl font-light leading-tight mb-3">
@@ -579,7 +579,7 @@ const Index = () => {
       </section>
 
       {/* Contact section */}
-      <section className="relative w-full bg-white">
+      <section id="contact" className="relative w-full bg-white">
         {/* Background image - only top ~half */}
         <div
           className="w-full bg-cover bg-center h-[360px] md:h-[560px]"
