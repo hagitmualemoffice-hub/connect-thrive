@@ -636,46 +636,49 @@ const Index = () => {
       </section>
 
       {/* Blog section */}
-      <section id="blog" className="w-full py-20 px-6">
-        <div className="w-[min(1000px,72%)] mx-auto" dir="rtl">
-          <div className="text-right mb-12">
-            <h2 className="text-foreground text-4xl md:text-5xl font-light leading-tight mb-3">
+      <section id="blog" className="w-full py-12 md:py-20 px-[15px] md:px-6">
+        <div className="w-full md:w-[min(1000px,72%)] mx-auto" dir="rtl">
+          <div className="text-right mb-6 md:mb-12 px-1">
+            <h2 className="text-foreground text-[1.75rem] md:text-5xl font-light leading-tight mb-2 md:mb-3">
               <span className="font-light">מרחב פנימי</span>
-              <span className="mx-3 font-light">|</span>
+              <span className="mx-2 md:mx-3 font-light">|</span>
               <span className="font-light">בלוג</span>
             </h2>
-            <p className="text-foreground/80 text-base md:text-lg font-light">
+            <p className="text-foreground/80 text-sm md:text-lg font-light">
               על נפש, תנועה ומשמעות כפי שהן פוגשות חיים.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
             {blogPosts.map((post) => (
               <Link
                 to={`/blog/${post.slug}`}
                 key={post.slug}
-                className="group bg-card rounded-3xl shadow-[0_15px_40px_-15px_hsl(0_0%_0%_/_0.12)] overflow-hidden text-right flex flex-col transition-all duration-300 ease-out hover:scale-[1.03] hover:shadow-[0_25px_50px_-15px_hsl(var(--primary)/0.25)] cursor-pointer"
+                className="group bg-card rounded-2xl md:rounded-3xl shadow-[0_15px_40px_-15px_hsl(0_0%_0%_/_0.12)] overflow-hidden text-right flex flex-col transition-all duration-300 ease-out hover:scale-[1.03] hover:shadow-[0_25px_50px_-15px_hsl(var(--primary)/0.25)] cursor-pointer"
               >
-                <div className="h-44 overflow-hidden bg-accent">
+                <div className="h-40 md:h-44 overflow-hidden bg-accent">
                   <img
                     src={post.image}
                     alt={post.title}
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                 </div>
-                <div className="px-8 py-8 flex flex-col flex-1">
-                  <div className="mb-4">
-                    <span className="inline-block px-4 py-1.5 rounded-md bg-accent text-primary text-xs font-light">
+                <div className="px-5 md:px-8 py-5 md:py-8 flex flex-col flex-1">
+                  <div className="mb-3 md:mb-4">
+                    <span className="inline-block px-3 md:px-4 py-1 md:py-1.5 rounded-md bg-accent text-primary text-[10px] md:text-xs font-light">
                       {post.category}
                     </span>
                   </div>
-                  <h3 className="text-foreground text-lg md:text-xl font-bold leading-tight mb-3 group-hover:text-primary transition-colors">
+                  <h3 className="text-foreground text-base md:text-xl font-bold leading-tight mb-2 md:mb-3 group-hover:text-primary transition-colors">
                     {post.title}
                   </h3>
-                  <p className="text-foreground/75 text-sm font-light leading-relaxed mb-6 flex-1">
+                  <ExpandableText
+                    mobileLines={4}
+                    className="text-foreground/75 text-xs md:text-sm font-light leading-relaxed mb-4 md:mb-6 flex-1"
+                  >
                     {post.subtitle}
-                  </p>
-                  <span className="text-primary text-sm font-medium group-hover:text-[hsl(var(--primary-glow))] transition-colors text-right">
+                  </ExpandableText>
+                  <span className="text-primary text-xs md:text-sm font-medium group-hover:text-[hsl(var(--primary-glow))] transition-colors text-right">
                     להמשיך לקרוא ←
                   </span>
                 </div>
@@ -683,8 +686,8 @@ const Index = () => {
             ))}
           </div>
 
-          <div className="mt-12 flex justify-center">
-            <Link to="/blog" className="px-10 py-3 rounded-lg bg-primary text-primary-foreground text-sm md:text-base font-light hover:bg-[hsl(var(--primary-glow))] transition-colors">
+          <div className="mt-8 md:mt-12 flex justify-center">
+            <Link to="/blog" className="px-8 md:px-10 py-3 rounded-lg bg-primary text-primary-foreground text-sm md:text-base font-light hover:bg-[hsl(var(--primary-glow))] transition-colors">
               לכל הפוסטים
             </Link>
           </div>
@@ -693,23 +696,23 @@ const Index = () => {
 
 
       {/* Podcast section */}
-      <section id="podcast" className="w-full py-20 overflow-hidden">
-        <div className="w-[min(1000px,72%)] mx-auto" dir="rtl">
-          <div className="text-right mb-12">
-            <h2 className="text-foreground text-4xl md:text-5xl font-light leading-tight mb-3">
+      <section id="podcast" className="w-full py-12 md:py-20 px-[15px] md:px-0 overflow-hidden">
+        <div className="w-full md:w-[min(1000px,72%)] mx-auto" dir="rtl">
+          <div className="text-right mb-6 md:mb-12 px-1 md:px-0">
+            <h2 className="text-foreground text-[1.75rem] md:text-5xl font-light leading-tight mb-2 md:mb-3">
               <span className="font-light">יודעת</span>
-              <span className="mx-3 font-light">|</span>
+              <span className="mx-2 md:mx-3 font-light">|</span>
               <span className="font-light">פודקאסט</span>
             </h2>
-            <p className="text-foreground/80 text-base md:text-lg font-light">
+            <p className="text-foreground/80 text-sm md:text-lg font-light">
               פודקאסט על שימור פוריות וחוויה נפשית - בואי לרכוש ידע, חיבור, כוח ויכולת להיות על התהליך.
             </p>
           </div>
         </div>
 
         {/* Cards row - aligned to same container as header */}
-        <div className="w-[min(1000px,72%)] mx-auto" dir="rtl">
-          <div className="grid grid-cols-3 gap-6">
+        <div className="w-full md:w-[min(1000px,72%)] mx-auto" dir="rtl">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
             {podcastEpisodes.slice(0, 3).map((ep, idx) => (
               <a
                 href={ep.driveUrl}
@@ -724,9 +727,9 @@ const Index = () => {
                   loading="lazy"
                   width={1080}
                   height={607}
-                  className="w-full h-auto rounded-3xl shadow-[0_15px_40px_-15px_hsl(0_0%_0%_/_0.15)] transition-shadow duration-300 group-hover:shadow-[0_25px_50px_-15px_hsl(var(--primary)/0.3)]"
+                  className="w-full h-auto rounded-2xl md:rounded-3xl shadow-[0_15px_40px_-15px_hsl(0_0%_0%_/_0.15)] transition-shadow duration-300 group-hover:shadow-[0_25px_50px_-15px_hsl(var(--primary)/0.3)]"
                 />
-                <div className="mt-5 text-right text-foreground text-sm md:text-base">
+                <div className="mt-3 md:mt-5 text-right text-foreground text-sm md:text-base">
                   <span className="font-bold">פרק {ep.num}</span>
                   <span className="text-foreground/50 mx-2">|</span>
                   <span className="font-light group-hover:text-primary transition-colors">{ep.title}</span>
@@ -735,10 +738,10 @@ const Index = () => {
             ))}
           </div>
 
-          <div className="mt-12 flex justify-center">
+          <div className="mt-8 md:mt-12 flex justify-center">
             <Link
               to="/podcast"
-              className="px-10 py-3 rounded-lg bg-primary text-primary-foreground text-sm md:text-base font-light hover:bg-[hsl(var(--primary-glow))] transition-colors"
+              className="px-8 md:px-10 py-3 rounded-lg bg-primary text-primary-foreground text-sm md:text-base font-light hover:bg-[hsl(var(--primary-glow))] transition-colors"
             >
               לכל הפרקים
             </Link>
@@ -747,56 +750,93 @@ const Index = () => {
       </section>
 
       {/* Contact section */}
-      <section id="contact" className="w-full bg-background py-24 px-6">
-        <div className="w-[min(1100px,82%)] mx-auto" dir="rtl">
-          <div className="bg-card rounded-[40px] shadow-[0_20px_60px_-20px_hsl(0_0%_0%_/_0.12)] px-10 md:px-20 py-14 md:py-20">
+      <section id="contact" className="w-full bg-background py-12 md:py-24 px-[15px] md:px-6">
+        <div className="w-full md:w-[min(1100px,82%)] mx-auto" dir="rtl">
+          <div className="bg-card rounded-2xl md:rounded-[40px] shadow-[0_20px_60px_-20px_hsl(0_0%_0%_/_0.12)] px-6 md:px-20 py-8 md:py-20">
             {/* Top: heart + heading centered */}
-            <div className="text-center mb-12">
-              <div className="flex justify-center mb-5">
+            <div className="text-center mb-8 md:mb-12">
+              <div className="flex justify-center mb-4 md:mb-5">
                 <img
                   src={contactHeart}
                   alt="דברו איתי"
                   width={160}
                   height={120}
-                  className="w-24 md:w-28 h-auto"
+                  className="w-20 md:w-28 h-auto"
                 />
               </div>
-              <h2 className="text-foreground text-4xl md:text-5xl font-light mb-4">
+              <h2 className="text-foreground text-[1.75rem] md:text-5xl font-light mb-3 md:mb-4">
                 דברו איתי
               </h2>
-              <p className="text-foreground/70 text-base md:text-lg font-light leading-relaxed max-w-[52ch] mx-auto">
+              <p className="text-foreground/70 text-sm md:text-lg font-light leading-relaxed max-w-[52ch] mx-auto">
                 כאן לכל שאלה, להזמנת הרצאה, בניית סדנה מותאמת אליכם או שיתופי פעולה לפרויקטים שלי.
               </p>
             </div>
 
             {/* Bottom: 4 CTA buttons in a row, all unified style */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-4xl mx-auto">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4 max-w-4xl mx-auto">
               <button
                 onClick={() => openContact("general")}
-                className="py-4 px-6 rounded-xl bg-card border border-primary/30 text-foreground text-base font-light hover:bg-accent hover:border-primary transition-all shadow-sm active:scale-[0.99]"
+                className="py-3 md:py-4 px-5 md:px-6 rounded-xl bg-card border border-primary/30 text-foreground text-sm md:text-base font-light hover:bg-accent hover:border-primary transition-all shadow-sm active:scale-[0.99]"
               >
                 יצירת קשר
               </button>
               <button
                 onClick={() => openContact("lecture")}
-                className="py-4 px-6 rounded-xl bg-card border border-primary/30 text-foreground text-base font-light hover:bg-accent hover:border-primary transition-all shadow-sm active:scale-[0.99]"
+                className="py-3 md:py-4 px-5 md:px-6 rounded-xl bg-card border border-primary/30 text-foreground text-sm md:text-base font-light hover:bg-accent hover:border-primary transition-all shadow-sm active:scale-[0.99]"
               >
                 להזמנת הרצאה
               </button>
               <button
                 onClick={() => openContact("workshop")}
-                className="py-4 px-6 rounded-xl bg-card border border-primary/30 text-foreground text-base font-light hover:bg-accent hover:border-primary transition-all shadow-sm active:scale-[0.99]"
+                className="py-3 md:py-4 px-5 md:px-6 rounded-xl bg-card border border-primary/30 text-foreground text-sm md:text-base font-light hover:bg-accent hover:border-primary transition-all shadow-sm active:scale-[0.99]"
               >
                 בואו נתכנן סדנת ביבליותרפיה
               </button>
               <button
                 onClick={() => setPopupOpen(true)}
-                className="py-4 px-6 rounded-xl bg-card border border-primary/30 text-foreground text-base font-light hover:bg-accent hover:border-primary transition-all shadow-sm active:scale-[0.99]"
+                className="py-3 md:py-4 px-5 md:px-6 rounded-xl bg-card border border-primary/30 text-foreground text-sm md:text-base font-light hover:bg-accent hover:border-primary transition-all shadow-sm active:scale-[0.99]"
               >
                 הצטרפות לתפוצה
               </button>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Mobile-only: inline mailing list at bottom (replaces the floating hero form on mobile) */}
+      <section className="md:hidden w-full px-[15px] pb-24">
+        <div className="bg-card rounded-2xl shadow-[0_15px_50px_-10px_hsl(0_0%_0%_/_0.15)] px-5 py-6">
+          <div className="text-center mb-4">
+            <p className="text-foreground text-base font-light leading-tight">
+              בואו להתחבר לעצמכם דרך תוכן איכותי
+            </p>
+            <p className="text-foreground/60 text-xs font-light leading-tight mt-1">
+              הצטרפו לתפוצה השקטה שלי
+            </p>
+          </div>
+          <form onSubmit={handleInlineSubscribe} className="flex flex-col gap-2">
+            <input
+              type="text"
+              placeholder="שם"
+              value={inlineForm.name}
+              onChange={(e) => setInlineForm({ ...inlineForm, name: e.target.value })}
+              className="bg-muted/50 border border-transparent rounded-full px-5 py-2.5 text-sm font-light text-foreground placeholder:text-muted-foreground/70 focus:outline-none focus:border-primary/40 focus:bg-background transition-colors text-right"
+            />
+            <input
+              type="email"
+              placeholder="כתובת מייל"
+              value={inlineForm.email}
+              onChange={(e) => setInlineForm({ ...inlineForm, email: e.target.value })}
+              className="bg-muted/50 border border-transparent rounded-full px-5 py-2.5 text-sm font-light text-foreground placeholder:text-muted-foreground/70 focus:outline-none focus:border-primary/40 focus:bg-background transition-colors text-right"
+            />
+            <button
+              type="submit"
+              disabled={inlineSubmitting}
+              className="px-6 py-2.5 rounded-full bg-primary text-primary-foreground text-sm font-light hover:bg-[hsl(var(--primary-glow))] transition-all whitespace-nowrap shadow-sm shadow-primary/20 disabled:opacity-60 disabled:cursor-not-allowed"
+            >
+              {inlineSubmitting ? "שולחת..." : "הצטרפות"}
+            </button>
+          </form>
         </div>
       </section>
 
