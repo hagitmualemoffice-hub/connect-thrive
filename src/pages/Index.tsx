@@ -382,9 +382,9 @@ const Index = () => {
         </div>
 
         <div className="relative z-10 w-full md:w-[min(1000px,72%)] mx-auto" dir="rtl">
-          <div className="text-right mb-6 md:mb-10 px-1">
+          <div className="text-right mb-8 md:mb-10 px-1 mt-[120px] md:mt-0">
             {/* Mobile: simplified title only */}
-            <h2 className="md:hidden text-white text-[1.75rem] font-light leading-tight drop-shadow-md">
+            <h2 className="md:hidden text-foreground text-[1.75rem] font-light leading-tight">
               הפרויקטים שלי
             </h2>
             {/* Desktop: full title + subtitle */}
@@ -403,7 +403,7 @@ const Index = () => {
             {projectCards.map((card, idx) => (
               <div
                 key={idx}
-                className="bg-card rounded-2xl md:rounded-3xl shadow-[0_20px_60px_-15px_hsl(0_0%_0%_/_0.18)] px-5 md:px-20 py-8 md:py-16 text-right w-full"
+                className="bg-card rounded-2xl md:rounded-3xl shadow-[0_20px_60px_-15px_hsl(0_0%_0%_/_0.18)] px-7 md:px-20 py-8 md:py-16 text-right w-full"
               >
                 <div className="w-full md:w-[min(696px,100%)] mr-0 ml-auto">
                   <h3 className="text-foreground text-xl md:text-3xl font-bold leading-tight mb-4 md:mb-6 whitespace-pre-line">
