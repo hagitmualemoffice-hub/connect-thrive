@@ -524,53 +524,56 @@ const Index = () => {
       <div className="h-32" />
 
       {/* Lecture details section */}
-      <section className="w-full py-20 px-6">
-        <div className="w-[min(1000px,72%)] mx-auto text-right mb-8" dir="rtl">
-          <h2 className="text-foreground text-4xl md:text-5xl font-light leading-tight mb-3">
+      <section className="w-full py-12 md:py-20 px-[15px] md:px-6">
+        <div className="w-full md:w-[min(1000px,72%)] mx-auto text-right mb-6 md:mb-8 px-1" dir="rtl">
+          <h2 className="text-foreground text-[1.75rem] md:text-5xl font-light leading-tight mb-2 md:mb-3">
             <span className="font-light">הרצאות</span>
           </h2>
-          <p className="text-base md:text-lg font-light">
+          <p className="text-sm md:text-lg font-light">
             <span className="text-primary font-normal">פסיכולוגיה של עשייה -</span>
             <span className="text-foreground/80 mx-2">הנהגה פנימית ותנועה בעולם של יזמות ועשייה</span>
           </p>
         </div>
 
-        <div className="w-[min(1000px,72%)] mx-auto" dir="rtl">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="w-full md:w-[min(1000px,72%)] mx-auto" dir="rtl">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
             {lectureCards.map((card) => (
               <div
                 key={card.title}
-                className="bg-card rounded-3xl shadow-[0_15px_40px_-15px_hsl(0_0%_0%_/_0.12)] px-12 py-14 text-right flex flex-col transition-all duration-300 ease-out hover:scale-[1.03] hover:shadow-[0_25px_50px_-15px_hsl(var(--primary)/0.25)] cursor-pointer"
+                className="bg-card rounded-2xl md:rounded-3xl shadow-[0_15px_40px_-15px_hsl(0_0%_0%_/_0.12)] px-5 md:px-12 py-7 md:py-14 text-right flex flex-col transition-all duration-300 ease-out hover:scale-[1.03] hover:shadow-[0_25px_50px_-15px_hsl(var(--primary)/0.25)] cursor-pointer"
               >
                 <div className="h-7 mb-3 flex flex-wrap gap-2 justify-start">
                   {card.badges?.map((b) => (
                     <span
                       key={b}
-                      className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-medium leading-none"
+                      className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-[10px] md:text-xs font-medium leading-none"
                     >
                       {b}
                     </span>
                   ))}
                 </div>
-                <h3 className="text-foreground text-2xl font-bold leading-tight mb-1 whitespace-pre-line">
+                <h3 className="text-foreground text-xl md:text-2xl font-bold leading-tight mb-1 whitespace-pre-line">
                   {card.title}
                 </h3>
-                <p className="text-foreground text-sm font-medium leading-relaxed mb-0.5">
+                <p className="text-foreground text-xs md:text-sm font-medium leading-relaxed mb-0.5">
                   {card.subtitle}
                 </p>
-                <p className="text-foreground/70 text-sm font-light leading-relaxed mb-1 flex-1">
+                <ExpandableText
+                  mobileLines={4}
+                  className="text-foreground/70 text-xs md:text-sm font-light leading-relaxed mb-2 md:mb-1 flex-1"
+                >
                   {card.desc}
-                </p>
-                <div className="mb-6">
-                  <h4 className="text-foreground text-sm font-semibold mb-2">קהל יעד</h4>
-                  <p className="text-foreground/70 text-sm font-light leading-relaxed">
+                </ExpandableText>
+                <div className="mb-5 md:mb-6">
+                  <h4 className="text-foreground text-xs md:text-sm font-semibold mb-1.5 md:mb-2">קהל יעד</h4>
+                  <p className="text-foreground/70 text-xs md:text-sm font-light leading-relaxed">
                     {card.audience}
                   </p>
                 </div>
                 <div className="flex justify-start mt-auto">
                   <button
                     onClick={() => openContact("lecture")}
-                    className="px-8 py-2.5 rounded-lg bg-primary text-primary-foreground text-sm font-light hover:bg-[hsl(var(--primary-glow))] transition-colors"
+                    className="px-6 md:px-8 py-2.5 rounded-lg bg-primary text-primary-foreground text-sm font-light hover:bg-[hsl(var(--primary-glow))] transition-colors"
                   >
                     להזמנת הרצאה
                   </button>
