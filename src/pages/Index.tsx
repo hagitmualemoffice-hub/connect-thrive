@@ -498,7 +498,7 @@ const Index = () => {
                 className="bg-card rounded-3xl shadow-[0_15px_40px_-15px_hsl(0_0%_0%_/_0.12)] px-12 py-14 text-right flex flex-col transition-all duration-300 ease-out hover:scale-[1.03] hover:shadow-[0_25px_50px_-15px_hsl(var(--primary)/0.25)] cursor-pointer"
               >
                 {card.badges && card.badges.length > 0 && (
-                  <div className="flex flex-wrap gap-2 mb-3 justify-start">
+                  <div className="flex flex-wrap gap-2 mb-3 justify-end">
                     {card.badges.map((b) => (
                       <span
                         key={b}
