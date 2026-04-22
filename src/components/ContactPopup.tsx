@@ -88,11 +88,16 @@ const ContactPopup = ({ open, onOpenChange, defaultTab = "general" }: ContactPop
 
   const cfg = tabConfig[tab];
 
+  const inputCls =
+    "w-full bg-transparent border-b border-border py-2.5 px-1 text-foreground placeholder:text-muted-foreground/60 font-light focus:outline-none focus:border-primary transition-colors text-right text-sm";
+
+  const labelCls = "block text-foreground/70 text-xs font-light mb-1.5 text-right";
+
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent
         dir="rtl"
-        className="max-w-[600px] p-0 overflow-hidden rounded-[28px] border-0 bg-card shadow-[0_32px_64px_-16px_hsl(0_0%_0%_/_0.18)] gap-0 max-h-[92vh] flex flex-col"
+        className="max-w-[600px] p-0 overflow-hidden rounded-[32px] border-0 bg-card shadow-[0_32px_64px_-16px_hsl(0_0%_0%_/_0.18)] gap-0 max-h-[92vh] flex flex-col"
       >
         {/* Header with tabs - sticky */}
         <div className="relative px-6 md:px-8 pt-7 pb-5 border-b border-border/60 bg-card">
@@ -127,9 +132,9 @@ const ContactPopup = ({ open, onOpenChange, defaultTab = "general" }: ContactPop
         </div>
 
         {/* Scrollable content */}
-        <div className="flex-1 overflow-y-auto px-6 md:px-10 py-8">
-          <div className="text-center mb-6">
-            <div className="w-10 h-px bg-primary mx-auto mb-4" />
+        <div className="flex-1 overflow-y-auto px-8 md:px-12 py-10">
+          <div className="text-center mb-8">
+            <div className="w-12 h-px bg-primary mx-auto mb-4" />
             <h2 className="text-foreground text-2xl md:text-[26px] font-light leading-tight tracking-tight mb-2">
               {cfg.title}
             </h2>
@@ -138,38 +143,37 @@ const ContactPopup = ({ open, onOpenChange, defaultTab = "general" }: ContactPop
             </p>
           </div>
 
-          <form id="contact-popup-form" onSubmit={handleSubmit} className="text-right space-y-4">
-            <div className="grid grid-cols-2 gap-3">
-              <div>
-                <label className="block text-foreground text-sm font-light mb-2">השם שלך</label>
-                <input
-                  type="text"
-                  value={form.name}
-                  onChange={(e) => setForm({ ...form, name: e.target.value })}
-                  maxLength={100}
-                  className="w-full h-10 px-3 rounded-md border border-input bg-white text-right text-sm focus:outline-none focus:ring-2 focus:ring-primary/40"
-                />
-              </div>
-              <div>
-                <label className="block text-foreground text-sm font-light mb-2">טלפון</label>
-                <input
-                  type="tel"
-                  value={form.phone}
-                  onChange={(e) => setForm({ ...form, phone: e.target.value })}
-                  maxLength={20}
-                  className="w-full h-10 px-3 rounded-md border border-input bg-white text-right text-sm focus:outline-none focus:ring-2 focus:ring-primary/40"
-                />
-              </div>
+          <form id="contact-popup-form" onSubmit={handleSubmit} className="space-y-5">
+            <div>
+              <label className={labelCls}>השם שלך</label>
+              <input
+                type="text"
+                value={form.name}
+                onChange={(e) => setForm({ ...form, name: e.target.value })}
+                maxLength={100}
+                className={inputCls}
+              />
             </div>
 
             <div>
-              <label className="block text-foreground text-sm font-light mb-2">כתובת מייל</label>
+              <label className={labelCls}>טלפון</label>
+              <input
+                type="tel"
+                value={form.phone}
+                onChange={(e) => setForm({ ...form, phone: e.target.value })}
+                maxLength={20}
+                className={inputCls}
+              />
+            </div>
+
+            <div>
+              <label className={labelCls}>כתובת מייל</label>
               <input
                 type="email"
                 value={form.email}
                 onChange={(e) => setForm({ ...form, email: e.target.value })}
                 maxLength={255}
-                className="w-full h-10 px-3 rounded-md border border-input bg-white text-right text-sm focus:outline-none focus:ring-2 focus:ring-primary/40"
+                className={inputCls}
               />
             </div>
 
@@ -177,37 +181,35 @@ const ContactPopup = ({ open, onOpenChange, defaultTab = "general" }: ContactPop
             {tab === "lecture" && (
               <>
                 <div>
-                  <label className="block text-foreground text-sm font-light mb-2">שם הארגון / הגוף</label>
+                  <label className={labelCls}>שם הארגון / הגוף</label>
                   <input
                     type="text"
                     value={form.organization}
                     onChange={(e) => setForm({ ...form, organization: e.target.value })}
                     maxLength={150}
-                    className="w-full h-10 px-3 rounded-md border border-input bg-white text-right text-sm focus:outline-none focus:ring-2 focus:ring-primary/40"
+                    className={inputCls}
                   />
                 </div>
-                <div className="grid grid-cols-2 gap-3">
-                  <div>
-                    <label className="block text-foreground text-sm font-light mb-2">מספר משתתפים</label>
-                    <input
-                      type="text"
-                      value={form.participants}
-                      onChange={(e) => setForm({ ...form, participants: e.target.value })}
-                      maxLength={20}
-                      className="w-full h-10 px-3 rounded-md border border-input bg-white text-right text-sm focus:outline-none focus:ring-2 focus:ring-primary/40"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-foreground text-sm font-light mb-2">תאריך מבוקש</label>
-                    <input
-                      type="text"
-                      placeholder="לדוגמה: 15/06/2026"
-                      value={form.date}
-                      onChange={(e) => setForm({ ...form, date: e.target.value })}
-                      maxLength={50}
-                      className="w-full h-10 px-3 rounded-md border border-input bg-white text-right text-sm placeholder:text-muted-foreground/60 focus:outline-none focus:ring-2 focus:ring-primary/40"
-                    />
-                  </div>
+                <div>
+                  <label className={labelCls}>מספר משתתפים</label>
+                  <input
+                    type="text"
+                    value={form.participants}
+                    onChange={(e) => setForm({ ...form, participants: e.target.value })}
+                    maxLength={20}
+                    className={inputCls}
+                  />
+                </div>
+                <div>
+                  <label className={labelCls}>תאריך מבוקש</label>
+                  <input
+                    type="text"
+                    placeholder="לדוגמה: 15/06/2026"
+                    value={form.date}
+                    onChange={(e) => setForm({ ...form, date: e.target.value })}
+                    maxLength={50}
+                    className={inputCls}
+                  />
                 </div>
               </>
             )}
@@ -215,55 +217,51 @@ const ContactPopup = ({ open, onOpenChange, defaultTab = "general" }: ContactPop
             {/* Workshop-specific fields */}
             {tab === "workshop" && (
               <>
-                <div className="grid grid-cols-2 gap-3">
-                  <div>
-                    <label className="block text-foreground text-sm font-light mb-2">שם הארגון</label>
-                    <input
-                      type="text"
-                      value={form.organization}
-                      onChange={(e) => setForm({ ...form, organization: e.target.value })}
-                      maxLength={150}
-                      className="w-full h-10 px-3 rounded-md border border-input bg-white text-right text-sm focus:outline-none focus:ring-2 focus:ring-primary/40"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-foreground text-sm font-light mb-2">איש קשר</label>
-                    <input
-                      type="text"
-                      value={form.contactPerson}
-                      onChange={(e) => setForm({ ...form, contactPerson: e.target.value })}
-                      maxLength={100}
-                      className="w-full h-10 px-3 rounded-md border border-input bg-white text-right text-sm focus:outline-none focus:ring-2 focus:ring-primary/40"
-                    />
-                  </div>
+                <div>
+                  <label className={labelCls}>שם הארגון</label>
+                  <input
+                    type="text"
+                    value={form.organization}
+                    onChange={(e) => setForm({ ...form, organization: e.target.value })}
+                    maxLength={150}
+                    className={inputCls}
+                  />
                 </div>
-                <div className="grid grid-cols-2 gap-3">
-                  <div>
-                    <label className="block text-foreground text-sm font-light mb-2">מספר משתתפים</label>
-                    <input
-                      type="text"
-                      value={form.participants}
-                      onChange={(e) => setForm({ ...form, participants: e.target.value })}
-                      maxLength={20}
-                      className="w-full h-10 px-3 rounded-md border border-input bg-white text-right text-sm focus:outline-none focus:ring-2 focus:ring-primary/40"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-foreground text-sm font-light mb-2">נושא הסדנה</label>
-                    <input
-                      type="text"
-                      value={form.topic}
-                      onChange={(e) => setForm({ ...form, topic: e.target.value })}
-                      maxLength={200}
-                      className="w-full h-10 px-3 rounded-md border border-input bg-white text-right text-sm focus:outline-none focus:ring-2 focus:ring-primary/40"
-                    />
-                  </div>
+                <div>
+                  <label className={labelCls}>איש קשר</label>
+                  <input
+                    type="text"
+                    value={form.contactPerson}
+                    onChange={(e) => setForm({ ...form, contactPerson: e.target.value })}
+                    maxLength={100}
+                    className={inputCls}
+                  />
+                </div>
+                <div>
+                  <label className={labelCls}>מספר משתתפים</label>
+                  <input
+                    type="text"
+                    value={form.participants}
+                    onChange={(e) => setForm({ ...form, participants: e.target.value })}
+                    maxLength={20}
+                    className={inputCls}
+                  />
+                </div>
+                <div>
+                  <label className={labelCls}>נושא הסדנה</label>
+                  <input
+                    type="text"
+                    value={form.topic}
+                    onChange={(e) => setForm({ ...form, topic: e.target.value })}
+                    maxLength={200}
+                    className={inputCls}
+                  />
                 </div>
               </>
             )}
 
             <div>
-              <label className="block text-foreground text-sm font-light mb-2">
+              <label className={labelCls}>
                 {tab === "general" ? "מה תרצי לכתוב לי" : "הודעה נוספת (אופציונלי)"}
               </label>
               <textarea
@@ -271,14 +269,14 @@ const ContactPopup = ({ open, onOpenChange, defaultTab = "general" }: ContactPop
                 onChange={(e) => setForm({ ...form, message: e.target.value })}
                 maxLength={1000}
                 rows={tab === "general" ? 4 : 3}
-                className="w-full px-3 py-2 rounded-md border border-input bg-white text-right text-sm focus:outline-none focus:ring-2 focus:ring-primary/40 resize-none"
+                className="w-full bg-transparent border-b border-border py-2.5 px-1 text-foreground placeholder:text-muted-foreground/60 font-light focus:outline-none focus:border-primary transition-colors text-right text-sm resize-none"
               />
             </div>
           </form>
         </div>
 
         {/* Sticky footer - Wolt-style */}
-        <div className="sticky bottom-0 px-6 md:px-10 py-4 bg-card border-t border-border/60 shadow-[0_-8px_24px_-12px_hsl(0_0%_0%_/_0.08)]">
+        <div className="sticky bottom-0 px-8 md:px-12 py-4 bg-card border-t border-border/60 shadow-[0_-8px_24px_-12px_hsl(0_0%_0%_/_0.08)]">
           <button
             type="submit"
             form="contact-popup-form"
