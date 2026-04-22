@@ -1,12 +1,18 @@
 import { Link, useParams } from "react-router-dom";
-import { ArrowRight, Share2 } from "lucide-react";
+import { ArrowRight, Share2, DoorOpen, Sprout, Footprints, Heart, BookOpen, LucideIcon } from "lucide-react";
 import { blogPosts, getPostBySlug } from "@/data/blogPosts";
+
+const postIcons: Record<string, LucideIcon> = {
+  "pesach-freedom": DoorOpen,
+  "bereshit-end": Sprout,
+  "lech-lecha-hineni": Footprints,
+  "akeda-tears": Heart,
+};
 
 const BlogPost = () => {
   const { slug } = useParams();
   const post = getPostBySlug(slug);
-  const author = "חגית מועלם";
-  const authorTitle = "פסיכולוגית קלינית ויזמת";
+  const PostIcon = (slug && postIcons[slug]) || BookOpen;
   const relatedPosts = blogPosts.filter((p) => p.slug !== post.slug).slice(0, 3);
 
   return (
@@ -70,13 +76,8 @@ const BlogPost = () => {
           </div>
 
           <div className="flex flex-col items-center mb-8">
-            <div className="w-20 h-20 rounded-full bg-gradient-to-br from-primary to-[hsl(var(--primary-glow))] flex items-center justify-center text-primary-foreground text-2xl font-light shadow-lg mb-4">
-              ח
-            </div>
-            <div className="text-center">
-              <span className="text-foreground font-medium">{author}</span>
-              <span className="text-foreground/50 mx-2">·</span>
-              <span className="text-foreground/70 font-light">{authorTitle}</span>
+            <div className="w-20 h-20 rounded-full bg-gradient-to-br from-primary to-[hsl(var(--primary-glow))] flex items-center justify-center text-primary-foreground shadow-lg">
+              <PostIcon className="w-9 h-9" strokeWidth={1.5} />
             </div>
           </div>
 
@@ -84,9 +85,8 @@ const BlogPost = () => {
             {post.title}
           </h1>
 
-          <div className="flex gap-4 mb-10 items-start justify-center">
-            <span className="block w-1 self-stretch bg-primary rounded-full" />
-            <h2 className="text-foreground text-xl md:text-2xl font-light leading-relaxed text-right max-w-2xl">
+          <div className="mb-10 flex justify-center">
+            <h2 className="text-foreground text-xl md:text-2xl font-light leading-relaxed text-center max-w-2xl">
               {post.subtitle}
             </h2>
           </div>
