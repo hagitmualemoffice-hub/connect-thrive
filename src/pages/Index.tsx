@@ -371,7 +371,7 @@ const Index = () => {
       </section>
 
       {/* Projects section - Listening Entrepreneurship */}
-      <section id="projects" className="relative w-full py-12 md:py-24 px-[15px] md:px-6 overflow-hidden">
+      <section id="projects" className="relative w-full py-12 md:py-24 px-[30px] md:px-6 overflow-hidden">
         {/* Background image - only top portion (ends ~1/3 into 2nd card) */}
         <div className="absolute top-0 left-0 right-0 h-[420px] md:h-[820px] overflow-hidden">
           <img
@@ -383,12 +383,17 @@ const Index = () => {
 
         <div className="relative z-10 w-full md:w-[min(1000px,72%)] mx-auto" dir="rtl">
           <div className="text-right mb-6 md:mb-10 px-1">
-            <h2 className="text-foreground text-[1.75rem] md:text-5xl font-light leading-tight mb-2 md:mb-3">
+            {/* Mobile: simplified title only */}
+            <h2 className="md:hidden text-white text-[1.75rem] font-light leading-tight drop-shadow-md">
+              הפרויקטים שלי
+            </h2>
+            {/* Desktop: full title + subtitle */}
+            <h2 className="hidden md:block text-foreground md:text-5xl font-light leading-tight mb-3">
               <span className="font-light">יזמות קשובה</span>
-              <span className="mx-2 md:mx-3 font-light">|</span>
+              <span className="mx-3 font-light">|</span>
               <span className="font-light">פרויקטים</span>
             </h2>
-            <p className="text-sm md:text-lg font-light">
+            <p className="hidden md:block md:text-lg font-light">
               <span className="text-primary font-normal">אמפתיה, הקשבה ויצירתיות -</span>
               <span className="text-foreground/80 mx-1">פתרונות שנולדים מתוך צורך אמיתי.</span>
             </p>
