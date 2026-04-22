@@ -229,8 +229,9 @@ const Index = () => {
       </header>
 
       {/* Hero */}
-      <section id="top" className="relative w-full h-[380px] md:h-[640px] group">
-        <div className="absolute inset-0 overflow-hidden">
+      <section id="top" className="relative w-full h-[75vh] md:h-[640px] group">
+        {/* Mobile: image takes 75% of section, white space below for pill overlap */}
+        <div className="absolute top-0 left-0 right-0 h-[75%] md:h-full overflow-hidden md:inset-0">
           <img
             src={heroBg}
             alt="חגית מועלם - פסיכולוגית קלינית"
@@ -239,22 +240,34 @@ const Index = () => {
           <div className="absolute inset-0 bg-black/25" />
         </div>
 
-        {/* Hero content */}
-        <div className="relative z-10 h-full flex flex-col items-center justify-end text-center px-8 md:px-6 pb-20 md:pb-[88px]">
-          <p className="text-white/90 text-xs md:text-base font-light mb-[2px]">
+        {/* Mobile: title block over the image */}
+        <div className="md:hidden absolute top-0 left-0 right-0 h-[75%] z-10 flex flex-col items-center justify-end text-center px-8 pb-6">
+          <p className="text-white/90 text-xs font-light mb-[2px]">
             חגית מועלם פסיכולוגית בהתמחות קלינית
           </p>
-          <h1 className="text-white text-3xl md:text-5xl lg:text-6xl font-light tracking-wide mb-4 md:mb-[14px]">
+          <h1 className="text-white text-3xl font-light tracking-wide">
             כשחיבור מחולל תנועה
           </h1>
-          {/* Mobile: white pill with tagline */}
-          <div className="md:hidden bg-white/95 backdrop-blur-sm rounded-xl px-4 py-2.5 shadow-md mx-2">
-            <p className="text-foreground text-[11px] font-light leading-relaxed">
+        </div>
+
+        {/* Mobile: white pill positioned half on image, half on white background */}
+        <div className="md:hidden absolute top-[75%] left-0 right-0 z-20 -translate-y-1/2 px-[30px]">
+          <div className="bg-white/95 backdrop-blur-sm rounded-xl px-4 py-3 shadow-md mx-auto">
+            <p className="text-foreground text-[11px] font-light leading-relaxed text-center">
               על התפתחות, יזמות, קהילה ושינוי שנולדים מעומק נפשי-רוחני וחיבור לייעוד ולמשמעות
             </p>
           </div>
-          {/* Desktop tagline */}
-          <p className="hidden md:block text-white/90 md:text-lg lg:text-xl font-light max-w-4xl md:whitespace-nowrap leading-relaxed px-2">
+        </div>
+
+        {/* Desktop hero content */}
+        <div className="hidden md:flex relative z-10 h-full flex-col items-center justify-end text-center px-6 pb-[88px]">
+          <p className="text-white/90 text-base font-light mb-[2px]">
+            חגית מועלם פסיכולוגית בהתמחות קלינית
+          </p>
+          <h1 className="text-white text-5xl lg:text-6xl font-light tracking-wide mb-[14px]">
+            כשחיבור מחולל תנועה
+          </h1>
+          <p className="text-white/90 text-lg lg:text-xl font-light max-w-4xl whitespace-nowrap leading-relaxed px-2">
             על התפתחות, יזמות, קהילה ושינוי שנולדים מעומק נפשי-רוחני וחיבור לייעוד ולמשמעות
           </p>
         </div>
