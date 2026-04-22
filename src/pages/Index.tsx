@@ -72,6 +72,7 @@ const blogPosts = allBlogPosts.slice(0, 3);
 const topNav = [
   { label: "אודות", href: "#about" },
   { label: "יזמות קשובה", href: "#entrepreneurship" },
+  { label: "הפרויקטים שלי", href: "#projects" },
   { label: "הרצאות", href: "#lectures" },
   { label: "סדנאות", href: "#workshops" },
   { label: "בלוג", href: "/blog" },
@@ -160,28 +161,38 @@ const Index = () => {
 
         {/* Floating CTA action bar */}
         <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 w-[min(1000px,94%)] z-20">
-          <div className="bg-card rounded-2xl shadow-[0_15px_50px_-10px_hsl(0_0%_0%_/_0.15)] px-6 py-6 flex items-center justify-center gap-3 flex-wrap md:flex-nowrap">
-            <button
-              type="button"
-              onClick={() => openContact("lecture")}
-              className="px-6 py-2.5 rounded-full bg-accent text-accent-foreground text-sm md:text-base font-light hover:bg-accent/80 hover:shadow-[0_2px_8px_-2px_hsl(var(--primary)/0.25)] transition-all whitespace-nowrap"
-            >
-              הזמינו הרצאה
-            </button>
-            <button
-              type="button"
-              onClick={() => openContact("workshop")}
-              className="px-6 py-2.5 rounded-full bg-accent text-accent-foreground text-sm md:text-base font-light hover:bg-accent/80 hover:shadow-[0_2px_8px_-2px_hsl(var(--primary)/0.25)] transition-all whitespace-nowrap"
-            >
-              בואו נתכנן סדנה
-            </button>
-            <button
-              type="button"
-              onClick={() => setPopupOpen(true)}
-              className="px-6 py-2.5 rounded-full bg-accent text-accent-foreground text-sm md:text-base font-light hover:bg-accent/80 hover:shadow-[0_2px_8px_-2px_hsl(var(--primary)/0.25)] transition-all whitespace-nowrap"
-            >
-              הצטרפו לתפוצה
-            </button>
+          <div className="bg-card rounded-2xl shadow-[0_15px_50px_-10px_hsl(0_0%_0%_/_0.15)] px-8 py-5 flex items-center justify-between gap-6 flex-wrap md:flex-nowrap">
+            <div className="text-right shrink-0">
+              <p className="text-foreground text-base md:text-lg font-light leading-tight">
+                רוצים להתחיל?
+              </p>
+              <p className="text-foreground/60 text-xs md:text-sm font-light leading-tight mt-1">
+                בחרו את הדרך שמתאימה לכם
+              </p>
+            </div>
+            <div className="flex items-center justify-center gap-3 flex-wrap md:flex-nowrap">
+              <button
+                type="button"
+                onClick={() => openContact("lecture")}
+                className="px-6 py-2.5 rounded-full bg-accent text-accent-foreground text-sm md:text-base font-light hover:bg-accent/80 hover:shadow-[0_2px_8px_-2px_hsl(var(--primary)/0.25)] transition-all whitespace-nowrap"
+              >
+                הזמינו הרצאה
+              </button>
+              <button
+                type="button"
+                onClick={() => openContact("workshop")}
+                className="px-6 py-2.5 rounded-full bg-accent text-accent-foreground text-sm md:text-base font-light hover:bg-accent/80 hover:shadow-[0_2px_8px_-2px_hsl(var(--primary)/0.25)] transition-all whitespace-nowrap"
+              >
+                בואו נתכנן סדנה
+              </button>
+              <button
+                type="button"
+                onClick={() => setPopupOpen(true)}
+                className="px-6 py-2.5 rounded-full bg-accent text-accent-foreground text-sm md:text-base font-light hover:bg-accent/80 hover:shadow-[0_2px_8px_-2px_hsl(var(--primary)/0.25)] transition-all whitespace-nowrap"
+              >
+                הצטרפו לתפוצה
+              </button>
+            </div>
           </div>
         </div>
       </section>
@@ -440,26 +451,31 @@ const Index = () => {
           >
             <div className="w-[min(720px,75%)] mr-0">
               <h2 className="text-white text-3xl md:text-5xl font-light leading-tight mb-10">
-                <span className="font-light">מוצר ייחודי-</span>{" "}
                 <span className="font-light">סדנאות ביבליותרפיה</span>
                 <br />
                 <span className="font-light">הנבנות בקשב לצורך שלכם</span>
               </h2>
 
-              <p className="text-white/95 text-sm md:text-base font-light leading-relaxed mb-8">
-                סדנאות אינטימיות לקבוצות קטנות של עד 20 משתתפים, המאפשרות מרחב בטוח להתפתחות,
-                חשיבה ועבודה משותפת. הטקסטים נבחרים אחרי שיחה משותפת ומקדימה ומותאמים בקפידה
-                לצורך ולתנועה הספציפית של הקבוצה, ומשלבים מקורות פסיכולוגיים, ספרי הגות וטקסטים
-                מן המחשבה היהודית - כבסיס לשיח, הקשבה ותהליך.
+              <p className="text-white/95 text-sm md:text-base font-light leading-relaxed mb-6">
+                מחפשים מרחב עמוק, חי ולא שגרתי לעבודה קבוצתית?
               </p>
 
-              <h3 className="text-white text-base md:text-lg font-bold mb-2">
-                איך תדעו אם זה מתאים לכם?
-              </h3>
+              <p className="text-white/95 text-sm md:text-base font-light leading-relaxed mb-6">
+                סדנאות ביבליותרפיה המבוססות על קריאה משותפת של טקסטים והנחיה של שיח קבוצתי
+                משמעותי. הטקסטים אינם רק תוכן — הם שער: הם פותחים רגשות, שאלות ונקודות כאב,
+                ומאפשרים תנועה אמיתית בתוך הקבוצה.
+              </p>
+
+              <p className="text-white/95 text-sm md:text-base font-light leading-relaxed mb-6">
+                כל סדנה נבנית במיוחד עבורכם — מתוך הקשבה לצורך, לאנשים ולשלב שבו אתם נמצאים.
+                אני משלבת טקסטים מעולמות הפסיכולוגיה, הספרות וההגות, לצד מקורות מן המחשבה
+                היהודית — המאפשרים מפגש ייחודי בין עומק רגשי, משמעות ושיח אמוני־רוחני. ניתן
+                גם לבנות סדנאות עם דגש ייעודי על מקורות אלו.
+              </p>
+
               <p className="text-white/95 text-sm md:text-base font-light leading-relaxed mb-10">
-                אם אתם מחפשים מרחב שמאפשר לעצור לרגע, להעמיק ולהניע שינוי - זה כנראה בשבילכם.
-                הסדנאות מתאימות לצוותים, לקבוצות עומק, ולספרינטים קצרים עבור ארגונים המבקשים
-                לחולל תנועה, חיבור ודיוק דרך הקשבה, טקסט ושיח.
+                הסדנאות אינטימיות (עד 20 משתתפים), ומתאימות לצוותים, לקבוצות עומק ולארגונים
+                שמבקשים לגעת לעומק, לחדד תהליכים ולהניע שינוי — דרך הקשבה, טקסט ושיח מונחה.
               </p>
 
               <button
