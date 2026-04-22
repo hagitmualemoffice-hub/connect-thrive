@@ -6,6 +6,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { toast } from "@/hooks/use-toast";
 import MailingListPopup from "@/components/MailingListPopup";
 import ContactPopup, { type ContactTab } from "@/components/ContactPopup";
+import HostingPopup from "@/components/HostingPopup";
 import heroBg from "@/assets/hero-bg.jpg";
 import lectureBg from "@/assets/woman-beach.jpg";
 import projectsBg from "@/assets/woman-beach-projects.jpg";
