@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { Heart, Sprout } from "lucide-react";
 import MailingListPopup from "@/components/MailingListPopup";
 import ContactPopup, { type ContactTab } from "@/components/ContactPopup";
 import heroBg from "@/assets/hero-bg.jpg";
@@ -220,10 +221,8 @@ const Index = () => {
             </p>
           </div>
 
-          <div className="mt-10 flex justify-start">
-            <button className="px-10 py-3 rounded-lg bg-primary text-primary-foreground text-base font-light hover:bg-[hsl(var(--primary-glow))] transition-colors">
-              לקרוא עוד
-            </button>
+          <div className="mt-8 flex justify-start">
+            <Heart className="text-primary" size={28} strokeWidth={1.5} fill="hsl(var(--primary) / 0.15)" aria-hidden="true" />
           </div>
         </div></div>
       </section>
@@ -253,10 +252,8 @@ const Index = () => {
             </p>
           </div>
 
-          <div className="mt-10 flex justify-start">
-            <button className="px-10 py-3 rounded-lg bg-primary text-primary-foreground text-base font-light hover:bg-[hsl(var(--primary-glow))] transition-colors">
-              לקרוא עוד
-            </button>
+          <div className="mt-8 flex justify-start">
+            <Sprout className="text-primary" size={28} strokeWidth={1.5} aria-hidden="true" />
           </div>
         </div></div>
       </section>
