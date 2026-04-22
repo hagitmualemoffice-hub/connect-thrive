@@ -240,8 +240,8 @@ const Index = () => {
           <div className="absolute inset-0 bg-black/25" />
         </div>
 
-        {/* Mobile: title block over the image */}
-        <div className="md:hidden absolute top-0 left-0 right-0 h-[75%] z-10 flex flex-col items-center justify-end text-center px-8 pb-6">
+        {/* Mobile: title block over the image - raised higher, gap to pill = side margin (~30px) */}
+        <div className="md:hidden absolute top-0 left-0 right-0 h-[75%] z-10 flex flex-col items-center justify-end text-center px-8 pb-[60px]">
           <p className="text-white/90 text-xs font-light mb-[2px]">
             חגית מועלם פסיכולוגית בהתמחות קלינית
           </p>
