@@ -176,7 +176,7 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background" dir="rtl">
       {/* Top navigation */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm shadow-sm">
+      <header className="hidden md:block fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm shadow-sm">
         <div className="flex items-center justify-between px-10 py-5">
           {/* Logo */}
           <a href="#top" className="text-foreground text-xl font-semibold tracking-tight">
@@ -216,6 +216,15 @@ const Index = () => {
               דברו איתי
             </button>
           </div>
+        </div>
+      </header>
+
+      {/* Mobile-only header logo strip */}
+      <header className="md:hidden fixed top-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-sm shadow-sm">
+        <div className="flex items-center justify-center px-5 py-3">
+          <a href="#top" className="text-foreground text-base font-semibold tracking-tight">
+            חגית מועלם
+          </a>
         </div>
       </header>
 
