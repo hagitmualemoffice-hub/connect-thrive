@@ -446,7 +446,7 @@ const Index = () => {
       </section>
 
       {/* Lecture hero section */}
-      <section id="lectures" className="relative w-full h-[680px] mt-10">
+      <section id="lectures" className="relative w-full h-[560px] md:h-[680px] mt-6 md:mt-10">
         <img
           src={lectureBg}
           alt="הרצאות - להעיר את הכוח מבפנים"
@@ -455,48 +455,51 @@ const Index = () => {
         <div className="absolute inset-0 bg-black/25" />
 
         {/* Title + Card aligned to same right edge as upper sections */}
-        <div className="absolute inset-x-0 bottom-[390px] z-10 px-6">
-          <div className="w-[min(1000px,72%)] mx-auto text-right" dir="rtl">
-            <h2 className="text-white text-4xl md:text-5xl font-light tracking-wide">
+        <div className="absolute inset-x-0 top-10 md:top-auto md:bottom-[390px] z-10 px-4 md:px-6">
+          <div className="w-full md:w-[min(1000px,72%)] mx-auto text-right" dir="rtl">
+            <h2 className="text-white text-[1.75rem] md:text-5xl font-light tracking-wide">
               להעיר את הכוח מבפנים
             </h2>
-            <p className="mt-3 text-white/95 text-base md:text-lg font-light">
+            <p className="mt-2 md:mt-3 text-white/95 text-sm md:text-lg font-light">
               <span className="text-primary font-normal">אמונה, פסיכולוגיה וייעוד</span>
-              <span className="mx-3">הנהגה פנימית ותנועה מתוך משמעות ומימוש</span>
+              <span className="mx-2 md:mx-3">הנהגה פנימית ותנועה מתוך משמעות ומימוש</span>
             </p>
           </div>
         </div>
 
         {/* Floating white card */}
-        <div className="absolute -bottom-16 right-0 left-0 z-20 px-6">
-          <div className="w-[min(1000px,72%)] mx-auto">
-            <div className="relative bg-card rounded-3xl shadow-[0_20px_60px_-15px_hsl(0_0%_0%_/_0.18)] px-32 py-20 transition-all duration-500 ease-out hover:shadow-[0_28px_70px_-15px_hsl(var(--primary)/0.25)] hover:-translate-y-1">
-              <span className="absolute top-6 left-6 inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-medium">
+        <div className="absolute -bottom-16 right-0 left-0 z-20 px-[15px] md:px-6">
+          <div className="w-full md:w-[min(1000px,72%)] mx-auto">
+            <div className="relative bg-card rounded-2xl md:rounded-3xl shadow-[0_20px_60px_-15px_hsl(0_0%_0%_/_0.18)] px-5 md:px-32 py-10 md:py-20 transition-all duration-500 ease-out hover:shadow-[0_28px_70px_-15px_hsl(var(--primary)/0.25)] hover:-translate-y-1">
+              <span className="absolute top-4 left-4 md:top-6 md:left-6 inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-[10px] md:text-xs font-medium">
                 הרצאת הדגל
               </span>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-16 text-right" dir="rtl">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-16 text-right mt-6 md:mt-0" dir="rtl">
                 {/* Right column */}
                 <div>
-                  <h3 className="text-foreground text-2xl font-bold mb-2">החיים שנועדו לי</h3>
-                  <p className="text-foreground text-sm font-medium leading-relaxed mb-4">
+                  <h3 className="text-foreground text-xl md:text-2xl font-bold mb-2">החיים שנועדו לי</h3>
+                  <p className="text-foreground text-xs md:text-sm font-medium leading-relaxed mb-3 md:mb-4">
                     אמונה, ביטחון וחיבור לייעוד ככוח לחיים מאושרים ומימוש עצמי עמוק
                   </p>
-                  <p className="text-foreground/75 text-sm font-light leading-relaxed">
+                  <ExpandableText
+                    mobileLines={4}
+                    className="text-foreground/75 text-xs md:text-sm font-light leading-relaxed"
+                  >
                     הרצאה על הקשר העמוק בין אמונה, ביטחון והיכולת לחיות חיים מלאים - כאלה שיש בהם גם שמחה, גם משמעות, וגם תנועה בעולם. לא כוויתור על עשייה, אלא כעשייה שנובעת מחיבור, הקשבה ואמון.
-                  </p>
+                  </ExpandableText>
                 </div>
 
                 {/* Left column */}
-                <div className="space-y-4">
+                <div className="space-y-3 md:space-y-4">
                   <div>
-                    <h4 className="text-foreground text-base font-semibold mb-1.5">קהל יעד</h4>
-                    <p className="text-foreground/75 text-sm font-light leading-relaxed">
+                    <h4 className="text-foreground text-sm md:text-base font-semibold mb-1.5">קהל יעד</h4>
+                    <p className="text-foreground/75 text-xs md:text-sm font-light leading-relaxed">
                       נשים, ארגונים, קהילות עומק, ימי כיף, ערבי השראה, צעירות, קבוצות מתמודדות
                     </p>
                   </div>
                   <div>
-                    <h4 className="text-foreground text-base font-semibold mb-1.5">סוג פעילות</h4>
-                    <div className="text-foreground/75 text-sm font-light space-y-0.5">
+                    <h4 className="text-foreground text-sm md:text-base font-semibold mb-1.5">סוג פעילות</h4>
+                    <div className="text-foreground/75 text-xs md:text-sm font-light space-y-0.5">
                       <p>הרצאה <span className="mx-2 text-border">|</span> עד 1.5 שעות</p>
                       <p>סדנה אינטימית <span className="mx-2 text-border">|</span> עד שעתיים</p>
                     </div>
@@ -504,10 +507,10 @@ const Index = () => {
                 </div>
               </div>
 
-              <div className="mt-6 flex justify-start" dir="rtl">
+              <div className="mt-5 md:mt-6 flex justify-start" dir="rtl">
                 <button
                   onClick={() => openContact("lecture")}
-                  className="px-8 py-2.5 rounded-lg bg-primary text-primary-foreground text-sm font-light hover:bg-[hsl(var(--primary-glow))] transition-colors"
+                  className="px-6 md:px-8 py-2.5 rounded-lg bg-primary text-primary-foreground text-sm font-light hover:bg-[hsl(var(--primary-glow))] transition-colors"
                 >
                   להזמנת הרצאה
                 </button>
