@@ -698,11 +698,17 @@ const Index = () => {
               </p>
             </div>
 
-            {/* Bottom: 3 CTA buttons in a row */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-3xl mx-auto">
+            {/* Bottom: 4 CTA buttons in a row, all unified style */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-4xl mx-auto">
+              <button
+                onClick={() => openContact("general")}
+                className="py-4 px-6 rounded-xl bg-card border border-primary/30 text-foreground text-base font-light hover:bg-accent hover:border-primary transition-all shadow-sm active:scale-[0.99]"
+              >
+                יצירת קשר
+              </button>
               <button
                 onClick={() => openContact("lecture")}
-                className="py-4 px-6 rounded-xl bg-primary text-primary-foreground text-base font-light hover:bg-[hsl(var(--primary-glow))] transition-all shadow-md shadow-primary/20 active:scale-[0.99]"
+                className="py-4 px-6 rounded-xl bg-card border border-primary/30 text-foreground text-base font-light hover:bg-accent hover:border-primary transition-all shadow-sm active:scale-[0.99]"
               >
                 להזמנת הרצאה
               </button>
@@ -714,7 +720,7 @@ const Index = () => {
               </button>
               <button
                 onClick={() => setPopupOpen(true)}
-                className="py-4 px-6 rounded-xl bg-muted text-foreground/80 text-base font-light hover:bg-muted/80 transition-all active:scale-[0.99]"
+                className="py-4 px-6 rounded-xl bg-card border border-primary/30 text-foreground text-base font-light hover:bg-accent hover:border-primary transition-all shadow-sm active:scale-[0.99]"
               >
                 הצטרפות לתפוצה
               </button>
