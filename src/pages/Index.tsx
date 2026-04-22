@@ -120,6 +120,7 @@ const Index = () => {
   const [popupOpen, setPopupOpen] = useState(false);
   const [contactOpen, setContactOpen] = useState(false);
   const [contactTab, setContactTab] = useState<ContactTab>("general");
+  const [hostingOpen, setHostingOpen] = useState(false);
   const [inlineForm, setInlineForm] = useState({ name: "", email: "" });
   const [inlineSubmitting, setInlineSubmitting] = useState(false);
 
@@ -357,14 +358,35 @@ const Index = () => {
                     ))}
                   </div>
                   <div className="flex flex-wrap justify-start gap-3">
-                    {card.buttons.map((btn) => (
-                      <button
-                        key={btn}
-                        className="px-7 py-2.5 rounded-lg bg-primary text-primary-foreground text-sm font-light hover:bg-[hsl(var(--primary-glow))] transition-colors"
-                      >
-                        {btn}
-                      </button>
-                    ))}
+                    {card.buttons.map((btn) => {
+                      const cls =
+                        "px-7 py-2.5 rounded-lg bg-primary text-primary-foreground text-sm font-light hover:bg-[hsl(var(--primary-glow))] transition-colors";
+                      if (btn.href) {
+                        return (
+                          <a
+                            key={btn.label}
+                            href={btn.href}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className={cls}
+                          >
+                            {btn.label}
+                          </a>
+                        );
+                      }
+                      return (
+                        <button
+                          key={btn.label}
+                          onClick={() => {
+                            if (btn.action === "hosting") setHostingOpen(true);
+                            else if (btn.action === "mailing") setPopupOpen(true);
+                          }}
+                          className={cls}
+                        >
+                          {btn.label}
+                        </button>
+                      );
+                    })}
                   </div>
                 </div>
               </div>
