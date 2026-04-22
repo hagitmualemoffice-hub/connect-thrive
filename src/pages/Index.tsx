@@ -133,8 +133,8 @@ const Index = () => {
               להצטרפות לתפוצה
             </button>
             <button
-              onClick={() => openContact("general")}
-              className="px-6 py-2.5 rounded-lg bg-primary text-primary-foreground text-sm font-light hover:bg-[hsl(var(--primary-glow))] transition-colors"
+              onClick={() => openContact()}
+              className="px-6 py-2.5 rounded-lg bg-[hsl(var(--primary-vivid))] text-primary-foreground text-sm font-light hover:bg-[hsl(var(--primary-vivid-glow))] transition-colors"
             >
               דברו איתי
             </button>
@@ -363,8 +363,8 @@ const Index = () => {
 
               <div className="mt-6 flex justify-start" dir="rtl">
                 <button
-                  onClick={() => openContact("lecture")}
-                  className="px-8 py-2.5 rounded-lg bg-primary text-primary-foreground text-sm font-light hover:bg-[hsl(var(--primary-glow))] transition-colors"
+                  onClick={openLecture}
+                  className="px-8 py-2.5 rounded-lg bg-[hsl(var(--primary-vivid))] text-primary-foreground text-sm font-light hover:bg-[hsl(var(--primary-vivid-glow))] transition-colors"
                 >
                   להזמנת הרצאה
                 </button>
@@ -413,8 +413,8 @@ const Index = () => {
                 </div>
                 <div className="flex justify-start mt-auto">
                   <button
-                    onClick={() => openContact("lecture")}
-                    className="px-8 py-2.5 rounded-lg bg-primary text-primary-foreground text-sm font-light hover:bg-[hsl(var(--primary-glow))] transition-colors"
+                    onClick={openLecture}
+                    className="px-8 py-2.5 rounded-lg bg-[hsl(var(--primary-vivid))] text-primary-foreground text-sm font-light hover:bg-[hsl(var(--primary-vivid-glow))] transition-colors"
                   >
                     להזמנת הרצאה
                   </button>
@@ -460,8 +460,8 @@ const Index = () => {
               </p>
 
               <button
-                onClick={() => openContact("workshop")}
-                className="px-10 py-3 rounded-lg bg-white text-foreground text-sm md:text-base font-light shadow-md hover:bg-primary hover:text-primary-foreground hover:shadow-lg transition-all"
+                onClick={openWorkshop}
+                className="px-10 py-3 rounded-lg bg-white text-foreground text-sm md:text-base font-light shadow-md hover:bg-[hsl(var(--primary-vivid))] hover:text-primary-foreground hover:shadow-lg transition-all"
               >
                 בואו נתכנן לכם סדנא
               </button>
