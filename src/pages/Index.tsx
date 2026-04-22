@@ -538,13 +538,13 @@ const Index = () => {
       </section>
 
       {/* Spacer for floating card */}
-      <div className="h-32" />
+      <div className="h-56 md:h-32" />
 
       {/* Lecture details section */}
-      <section className="w-full py-12 md:py-20 px-[30px] md:px-6">
-        <div className="w-full md:w-[min(1000px,72%)] mx-auto text-right mb-6 md:mb-8 px-1" dir="rtl">
+      <section className="w-full pt-2 pb-12 md:py-20 px-[30px] md:px-6">
+        <div className="w-full md:w-[min(1000px,72%)] mx-auto text-right mb-4 md:mb-8 px-1" dir="rtl">
           <h2 className="text-foreground text-[1.75rem] md:text-5xl font-light leading-tight mb-2 md:mb-3">
-            <span className="font-light">הרצאות</span>
+            <span className="font-light">הרצאות וסדנאות</span>
           </h2>
           <p className="text-sm md:text-lg font-light">
             <span className="text-primary font-normal">פסיכולוגיה של עשייה -</span>
