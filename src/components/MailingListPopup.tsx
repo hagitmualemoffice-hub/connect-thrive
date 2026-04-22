@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { z } from "zod";
-import { X } from "lucide-react";
+
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "@/hooks/use-toast";
@@ -98,7 +98,7 @@ const MailingListPopup = ({ open, onOpenChange }: MailingListPopupProps) => {
               <button
                 type="submit"
                 disabled={submitting}
-                className="w-full bg-primary text-primary-foreground py-4 rounded-full font-light tracking-wide hover:bg-[hsl(var(--primary-glow))] transition-all duration-500 shadow-md shadow-primary/20 active:scale-[0.98] disabled:opacity-60 disabled:cursor-not-allowed"
+                className="px-12 py-3 rounded-full bg-[hsl(var(--primary-vivid))] text-primary-foreground font-light tracking-wide hover:bg-[hsl(var(--primary-vivid-glow))] transition-all duration-500 shadow-md shadow-[hsl(var(--primary-vivid))]/25 active:scale-[0.98] disabled:opacity-60 disabled:cursor-not-allowed"
               >
                 {submitting ? "שולחת..." : "הצטרפות"}
               </button>
