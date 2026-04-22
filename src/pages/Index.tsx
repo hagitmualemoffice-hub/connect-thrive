@@ -89,12 +89,12 @@ const heroNav: { label: string; href: string }[] = [
 const Index = () => {
   const [popupOpen, setPopupOpen] = useState(false);
   const [contactOpen, setContactOpen] = useState(false);
-  const [contactTab, setContactTab] = useState<ContactTab>("general");
+  const [lectureOpen, setLectureOpen] = useState(false);
+  const [workshopOpen, setWorkshopOpen] = useState(false);
 
-  const openContact = (tab: ContactTab) => {
-    setContactTab(tab);
-    setContactOpen(true);
-  };
+  const openContact = () => setContactOpen(true);
+  const openLecture = () => setLectureOpen(true);
+  const openWorkshop = () => setWorkshopOpen(true);
 
   return (
     <div className="min-h-screen bg-background" dir="rtl">
