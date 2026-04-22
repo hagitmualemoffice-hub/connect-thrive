@@ -18,12 +18,21 @@ const podcastEpisodes = [
   { num: "3", title: "על חרדה והימנעות עם דנה לוי" },
 ];
 
-const contactSchema = z.object({
+type InquiryType = "general" | "lecture" | "workshop";
+
+const baseSchema = {
   name: z.string().trim().min(1, "נא להזין שם").max(100, "שם ארוך מדי"),
   email: z.string().trim().email("כתובת מייל לא תקינה").max(255, "מייל ארוך מדי"),
   phone: z.string().trim().min(1, "נא להזין טלפון").max(20, "טלפון ארוך מדי"),
-  message: z.string().trim().min(1, "נא לכתוב הודעה").max(1000, "הודעה ארוכה מדי"),
-});
+  organization: z.string().trim().max(150, "שם ארוך מדי").optional().or(z.literal("")),
+  participants: z.string().trim().max(20, "ערך ארוך מדי").optional().or(z.literal("")),
+  date: z.string().trim().max(50, "ערך ארוך מדי").optional().or(z.literal("")),
+  topic: z.string().trim().max(200, "ערך ארוך מדי").optional().or(z.literal("")),
+  contactPerson: z.string().trim().max(100, "ערך ארוך מדי").optional().or(z.literal("")),
+  message: z.string().trim().max(1000, "הודעה ארוכה מדי").optional().or(z.literal("")),
+};
+
+const contactSchema = z.object(baseSchema);
 
 const projectCards = [
   {
@@ -95,7 +104,18 @@ const heroNav: { label: string; href: string }[] = [
 ];
 
 const Index = () => {
-  const [form, setForm] = useState({ name: "", email: "", phone: "", message: "" });
+  const [inquiryType, setInquiryType] = useState<InquiryType>("general");
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    organization: "",
+    participants: "",
+    date: "",
+    topic: "",
+    contactPerson: "",
+    message: "",
+  });
   const [submitting, setSubmitting] = useState(false);
   const [popupOpen, setPopupOpen] = useState(false);
 
@@ -114,7 +134,18 @@ const Index = () => {
       return;
     }
     toast({ title: "תודה!", description: "ההודעה נשלחה, אחזור אלייך בהקדם." });
-    setForm({ name: "", email: "", phone: "", message: "" });
+    setForm({
+      name: "",
+      email: "",
+      phone: "",
+      organization: "",
+      participants: "",
+      date: "",
+      topic: "",
+      contactPerson: "",
+      message: "",
+    });
+    setInquiryType("general");
   };
 
   return (
@@ -617,6 +648,31 @@ const Index = () => {
 
               {/* Left side - form */}
               <form onSubmit={handleSubmit} className="text-right space-y-4">
+                {/* Inquiry type selector */}
+                <div>
+                  <label className="block text-foreground text-sm font-light mb-2">סוג הפנייה</label>
+                  <div className="grid grid-cols-3 gap-2">
+                    {([
+                      { val: "general", label: "כללי" },
+                      { val: "lecture", label: "הזמנת הרצאה" },
+                      { val: "workshop", label: "סדנת ביבליותרפיה" },
+                    ] as { val: InquiryType; label: string }[]).map((opt) => (
+                      <button
+                        type="button"
+                        key={opt.val}
+                        onClick={() => setInquiryType(opt.val)}
+                        className={`h-11 px-2 rounded-md border text-xs font-light transition-colors ${
+                          inquiryType === opt.val
+                            ? "bg-primary text-primary-foreground border-primary"
+                            : "bg-white text-foreground/70 border-input hover:border-primary/40"
+                        }`}
+                      >
+                        {opt.label}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
                 <div>
                   <label className="block text-foreground text-sm font-light mb-2">השם שלך</label>
                   <input
@@ -647,8 +703,98 @@ const Index = () => {
                     className="w-full h-11 px-4 rounded-md border border-input bg-white text-right text-sm focus:outline-none focus:ring-2 focus:ring-primary/40"
                   />
                 </div>
+
+                {/* Lecture-specific fields */}
+                {inquiryType === "lecture" && (
+                  <>
+                    <div>
+                      <label className="block text-foreground text-sm font-light mb-2">שם הארגון / הגוף</label>
+                      <input
+                        type="text"
+                        value={form.organization}
+                        onChange={(e) => setForm({ ...form, organization: e.target.value })}
+                        maxLength={150}
+                        className="w-full h-11 px-4 rounded-md border border-input bg-white text-right text-sm focus:outline-none focus:ring-2 focus:ring-primary/40"
+                      />
+                    </div>
+                    <div className="grid grid-cols-2 gap-3">
+                      <div>
+                        <label className="block text-foreground text-sm font-light mb-2">מספר משתתפים</label>
+                        <input
+                          type="text"
+                          value={form.participants}
+                          onChange={(e) => setForm({ ...form, participants: e.target.value })}
+                          maxLength={20}
+                          className="w-full h-11 px-4 rounded-md border border-input bg-white text-right text-sm focus:outline-none focus:ring-2 focus:ring-primary/40"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-foreground text-sm font-light mb-2">תאריך מבוקש</label>
+                        <input
+                          type="text"
+                          placeholder="לדוגמה: 15/06/2026"
+                          value={form.date}
+                          onChange={(e) => setForm({ ...form, date: e.target.value })}
+                          maxLength={50}
+                          className="w-full h-11 px-4 rounded-md border border-input bg-white text-right text-sm placeholder:text-muted-foreground/60 focus:outline-none focus:ring-2 focus:ring-primary/40"
+                        />
+                      </div>
+                    </div>
+                  </>
+                )}
+
+                {/* Workshop-specific fields */}
+                {inquiryType === "workshop" && (
+                  <>
+                    <div>
+                      <label className="block text-foreground text-sm font-light mb-2">שם הארגון / הגוף</label>
+                      <input
+                        type="text"
+                        value={form.organization}
+                        onChange={(e) => setForm({ ...form, organization: e.target.value })}
+                        maxLength={150}
+                        className="w-full h-11 px-4 rounded-md border border-input bg-white text-right text-sm focus:outline-none focus:ring-2 focus:ring-primary/40"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-foreground text-sm font-light mb-2">איש קשר</label>
+                      <input
+                        type="text"
+                        value={form.contactPerson}
+                        onChange={(e) => setForm({ ...form, contactPerson: e.target.value })}
+                        maxLength={100}
+                        className="w-full h-11 px-4 rounded-md border border-input bg-white text-right text-sm focus:outline-none focus:ring-2 focus:ring-primary/40"
+                      />
+                    </div>
+                    <div className="grid grid-cols-2 gap-3">
+                      <div>
+                        <label className="block text-foreground text-sm font-light mb-2">מספר משתתפים</label>
+                        <input
+                          type="text"
+                          value={form.participants}
+                          onChange={(e) => setForm({ ...form, participants: e.target.value })}
+                          maxLength={20}
+                          className="w-full h-11 px-4 rounded-md border border-input bg-white text-right text-sm focus:outline-none focus:ring-2 focus:ring-primary/40"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-foreground text-sm font-light mb-2">נושא הסדנה</label>
+                        <input
+                          type="text"
+                          value={form.topic}
+                          onChange={(e) => setForm({ ...form, topic: e.target.value })}
+                          maxLength={200}
+                          className="w-full h-11 px-4 rounded-md border border-input bg-white text-right text-sm focus:outline-none focus:ring-2 focus:ring-primary/40"
+                        />
+                      </div>
+                    </div>
+                  </>
+                )}
+
                 <div>
-                  <label className="block text-foreground text-sm font-light mb-2">מה תרצי לכתוב לנו</label>
+                  <label className="block text-foreground text-sm font-light mb-2">
+                    {inquiryType === "general" ? "מה תרצי לכתוב לנו" : "הודעה נוספת (אופציונלי)"}
+                  </label>
                   <textarea
                     value={form.message}
                     onChange={(e) => setForm({ ...form, message: e.target.value })}
