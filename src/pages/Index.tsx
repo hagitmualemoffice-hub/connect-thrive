@@ -1,8 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import MailingListPopup from "@/components/MailingListPopup";
-import LectureBookingPopup from "@/components/LectureBookingPopup";
-import WorkshopBookingPopup from "@/components/WorkshopBookingPopup";
+import ContactPopup, { type ContactTab } from "@/components/ContactPopup";
 import heroBg from "@/assets/hero-bg.jpg";
 import lectureBg from "@/assets/woman-beach.jpg";
 import projectsBg from "@/assets/woman-beach-projects.jpg";
@@ -89,8 +88,13 @@ const heroNav: { label: string; href: string }[] = [
 
 const Index = () => {
   const [popupOpen, setPopupOpen] = useState(false);
-  const [lectureOpen, setLectureOpen] = useState(false);
-  const [workshopOpen, setWorkshopOpen] = useState(false);
+  const [contactOpen, setContactOpen] = useState(false);
+  const [contactTab, setContactTab] = useState<ContactTab>("general");
+
+  const openContact = (tab: ContactTab) => {
+    setContactTab(tab);
+    setContactOpen(true);
+  };
 
   return (
     <div className="min-h-screen bg-background" dir="rtl">
@@ -128,9 +132,12 @@ const Index = () => {
             >
               להצטרפות לתפוצה
             </button>
-            <a href="#contact" className="px-6 py-2.5 rounded-lg bg-primary text-primary-foreground text-sm font-light hover:bg-[hsl(var(--primary-glow))] transition-colors">
+            <button
+              onClick={() => openContact("general")}
+              className="px-6 py-2.5 rounded-lg bg-primary text-primary-foreground text-sm font-light hover:bg-[hsl(var(--primary-glow))] transition-colors"
+            >
               דברו איתי
-            </a>
+            </button>
           </div>
         </div>
       </header>
@@ -356,7 +363,7 @@ const Index = () => {
 
               <div className="mt-6 flex justify-start" dir="rtl">
                 <button
-                  onClick={() => setLectureOpen(true)}
+                  onClick={() => openContact("lecture")}
                   className="px-8 py-2.5 rounded-lg bg-primary text-primary-foreground text-sm font-light hover:bg-[hsl(var(--primary-glow))] transition-colors"
                 >
                   להזמנת הרצאה
@@ -406,7 +413,7 @@ const Index = () => {
                 </div>
                 <div className="flex justify-start mt-auto">
                   <button
-                    onClick={() => setLectureOpen(true)}
+                    onClick={() => openContact("lecture")}
                     className="px-8 py-2.5 rounded-lg bg-primary text-primary-foreground text-sm font-light hover:bg-[hsl(var(--primary-glow))] transition-colors"
                   >
                     להזמנת הרצאה
@@ -453,7 +460,7 @@ const Index = () => {
               </p>
 
               <button
-                onClick={() => setWorkshopOpen(true)}
+                onClick={() => openContact("workshop")}
                 className="px-10 py-3 rounded-lg bg-white text-foreground text-sm md:text-base font-light shadow-md hover:bg-primary hover:text-primary-foreground hover:shadow-lg transition-all"
               >
                 בואו נתכנן לכם סדנא
@@ -602,13 +609,13 @@ const Index = () => {
               {/* Left side - CTA buttons */}
               <div className="text-right space-y-4 self-center">
                 <button
-                  onClick={() => setLectureOpen(true)}
+                  onClick={() => openContact("lecture")}
                   className="w-full py-4 px-6 rounded-xl bg-primary text-primary-foreground text-base font-light hover:bg-[hsl(var(--primary-glow))] transition-all shadow-md shadow-primary/20 active:scale-[0.99]"
                 >
                   להזמנת הרצאה
                 </button>
                 <button
-                  onClick={() => setWorkshopOpen(true)}
+                  onClick={() => openContact("workshop")}
                   className="w-full py-4 px-6 rounded-xl bg-white border border-primary/30 text-foreground text-base font-light hover:bg-accent hover:border-primary transition-all shadow-sm active:scale-[0.99]"
                 >
                   בואו נתכנן לכם סדנת ביבליותרפיה
@@ -626,8 +633,7 @@ const Index = () => {
       </section>
 
       <MailingListPopup open={popupOpen} onOpenChange={setPopupOpen} />
-      <LectureBookingPopup open={lectureOpen} onOpenChange={setLectureOpen} />
-      <WorkshopBookingPopup open={workshopOpen} onOpenChange={setWorkshopOpen} />
+      <ContactPopup open={contactOpen} onOpenChange={setContactOpen} defaultTab={contactTab} />
     </div>
   );
 };
