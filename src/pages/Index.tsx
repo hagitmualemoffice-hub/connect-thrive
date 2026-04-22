@@ -297,58 +297,68 @@ const Index = () => {
       <div className="hidden md:block h-28 md:h-24" />
 
       {/* About section */}
-      <section id="about" className="w-full py-20 px-6">
+      <section id="about" className="w-full py-12 md:py-20 px-4 md:px-6 mt-16 md:mt-0">
 
-        <div className="w-[min(1000px,72%)] mx-auto"><div className="w-[min(720px,76%)] mr-0 text-right">
-          <h2 className="text-foreground text-4xl md:text-5xl font-light leading-tight mb-8">
+        <div className="w-full md:w-[min(1000px,72%)] mx-auto"><div className="w-full md:w-[min(720px,76%)] mr-0 text-right">
+          <h2 className="text-foreground text-[1.75rem] md:text-5xl font-light leading-tight mb-5 md:mb-8">
             נעים מאוד, חגית מועלם פסיכולוגית בהתמחות קלינית, מרצה ויזמת.
           </h2>
 
-          <div className="space-y-6 text-foreground/80 text-base font-light leading-relaxed">
-            <p>
-              העוגן המקצועי והאישי שלי נטוע בגישה דינמית-אינטגרטיבית, בשילוב גישות עכשוויות
-              המבוססות על ערכים, משמעות וקבלה, ובחיבור חי ומשמעותי למקורות יהודיים.
-            </p>
-            <p>
-              אני מאמינה שחיבור עמוק לעצמנו ולייעוד הגבוה שלנו הוא הבסיס לתנועה שיש בה משמעות –
-              בחיים האישיים, בעשייה מקצועית, ביזמות ובהנהגה. כש"הסנטר" הפנימי שלנו ברור, התנועה
-              שנובעת מתוכנו אל העולם נעשית מדויקת יותר, יציבה יותר ובעלת השפעה עמוקה.
-            </p>
-          </div>
+          <ExpandableText
+            mobileLines={5}
+            className="text-foreground/80 text-sm md:text-base font-light leading-relaxed"
+          >
+            <div className="space-y-4 md:space-y-6">
+              <p>
+                העוגן המקצועי והאישי שלי נטוע בגישה דינמית-אינטגרטיבית, בשילוב גישות עכשוויות
+                המבוססות על ערכים, משמעות וקבלה, ובחיבור חי ומשמעותי למקורות יהודיים.
+              </p>
+              <p>
+                אני מאמינה שחיבור עמוק לעצמנו ולייעוד הגבוה שלנו הוא הבסיס לתנועה שיש בה משמעות –
+                בחיים האישיים, בעשייה מקצועית, ביזמות ובהנהגה. כש"הסנטר" הפנימי שלנו ברור, התנועה
+                שנובעת מתוכנו אל העולם נעשית מדויקת יותר, יציבה יותר ובעלת השפעה עמוקה.
+              </p>
+            </div>
+          </ExpandableText>
 
-          <div className="mt-8 flex justify-start">
-            <Heart className="text-primary" size={36} strokeWidth={1.5} fill="hsl(var(--primary) / 0.15)" aria-hidden="true" />
+          <div className="mt-6 md:mt-8 flex justify-start">
+            <Heart className="text-primary" size={32} strokeWidth={1.5} fill="hsl(var(--primary) / 0.15)" aria-hidden="true" />
           </div>
         </div></div>
       </section>
 
       {/* Movement section */}
-      <section id="entrepreneurship" className="w-full py-20 px-6">
+      <section id="entrepreneurship" className="w-full py-12 md:py-20 px-4 md:px-6">
 
-        <div className="w-[min(1000px,72%)] mx-auto"><div className="w-[min(720px,76%)] mr-0 text-right">
-          <h2 className="text-foreground text-4xl md:text-5xl font-light leading-tight mb-8">
+        <div className="w-full md:w-[min(1000px,72%)] mx-auto"><div className="w-full md:w-[min(720px,76%)] mr-0 text-right">
+          <h2 className="text-foreground text-[1.75rem] md:text-5xl font-light leading-tight mb-5 md:mb-8">
             אני מאמינה בכוח של יצירה ועשייה מתוך קשיבות ותוך כדי תנועה
           </h2>
 
-          <div className="space-y-6 text-foreground/80 text-base font-light leading-relaxed">
-            <p>
-              העשייה שלי נעה בין עומק נפשי לפעולה בעולם: יזמות חברתית, אקטיביזם, הרצאות
-              ותהליכי ליווי. אני מאמינה ביצירה תוך כדי תנועה – לא כהמתנה לבהירות מושלמת, אלא
-              כהיכרות מתמשכת עם עצמנו דרך בחירה, עשייה והליכה בדרך. עבורי, תנועה, חיבור
-              לייעוד והעמקה נפשית אינם שלבים נפרדים, אלא תהליך אחד חי ומתפתח – שמאפשר שינוי
-              אישי, קהילתי וחברתי.
-            </p>
-            <p>
-              אני מאמינה ביזמות קשובה – יזמות שמחוברת לשטח, נובעת מתוך צורך אמיתי, חותרת
-              לפתרון נקודות כאב, וקשובה לעצמה תוך כדי תנועה ומתוך דיוק מתמשך. זו יזמות שלא
-              ממהרת לייצר פתרונות מהירים, אלא עוצרת להקשיב, להבין לעומק את האנשים וההקשר,
-              ולפעול מתוך אחריות וחיבור. היא מתפתחת יחד עם המציאות, לומדת ממנה, ומשתנה
-              בהתאם – מתוך מחויבות אמיתית ליצירת ערך, רלוונטיות והשפעה.
-            </p>
-          </div>
+          <ExpandableText
+            mobileLines={5}
+            className="text-foreground/80 text-sm md:text-base font-light leading-relaxed"
+          >
+            <div className="space-y-4 md:space-y-6">
+              <p>
+                העשייה שלי נעה בין עומק נפשי לפעולה בעולם: יזמות חברתית, אקטיביזם, הרצאות
+                ותהליכי ליווי. אני מאמינה ביצירה תוך כדי תנועה – לא כהמתנה לבהירות מושלמת, אלא
+                כהיכרות מתמשכת עם עצמנו דרך בחירה, עשייה והליכה בדרך. עבורי, תנועה, חיבור
+                לייעוד והעמקה נפשית אינם שלבים נפרדים, אלא תהליך אחד חי ומתפתח – שמאפשר שינוי
+                אישי, קהילתי וחברתי.
+              </p>
+              <p>
+                אני מאמינה ביזמות קשובה – יזמות שמחוברת לשטח, נובעת מתוך צורך אמיתי, חותרת
+                לפתרון נקודות כאב, וקשובה לעצמה תוך כדי תנועה ומתוך דיוק מתמשך. זו יזמות שלא
+                ממהרת לייצר פתרונות מהירים, אלא עוצרת להקשיב, להבין לעומק את האנשים וההקשר,
+                ולפעול מתוך אחריות וחיבור. היא מתפתחת יחד עם המציאות, לומדת ממנה, ומשתנה
+                בהתאם – מתוך מחויבות אמיתית ליצירת ערך, רלוונטיות והשפעה.
+              </p>
+            </div>
+          </ExpandableText>
 
-          <div className="mt-8 flex justify-start">
-            <Sprout className="text-primary" size={36} strokeWidth={1.5} aria-hidden="true" />
+          <div className="mt-6 md:mt-8 flex justify-start">
+            <Sprout className="text-primary" size={32} strokeWidth={1.5} aria-hidden="true" />
           </div>
         </div></div>
       </section>
