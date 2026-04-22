@@ -77,18 +77,27 @@ const projectCards: Array<{
   },
 ];
 
-const lectureCards = [
+type LectureCard = {
+  title: string;
+  subtitle: string;
+  desc: string;
+  audience: string;
+  badges?: string[];
+};
+
+const lectureCards: LectureCard[] = [
   {
     title: "הנהגה שמתחילה\nמבפנים",
     subtitle: "הנהגה פנימית, ביקורת, ובניית ערך עצמי שלא תלוי באישור חיצוני",
     desc: "הרצאה מקרקעת על המתח בין קבלה עצמית לצמיחה, ועל הובלה מבפנים והחזקה לאורך זמן.",
-    audience: "נשים יזמיות, פעילות חברתיות, סדנאות עומק, קבוצות הנהגה נשית.",
+    audience: "ארגונים, פעילות חברתיות, סדנאות עומק, קבוצות הנהגה נשית.",
   },
   {
-    title: "כשחרדה עובדת\nבשבילך",
-    subtitle: "יזמות נשית, חוסן, והמתח בין הקשבה לעצמך לפריצת גבולות",
-    desc: 'הרצאה שמחליפה את השאלה "איך נפטרים מחרדה" ב-"איך משתמשים בה בלי שהיא תנהל אותנו".',
-    audience: "יזמיות, פעילות חברתיות, צוותים יזמיים, קהילות עשייה.",
+    title: "יזמות\nקשובה",
+    subtitle: "על יזמות שנובעת מהקשבה, מצורך אמיתי ומדיוק מתמשך",
+    desc: "הרצאה על יזמות שמתחילה בהבנה ולא בפתרון - על הקשבה לשטח, זיהוי נקודות כאב, ועל בניית פתרונות שצומחים יחד עם המציאות.",
+    audience: "ארגונים, פעילות חברתיות, צוותים יזמיים, קהילות עשייה.",
+    badges: ["הרצאת הדגל", "הרצאה מומלצת"],
   },
   {
     title: "להרוג\nחלומות",
@@ -407,9 +416,7 @@ const Index = () => {
         <div className="absolute inset-x-0 bottom-[390px] z-10 px-6">
           <div className="w-[min(1000px,72%)] mx-auto text-right" dir="rtl">
             <h2 className="text-white text-4xl md:text-5xl font-light tracking-wide">
-              <span className="font-light">להעיר את הכוח מבפנים</span>
-              <span className="mx-3 font-light">|</span>
-              <span className="font-light">הרצאת הדגל</span>
+              להעיר את הכוח מבפנים
             </h2>
             <p className="mt-3 text-white/95 text-base md:text-lg font-light">
               <span className="text-primary font-normal">אמונה, פסיכולוגיה וייעוד</span>
