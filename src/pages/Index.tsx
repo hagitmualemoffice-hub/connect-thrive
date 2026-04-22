@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import MailingListPopup from "@/components/MailingListPopup";
-import ContactPopup, { type ContactTab } from "@/components/ContactPopup";
+import ContactPopup from "@/components/ContactPopup";
 import heroBg from "@/assets/hero-bg.jpg";
 import lectureBg from "@/assets/woman-beach.jpg";
 import projectsBg from "@/assets/woman-beach-projects.jpg";
@@ -89,12 +89,12 @@ const heroNav: { label: string; href: string }[] = [
 const Index = () => {
   const [popupOpen, setPopupOpen] = useState(false);
   const [contactOpen, setContactOpen] = useState(false);
-  const [contactTab, setContactTab] = useState<ContactTab>("general");
+  const [lectureOpen, setLectureOpen] = useState(false);
+  const [workshopOpen, setWorkshopOpen] = useState(false);
 
-  const openContact = (tab: ContactTab) => {
-    setContactTab(tab);
-    setContactOpen(true);
-  };
+  const openContact = () => setContactOpen(true);
+  const openLecture = () => setLectureOpen(true);
+  const openWorkshop = () => setWorkshopOpen(true);
 
   return (
     <div className="min-h-screen bg-background" dir="rtl">
@@ -133,8 +133,8 @@ const Index = () => {
               להצטרפות לתפוצה
             </button>
             <button
-              onClick={() => openContact("general")}
-              className="px-6 py-2.5 rounded-lg bg-primary text-primary-foreground text-sm font-light hover:bg-[hsl(var(--primary-glow))] transition-colors"
+              onClick={() => openContact()}
+              className="px-6 py-2.5 rounded-lg bg-[hsl(var(--primary-vivid))] text-primary-foreground text-sm font-light hover:bg-[hsl(var(--primary-vivid-glow))] transition-colors"
             >
               דברו איתי
             </button>
@@ -363,8 +363,8 @@ const Index = () => {
 
               <div className="mt-6 flex justify-start" dir="rtl">
                 <button
-                  onClick={() => openContact("lecture")}
-                  className="px-8 py-2.5 rounded-lg bg-primary text-primary-foreground text-sm font-light hover:bg-[hsl(var(--primary-glow))] transition-colors"
+                  onClick={openLecture}
+                  className="px-8 py-2.5 rounded-lg bg-[hsl(var(--primary-vivid))] text-primary-foreground text-sm font-light hover:bg-[hsl(var(--primary-vivid-glow))] transition-colors"
                 >
                   להזמנת הרצאה
                 </button>
@@ -413,8 +413,8 @@ const Index = () => {
                 </div>
                 <div className="flex justify-start mt-auto">
                   <button
-                    onClick={() => openContact("lecture")}
-                    className="px-8 py-2.5 rounded-lg bg-primary text-primary-foreground text-sm font-light hover:bg-[hsl(var(--primary-glow))] transition-colors"
+                    onClick={openLecture}
+                    className="px-8 py-2.5 rounded-lg bg-[hsl(var(--primary-vivid))] text-primary-foreground text-sm font-light hover:bg-[hsl(var(--primary-vivid-glow))] transition-colors"
                   >
                     להזמנת הרצאה
                   </button>
@@ -460,8 +460,8 @@ const Index = () => {
               </p>
 
               <button
-                onClick={() => openContact("workshop")}
-                className="px-10 py-3 rounded-lg bg-white text-foreground text-sm md:text-base font-light shadow-md hover:bg-primary hover:text-primary-foreground hover:shadow-lg transition-all"
+                onClick={openWorkshop}
+                className="px-10 py-3 rounded-lg bg-white text-foreground text-sm md:text-base font-light shadow-md hover:bg-[hsl(var(--primary-vivid))] hover:text-primary-foreground hover:shadow-lg transition-all"
               >
                 בואו נתכנן לכם סדנא
               </button>
@@ -606,17 +606,23 @@ const Index = () => {
                 </p>
               </div>
 
-              {/* Left side - CTA buttons */}
+              {/* Left side - CTA buttons (vivid pink) */}
               <div className="text-right space-y-4 self-center">
                 <button
-                  onClick={() => openContact("lecture")}
-                  className="w-full py-4 px-6 rounded-xl bg-primary text-primary-foreground text-base font-light hover:bg-[hsl(var(--primary-glow))] transition-all shadow-md shadow-primary/20 active:scale-[0.99]"
+                  onClick={() => openContact()}
+                  className="w-full py-4 px-6 rounded-xl bg-[hsl(var(--primary-vivid))] text-primary-foreground text-base font-light hover:bg-[hsl(var(--primary-vivid-glow))] transition-all shadow-md shadow-[hsl(var(--primary-vivid))]/25 active:scale-[0.99]"
+                >
+                  יצירת קשר
+                </button>
+                <button
+                  onClick={openLecture}
+                  className="w-full py-4 px-6 rounded-xl bg-[hsl(var(--primary-vivid))] text-primary-foreground text-base font-light hover:bg-[hsl(var(--primary-vivid-glow))] transition-all shadow-md shadow-[hsl(var(--primary-vivid))]/25 active:scale-[0.99]"
                 >
                   להזמנת הרצאה
                 </button>
                 <button
-                  onClick={() => openContact("workshop")}
-                  className="w-full py-4 px-6 rounded-xl bg-white border border-primary/30 text-foreground text-base font-light hover:bg-accent hover:border-primary transition-all shadow-sm active:scale-[0.99]"
+                  onClick={openWorkshop}
+                  className="w-full py-4 px-6 rounded-xl bg-[hsl(var(--primary-vivid))] text-primary-foreground text-base font-light hover:bg-[hsl(var(--primary-vivid-glow))] transition-all shadow-md shadow-[hsl(var(--primary-vivid))]/25 active:scale-[0.99]"
                 >
                   בואו נתכנן לכם סדנת ביבליותרפיה
                 </button>
@@ -633,7 +639,9 @@ const Index = () => {
       </section>
 
       <MailingListPopup open={popupOpen} onOpenChange={setPopupOpen} />
-      <ContactPopup open={contactOpen} onOpenChange={setContactOpen} defaultTab={contactTab} />
+      <ContactPopup open={contactOpen} onOpenChange={setContactOpen} defaultTab="general" />
+      <ContactPopup open={lectureOpen} onOpenChange={setLectureOpen} defaultTab="lecture" lockTab />
+      <ContactPopup open={workshopOpen} onOpenChange={setWorkshopOpen} defaultTab="workshop" lockTab />
     </div>
   );
 };
