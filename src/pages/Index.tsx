@@ -377,7 +377,7 @@ const Index = () => {
             </div>
           </ExpandableText>
 
-          <div className="mt-3 md:mt-8 flex justify-start">
+          <div className="hidden md:flex mt-3 md:mt-8 justify-start">
             <Sprout className="text-primary w-5 h-5 md:w-8 md:h-8" strokeWidth={1.5} aria-hidden="true" />
           </div>
         </div></div>
