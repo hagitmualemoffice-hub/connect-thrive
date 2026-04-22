@@ -37,25 +37,25 @@ const initial = {
   message: "",
 };
 
-const tabConfig: Record<ContactTab, { label: string; title: string; subtitle: string }> = {
+const tabConfig: Record<ContactTab, { title: string; subtitle: string }> = {
   general: {
-    label: "יצירת קשר",
-    title: "דברי איתי",
-    subtitle: "כאן לכל שאלה או פנייה. אחזור אלייך בהקדם.",
+    title: "דברו איתי",
+    subtitle: "כאן לכל שאלה או פנייה. אחזור אליכם בהקדם.",
   },
   lecture: {
-    label: "הזמנת הרצאה",
     title: "להזמנת הרצאה",
-    subtitle: "ספרי לי על הקהל והאירוע, ואחזור אלייך להתאמת ההרצאה.",
+    subtitle: "ספרו לי על הקהל והאירוע, ואחזור אליכם להתאמת ההרצאה.",
   },
   workshop: {
-    label: "סדנת ביבליותרפיה",
     title: "בואו נתפור לכם חוויה במיוחד לצורך שלכם",
     subtitle: "ספרו לי על הקבוצה והנושא, ואבנה איתכם סדנה מותאמת.",
   },
 };
 
-const tabOrder: ContactTab[] = ["general", "lecture", "workshop"];
+const inputCls =
+  "w-full bg-background border border-border rounded-lg py-2.5 px-3 text-foreground placeholder:text-muted-foreground/60 font-light focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all text-right text-sm";
+
+const labelCls = "block text-foreground/80 text-xs font-light mb-1.5 text-right";
 
 const ContactPopup = ({ open, onOpenChange, defaultTab = "general" }: ContactPopupProps) => {
   const [tab, setTab] = useState<ContactTab>(defaultTab);
@@ -78,20 +78,15 @@ const ContactPopup = ({ open, onOpenChange, defaultTab = "general" }: ContactPop
     const { error } = await supabase.from("leads").insert({ email: result.data.email });
     setSubmitting(false);
     if (error) {
-      toast({ title: "שגיאה", description: "אירעה שגיאה, נסי שוב", variant: "destructive" });
+      toast({ title: "שגיאה", description: "אירעה שגיאה, נסו שוב", variant: "destructive" });
       return;
     }
-    toast({ title: "תודה!", description: "ההודעה נשלחה, אחזור אלייך בהקדם." });
+    toast({ title: "תודה!", description: "ההודעה נשלחה, אחזור אליכם בהקדם." });
     setForm(initial);
     onOpenChange(false);
   };
 
   const cfg = tabConfig[tab];
-
-  const inputCls =
-    "w-full bg-transparent border-b border-border py-2.5 px-1 text-foreground placeholder:text-muted-foreground/60 font-light focus:outline-none focus:border-primary transition-colors text-right text-sm";
-
-  const labelCls = "block text-foreground/70 text-xs font-light mb-1.5 text-right";
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
@@ -99,37 +94,13 @@ const ContactPopup = ({ open, onOpenChange, defaultTab = "general" }: ContactPop
         dir="rtl"
         className="max-w-[600px] p-0 overflow-hidden rounded-[32px] border-0 bg-card shadow-[0_32px_64px_-16px_hsl(0_0%_0%_/_0.18)] gap-0 max-h-[92vh] flex flex-col"
       >
-        {/* Header with tabs - sticky */}
-        <div className="relative px-6 md:px-8 pt-7 pb-5 border-b border-border/60 bg-card">
-          <button
-            onClick={() => onOpenChange(false)}
-            className="absolute top-4 left-4 z-20 p-2 rounded-full text-foreground/60 hover:text-foreground hover:bg-muted transition-colors"
-            aria-label="סגירה"
-          >
-            <X className="h-5 w-5" />
-          </button>
-
-          {/* Tabs - secondary chip style */}
-          <div className="flex flex-wrap items-center gap-2 justify-center">
-            {tabOrder.map((t) => {
-              const isActive = tab === t;
-              return (
-                <button
-                  key={t}
-                  type="button"
-                  onClick={() => setTab(t)}
-                  className={`px-5 py-2 rounded-full text-sm font-light transition-all ${
-                    isActive
-                      ? "bg-accent text-accent-foreground shadow-[0_2px_8px_-2px_hsl(var(--primary)/0.25)]"
-                      : "bg-transparent text-foreground/60 hover:bg-accent/50 hover:text-accent-foreground"
-                  }`}
-                >
-                  {tabConfig[t].label}
-                </button>
-              );
-            })}
-          </div>
-        </div>
+        <button
+          onClick={() => onOpenChange(false)}
+          className="absolute top-5 left-5 z-30 p-2 rounded-full text-foreground/60 hover:text-foreground hover:bg-muted transition-colors bg-card/80 backdrop-blur-sm"
+          aria-label="סגירה"
+        >
+          <X className="h-5 w-5" />
+        </button>
 
         {/* Scrollable content */}
         <div className="flex-1 overflow-y-auto px-8 md:px-12 py-10">
@@ -143,9 +114,9 @@ const ContactPopup = ({ open, onOpenChange, defaultTab = "general" }: ContactPop
             </p>
           </div>
 
-          <form id="contact-popup-form" onSubmit={handleSubmit} className="space-y-5">
+          <form id="contact-popup-form" onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label className={labelCls}>השם שלך</label>
+              <label className={labelCls}>השם שלכם</label>
               <input
                 type="text"
                 value={form.name}
@@ -200,17 +171,6 @@ const ContactPopup = ({ open, onOpenChange, defaultTab = "general" }: ContactPop
                     className={inputCls}
                   />
                 </div>
-                <div>
-                  <label className={labelCls}>תאריך מבוקש</label>
-                  <input
-                    type="text"
-                    placeholder="לדוגמה: 15/06/2026"
-                    value={form.date}
-                    onChange={(e) => setForm({ ...form, date: e.target.value })}
-                    maxLength={50}
-                    className={inputCls}
-                  />
-                </div>
               </>
             )}
 
@@ -260,22 +220,35 @@ const ContactPopup = ({ open, onOpenChange, defaultTab = "general" }: ContactPop
               </>
             )}
 
+            {/* תאריך רצוי - in every form */}
+            <div>
+              <label className={labelCls}>תאריך רצוי {tab === "general" ? "(אופציונלי)" : ""}</label>
+              <input
+                type="text"
+                placeholder="לדוגמה: 15/06/2026"
+                value={form.date}
+                onChange={(e) => setForm({ ...form, date: e.target.value })}
+                maxLength={50}
+                className={inputCls}
+              />
+            </div>
+
             <div>
               <label className={labelCls}>
-                {tab === "general" ? "מה תרצי לכתוב לי" : "הודעה נוספת (אופציונלי)"}
+                {tab === "general" ? "מה תרצו לכתוב לי" : "הודעה נוספת (אופציונלי)"}
               </label>
               <textarea
                 value={form.message}
                 onChange={(e) => setForm({ ...form, message: e.target.value })}
                 maxLength={1000}
                 rows={tab === "general" ? 4 : 3}
-                className="w-full bg-transparent border-b border-border py-2.5 px-1 text-foreground placeholder:text-muted-foreground/60 font-light focus:outline-none focus:border-primary transition-colors text-right text-sm resize-none"
+                className={`${inputCls} resize-none`}
               />
             </div>
           </form>
         </div>
 
-        {/* Sticky footer - Wolt-style */}
+        {/* Sticky footer */}
         <div className="sticky bottom-0 px-8 md:px-12 py-4 bg-card border-t border-border/60 shadow-[0_-8px_24px_-12px_hsl(0_0%_0%_/_0.08)]">
           <button
             type="submit"
