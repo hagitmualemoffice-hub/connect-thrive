@@ -240,8 +240,8 @@ const Index = () => {
           <div className="absolute inset-0 bg-black/25" />
         </div>
 
-        {/* Mobile: title block over the image */}
-        <div className="md:hidden absolute top-0 left-0 right-0 h-[75%] z-10 flex flex-col items-center justify-end text-center px-8 pb-6">
+        {/* Mobile: title block over the image - raised higher, gap to pill = side margin (~30px) */}
+        <div className="md:hidden absolute top-0 left-0 right-0 h-[75%] z-10 flex flex-col items-center justify-end text-center px-8 pb-[60px]">
           <p className="text-white/90 text-xs font-light mb-[2px]">
             חגית מועלם פסיכולוגית בהתמחות קלינית
           </p>
@@ -317,7 +317,7 @@ const Index = () => {
       <div className="hidden md:block h-28 md:h-24" />
 
       {/* About section */}
-      <section id="about" className="w-full pt-6 pb-8 md:py-20 px-[30px] md:px-6 mt-8 md:mt-0">
+      <section id="about" className="w-full pt-3 pb-8 md:py-20 px-[30px] md:px-6 mt-2 md:mt-0">
 
         <div className="w-full md:w-[min(1000px,72%)] mx-auto"><div className="w-full md:w-[min(720px,76%)] mr-0 text-right">
           <h2 className="text-foreground text-[1.75rem] md:text-5xl font-light leading-tight mb-5 md:mb-8">
@@ -395,7 +395,7 @@ const Index = () => {
         </div>
 
         <div className="relative z-10 w-full md:w-[min(1000px,72%)] mx-auto" dir="rtl">
-          <div className="text-right mb-8 md:mb-10 px-1 mt-[72px] md:mt-0">
+          <div className="text-right mb-8 md:mb-10 px-1 mt-[50px] md:mt-0">
             {/* Mobile: simplified title only */}
             <h2 className="md:hidden text-foreground text-[1.75rem] font-light leading-tight">
               הפרויקטים שלי
@@ -480,11 +480,11 @@ const Index = () => {
         <div className="absolute inset-0 bg-black/25" />
 
         {/* Title + Card aligned to same right edge as upper sections */}
-        <div className="absolute inset-x-0 top-10 md:top-auto md:bottom-[390px] z-10 px-4 md:px-6">
+        <div className="absolute inset-x-0 top-[210px] md:top-auto md:bottom-[390px] z-10 px-4 md:px-6">
           <div className="w-full md:w-[min(1000px,72%)] mx-auto text-right" dir="rtl">
             {/* Mobile: simplified title only */}
             <h2 className="md:hidden text-white text-[1.75rem] font-light tracking-wide">
-              הרצאות
+              הרצאות וסדנאות
             </h2>
             {/* Desktop: full title + subtitle */}
             <h2 className="hidden md:block text-white md:text-5xl font-light tracking-wide">
