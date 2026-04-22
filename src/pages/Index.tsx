@@ -6,22 +6,33 @@ import { supabase } from "@/integrations/supabase/client";
 import { toast } from "@/hooks/use-toast";
 import MailingListPopup from "@/components/MailingListPopup";
 import ContactPopup, { type ContactTab } from "@/components/ContactPopup";
+import HostingPopup from "@/components/HostingPopup";
 import heroBg from "@/assets/hero-bg.jpg";
 import lectureBg from "@/assets/woman-beach.jpg";
 import projectsBg from "@/assets/woman-beach-projects.jpg";
 import podcastCover from "@/assets/podcast-cover.png";
-import contactBg from "@/assets/contact-coffee.jpg";
 import contactHeart from "@/assets/contact-heart.png";
 import { blogPosts as allBlogPosts } from "@/data/blogPosts";
 
 const podcastEpisodes = [
-  { num: "1", title: "על חיבור לגוף עם נועם ארז" },
-  { num: "2", title: "על חיבור לגוף עם נועם ארז" },
-  { num: "3", title: "על חרדה והימנעות עם דנה לוי" },
+  { num: "1", title: "על חיבור לגוף עם נעם ארז" },
+  { num: "2", title: 'על הקשבה לגוף עם ד"ר מיכל פרנסט' },
+  { num: "3", title: "על חרדה והימנעות עם דורית בנגד אלבד" },
+  { num: "4", title: 'על התהליך עצמו עם ד"ר ירדנה היימן' },
 ];
 
 
-const projectCards = [
+type ProjectButton = {
+  label: string;
+  href?: string;
+  action?: "mailing" | "hosting";
+};
+
+const projectCards: Array<{
+  title: string;
+  paragraphs: string[];
+  buttons: ProjectButton[];
+}> = [
   {
     title: "אחותי כלה- פרויקט חדשני לרווקות מאוחרת",
     paragraphs: [
@@ -29,7 +40,10 @@ const projectCards = [
       "היוזמה אינה תוצר של מבנה ארגוני קיים, אלא תהליך יוזמי מודע שנבנה צעד-צעד: מתוך אפיון עמוק של הצרכים, הקשבה מתמשכת לנשים עצמן, עבודה עם אמפתיה ודיוק עצמי - והתאמה מתמדת של הפתרונות תוך כדי תנועה. זהו ביטוי חי ליזמות קשובה: יזמות שאינה מתחילה בפתרון, אלא בהבנה. לא במודל מראש, אלא בנכונות לשהות בשאלה, לדייק, ולהנהיג תהליך שיש בו אחריות, עומק וראייה אנושית.",
       "כיום, אחותי כלה היא תנועה חיה של קרוב ל-1,000 נשים, תנועה שמתרחבת הודות לכוח המיוחד של השותפות לפרויקט הזה ומתמשכת מתוך הקשבה, דיוק והליכה עקבית בדרך.",
     ],
-    buttons: ["להצטרף לתפוצה", "בקרו באתר אחותי כלה"],
+    buttons: [
+      { label: "להצטרפות לתפוצה", href: "https://achotikala.com/#grup" },
+      { label: "בקרי באתר אחותי כלה", href: "https://achotikala.com/" },
+    ],
   },
   {
     title: "שימור פוריות - מוצאות בתוכנו דרך להתחבר לזה.\nפרויקט שנולד מתוך מחקר אקדמי, הקשבה ויישום בשטח.",
@@ -38,7 +52,20 @@ const projectCards = [
       "המחקר חשף את האתגרים הרגשיים והחרדה המלווים את התהליך, והצביע על הצורך בליווי, החזקה וכלים שיאפשרו לנשים להיות בתוך התהליך ולא להישאר בו לבד. כיישום של המחקר, אני מפתחת ומובילה פרויקטים המשלבים הבנה פסיכולוגית, מחקר אקדמי ויישום מדויק בשדה.",
       "בין הפרויקטים: פודקאסט ייעודי, קובץ מידע נגיש, מקרר תרופות שיתופי, יזמות ליווי קהילתיות, פעילות לשינוי מדיניות, והכשרת צוותים רפואיים על החוויה הנפשית בתהליכי שימור פוריות.",
     ],
-    buttons: ["מקרר התרופות השיתופי", "קובץ מידע", "הפודקאסט"],
+    buttons: [
+      {
+        label: "קובץ מידע",
+        href: "https://docs.google.com/presentation/d/1-otESJad2269asNVzACA9m952hkQFx9lx2kXZkL9r0A/present?slide=id.g38683e446e7_2_75",
+      },
+      {
+        label: "הפודקאסט",
+        href: "https://open.spotify.com/show/2FIal7yOO7htlBkKUwCbxW?si=dtVPb1AQQomBBOTazo3hWA",
+      },
+      {
+        label: "מקרר התרופות השיתופי",
+        href: "https://docs.google.com/spreadsheets/d/1fgakciTdJORHhOip1MwBzUrU4k0H15f5IZY6Liewdi0/edit?gid=0#gid=0&fvid=709051320",
+      },
+    ],
   },
   {
     title: "רפואה רגישה: כשידע רפואי פוגש חוויה אנושית",
@@ -46,7 +73,7 @@ const projectCards = [
       "סדנאות והרצאות לצוותות רפואיים המלווים תהליכים נשיים ותהליכי פריון - בהם מחלקות IVF, צוותי אולטרסאונד, מרפאות נשים וצוותים רב-מקצועיים בבתי חולים. העבודה מבוססת על מחקר, ידע פסיכולוגי וחשיבה מערכתית, וממוקדת בהבנת החוויה הנפשית של נשים בתוך תהליכים רפואיים אינטנסיביים. הסדנאות מעניקות כלים להקשבה, הכלה ותקשורת מותאמת, מתוך הבנה שהמפגש האנושי משפיע באופן ישיר על איכות הטיפול, שיתוף הפעולה וההתליך הרפואי כולו.",
       "העבודה מותאמת לצרכים הייחודיים של כל צוות - במטרה לאפשר טיפול מקצועי, אנושי ומדויק יותר. מתאים לישיבות צוות, כנסים אירועים מחלקתיים או הרצאת אורח כחלק מתהליך עומק.",
     ],
-    buttons: ["אשמח להתארח אצלכם במחלקה"],
+    buttons: [{ label: "אשמח להתארח אצלכם במחלקה", action: "hosting" }],
   },
 ];
 
@@ -92,6 +119,7 @@ const Index = () => {
   const [popupOpen, setPopupOpen] = useState(false);
   const [contactOpen, setContactOpen] = useState(false);
   const [contactTab, setContactTab] = useState<ContactTab>("general");
+  const [hostingOpen, setHostingOpen] = useState(false);
   const [inlineForm, setInlineForm] = useState({ name: "", email: "" });
   const [inlineSubmitting, setInlineSubmitting] = useState(false);
 
@@ -329,14 +357,35 @@ const Index = () => {
                     ))}
                   </div>
                   <div className="flex flex-wrap justify-start gap-3">
-                    {card.buttons.map((btn) => (
-                      <button
-                        key={btn}
-                        className="px-7 py-2.5 rounded-lg bg-primary text-primary-foreground text-sm font-light hover:bg-[hsl(var(--primary-glow))] transition-colors"
-                      >
-                        {btn}
-                      </button>
-                    ))}
+                    {card.buttons.map((btn) => {
+                      const cls =
+                        "px-7 py-2.5 rounded-lg bg-primary text-primary-foreground text-sm font-light hover:bg-[hsl(var(--primary-glow))] transition-colors";
+                      if (btn.href) {
+                        return (
+                          <a
+                            key={btn.label}
+                            href={btn.href}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className={cls}
+                          >
+                            {btn.label}
+                          </a>
+                        );
+                      }
+                      return (
+                        <button
+                          key={btn.label}
+                          onClick={() => {
+                            if (btn.action === "hosting") setHostingOpen(true);
+                            else if (btn.action === "mailing") setPopupOpen(true);
+                          }}
+                          className={cls}
+                        >
+                          {btn.label}
+                        </button>
+                      );
+                    })}
                   </div>
                 </div>
               </div>
@@ -485,13 +534,9 @@ const Index = () => {
               </h2>
 
               <p className="text-white/95 text-sm md:text-base font-light leading-relaxed mb-6">
-                מחפשים מרחב עמוק, חי ולא שגרתי לעבודה קבוצתית?
-              </p>
-
-              <p className="text-white/95 text-sm md:text-base font-light leading-relaxed mb-6">
-                סדנאות ביבליותרפיה המבוססות על קריאה משותפת של טקסטים והנחיה של שיח קבוצתי
-                משמעותי. הטקסטים אינם רק תוכן - הם שער: פותחים רגשות, שאלות ונקודות כאב,
-                ומאפשרים תנועה אמיתית בקבוצה.
+                מחפשים מרחב עמוק, חי ולא שגרתי לעבודה קבוצתית? סדנאות ביבליותרפיה המבוססות
+                על קריאה משותפת של טקסטים והנחיה של שיח קבוצתי משמעותי. הטקסטים אינם רק
+                תוכן - הם שער: פותחים רגשות, שאלות ונקודות כאב, ומאפשרים תנועה אמיתית בקבוצה.
               </p>
 
               <p className="text-white/95 text-sm md:text-base font-light leading-relaxed mb-6">
@@ -592,9 +637,11 @@ const Index = () => {
         {/* Cards row - aligned to same container as header */}
         <div className="w-[min(1000px,72%)] mx-auto" dir="rtl">
           <div className="grid grid-cols-3 gap-6">
-            {podcastEpisodes.map((ep, idx) => (
+            {podcastEpisodes.slice(0, 3).map((ep, idx) => (
               <a
-                href="#"
+                href="https://open.spotify.com/show/2FIal7yOO7htlBkKUwCbxW?si=dtVPb1AQQomBBOTazo3hWA"
+                target="_blank"
+                rel="noopener noreferrer"
                 key={idx}
                 className="flex flex-col group cursor-pointer transition-all duration-300 ease-out hover:scale-[1.03]"
               >
@@ -616,64 +663,61 @@ const Index = () => {
           </div>
 
           <div className="mt-12 flex justify-center">
-            <button className="px-10 py-3 rounded-lg bg-primary text-primary-foreground text-sm md:text-base font-light hover:bg-[hsl(var(--primary-glow))] transition-colors">
+            <a
+              href="https://open.spotify.com/show/2FIal7yOO7htlBkKUwCbxW?si=dtVPb1AQQomBBOTazo3hWA"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-10 py-3 rounded-lg bg-primary text-primary-foreground text-sm md:text-base font-light hover:bg-[hsl(var(--primary-glow))] transition-colors"
+            >
               לכל הפרקים
-            </button>
+            </a>
           </div>
         </div>
       </section>
 
       {/* Contact section */}
-      <section id="contact" className="relative w-full bg-white">
-        {/* Background image - only top ~half */}
-        <div
-          className="w-full bg-cover bg-center h-[360px] md:h-[560px]"
-          style={{ backgroundImage: `url(${contactBg})` }}
-        />
-        {/* White card overlapping - covers ~half of bg image */}
-        <div className="w-[min(900px,60%)] mx-auto -mt-40 md:-mt-72 relative z-10" dir="rtl">
-          <div className="bg-white rounded-t-[32px] shadow-[0_-15px_40px_-15px_hsl(0_0%_0%_/_0.15)] px-12 md:px-24 py-12 md:py-16">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-14 items-start">
-              {/* Right side - icon + heading */}
-              <div className="text-right">
-                <div className="flex justify-start mb-6">
-                  <img
-                    src={contactHeart}
-                    alt="דברי איתי"
-                    width={160}
-                    height={120}
-                    className="w-28 md:w-36 h-auto"
-                  />
-                </div>
-                <h2 className="text-foreground text-4xl md:text-5xl font-light mb-5">
-                  דברי איתי
-                </h2>
-                <p className="text-foreground/75 text-base md:text-lg font-light leading-relaxed">
-                  כאן לכל שאלה, להזמנת הרצאה, בניית סדנה מותאמת אליכם או שיתופי פעולה לפרויקטים שלי.
-                </p>
+      <section id="contact" className="w-full bg-background py-24 px-6">
+        <div className="w-[min(1100px,82%)] mx-auto" dir="rtl">
+          <div className="bg-card rounded-[40px] shadow-[0_20px_60px_-20px_hsl(0_0%_0%_/_0.12)] px-10 md:px-20 py-14 md:py-20">
+            {/* Top: heart + heading centered */}
+            <div className="text-center mb-12">
+              <div className="flex justify-center mb-5">
+                <img
+                  src={contactHeart}
+                  alt="דברו איתי"
+                  width={160}
+                  height={120}
+                  className="w-24 md:w-28 h-auto"
+                />
               </div>
+              <h2 className="text-foreground text-4xl md:text-5xl font-light mb-4">
+                דברו איתי
+              </h2>
+              <p className="text-foreground/70 text-base md:text-lg font-light leading-relaxed max-w-[52ch] mx-auto">
+                כאן לכל שאלה, להזמנת הרצאה, בניית סדנה מותאמת אליכם או שיתופי פעולה לפרויקטים שלי.
+              </p>
+            </div>
 
-              {/* Left side - CTA buttons */}
-              <div className="text-right space-y-4 self-center">
-                <button
-                  onClick={() => openContact("lecture")}
-                  className="w-full py-4 px-6 rounded-xl bg-primary text-primary-foreground text-base font-light hover:bg-[hsl(var(--primary-glow))] transition-all shadow-md shadow-primary/20 active:scale-[0.99]"
-                >
-                  להזמנת הרצאה
-                </button>
-                <button
-                  onClick={() => openContact("workshop")}
-                  className="w-full py-4 px-6 rounded-xl bg-white border border-primary/30 text-foreground text-base font-light hover:bg-accent hover:border-primary transition-all shadow-sm active:scale-[0.99]"
-                >
-                  בואו נתכנן לכם סדנת ביבליותרפיה
-                </button>
-                <button
-                  onClick={() => setPopupOpen(true)}
-                  className="w-full py-4 px-6 rounded-xl bg-muted text-foreground/80 text-base font-light hover:bg-muted/80 transition-all active:scale-[0.99]"
-                >
-                  הצטרפות לתפוצה
-                </button>
-              </div>
+            {/* Bottom: 3 CTA buttons in a row */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-3xl mx-auto">
+              <button
+                onClick={() => openContact("lecture")}
+                className="py-4 px-6 rounded-xl bg-primary text-primary-foreground text-base font-light hover:bg-[hsl(var(--primary-glow))] transition-all shadow-md shadow-primary/20 active:scale-[0.99]"
+              >
+                להזמנת הרצאה
+              </button>
+              <button
+                onClick={() => openContact("workshop")}
+                className="py-4 px-6 rounded-xl bg-card border border-primary/30 text-foreground text-base font-light hover:bg-accent hover:border-primary transition-all shadow-sm active:scale-[0.99]"
+              >
+                בואו נתכנן סדנת ביבליותרפיה
+              </button>
+              <button
+                onClick={() => setPopupOpen(true)}
+                className="py-4 px-6 rounded-xl bg-muted text-foreground/80 text-base font-light hover:bg-muted/80 transition-all active:scale-[0.99]"
+              >
+                הצטרפות לתפוצה
+              </button>
             </div>
           </div>
         </div>
@@ -681,6 +725,7 @@ const Index = () => {
 
       <MailingListPopup open={popupOpen} onOpenChange={setPopupOpen} />
       <ContactPopup open={contactOpen} onOpenChange={setContactOpen} defaultTab={contactTab} />
+      <HostingPopup open={hostingOpen} onOpenChange={setHostingOpen} />
     </div>
   );
 };

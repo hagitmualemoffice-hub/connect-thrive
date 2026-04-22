@@ -5,42 +5,42 @@ import podcastCover from "@/assets/podcast-cover.png";
 const episodes = [
   {
     num: "01",
-    title: "על חיבור לגוף עם נועם ארז",
+    title: "על חיבור לגוף עם נעם ארז",
     description:
-      "שיחה עמוקה על הדרך שבה הגוף שלנו זוכר, מאחסן ומשחרר. נועם ארז מתארחת לשיחה על הקשר בין נפש לגוף ואיך מתחילים להקשיב פנימה.",
+      "שיחה עמוקה על הדרך שבה הגוף שלנו זוכר, מאחסן ומשחרר. נעם ארז מתארחת לשיחה על הקשר בין נפש לגוף ואיך מתחילים להקשיב פנימה.",
     duration: "47 דק׳",
     date: "מרץ 2026",
-    spotifyUrl: "#",
+    spotifyUrl: "https://open.spotify.com/show/2FIal7yOO7htlBkKUwCbxW?si=dtVPb1AQQomBBOTazo3hWA",
     driveUrl: "#",
   },
   {
     num: "02",
-    title: "על מימוש עצמי וחלומות שמבקשים להתממש",
+    title: 'על הקשבה לגוף עם ד"ר מיכל פרנסט',
     description:
-      "מה קורה כשהחלום פוגש את המציאות? שיחה על הצעדים הקטנים שמובילים לתנועה גדולה, ועל הרגעים שבהם אנחנו בוחרות להאמין בעצמנו.",
+      'שיחה עם ד"ר מיכל פרנסט על המקום שבו הגוף מדבר ואנחנו לא תמיד יודעות להקשיב. על האותות הקטנים, על הקשב הפנימי ועל איך לומדים מחדש את שפת הגוף.',
     duration: "52 דק׳",
     date: "פברואר 2026",
-    spotifyUrl: "#",
+    spotifyUrl: "https://open.spotify.com/show/2FIal7yOO7htlBkKUwCbxW?si=dtVPb1AQQomBBOTazo3hWA",
     driveUrl: "#",
   },
   {
     num: "03",
-    title: "על חרדה והימנעות עם דנה לוי",
+    title: "על חרדה והימנעות עם דורית בנגד אלבד",
     description:
       "החרדה היא לא אויב - היא מורה. בפרק הזה נצלול לעולם של הימנעות, מה היא מנסה להגן עלינו ממנו, ואיך מתחילים לזוז גם כשהיא נוכחת.",
     duration: "58 דק׳",
     date: "ינואר 2026",
-    spotifyUrl: "#",
+    spotifyUrl: "https://open.spotify.com/show/2FIal7yOO7htlBkKUwCbxW?si=dtVPb1AQQomBBOTazo3hWA",
     driveUrl: "#",
   },
   {
     num: "04",
-    title: "על יזמות קשובה - להקים מהמקום הנכון",
+    title: 'על התהליך עצמו עם ד"ר ירדנה היימן',
     description:
-      "איך בונים יזמות שמרגישה נכונה מבפנים? שיחה על הקצב הפנימי, על קבלת החלטות מתוך חיבור, ועל הדרך לבנות עסק שמשרת אותך.",
+      'שיחה עם ד"ר ירדנה היימן על התהליך הנפשי שמתרחש בתוכנו - איך נראית עבודה פנימית אמיתית, מה קורה בדרך, ואיך לומדים לסמוך על הקצב שלנו.',
     duration: "44 דק׳",
     date: "דצמבר 2025",
-    spotifyUrl: "#",
+    spotifyUrl: "https://open.spotify.com/show/2FIal7yOO7htlBkKUwCbxW?si=dtVPb1AQQomBBOTazo3hWA",
     driveUrl: "#",
   },
 ];
