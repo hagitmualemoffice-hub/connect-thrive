@@ -229,7 +229,7 @@ const Index = () => {
       </header>
 
       {/* Hero */}
-      <section id="top" className="relative w-full h-[480px] md:h-[640px] group">
+      <section id="top" className="relative w-full h-[380px] md:h-[640px] group">
         <div className="absolute inset-0 overflow-hidden">
           <img
             src={heroBg}
@@ -304,7 +304,7 @@ const Index = () => {
       <div className="hidden md:block h-28 md:h-24" />
 
       {/* About section */}
-      <section id="about" className="w-full py-12 md:py-20 px-4 md:px-6 mt-16 md:mt-0">
+      <section id="about" className="w-full pt-6 pb-8 md:py-20 px-[30px] md:px-6 mt-8 md:mt-0">
 
         <div className="w-full md:w-[min(1000px,72%)] mx-auto"><div className="w-full md:w-[min(720px,76%)] mr-0 text-right">
           <h2 className="text-foreground text-[1.75rem] md:text-5xl font-light leading-tight mb-5 md:mb-8">
@@ -328,14 +328,14 @@ const Index = () => {
             </div>
           </ExpandableText>
 
-          <div className="mt-6 md:mt-8 flex justify-start">
-            <Heart className="text-primary" size={32} strokeWidth={1.5} fill="hsl(var(--primary) / 0.15)" aria-hidden="true" />
+          <div className="mt-3 md:mt-8 flex justify-start">
+            <Heart className="text-primary w-5 h-5 md:w-8 md:h-8" strokeWidth={1.5} fill="hsl(var(--primary) / 0.15)" aria-hidden="true" />
           </div>
         </div></div>
       </section>
 
       {/* Movement section */}
-      <section id="entrepreneurship" className="w-full py-12 md:py-20 px-4 md:px-6">
+      <section id="entrepreneurship" className="w-full pt-2 pb-8 md:py-20 px-[30px] md:px-6">
 
         <div className="w-full md:w-[min(1000px,72%)] mx-auto"><div className="w-full md:w-[min(720px,76%)] mr-0 text-right">
           <h2 className="text-foreground text-[1.75rem] md:text-5xl font-light leading-tight mb-5 md:mb-8">
@@ -364,8 +364,8 @@ const Index = () => {
             </div>
           </ExpandableText>
 
-          <div className="mt-6 md:mt-8 flex justify-start">
-            <Sprout className="text-primary" size={32} strokeWidth={1.5} aria-hidden="true" />
+          <div className="mt-3 md:mt-8 flex justify-start">
+            <Sprout className="text-primary w-5 h-5 md:w-8 md:h-8" strokeWidth={1.5} aria-hidden="true" />
           </div>
         </div></div>
       </section>
@@ -382,9 +382,9 @@ const Index = () => {
         </div>
 
         <div className="relative z-10 w-full md:w-[min(1000px,72%)] mx-auto" dir="rtl">
-          <div className="text-right mb-6 md:mb-10 px-1">
+          <div className="text-right mb-8 md:mb-10 px-1 mt-[120px] md:mt-0">
             {/* Mobile: simplified title only */}
-            <h2 className="md:hidden text-white text-[1.75rem] font-light leading-tight drop-shadow-md">
+            <h2 className="md:hidden text-foreground text-[1.75rem] font-light leading-tight">
               הפרויקטים שלי
             </h2>
             {/* Desktop: full title + subtitle */}
@@ -403,7 +403,7 @@ const Index = () => {
             {projectCards.map((card, idx) => (
               <div
                 key={idx}
-                className="bg-card rounded-2xl md:rounded-3xl shadow-[0_20px_60px_-15px_hsl(0_0%_0%_/_0.18)] px-5 md:px-20 py-8 md:py-16 text-right w-full"
+                className="bg-card rounded-2xl md:rounded-3xl shadow-[0_20px_60px_-15px_hsl(0_0%_0%_/_0.18)] px-7 md:px-20 py-8 md:py-16 text-right w-full"
               >
                 <div className="w-full md:w-[min(696px,100%)] mr-0 ml-auto">
                   <h3 className="text-foreground text-xl md:text-3xl font-bold leading-tight mb-4 md:mb-6 whitespace-pre-line">
@@ -538,13 +538,13 @@ const Index = () => {
       </section>
 
       {/* Spacer for floating card */}
-      <div className="h-32" />
+      <div className="h-56 md:h-32" />
 
       {/* Lecture details section */}
-      <section className="w-full py-12 md:py-20 px-[30px] md:px-6">
-        <div className="w-full md:w-[min(1000px,72%)] mx-auto text-right mb-6 md:mb-8 px-1" dir="rtl">
+      <section className="w-full pt-2 pb-12 md:py-20 px-[30px] md:px-6">
+        <div className="w-full md:w-[min(1000px,72%)] mx-auto text-right mb-4 md:mb-8 px-1" dir="rtl">
           <h2 className="text-foreground text-[1.75rem] md:text-5xl font-light leading-tight mb-2 md:mb-3">
-            <span className="font-light">הרצאות</span>
+            <span className="font-light">הרצאות וסדנאות</span>
           </h2>
           <p className="text-sm md:text-lg font-light">
             <span className="text-primary font-normal">פסיכולוגיה של עשייה -</span>
@@ -557,7 +557,7 @@ const Index = () => {
             {lectureCards.map((card) => (
               <div
                 key={card.title}
-                className="bg-card rounded-2xl md:rounded-3xl shadow-[0_15px_40px_-15px_hsl(0_0%_0%_/_0.12)] px-5 md:px-12 py-7 md:py-14 text-right flex flex-col transition-all duration-300 ease-out hover:scale-[1.03] hover:shadow-[0_25px_50px_-15px_hsl(var(--primary)/0.25)] cursor-pointer"
+                className="bg-card rounded-2xl md:rounded-3xl shadow-[0_15px_40px_-15px_hsl(0_0%_0%_/_0.12)] px-7 md:px-12 py-9 md:py-14 text-right flex flex-col transition-all duration-300 ease-out hover:scale-[1.03] hover:shadow-[0_25px_50px_-15px_hsl(var(--primary)/0.25)] cursor-pointer"
               >
                 <div className="h-7 mb-3 flex flex-wrap gap-2 justify-start">
                   {card.badges?.map((b) => (
@@ -602,7 +602,7 @@ const Index = () => {
       </section>
 
       {/* Unique offering - Bibliotherapy gradient section */}
-      <section id="workshops" className="w-full py-12 md:py-20 px-[30px] md:px-6">
+      <section id="workshops" className="w-full pt-4 pb-12 md:py-20 px-[30px] md:px-6">
         <div className="w-full md:w-[min(1200px,82%)] mx-auto">
           <div
             className="rounded-2xl md:rounded-[40px] px-6 md:px-24 py-10 md:py-24 text-right"
