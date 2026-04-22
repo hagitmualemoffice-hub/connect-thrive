@@ -395,7 +395,7 @@ const Index = () => {
         </div>
 
         <div className="relative z-10 w-full md:w-[min(1000px,72%)] mx-auto" dir="rtl">
-          <div className="text-right mb-8 md:mb-10 px-1 mt-[120px] md:mt-0">
+          <div className="text-right mb-8 md:mb-10 px-1 mt-[72px] md:mt-0">
             {/* Mobile: simplified title only */}
             <h2 className="md:hidden text-foreground text-[1.75rem] font-light leading-tight">
               הפרויקטים שלי
