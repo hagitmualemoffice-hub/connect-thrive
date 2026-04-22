@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import MailingListPopup from "@/components/MailingListPopup";
-import ContactPopup, { type ContactTab } from "@/components/ContactPopup";
+import ContactPopup from "@/components/ContactPopup";
 import heroBg from "@/assets/hero-bg.jpg";
 import lectureBg from "@/assets/woman-beach.jpg";
 import projectsBg from "@/assets/woman-beach-projects.jpg";
