@@ -222,7 +222,7 @@ const Index = () => {
           </div>
 
           <div className="mt-8 flex justify-start">
-            <Heart className="text-primary" size={28} strokeWidth={1.5} fill="hsl(var(--primary) / 0.15)" aria-hidden="true" />
+            <Heart className="text-primary" size={36} strokeWidth={1.5} fill="hsl(var(--primary) / 0.15)" aria-hidden="true" />
           </div>
         </div></div>
       </section>
@@ -253,7 +253,7 @@ const Index = () => {
           </div>
 
           <div className="mt-8 flex justify-start">
-            <Sprout className="text-primary" size={28} strokeWidth={1.5} aria-hidden="true" />
+            <Sprout className="text-primary" size={36} strokeWidth={1.5} aria-hidden="true" />
           </div>
         </div></div>
       </section>
