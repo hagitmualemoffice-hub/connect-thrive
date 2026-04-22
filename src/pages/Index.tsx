@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Heart, Sprout } from "lucide-react";
+import { z } from "zod";
+import { supabase } from "@/integrations/supabase/client";
+import { toast } from "@/hooks/use-toast";
 import MailingListPopup from "@/components/MailingListPopup";
 import ContactPopup, { type ContactTab } from "@/components/ContactPopup";
 import heroBg from "@/assets/hero-bg.jpg";
@@ -80,10 +83,35 @@ const topNav = [
   { label: "פודקאסט", href: "/podcast" },
 ];
 
+const inlineSchema = z.object({
+  name: z.string().trim().min(1, "נא להזין שם").max(100, "שם ארוך מדי"),
+  email: z.string().trim().email("כתובת מייל לא תקינה").max(255, "מייל ארוך מדי"),
+});
+
 const Index = () => {
   const [popupOpen, setPopupOpen] = useState(false);
   const [contactOpen, setContactOpen] = useState(false);
   const [contactTab, setContactTab] = useState<ContactTab>("general");
+  const [inlineForm, setInlineForm] = useState({ name: "", email: "" });
+  const [inlineSubmitting, setInlineSubmitting] = useState(false);
+
+  const handleInlineSubscribe = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const result = inlineSchema.safeParse(inlineForm);
+    if (!result.success) {
+      toast({ title: "שגיאה", description: result.error.issues[0].message, variant: "destructive" });
+      return;
+    }
+    setInlineSubmitting(true);
+    const { error } = await supabase.from("leads").insert({ email: result.data.email });
+    setInlineSubmitting(false);
+    if (error) {
+      toast({ title: "שגיאה", description: "אירעה שגיאה, נסי שוב", variant: "destructive" });
+      return;
+    }
+    toast({ title: "תודה!", description: "נרשמת בהצלחה לתפוצה." });
+    setInlineForm({ name: "", email: "" });
+  };
 
   const openContact = (tab: ContactTab) => {
     setContactTab(tab);
