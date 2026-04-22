@@ -637,9 +637,11 @@ const Index = () => {
         {/* Cards row - aligned to same container as header */}
         <div className="w-[min(1000px,72%)] mx-auto" dir="rtl">
           <div className="grid grid-cols-3 gap-6">
-            {podcastEpisodes.map((ep, idx) => (
+            {podcastEpisodes.slice(0, 3).map((ep, idx) => (
               <a
-                href="#"
+                href="https://open.spotify.com/show/2FIal7yOO7htlBkKUwCbxW?si=dtVPb1AQQomBBOTazo3hWA"
+                target="_blank"
+                rel="noopener noreferrer"
                 key={idx}
                 className="flex flex-col group cursor-pointer transition-all duration-300 ease-out hover:scale-[1.03]"
               >
@@ -661,9 +663,14 @@ const Index = () => {
           </div>
 
           <div className="mt-12 flex justify-center">
-            <button className="px-10 py-3 rounded-lg bg-primary text-primary-foreground text-sm md:text-base font-light hover:bg-[hsl(var(--primary-glow))] transition-colors">
+            <a
+              href="https://open.spotify.com/show/2FIal7yOO7htlBkKUwCbxW?si=dtVPb1AQQomBBOTazo3hWA"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-10 py-3 rounded-lg bg-primary text-primary-foreground text-sm md:text-base font-light hover:bg-[hsl(var(--primary-glow))] transition-colors"
+            >
               לכל הפרקים
-            </button>
+            </a>
           </div>
         </div>
       </section>
