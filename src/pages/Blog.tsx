@@ -96,32 +96,7 @@ const categories = ["הכל", "פרשה ופסיכולוגיה", "טיפול ב�
 const Blog = () => {
   return (
     <div className="min-h-screen bg-background" dir="rtl">
-      {/* Top navigation - same as home */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm shadow-sm">
-        <div className="flex items-center justify-between px-10 py-5">
-          <Link to="/" className="text-foreground text-xl font-semibold tracking-tight">
-            חגית מועלם
-          </Link>
-
-          <nav className="flex items-center gap-10">
-            <Link to="/#about" className="text-sm font-normal text-foreground hover:text-primary transition-colors">הסנטר שלי</Link>
-            <Link to="/#entrepreneurship" className="text-sm font-normal text-foreground hover:text-primary transition-colors">יזמות קשובה</Link>
-            <Link to="/#projects" className="text-sm font-normal text-foreground hover:text-primary transition-colors">הפרוייקטים שלי</Link>
-            <Link to="/#lectures" className="text-sm font-normal text-foreground hover:text-primary transition-colors">סדנאות והרצאות</Link>
-            <Link to="/blog" className="text-sm font-normal text-primary transition-colors">בלוג</Link>
-            <Link to="/podcast" className="text-sm font-normal text-foreground hover:text-primary transition-colors">פודקאסט</Link>
-          </nav>
-
-          <div className="flex items-center gap-3">
-            <Link
-              to="/#contact"
-              className="px-6 py-2.5 rounded-lg bg-primary text-primary-foreground text-sm font-light hover:bg-[hsl(var(--primary-glow))] transition-colors"
-            >
-              דברו איתי
-            </Link>
-          </div>
-        </div>
-      </header>
+      <SiteHeader />
 
       <div className="h-20" />
 
