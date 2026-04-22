@@ -15,10 +15,26 @@ import contactHeart from "@/assets/contact-heart.png";
 import { blogPosts as allBlogPosts } from "@/data/blogPosts";
 
 const podcastEpisodes = [
-  { num: "1", title: "על חיבור לגוף עם נעם ארז" },
-  { num: "2", title: 'על הקשבה לגוף עם ד"ר מיכל פרנסט' },
-  { num: "3", title: "על חרדה והימנעות עם דורית בנגד אלבד" },
-  { num: "4", title: 'על התהליך עצמו עם ד"ר ירדנה היימן' },
+  {
+    num: "1",
+    title: "על חיבור לגוף עם נעם ארז",
+    driveUrl: "https://drive.google.com/file/d/1kEgTm8iRMiUmhaZ6Si4HXalrsmF2HKR5/view?usp=drive_link",
+  },
+  {
+    num: "2",
+    title: 'על הקשבה לגוף עם ד"ר מיכל פרנסט',
+    driveUrl: "https://drive.google.com/file/d/1w628JudX26Cx5_1szSSlCpO4mOGlolo7/view?usp=sharing",
+  },
+  {
+    num: "3",
+    title: "על חרדה והימנעות עם דורית בנגד אלבד",
+    driveUrl: "https://drive.google.com/file/d/1sobWuQQdj3UCgq0z40kI2zZxSchr1pyQ/view?usp=drive_link",
+  },
+  {
+    num: "4",
+    title: 'על התהליך עצמו עם ד"ר ירדנה היימן',
+    driveUrl: "https://drive.google.com/file/d/1E6uK-c1ABAzDFdKcBvgJRcXMAIPskOxk/view?usp=drive_link",
+  },
 ];
 
 
@@ -661,7 +677,7 @@ const Index = () => {
           <div className="grid grid-cols-3 gap-6">
             {podcastEpisodes.slice(0, 3).map((ep, idx) => (
               <a
-                href="https://open.spotify.com/show/2FIal7yOO7htlBkKUwCbxW?si=dtVPb1AQQomBBOTazo3hWA"
+                href={ep.driveUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 key={idx}
