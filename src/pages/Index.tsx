@@ -1,8 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import MailingListPopup from "@/components/MailingListPopup";
-import LectureBookingPopup from "@/components/LectureBookingPopup";
-import WorkshopBookingPopup from "@/components/WorkshopBookingPopup";
+import ContactPopup, { type ContactTab } from "@/components/ContactPopup";
 import heroBg from "@/assets/hero-bg.jpg";
 import lectureBg from "@/assets/woman-beach.jpg";
 import projectsBg from "@/assets/woman-beach-projects.jpg";
@@ -89,8 +88,13 @@ const heroNav: { label: string; href: string }[] = [
 
 const Index = () => {
   const [popupOpen, setPopupOpen] = useState(false);
-  const [lectureOpen, setLectureOpen] = useState(false);
-  const [workshopOpen, setWorkshopOpen] = useState(false);
+  const [contactOpen, setContactOpen] = useState(false);
+  const [contactTab, setContactTab] = useState<ContactTab>("general");
+
+  const openContact = (tab: ContactTab) => {
+    setContactTab(tab);
+    setContactOpen(true);
+  };
 
   return (
     <div className="min-h-screen bg-background" dir="rtl">
