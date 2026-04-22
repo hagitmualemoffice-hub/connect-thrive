@@ -557,7 +557,7 @@ const Index = () => {
             {lectureCards.map((card) => (
               <div
                 key={card.title}
-                className="bg-card rounded-2xl md:rounded-3xl shadow-[0_15px_40px_-15px_hsl(0_0%_0%_/_0.12)] px-5 md:px-12 py-7 md:py-14 text-right flex flex-col transition-all duration-300 ease-out hover:scale-[1.03] hover:shadow-[0_25px_50px_-15px_hsl(var(--primary)/0.25)] cursor-pointer"
+                className="bg-card rounded-2xl md:rounded-3xl shadow-[0_15px_40px_-15px_hsl(0_0%_0%_/_0.12)] px-7 md:px-12 py-9 md:py-14 text-right flex flex-col transition-all duration-300 ease-out hover:scale-[1.03] hover:shadow-[0_25px_50px_-15px_hsl(var(--primary)/0.25)] cursor-pointer"
               >
                 <div className="h-7 mb-3 flex flex-wrap gap-2 justify-start">
                   {card.badges?.map((b) => (
