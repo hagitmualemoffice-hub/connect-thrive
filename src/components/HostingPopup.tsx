@@ -108,54 +108,52 @@ const HostingPopup = ({ open, onOpenChange }: HostingPopupProps) => {
                 />
               </div>
 
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-foreground/70 text-xs font-light mb-1.5 text-right">
-                    כמות משתתפים
-                  </label>
-                  <input
-                    type="text"
-                    value={form.participants}
-                    onChange={(e) => setForm({ ...form, participants: e.target.value })}
-                    className={inputCls}
-                  />
-                </div>
-                <div>
-                  <label className="block text-foreground/70 text-xs font-light mb-1.5 text-right">
-                    שם המוסד
-                  </label>
-                  <input
-                    type="text"
-                    value={form.organization}
-                    onChange={(e) => setForm({ ...form, organization: e.target.value })}
-                    className={inputCls}
-                  />
-                </div>
+              <div>
+                <label className="block text-foreground/70 text-xs font-light mb-1.5 text-right">
+                  כמות משתתפים
+                </label>
+                <input
+                  type="text"
+                  value={form.participants}
+                  onChange={(e) => setForm({ ...form, participants: e.target.value })}
+                  className={inputCls}
+                />
               </div>
 
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-foreground/70 text-xs font-light mb-1.5 text-right">
-                    איש קשר
-                  </label>
-                  <input
-                    type="text"
-                    value={form.contactPerson}
-                    onChange={(e) => setForm({ ...form, contactPerson: e.target.value })}
-                    className={inputCls}
-                  />
-                </div>
-                <div>
-                  <label className="block text-foreground/70 text-xs font-light mb-1.5 text-right">
-                    כתובת מייל
-                  </label>
-                  <input
-                    type="email"
-                    value={form.email}
-                    onChange={(e) => setForm({ ...form, email: e.target.value })}
-                    className={inputCls}
-                  />
-                </div>
+              <div>
+                <label className="block text-foreground/70 text-xs font-light mb-1.5 text-right">
+                  שם המוסד
+                </label>
+                <input
+                  type="text"
+                  value={form.organization}
+                  onChange={(e) => setForm({ ...form, organization: e.target.value })}
+                  className={inputCls}
+                />
+              </div>
+
+              <div>
+                <label className="block text-foreground/70 text-xs font-light mb-1.5 text-right">
+                  איש קשר
+                </label>
+                <input
+                  type="text"
+                  value={form.contactPerson}
+                  onChange={(e) => setForm({ ...form, contactPerson: e.target.value })}
+                  className={inputCls}
+                />
+              </div>
+
+              <div>
+                <label className="block text-foreground/70 text-xs font-light mb-1.5 text-right">
+                  כתובת מייל
+                </label>
+                <input
+                  type="email"
+                  value={form.email}
+                  onChange={(e) => setForm({ ...form, email: e.target.value })}
+                  className={inputCls}
+                />
               </div>
 
               <div>
