@@ -480,11 +480,11 @@ const Index = () => {
         <div className="absolute inset-0 bg-black/25" />
 
         {/* Title + Card aligned to same right edge as upper sections */}
-        <div className="absolute inset-x-0 top-10 md:top-auto md:bottom-[390px] z-10 px-4 md:px-6">
+        <div className="absolute inset-x-0 top-[210px] md:top-auto md:bottom-[390px] z-10 px-4 md:px-6">
           <div className="w-full md:w-[min(1000px,72%)] mx-auto text-right" dir="rtl">
             {/* Mobile: simplified title only */}
             <h2 className="md:hidden text-white text-[1.75rem] font-light tracking-wide">
-              הרצאות
+              הרצאות וסדנאות
             </h2>
             {/* Desktop: full title + subtitle */}
             <h2 className="hidden md:block text-white md:text-5xl font-light tracking-wide">
