@@ -61,7 +61,7 @@ const BlogPost = () => {
       </section>
 
       {/* Floating article card */}
-      <section className="relative w-full px-6 -mt-32 md:-mt-48 z-10">
+      <section className="relative w-full px-6 -mt-64 md:-mt-96 z-10">
         <article className="w-[min(820px,92%)] mx-auto bg-card rounded-[32px] shadow-[0_25px_70px_-20px_hsl(0_0%_0%_/_0.18)] px-8 md:px-16 py-12 md:py-16 text-right">
           <div className="flex items-center justify-center gap-2 text-foreground/60 text-sm font-light mb-6">
             <span>{post.date}</span>
