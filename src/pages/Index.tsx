@@ -7,6 +7,8 @@ import { toast } from "@/hooks/use-toast";
 import MailingListPopup from "@/components/MailingListPopup";
 import ContactPopup, { type ContactTab } from "@/components/ContactPopup";
 import HostingPopup from "@/components/HostingPopup";
+import MobileBottomNav from "@/components/MobileBottomNav";
+import ExpandableText from "@/components/ExpandableText";
 import heroBg from "@/assets/hero-bg.jpg";
 import lectureBg from "@/assets/woman-beach.jpg";
 import projectsBg from "@/assets/woman-beach-projects.jpg";
@@ -174,7 +176,7 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background" dir="rtl">
       {/* Top navigation */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm shadow-sm">
+      <header className="hidden md:block fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm shadow-sm">
         <div className="flex items-center justify-between px-10 py-5">
           {/* Logo */}
           <a href="#top" className="text-foreground text-xl font-semibold tracking-tight">
@@ -217,8 +219,17 @@ const Index = () => {
         </div>
       </header>
 
+      {/* Mobile-only header logo strip */}
+      <header className="md:hidden fixed top-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-sm shadow-sm">
+        <div className="flex items-center justify-center px-5 py-3">
+          <a href="#top" className="text-foreground text-base font-semibold tracking-tight">
+            חגית מועלם
+          </a>
+        </div>
+      </header>
+
       {/* Hero */}
-      <section id="top" className="relative w-full h-[640px] group">
+      <section id="top" className="relative w-full h-[420px] md:h-[640px] group">
         <div className="absolute inset-0 overflow-hidden">
           <img
             src={heroBg}
@@ -229,20 +240,20 @@ const Index = () => {
         </div>
 
         {/* Hero content */}
-        <div className="relative z-10 h-full flex flex-col items-center justify-end text-center px-6 pb-[88px]">
-          <p className="text-white/90 text-base font-light mb-[2px]">
+        <div className="relative z-10 h-full flex flex-col items-center justify-end text-center px-5 md:px-6 pb-16 md:pb-[88px]">
+          <p className="text-white/90 text-xs md:text-base font-light mb-[2px]">
             חגית מועלם פסיכולוגית בהתמחות קלינית
           </p>
-          <h1 className="text-white text-5xl md:text-6xl font-light tracking-wide mb-[14px]">
+          <h1 className="text-white text-3xl md:text-5xl lg:text-6xl font-light tracking-wide mb-3 md:mb-[14px]">
             כשחיבור מחולל תנועה
           </h1>
-          <p className="text-white/90 text-lg md:text-xl font-light max-w-4xl whitespace-nowrap leading-relaxed">
+          <p className="text-white/90 text-xs md:text-lg lg:text-xl font-light max-w-4xl md:whitespace-nowrap leading-relaxed px-2">
             על התפתחות, יזמות, קהילה ושינוי שנולדים מעומק נפשי-רוחני וחיבור לייעוד ולמשמעות
           </p>
         </div>
 
-        {/* Floating mailing list signup bar */}
-        <div className="absolute -bottom-12 left-1/2 -translate-x-1/2 w-[min(1000px,94%)] z-20">
+        {/* Floating mailing list signup bar — desktop/tablet only */}
+        <div className="hidden md:block absolute -bottom-12 left-1/2 -translate-x-1/2 w-[min(1000px,94%)] z-20">
           <div className="bg-card rounded-2xl shadow-[0_15px_50px_-10px_hsl(0_0%_0%_/_0.15)] px-6 py-5 md:px-8 md:py-6 flex flex-col md:flex-row items-center justify-between gap-5">
             <div className="text-center md:text-right shrink-0">
               <p className="text-foreground text-base md:text-lg font-light leading-tight">
@@ -282,70 +293,80 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Spacer to account for floating bar */}
-      <div className="h-28 md:h-24" />
+      {/* Spacer to account for floating bar — desktop only */}
+      <div className="hidden md:block h-28 md:h-24" />
 
       {/* About section */}
-      <section id="about" className="w-full py-20 px-6">
+      <section id="about" className="w-full py-12 md:py-20 px-4 md:px-6 mt-16 md:mt-0">
 
-        <div className="w-[min(1000px,72%)] mx-auto"><div className="w-[min(720px,76%)] mr-0 text-right">
-          <h2 className="text-foreground text-4xl md:text-5xl font-light leading-tight mb-8">
+        <div className="w-full md:w-[min(1000px,72%)] mx-auto"><div className="w-full md:w-[min(720px,76%)] mr-0 text-right">
+          <h2 className="text-foreground text-[1.75rem] md:text-5xl font-light leading-tight mb-5 md:mb-8">
             נעים מאוד, חגית מועלם פסיכולוגית בהתמחות קלינית, מרצה ויזמת.
           </h2>
 
-          <div className="space-y-6 text-foreground/80 text-base font-light leading-relaxed">
-            <p>
-              העוגן המקצועי והאישי שלי נטוע בגישה דינמית-אינטגרטיבית, בשילוב גישות עכשוויות
-              המבוססות על ערכים, משמעות וקבלה, ובחיבור חי ומשמעותי למקורות יהודיים.
-            </p>
-            <p>
-              אני מאמינה שחיבור עמוק לעצמנו ולייעוד הגבוה שלנו הוא הבסיס לתנועה שיש בה משמעות –
-              בחיים האישיים, בעשייה מקצועית, ביזמות ובהנהגה. כש"הסנטר" הפנימי שלנו ברור, התנועה
-              שנובעת מתוכנו אל העולם נעשית מדויקת יותר, יציבה יותר ובעלת השפעה עמוקה.
-            </p>
-          </div>
+          <ExpandableText
+            mobileLines={5}
+            className="text-foreground/80 text-sm md:text-base font-light leading-relaxed"
+          >
+            <div className="space-y-4 md:space-y-6">
+              <p>
+                העוגן המקצועי והאישי שלי נטוע בגישה דינמית-אינטגרטיבית, בשילוב גישות עכשוויות
+                המבוססות על ערכים, משמעות וקבלה, ובחיבור חי ומשמעותי למקורות יהודיים.
+              </p>
+              <p>
+                אני מאמינה שחיבור עמוק לעצמנו ולייעוד הגבוה שלנו הוא הבסיס לתנועה שיש בה משמעות –
+                בחיים האישיים, בעשייה מקצועית, ביזמות ובהנהגה. כש"הסנטר" הפנימי שלנו ברור, התנועה
+                שנובעת מתוכנו אל העולם נעשית מדויקת יותר, יציבה יותר ובעלת השפעה עמוקה.
+              </p>
+            </div>
+          </ExpandableText>
 
-          <div className="mt-8 flex justify-start">
-            <Heart className="text-primary" size={36} strokeWidth={1.5} fill="hsl(var(--primary) / 0.15)" aria-hidden="true" />
+          <div className="mt-6 md:mt-8 flex justify-start">
+            <Heart className="text-primary" size={32} strokeWidth={1.5} fill="hsl(var(--primary) / 0.15)" aria-hidden="true" />
           </div>
         </div></div>
       </section>
 
       {/* Movement section */}
-      <section id="entrepreneurship" className="w-full py-20 px-6">
+      <section id="entrepreneurship" className="w-full py-12 md:py-20 px-4 md:px-6">
 
-        <div className="w-[min(1000px,72%)] mx-auto"><div className="w-[min(720px,76%)] mr-0 text-right">
-          <h2 className="text-foreground text-4xl md:text-5xl font-light leading-tight mb-8">
+        <div className="w-full md:w-[min(1000px,72%)] mx-auto"><div className="w-full md:w-[min(720px,76%)] mr-0 text-right">
+          <h2 className="text-foreground text-[1.75rem] md:text-5xl font-light leading-tight mb-5 md:mb-8">
             אני מאמינה בכוח של יצירה ועשייה מתוך קשיבות ותוך כדי תנועה
           </h2>
 
-          <div className="space-y-6 text-foreground/80 text-base font-light leading-relaxed">
-            <p>
-              העשייה שלי נעה בין עומק נפשי לפעולה בעולם: יזמות חברתית, אקטיביזם, הרצאות
-              ותהליכי ליווי. אני מאמינה ביצירה תוך כדי תנועה – לא כהמתנה לבהירות מושלמת, אלא
-              כהיכרות מתמשכת עם עצמנו דרך בחירה, עשייה והליכה בדרך. עבורי, תנועה, חיבור
-              לייעוד והעמקה נפשית אינם שלבים נפרדים, אלא תהליך אחד חי ומתפתח – שמאפשר שינוי
-              אישי, קהילתי וחברתי.
-            </p>
-            <p>
-              אני מאמינה ביזמות קשובה – יזמות שמחוברת לשטח, נובעת מתוך צורך אמיתי, חותרת
-              לפתרון נקודות כאב, וקשובה לעצמה תוך כדי תנועה ומתוך דיוק מתמשך. זו יזמות שלא
-              ממהרת לייצר פתרונות מהירים, אלא עוצרת להקשיב, להבין לעומק את האנשים וההקשר,
-              ולפעול מתוך אחריות וחיבור. היא מתפתחת יחד עם המציאות, לומדת ממנה, ומשתנה
-              בהתאם – מתוך מחויבות אמיתית ליצירת ערך, רלוונטיות והשפעה.
-            </p>
-          </div>
+          <ExpandableText
+            mobileLines={5}
+            className="text-foreground/80 text-sm md:text-base font-light leading-relaxed"
+          >
+            <div className="space-y-4 md:space-y-6">
+              <p>
+                העשייה שלי נעה בין עומק נפשי לפעולה בעולם: יזמות חברתית, אקטיביזם, הרצאות
+                ותהליכי ליווי. אני מאמינה ביצירה תוך כדי תנועה – לא כהמתנה לבהירות מושלמת, אלא
+                כהיכרות מתמשכת עם עצמנו דרך בחירה, עשייה והליכה בדרך. עבורי, תנועה, חיבור
+                לייעוד והעמקה נפשית אינם שלבים נפרדים, אלא תהליך אחד חי ומתפתח – שמאפשר שינוי
+                אישי, קהילתי וחברתי.
+              </p>
+              <p>
+                אני מאמינה ביזמות קשובה – יזמות שמחוברת לשטח, נובעת מתוך צורך אמיתי, חותרת
+                לפתרון נקודות כאב, וקשובה לעצמה תוך כדי תנועה ומתוך דיוק מתמשך. זו יזמות שלא
+                ממהרת לייצר פתרונות מהירים, אלא עוצרת להקשיב, להבין לעומק את האנשים וההקשר,
+                ולפעול מתוך אחריות וחיבור. היא מתפתחת יחד עם המציאות, לומדת ממנה, ומשתנה
+                בהתאם – מתוך מחויבות אמיתית ליצירת ערך, רלוונטיות והשפעה.
+              </p>
+            </div>
+          </ExpandableText>
 
-          <div className="mt-8 flex justify-start">
-            <Sprout className="text-primary" size={36} strokeWidth={1.5} aria-hidden="true" />
+          <div className="mt-6 md:mt-8 flex justify-start">
+            <Sprout className="text-primary" size={32} strokeWidth={1.5} aria-hidden="true" />
           </div>
         </div></div>
       </section>
 
       {/* Projects section - Listening Entrepreneurship */}
-      <section id="projects" className="relative w-full py-24 px-6 overflow-hidden">
+      <section id="projects" className="relative w-full py-12 md:py-24 px-[15px] md:px-6 overflow-hidden">
         {/* Background image - only top portion (ends ~1/3 into 2nd card) */}
-        <div className="absolute top-0 left-0 right-0 h-[820px] overflow-hidden">
+        <div className="absolute top-0 left-0 right-0 h-[420px] md:h-[820px] overflow-hidden">
           <img
             src={projectsBg}
             alt="יזמות קשובה - פרויקטים"
@@ -353,35 +374,40 @@ const Index = () => {
           />
         </div>
 
-        <div className="relative z-10 w-[min(1000px,72%)] mx-auto" dir="rtl">
-          <div className="text-right mb-10">
-            <h2 className="text-foreground text-4xl md:text-5xl font-light leading-tight mb-3">
+        <div className="relative z-10 w-full md:w-[min(1000px,72%)] mx-auto" dir="rtl">
+          <div className="text-right mb-6 md:mb-10 px-1">
+            <h2 className="text-foreground text-[1.75rem] md:text-5xl font-light leading-tight mb-2 md:mb-3">
               <span className="font-light">יזמות קשובה</span>
-              <span className="mx-3 font-light">|</span>
+              <span className="mx-2 md:mx-3 font-light">|</span>
               <span className="font-light">פרויקטים</span>
             </h2>
-            <p className="text-base md:text-lg font-light">
+            <p className="text-sm md:text-lg font-light">
               <span className="text-primary font-normal">אמפתיה, הקשבה ויצירתיות -</span>
               <span className="text-foreground/80 mx-1">פתרונות שנולדים מתוך צורך אמיתי.</span>
             </p>
           </div>
 
-          <div className="space-y-10">
+          <div className="space-y-6 md:space-y-10">
             {projectCards.map((card, idx) => (
               <div
                 key={idx}
-                className="bg-card rounded-3xl shadow-[0_20px_60px_-15px_hsl(0_0%_0%_/_0.18)] px-12 md:px-20 py-14 md:py-16 text-right w-full"
+                className="bg-card rounded-2xl md:rounded-3xl shadow-[0_20px_60px_-15px_hsl(0_0%_0%_/_0.18)] px-5 md:px-20 py-8 md:py-16 text-right w-full"
               >
-                <div className="w-[min(696px,100%)] mr-0 ml-auto">
-                  <h3 className="text-foreground text-2xl md:text-3xl font-bold leading-tight mb-6 whitespace-pre-line">
+                <div className="w-full md:w-[min(696px,100%)] mr-0 ml-auto">
+                  <h3 className="text-foreground text-xl md:text-3xl font-bold leading-tight mb-4 md:mb-6 whitespace-pre-line">
                     {card.title}
                   </h3>
-                  <div className="space-y-4 text-foreground/80 text-sm md:text-base font-light leading-relaxed mb-8">
-                    {card.paragraphs.map((p, i) => (
-                      <p key={i}>{p}</p>
-                    ))}
-                  </div>
-                  <div className="flex flex-wrap justify-start gap-3">
+                  <ExpandableText
+                    mobileLines={8}
+                    className="text-foreground/80 text-sm md:text-base font-light leading-relaxed mb-6 md:mb-8"
+                  >
+                    <div className="space-y-3 md:space-y-4">
+                      {card.paragraphs.map((p, i) => (
+                        <p key={i}>{p}</p>
+                      ))}
+                    </div>
+                  </ExpandableText>
+                  <div className="flex flex-wrap justify-start gap-2 md:gap-3">
                     {card.buttons.map((btn) => {
                       const cls =
                         "px-7 py-2.5 rounded-lg bg-primary text-primary-foreground text-sm font-light hover:bg-[hsl(var(--primary-glow))] transition-colors";
@@ -420,7 +446,7 @@ const Index = () => {
       </section>
 
       {/* Lecture hero section */}
-      <section id="lectures" className="relative w-full h-[680px] mt-10">
+      <section id="lectures" className="relative w-full h-[560px] md:h-[680px] mt-6 md:mt-10">
         <img
           src={lectureBg}
           alt="הרצאות - להעיר את הכוח מבפנים"
@@ -429,48 +455,51 @@ const Index = () => {
         <div className="absolute inset-0 bg-black/25" />
 
         {/* Title + Card aligned to same right edge as upper sections */}
-        <div className="absolute inset-x-0 bottom-[390px] z-10 px-6">
-          <div className="w-[min(1000px,72%)] mx-auto text-right" dir="rtl">
-            <h2 className="text-white text-4xl md:text-5xl font-light tracking-wide">
+        <div className="absolute inset-x-0 top-10 md:top-auto md:bottom-[390px] z-10 px-4 md:px-6">
+          <div className="w-full md:w-[min(1000px,72%)] mx-auto text-right" dir="rtl">
+            <h2 className="text-white text-[1.75rem] md:text-5xl font-light tracking-wide">
               להעיר את הכוח מבפנים
             </h2>
-            <p className="mt-3 text-white/95 text-base md:text-lg font-light">
+            <p className="mt-2 md:mt-3 text-white/95 text-sm md:text-lg font-light">
               <span className="text-primary font-normal">אמונה, פסיכולוגיה וייעוד</span>
-              <span className="mx-3">הנהגה פנימית ותנועה מתוך משמעות ומימוש</span>
+              <span className="mx-2 md:mx-3">הנהגה פנימית ותנועה מתוך משמעות ומימוש</span>
             </p>
           </div>
         </div>
 
         {/* Floating white card */}
-        <div className="absolute -bottom-16 right-0 left-0 z-20 px-6">
-          <div className="w-[min(1000px,72%)] mx-auto">
-            <div className="relative bg-card rounded-3xl shadow-[0_20px_60px_-15px_hsl(0_0%_0%_/_0.18)] px-32 py-20 transition-all duration-500 ease-out hover:shadow-[0_28px_70px_-15px_hsl(var(--primary)/0.25)] hover:-translate-y-1">
-              <span className="absolute top-6 left-6 inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-medium">
+        <div className="absolute -bottom-16 right-0 left-0 z-20 px-[15px] md:px-6">
+          <div className="w-full md:w-[min(1000px,72%)] mx-auto">
+            <div className="relative bg-card rounded-2xl md:rounded-3xl shadow-[0_20px_60px_-15px_hsl(0_0%_0%_/_0.18)] px-5 md:px-32 py-10 md:py-20 transition-all duration-500 ease-out hover:shadow-[0_28px_70px_-15px_hsl(var(--primary)/0.25)] hover:-translate-y-1">
+              <span className="absolute top-4 left-4 md:top-6 md:left-6 inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-[10px] md:text-xs font-medium">
                 הרצאת הדגל
               </span>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-16 text-right" dir="rtl">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-16 text-right mt-6 md:mt-0" dir="rtl">
                 {/* Right column */}
                 <div>
-                  <h3 className="text-foreground text-2xl font-bold mb-2">החיים שנועדו לי</h3>
-                  <p className="text-foreground text-sm font-medium leading-relaxed mb-4">
+                  <h3 className="text-foreground text-xl md:text-2xl font-bold mb-2">החיים שנועדו לי</h3>
+                  <p className="text-foreground text-xs md:text-sm font-medium leading-relaxed mb-3 md:mb-4">
                     אמונה, ביטחון וחיבור לייעוד ככוח לחיים מאושרים ומימוש עצמי עמוק
                   </p>
-                  <p className="text-foreground/75 text-sm font-light leading-relaxed">
+                  <ExpandableText
+                    mobileLines={4}
+                    className="text-foreground/75 text-xs md:text-sm font-light leading-relaxed"
+                  >
                     הרצאה על הקשר העמוק בין אמונה, ביטחון והיכולת לחיות חיים מלאים - כאלה שיש בהם גם שמחה, גם משמעות, וגם תנועה בעולם. לא כוויתור על עשייה, אלא כעשייה שנובעת מחיבור, הקשבה ואמון.
-                  </p>
+                  </ExpandableText>
                 </div>
 
                 {/* Left column */}
-                <div className="space-y-4">
+                <div className="space-y-3 md:space-y-4">
                   <div>
-                    <h4 className="text-foreground text-base font-semibold mb-1.5">קהל יעד</h4>
-                    <p className="text-foreground/75 text-sm font-light leading-relaxed">
+                    <h4 className="text-foreground text-sm md:text-base font-semibold mb-1.5">קהל יעד</h4>
+                    <p className="text-foreground/75 text-xs md:text-sm font-light leading-relaxed">
                       נשים, ארגונים, קהילות עומק, ימי כיף, ערבי השראה, צעירות, קבוצות מתמודדות
                     </p>
                   </div>
                   <div>
-                    <h4 className="text-foreground text-base font-semibold mb-1.5">סוג פעילות</h4>
-                    <div className="text-foreground/75 text-sm font-light space-y-0.5">
+                    <h4 className="text-foreground text-sm md:text-base font-semibold mb-1.5">סוג פעילות</h4>
+                    <div className="text-foreground/75 text-xs md:text-sm font-light space-y-0.5">
                       <p>הרצאה <span className="mx-2 text-border">|</span> עד 1.5 שעות</p>
                       <p>סדנה אינטימית <span className="mx-2 text-border">|</span> עד שעתיים</p>
                     </div>
@@ -478,10 +507,10 @@ const Index = () => {
                 </div>
               </div>
 
-              <div className="mt-6 flex justify-start" dir="rtl">
+              <div className="mt-5 md:mt-6 flex justify-start" dir="rtl">
                 <button
                   onClick={() => openContact("lecture")}
-                  className="px-8 py-2.5 rounded-lg bg-primary text-primary-foreground text-sm font-light hover:bg-[hsl(var(--primary-glow))] transition-colors"
+                  className="px-6 md:px-8 py-2.5 rounded-lg bg-primary text-primary-foreground text-sm font-light hover:bg-[hsl(var(--primary-glow))] transition-colors"
                 >
                   להזמנת הרצאה
                 </button>
@@ -495,53 +524,56 @@ const Index = () => {
       <div className="h-32" />
 
       {/* Lecture details section */}
-      <section className="w-full py-20 px-6">
-        <div className="w-[min(1000px,72%)] mx-auto text-right mb-8" dir="rtl">
-          <h2 className="text-foreground text-4xl md:text-5xl font-light leading-tight mb-3">
+      <section className="w-full py-12 md:py-20 px-[15px] md:px-6">
+        <div className="w-full md:w-[min(1000px,72%)] mx-auto text-right mb-6 md:mb-8 px-1" dir="rtl">
+          <h2 className="text-foreground text-[1.75rem] md:text-5xl font-light leading-tight mb-2 md:mb-3">
             <span className="font-light">הרצאות</span>
           </h2>
-          <p className="text-base md:text-lg font-light">
+          <p className="text-sm md:text-lg font-light">
             <span className="text-primary font-normal">פסיכולוגיה של עשייה -</span>
             <span className="text-foreground/80 mx-2">הנהגה פנימית ותנועה בעולם של יזמות ועשייה</span>
           </p>
         </div>
 
-        <div className="w-[min(1000px,72%)] mx-auto" dir="rtl">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="w-full md:w-[min(1000px,72%)] mx-auto" dir="rtl">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
             {lectureCards.map((card) => (
               <div
                 key={card.title}
-                className="bg-card rounded-3xl shadow-[0_15px_40px_-15px_hsl(0_0%_0%_/_0.12)] px-12 py-14 text-right flex flex-col transition-all duration-300 ease-out hover:scale-[1.03] hover:shadow-[0_25px_50px_-15px_hsl(var(--primary)/0.25)] cursor-pointer"
+                className="bg-card rounded-2xl md:rounded-3xl shadow-[0_15px_40px_-15px_hsl(0_0%_0%_/_0.12)] px-5 md:px-12 py-7 md:py-14 text-right flex flex-col transition-all duration-300 ease-out hover:scale-[1.03] hover:shadow-[0_25px_50px_-15px_hsl(var(--primary)/0.25)] cursor-pointer"
               >
                 <div className="h-7 mb-3 flex flex-wrap gap-2 justify-start">
                   {card.badges?.map((b) => (
                     <span
                       key={b}
-                      className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-medium leading-none"
+                      className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-[10px] md:text-xs font-medium leading-none"
                     >
                       {b}
                     </span>
                   ))}
                 </div>
-                <h3 className="text-foreground text-2xl font-bold leading-tight mb-1 whitespace-pre-line">
+                <h3 className="text-foreground text-xl md:text-2xl font-bold leading-tight mb-1 whitespace-pre-line">
                   {card.title}
                 </h3>
-                <p className="text-foreground text-sm font-medium leading-relaxed mb-0.5">
+                <p className="text-foreground text-xs md:text-sm font-medium leading-relaxed mb-0.5">
                   {card.subtitle}
                 </p>
-                <p className="text-foreground/70 text-sm font-light leading-relaxed mb-1 flex-1">
+                <ExpandableText
+                  mobileLines={4}
+                  className="text-foreground/70 text-xs md:text-sm font-light leading-relaxed mb-2 md:mb-1 flex-1"
+                >
                   {card.desc}
-                </p>
-                <div className="mb-6">
-                  <h4 className="text-foreground text-sm font-semibold mb-2">קהל יעד</h4>
-                  <p className="text-foreground/70 text-sm font-light leading-relaxed">
+                </ExpandableText>
+                <div className="mb-5 md:mb-6">
+                  <h4 className="text-foreground text-xs md:text-sm font-semibold mb-1.5 md:mb-2">קהל יעד</h4>
+                  <p className="text-foreground/70 text-xs md:text-sm font-light leading-relaxed">
                     {card.audience}
                   </p>
                 </div>
                 <div className="flex justify-start mt-auto">
                   <button
                     onClick={() => openContact("lecture")}
-                    className="px-8 py-2.5 rounded-lg bg-primary text-primary-foreground text-sm font-light hover:bg-[hsl(var(--primary-glow))] transition-colors"
+                    className="px-6 md:px-8 py-2.5 rounded-lg bg-primary text-primary-foreground text-sm font-light hover:bg-[hsl(var(--primary-glow))] transition-colors"
                   >
                     להזמנת הרצאה
                   </button>
@@ -553,43 +585,48 @@ const Index = () => {
       </section>
 
       {/* Unique offering - Bibliotherapy gradient section */}
-      <section id="workshops" className="w-full py-20 px-6">
-        <div className="w-[min(1200px,82%)] mx-auto">
+      <section id="workshops" className="w-full py-12 md:py-20 px-[15px] md:px-6">
+        <div className="w-full md:w-[min(1200px,82%)] mx-auto">
           <div
-            className="rounded-[40px] px-16 md:px-24 py-20 md:py-24 text-right"
+            className="rounded-2xl md:rounded-[40px] px-6 md:px-24 py-10 md:py-24 text-right"
             dir="rtl"
             style={{
               background: "linear-gradient(90deg, hsl(172 79% 79%) 0%, hsl(325 75% 69%) 100%)",
             }}
           >
-            <div className="w-[min(720px,75%)] mr-0">
-              <h2 className="text-white text-3xl md:text-5xl font-light leading-tight mb-10">
+            <div className="w-full md:w-[min(720px,75%)] mr-0">
+              <h2 className="text-white text-[1.75rem] md:text-5xl font-light leading-tight mb-5 md:mb-10">
                 <span className="font-light">סדנאות ביבליותרפיה</span>
                 <br />
                 <span className="font-light">הנבנות בקשב לצורך שלכם</span>
               </h2>
 
-              <p className="text-white/95 text-sm md:text-base font-light leading-relaxed mb-6">
-                מחפשים מרחב עמוק, חי ולא שגרתי לעבודה קבוצתית? סדנאות ביבליותרפיה המבוססות
-                על קריאה משותפת של טקסטים והנחיה של שיח קבוצתי משמעותי. הטקסטים אינם רק
-                תוכן - הם שער: פותחים רגשות, שאלות ונקודות כאב, ומאפשרים תנועה אמיתית בקבוצה.
-              </p>
-
-              <p className="text-white/95 text-sm md:text-base font-light leading-relaxed mb-6">
-                כל סדנה נבנית במיוחד עבורכם, מתוך הקשבה לצורך, לאנשים ולשלב שבו אתם נמצאים.
-                אני משלבת טקסטים מעולמות הפסיכולוגיה, הספרות וההגות, לצד מקורות מן המחשבה
-                היהודית - מפגש ייחודי בין עומק רגשי, משמעות ושיח אמוני־רוחני. ניתן גם לבנות
-                סדנאות עם דגש ייעודי על מקורות אלו.
-              </p>
-
-              <p className="text-white/95 text-sm md:text-base font-light leading-relaxed mb-10">
-                הסדנאות אינטימיות (עד 20 משתתפים), ומתאימות לצוותים, לקבוצות עומק ולארגונים
-                שמבקשים לגעת לעומק, לחדד תהליכים ולהניע שינוי דרך הקשבה, טקסט ושיח מונחה.
-              </p>
+              <ExpandableText
+                mobileLines={5}
+                className="text-white/95 text-sm md:text-base font-light leading-relaxed mb-6 md:mb-10"
+              >
+                <div className="space-y-4 md:space-y-6">
+                  <p>
+                    מחפשים מרחב עמוק, חי ולא שגרתי לעבודה קבוצתית? סדנאות ביבליותרפיה המבוססות
+                    על קריאה משותפת של טקסטים והנחיה של שיח קבוצתי משמעותי. הטקסטים אינם רק
+                    תוכן - הם שער: פותחים רגשות, שאלות ונקודות כאב, ומאפשרים תנועה אמיתית בקבוצה.
+                  </p>
+                  <p>
+                    כל סדנה נבנית במיוחד עבורכם, מתוך הקשבה לצורך, לאנשים ולשלב שבו אתם נמצאים.
+                    אני משלבת טקסטים מעולמות הפסיכולוגיה, הספרות וההגות, לצד מקורות מן המחשבה
+                    היהודית - מפגש ייחודי בין עומק רגשי, משמעות ושיח אמוני־רוחני. ניתן גם לבנות
+                    סדנאות עם דגש ייעודי על מקורות אלו.
+                  </p>
+                  <p>
+                    הסדנאות אינטימיות (עד 20 משתתפים), ומתאימות לצוותים, לקבוצות עומק ולארגונים
+                    שמבקשים לגעת לעומק, לחדד תהליכים ולהניע שינוי דרך הקשבה, טקסט ושיח מונחה.
+                  </p>
+                </div>
+              </ExpandableText>
 
               <button
                 onClick={() => openContact("workshop")}
-                className="px-10 py-3 rounded-lg bg-white text-foreground text-sm md:text-base font-light shadow-md hover:bg-primary hover:text-primary-foreground hover:shadow-lg transition-all"
+                className="px-8 md:px-10 py-3 rounded-lg bg-white text-foreground text-sm md:text-base font-light shadow-md hover:bg-primary hover:text-primary-foreground hover:shadow-lg transition-all"
               >
                 בואו נתכנן לכם סדנא
               </button>
@@ -599,46 +636,49 @@ const Index = () => {
       </section>
 
       {/* Blog section */}
-      <section id="blog" className="w-full py-20 px-6">
-        <div className="w-[min(1000px,72%)] mx-auto" dir="rtl">
-          <div className="text-right mb-12">
-            <h2 className="text-foreground text-4xl md:text-5xl font-light leading-tight mb-3">
+      <section id="blog" className="w-full py-12 md:py-20 px-[15px] md:px-6">
+        <div className="w-full md:w-[min(1000px,72%)] mx-auto" dir="rtl">
+          <div className="text-right mb-6 md:mb-12 px-1">
+            <h2 className="text-foreground text-[1.75rem] md:text-5xl font-light leading-tight mb-2 md:mb-3">
               <span className="font-light">מרחב פנימי</span>
-              <span className="mx-3 font-light">|</span>
+              <span className="mx-2 md:mx-3 font-light">|</span>
               <span className="font-light">בלוג</span>
             </h2>
-            <p className="text-foreground/80 text-base md:text-lg font-light">
+            <p className="text-foreground/80 text-sm md:text-lg font-light">
               על נפש, תנועה ומשמעות כפי שהן פוגשות חיים.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
             {blogPosts.map((post) => (
               <Link
                 to={`/blog/${post.slug}`}
                 key={post.slug}
-                className="group bg-card rounded-3xl shadow-[0_15px_40px_-15px_hsl(0_0%_0%_/_0.12)] overflow-hidden text-right flex flex-col transition-all duration-300 ease-out hover:scale-[1.03] hover:shadow-[0_25px_50px_-15px_hsl(var(--primary)/0.25)] cursor-pointer"
+                className="group bg-card rounded-2xl md:rounded-3xl shadow-[0_15px_40px_-15px_hsl(0_0%_0%_/_0.12)] overflow-hidden text-right flex flex-col transition-all duration-300 ease-out hover:scale-[1.03] hover:shadow-[0_25px_50px_-15px_hsl(var(--primary)/0.25)] cursor-pointer"
               >
-                <div className="h-44 overflow-hidden bg-accent">
+                <div className="h-40 md:h-44 overflow-hidden bg-accent">
                   <img
                     src={post.image}
                     alt={post.title}
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                 </div>
-                <div className="px-8 py-8 flex flex-col flex-1">
-                  <div className="mb-4">
-                    <span className="inline-block px-4 py-1.5 rounded-md bg-accent text-primary text-xs font-light">
+                <div className="px-5 md:px-8 py-5 md:py-8 flex flex-col flex-1">
+                  <div className="mb-3 md:mb-4">
+                    <span className="inline-block px-3 md:px-4 py-1 md:py-1.5 rounded-md bg-accent text-primary text-[10px] md:text-xs font-light">
                       {post.category}
                     </span>
                   </div>
-                  <h3 className="text-foreground text-lg md:text-xl font-bold leading-tight mb-3 group-hover:text-primary transition-colors">
+                  <h3 className="text-foreground text-base md:text-xl font-bold leading-tight mb-2 md:mb-3 group-hover:text-primary transition-colors">
                     {post.title}
                   </h3>
-                  <p className="text-foreground/75 text-sm font-light leading-relaxed mb-6 flex-1">
+                  <ExpandableText
+                    mobileLines={4}
+                    className="text-foreground/75 text-xs md:text-sm font-light leading-relaxed mb-4 md:mb-6 flex-1"
+                  >
                     {post.subtitle}
-                  </p>
-                  <span className="text-primary text-sm font-medium group-hover:text-[hsl(var(--primary-glow))] transition-colors text-right">
+                  </ExpandableText>
+                  <span className="text-primary text-xs md:text-sm font-medium group-hover:text-[hsl(var(--primary-glow))] transition-colors text-right">
                     להמשיך לקרוא ←
                   </span>
                 </div>
@@ -646,8 +686,8 @@ const Index = () => {
             ))}
           </div>
 
-          <div className="mt-12 flex justify-center">
-            <Link to="/blog" className="px-10 py-3 rounded-lg bg-primary text-primary-foreground text-sm md:text-base font-light hover:bg-[hsl(var(--primary-glow))] transition-colors">
+          <div className="mt-8 md:mt-12 flex justify-center">
+            <Link to="/blog" className="px-8 md:px-10 py-3 rounded-lg bg-primary text-primary-foreground text-sm md:text-base font-light hover:bg-[hsl(var(--primary-glow))] transition-colors">
               לכל הפוסטים
             </Link>
           </div>
@@ -656,23 +696,23 @@ const Index = () => {
 
 
       {/* Podcast section */}
-      <section id="podcast" className="w-full py-20 overflow-hidden">
-        <div className="w-[min(1000px,72%)] mx-auto" dir="rtl">
-          <div className="text-right mb-12">
-            <h2 className="text-foreground text-4xl md:text-5xl font-light leading-tight mb-3">
+      <section id="podcast" className="w-full py-12 md:py-20 px-[15px] md:px-0 overflow-hidden">
+        <div className="w-full md:w-[min(1000px,72%)] mx-auto" dir="rtl">
+          <div className="text-right mb-6 md:mb-12 px-1 md:px-0">
+            <h2 className="text-foreground text-[1.75rem] md:text-5xl font-light leading-tight mb-2 md:mb-3">
               <span className="font-light">יודעת</span>
-              <span className="mx-3 font-light">|</span>
+              <span className="mx-2 md:mx-3 font-light">|</span>
               <span className="font-light">פודקאסט</span>
             </h2>
-            <p className="text-foreground/80 text-base md:text-lg font-light">
+            <p className="text-foreground/80 text-sm md:text-lg font-light">
               פודקאסט על שימור פוריות וחוויה נפשית - בואי לרכוש ידע, חיבור, כוח ויכולת להיות על התהליך.
             </p>
           </div>
         </div>
 
         {/* Cards row - aligned to same container as header */}
-        <div className="w-[min(1000px,72%)] mx-auto" dir="rtl">
-          <div className="grid grid-cols-3 gap-6">
+        <div className="w-full md:w-[min(1000px,72%)] mx-auto" dir="rtl">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
             {podcastEpisodes.slice(0, 3).map((ep, idx) => (
               <a
                 href={ep.driveUrl}
@@ -687,9 +727,9 @@ const Index = () => {
                   loading="lazy"
                   width={1080}
                   height={607}
-                  className="w-full h-auto rounded-3xl shadow-[0_15px_40px_-15px_hsl(0_0%_0%_/_0.15)] transition-shadow duration-300 group-hover:shadow-[0_25px_50px_-15px_hsl(var(--primary)/0.3)]"
+                  className="w-full h-auto rounded-2xl md:rounded-3xl shadow-[0_15px_40px_-15px_hsl(0_0%_0%_/_0.15)] transition-shadow duration-300 group-hover:shadow-[0_25px_50px_-15px_hsl(var(--primary)/0.3)]"
                 />
-                <div className="mt-5 text-right text-foreground text-sm md:text-base">
+                <div className="mt-3 md:mt-5 text-right text-foreground text-sm md:text-base">
                   <span className="font-bold">פרק {ep.num}</span>
                   <span className="text-foreground/50 mx-2">|</span>
                   <span className="font-light group-hover:text-primary transition-colors">{ep.title}</span>
@@ -698,10 +738,10 @@ const Index = () => {
             ))}
           </div>
 
-          <div className="mt-12 flex justify-center">
+          <div className="mt-8 md:mt-12 flex justify-center">
             <Link
               to="/podcast"
-              className="px-10 py-3 rounded-lg bg-primary text-primary-foreground text-sm md:text-base font-light hover:bg-[hsl(var(--primary-glow))] transition-colors"
+              className="px-8 md:px-10 py-3 rounded-lg bg-primary text-primary-foreground text-sm md:text-base font-light hover:bg-[hsl(var(--primary-glow))] transition-colors"
             >
               לכל הפרקים
             </Link>
@@ -710,51 +750,51 @@ const Index = () => {
       </section>
 
       {/* Contact section */}
-      <section id="contact" className="w-full bg-background py-24 px-6">
-        <div className="w-[min(1100px,82%)] mx-auto" dir="rtl">
-          <div className="bg-card rounded-[40px] shadow-[0_20px_60px_-20px_hsl(0_0%_0%_/_0.12)] px-10 md:px-20 py-14 md:py-20">
+      <section id="contact" className="w-full bg-background py-12 md:py-24 px-[15px] md:px-6">
+        <div className="w-full md:w-[min(1100px,82%)] mx-auto" dir="rtl">
+          <div className="bg-card rounded-2xl md:rounded-[40px] shadow-[0_20px_60px_-20px_hsl(0_0%_0%_/_0.12)] px-6 md:px-20 py-8 md:py-20">
             {/* Top: heart + heading centered */}
-            <div className="text-center mb-12">
-              <div className="flex justify-center mb-5">
+            <div className="text-center mb-8 md:mb-12">
+              <div className="flex justify-center mb-4 md:mb-5">
                 <img
                   src={contactHeart}
                   alt="דברו איתי"
                   width={160}
                   height={120}
-                  className="w-24 md:w-28 h-auto"
+                  className="w-20 md:w-28 h-auto"
                 />
               </div>
-              <h2 className="text-foreground text-4xl md:text-5xl font-light mb-4">
+              <h2 className="text-foreground text-[1.75rem] md:text-5xl font-light mb-3 md:mb-4">
                 דברו איתי
               </h2>
-              <p className="text-foreground/70 text-base md:text-lg font-light leading-relaxed max-w-[52ch] mx-auto">
+              <p className="text-foreground/70 text-sm md:text-lg font-light leading-relaxed max-w-[52ch] mx-auto">
                 כאן לכל שאלה, להזמנת הרצאה, בניית סדנה מותאמת אליכם או שיתופי פעולה לפרויקטים שלי.
               </p>
             </div>
 
             {/* Bottom: 4 CTA buttons in a row, all unified style */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-4xl mx-auto">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4 max-w-4xl mx-auto">
               <button
                 onClick={() => openContact("general")}
-                className="py-4 px-6 rounded-xl bg-card border border-primary/30 text-foreground text-base font-light hover:bg-accent hover:border-primary transition-all shadow-sm active:scale-[0.99]"
+                className="py-3 md:py-4 px-5 md:px-6 rounded-xl bg-card border border-primary/30 text-foreground text-sm md:text-base font-light hover:bg-accent hover:border-primary transition-all shadow-sm active:scale-[0.99]"
               >
                 יצירת קשר
               </button>
               <button
                 onClick={() => openContact("lecture")}
-                className="py-4 px-6 rounded-xl bg-card border border-primary/30 text-foreground text-base font-light hover:bg-accent hover:border-primary transition-all shadow-sm active:scale-[0.99]"
+                className="py-3 md:py-4 px-5 md:px-6 rounded-xl bg-card border border-primary/30 text-foreground text-sm md:text-base font-light hover:bg-accent hover:border-primary transition-all shadow-sm active:scale-[0.99]"
               >
                 להזמנת הרצאה
               </button>
               <button
                 onClick={() => openContact("workshop")}
-                className="py-4 px-6 rounded-xl bg-card border border-primary/30 text-foreground text-base font-light hover:bg-accent hover:border-primary transition-all shadow-sm active:scale-[0.99]"
+                className="py-3 md:py-4 px-5 md:px-6 rounded-xl bg-card border border-primary/30 text-foreground text-sm md:text-base font-light hover:bg-accent hover:border-primary transition-all shadow-sm active:scale-[0.99]"
               >
                 בואו נתכנן סדנת ביבליותרפיה
               </button>
               <button
                 onClick={() => setPopupOpen(true)}
-                className="py-4 px-6 rounded-xl bg-card border border-primary/30 text-foreground text-base font-light hover:bg-accent hover:border-primary transition-all shadow-sm active:scale-[0.99]"
+                className="py-3 md:py-4 px-5 md:px-6 rounded-xl bg-card border border-primary/30 text-foreground text-sm md:text-base font-light hover:bg-accent hover:border-primary transition-all shadow-sm active:scale-[0.99]"
               >
                 הצטרפות לתפוצה
               </button>
@@ -763,9 +803,47 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Mobile-only: inline mailing list at bottom (replaces the floating hero form on mobile) */}
+      <section className="md:hidden w-full px-[15px] pb-24">
+        <div className="bg-card rounded-2xl shadow-[0_15px_50px_-10px_hsl(0_0%_0%_/_0.15)] px-5 py-6">
+          <div className="text-center mb-4">
+            <p className="text-foreground text-base font-light leading-tight">
+              בואו להתחבר לעצמכם דרך תוכן איכותי
+            </p>
+            <p className="text-foreground/60 text-xs font-light leading-tight mt-1">
+              הצטרפו לתפוצה השקטה שלי
+            </p>
+          </div>
+          <form onSubmit={handleInlineSubscribe} className="flex flex-col gap-2">
+            <input
+              type="text"
+              placeholder="שם"
+              value={inlineForm.name}
+              onChange={(e) => setInlineForm({ ...inlineForm, name: e.target.value })}
+              className="bg-muted/50 border border-transparent rounded-full px-5 py-2.5 text-sm font-light text-foreground placeholder:text-muted-foreground/70 focus:outline-none focus:border-primary/40 focus:bg-background transition-colors text-right"
+            />
+            <input
+              type="email"
+              placeholder="כתובת מייל"
+              value={inlineForm.email}
+              onChange={(e) => setInlineForm({ ...inlineForm, email: e.target.value })}
+              className="bg-muted/50 border border-transparent rounded-full px-5 py-2.5 text-sm font-light text-foreground placeholder:text-muted-foreground/70 focus:outline-none focus:border-primary/40 focus:bg-background transition-colors text-right"
+            />
+            <button
+              type="submit"
+              disabled={inlineSubmitting}
+              className="px-6 py-2.5 rounded-full bg-primary text-primary-foreground text-sm font-light hover:bg-[hsl(var(--primary-glow))] transition-all whitespace-nowrap shadow-sm shadow-primary/20 disabled:opacity-60 disabled:cursor-not-allowed"
+            >
+              {inlineSubmitting ? "שולחת..." : "הצטרפות"}
+            </button>
+          </form>
+        </div>
+      </section>
+
       <MailingListPopup open={popupOpen} onOpenChange={setPopupOpen} />
       <ContactPopup open={contactOpen} onOpenChange={setContactOpen} defaultTab={contactTab} />
       <HostingPopup open={hostingOpen} onOpenChange={setHostingOpen} />
+      <MobileBottomNav />
     </div>
   );
 };
