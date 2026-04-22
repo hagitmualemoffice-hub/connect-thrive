@@ -158,19 +158,30 @@ const Index = () => {
           </p>
         </div>
 
-        {/* Floating bottom nav bar */}
+        {/* Floating CTA action bar */}
         <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 w-[min(1000px,94%)] z-20">
-          <div className="bg-card rounded-2xl shadow-[0_15px_50px_-10px_hsl(0_0%_0%_/_0.15)] px-6 py-[31px] flex items-center justify-center gap-4 flex-nowrap">
-            {heroNav.map((item, idx) => (
-              <div key={item.label} className="flex items-center gap-4 whitespace-nowrap">
-                <a href={item.href} className="text-foreground/80 hover:text-primary hover:font-normal transition-all text-base font-light whitespace-nowrap">
-                  {item.label}
-                </a>
-                {idx < heroNav.length - 1 && (
-                  <span className="text-border">|</span>
-                )}
-              </div>
-            ))}
+          <div className="bg-card rounded-2xl shadow-[0_15px_50px_-10px_hsl(0_0%_0%_/_0.15)] px-6 py-6 flex items-center justify-center gap-3 flex-wrap md:flex-nowrap">
+            <button
+              type="button"
+              onClick={() => openContact("lecture")}
+              className="px-6 py-2.5 rounded-full bg-accent text-accent-foreground text-sm md:text-base font-light hover:bg-accent/80 hover:shadow-[0_2px_8px_-2px_hsl(var(--primary)/0.25)] transition-all whitespace-nowrap"
+            >
+              הזמינו הרצאה
+            </button>
+            <button
+              type="button"
+              onClick={() => openContact("workshop")}
+              className="px-6 py-2.5 rounded-full bg-accent text-accent-foreground text-sm md:text-base font-light hover:bg-accent/80 hover:shadow-[0_2px_8px_-2px_hsl(var(--primary)/0.25)] transition-all whitespace-nowrap"
+            >
+              בואו נתכנן סדנה
+            </button>
+            <button
+              type="button"
+              onClick={() => setPopupOpen(true)}
+              className="px-6 py-2.5 rounded-full bg-accent text-accent-foreground text-sm md:text-base font-light hover:bg-accent/80 hover:shadow-[0_2px_8px_-2px_hsl(var(--primary)/0.25)] transition-all whitespace-nowrap"
+            >
+              הצטרפו לתפוצה
+            </button>
           </div>
         </div>
       </section>
