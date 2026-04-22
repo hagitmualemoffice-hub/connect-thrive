@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Heart, Sprout } from "lucide-react";
+import { z } from "zod";
+import { supabase } from "@/integrations/supabase/client";
+import { toast } from "@/hooks/use-toast";
 import MailingListPopup from "@/components/MailingListPopup";
 import ContactPopup, { type ContactTab } from "@/components/ContactPopup";
 import heroBg from "@/assets/hero-bg.jpg";
@@ -80,10 +83,35 @@ const topNav = [
   { label: "פודקאסט", href: "/podcast" },
 ];
 
+const inlineSchema = z.object({
+  name: z.string().trim().min(1, "נא להזין שם").max(100, "שם ארוך מדי"),
+  email: z.string().trim().email("כתובת מייל לא תקינה").max(255, "מייל ארוך מדי"),
+});
+
 const Index = () => {
   const [popupOpen, setPopupOpen] = useState(false);
   const [contactOpen, setContactOpen] = useState(false);
   const [contactTab, setContactTab] = useState<ContactTab>("general");
+  const [inlineForm, setInlineForm] = useState({ name: "", email: "" });
+  const [inlineSubmitting, setInlineSubmitting] = useState(false);
+
+  const handleInlineSubscribe = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const result = inlineSchema.safeParse(inlineForm);
+    if (!result.success) {
+      toast({ title: "שגיאה", description: result.error.issues[0].message, variant: "destructive" });
+      return;
+    }
+    setInlineSubmitting(true);
+    const { error } = await supabase.from("leads").insert({ email: result.data.email });
+    setInlineSubmitting(false);
+    if (error) {
+      toast({ title: "שגיאה", description: "אירעה שגיאה, נסי שוב", variant: "destructive" });
+      return;
+    }
+    toast({ title: "תודה!", description: "נרשמת בהצלחה לתפוצה." });
+    setInlineForm({ name: "", email: "" });
+  };
 
   const openContact = (tab: ContactTab) => {
     setContactTab(tab);
@@ -160,46 +188,49 @@ const Index = () => {
           </p>
         </div>
 
-        {/* Floating CTA action bar */}
-        <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 w-[min(1000px,94%)] z-20">
-          <div className="bg-card rounded-2xl shadow-[0_15px_50px_-10px_hsl(0_0%_0%_/_0.15)] px-8 py-5 flex items-center justify-between gap-6 flex-wrap md:flex-nowrap">
-            <div className="text-right shrink-0">
+        {/* Floating mailing list signup bar */}
+        <div className="absolute -bottom-12 left-1/2 -translate-x-1/2 w-[min(1000px,94%)] z-20">
+          <div className="bg-card rounded-2xl shadow-[0_15px_50px_-10px_hsl(0_0%_0%_/_0.15)] px-6 py-5 md:px-8 md:py-6 flex flex-col md:flex-row items-center justify-between gap-5">
+            <div className="text-center md:text-right shrink-0">
               <p className="text-foreground text-base md:text-lg font-light leading-tight">
-                רוצים להתחיל?
+                בואי להתחבר לעצמך דרך תוכן איכותי
               </p>
               <p className="text-foreground/60 text-xs md:text-sm font-light leading-tight mt-1">
-                בחרו את הדרך שמתאימה לכם
+                הצטרפי לתפוצה השקטה שלי
               </p>
             </div>
-            <div className="flex items-center justify-center gap-3 flex-wrap md:flex-nowrap">
+            <form
+              onSubmit={handleInlineSubscribe}
+              className="flex flex-col sm:flex-row items-stretch gap-2 w-full md:w-auto md:flex-1 md:max-w-[560px]"
+            >
+              <input
+                type="text"
+                placeholder="שם"
+                value={inlineForm.name}
+                onChange={(e) => setInlineForm({ ...inlineForm, name: e.target.value })}
+                className="flex-1 min-w-0 bg-muted/50 border border-transparent rounded-full px-5 py-2.5 text-sm font-light text-foreground placeholder:text-muted-foreground/70 focus:outline-none focus:border-primary/40 focus:bg-background transition-colors text-right"
+              />
+              <input
+                type="email"
+                placeholder="כתובת מייל"
+                value={inlineForm.email}
+                onChange={(e) => setInlineForm({ ...inlineForm, email: e.target.value })}
+                className="flex-1 min-w-0 bg-muted/50 border border-transparent rounded-full px-5 py-2.5 text-sm font-light text-foreground placeholder:text-muted-foreground/70 focus:outline-none focus:border-primary/40 focus:bg-background transition-colors text-right"
+              />
               <button
-                type="button"
-                onClick={() => openContact("lecture")}
-                className="px-6 py-2.5 rounded-full bg-accent text-accent-foreground text-sm md:text-base font-light hover:bg-accent/80 hover:shadow-[0_2px_8px_-2px_hsl(var(--primary)/0.25)] transition-all whitespace-nowrap"
+                type="submit"
+                disabled={inlineSubmitting}
+                className="px-6 py-2.5 rounded-full bg-primary text-primary-foreground text-sm md:text-base font-light hover:bg-[hsl(var(--primary-glow))] transition-all whitespace-nowrap shadow-sm shadow-primary/20 disabled:opacity-60 disabled:cursor-not-allowed"
               >
-                הזמינו הרצאה
+                {inlineSubmitting ? "שולחת..." : "הצטרפות"}
               </button>
-              <button
-                type="button"
-                onClick={() => openContact("workshop")}
-                className="px-6 py-2.5 rounded-full bg-accent text-accent-foreground text-sm md:text-base font-light hover:bg-accent/80 hover:shadow-[0_2px_8px_-2px_hsl(var(--primary)/0.25)] transition-all whitespace-nowrap"
-              >
-                בואו נתכנן סדנה
-              </button>
-              <button
-                type="button"
-                onClick={() => setPopupOpen(true)}
-                className="px-6 py-2.5 rounded-full bg-accent text-accent-foreground text-sm md:text-base font-light hover:bg-accent/80 hover:shadow-[0_2px_8px_-2px_hsl(var(--primary)/0.25)] transition-all whitespace-nowrap"
-              >
-                הצטרפו לתפוצה
-              </button>
-            </div>
+            </form>
           </div>
         </div>
       </section>
 
       {/* Spacer to account for floating bar */}
-      <div className="h-24" />
+      <div className="h-28 md:h-24" />
 
       {/* About section */}
       <section id="about" className="w-full py-20 px-6">
@@ -222,7 +253,7 @@ const Index = () => {
           </div>
 
           <div className="mt-8 flex justify-start">
-            <Heart className="text-primary" size={28} strokeWidth={1.5} fill="hsl(var(--primary) / 0.15)" aria-hidden="true" />
+            <Heart className="text-primary" size={36} strokeWidth={1.5} fill="hsl(var(--primary) / 0.15)" aria-hidden="true" />
           </div>
         </div></div>
       </section>
@@ -253,7 +284,7 @@ const Index = () => {
           </div>
 
           <div className="mt-8 flex justify-start">
-            <Sprout className="text-primary" size={28} strokeWidth={1.5} aria-hidden="true" />
+            <Sprout className="text-primary" size={36} strokeWidth={1.5} aria-hidden="true" />
           </div>
         </div></div>
       </section>
