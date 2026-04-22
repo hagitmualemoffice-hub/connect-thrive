@@ -229,7 +229,7 @@ const Index = () => {
       </header>
 
       {/* Hero */}
-      <section id="top" className="relative w-full h-[640px] group">
+      <section id="top" className="relative w-full h-[420px] md:h-[640px] group">
         <div className="absolute inset-0 overflow-hidden">
           <img
             src={heroBg}
@@ -240,20 +240,20 @@ const Index = () => {
         </div>
 
         {/* Hero content */}
-        <div className="relative z-10 h-full flex flex-col items-center justify-end text-center px-6 pb-[88px]">
-          <p className="text-white/90 text-base font-light mb-[2px]">
+        <div className="relative z-10 h-full flex flex-col items-center justify-end text-center px-5 md:px-6 pb-16 md:pb-[88px]">
+          <p className="text-white/90 text-xs md:text-base font-light mb-[2px]">
             חגית מועלם פסיכולוגית בהתמחות קלינית
           </p>
-          <h1 className="text-white text-5xl md:text-6xl font-light tracking-wide mb-[14px]">
+          <h1 className="text-white text-3xl md:text-5xl lg:text-6xl font-light tracking-wide mb-3 md:mb-[14px]">
             כשחיבור מחולל תנועה
           </h1>
-          <p className="text-white/90 text-lg md:text-xl font-light max-w-4xl whitespace-nowrap leading-relaxed">
+          <p className="text-white/90 text-xs md:text-lg lg:text-xl font-light max-w-4xl md:whitespace-nowrap leading-relaxed px-2">
             על התפתחות, יזמות, קהילה ושינוי שנולדים מעומק נפשי-רוחני וחיבור לייעוד ולמשמעות
           </p>
         </div>
 
-        {/* Floating mailing list signup bar */}
-        <div className="absolute -bottom-12 left-1/2 -translate-x-1/2 w-[min(1000px,94%)] z-20">
+        {/* Floating mailing list signup bar — desktop/tablet only */}
+        <div className="hidden md:block absolute -bottom-12 left-1/2 -translate-x-1/2 w-[min(1000px,94%)] z-20">
           <div className="bg-card rounded-2xl shadow-[0_15px_50px_-10px_hsl(0_0%_0%_/_0.15)] px-6 py-5 md:px-8 md:py-6 flex flex-col md:flex-row items-center justify-between gap-5">
             <div className="text-center md:text-right shrink-0">
               <p className="text-foreground text-base md:text-lg font-light leading-tight">
@@ -293,8 +293,8 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Spacer to account for floating bar */}
-      <div className="h-28 md:h-24" />
+      {/* Spacer to account for floating bar — desktop only */}
+      <div className="hidden md:block h-28 md:h-24" />
 
       {/* About section */}
       <section id="about" className="w-full py-20 px-6">
