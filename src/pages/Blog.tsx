@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import SiteHeader from "@/components/SiteHeader";
 import pesachFreedom from "@/assets/blog-pesach-freedom.jpg";
 import bereshitImg from "@/assets/blog-bereshit.jpg";
 import lechLechaImg from "@/assets/blog-lech-lecha.jpg";
