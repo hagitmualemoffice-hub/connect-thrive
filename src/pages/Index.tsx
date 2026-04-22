@@ -18,12 +18,21 @@ const podcastEpisodes = [
   { num: "3", title: "על חרדה והימנעות עם דנה לוי" },
 ];
 
-const contactSchema = z.object({
+type InquiryType = "general" | "lecture" | "workshop";
+
+const baseSchema = {
   name: z.string().trim().min(1, "נא להזין שם").max(100, "שם ארוך מדי"),
   email: z.string().trim().email("כתובת מייל לא תקינה").max(255, "מייל ארוך מדי"),
   phone: z.string().trim().min(1, "נא להזין טלפון").max(20, "טלפון ארוך מדי"),
-  message: z.string().trim().min(1, "נא לכתוב הודעה").max(1000, "הודעה ארוכה מדי"),
-});
+  organization: z.string().trim().max(150, "שם ארוך מדי").optional().or(z.literal("")),
+  participants: z.string().trim().max(20, "ערך ארוך מדי").optional().or(z.literal("")),
+  date: z.string().trim().max(50, "ערך ארוך מדי").optional().or(z.literal("")),
+  topic: z.string().trim().max(200, "ערך ארוך מדי").optional().or(z.literal("")),
+  contactPerson: z.string().trim().max(100, "ערך ארוך מדי").optional().or(z.literal("")),
+  message: z.string().trim().max(1000, "הודעה ארוכה מדי").optional().or(z.literal("")),
+};
+
+const contactSchema = z.object(baseSchema);
 
 const projectCards = [
   {
