@@ -229,25 +229,32 @@ const Index = () => {
       </header>
 
       {/* Hero */}
-      <section id="top" className="relative w-full h-[420px] md:h-[640px] group">
+      <section id="top" className="relative w-full h-[480px] md:h-[640px] group">
         <div className="absolute inset-0 overflow-hidden">
           <img
             src={heroBg}
             alt="חגית מועלם - פסיכולוגית קלינית"
-            className="absolute inset-0 w-full h-full object-cover transition-transform duration-[2500ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.04]"
+            className="absolute inset-0 w-full h-full object-cover scale-110 md:scale-100 [object-position:center_top] md:[object-position:center] transition-transform duration-[2500ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.04]"
           />
           <div className="absolute inset-0 bg-black/25" />
         </div>
 
         {/* Hero content */}
-        <div className="relative z-10 h-full flex flex-col items-center justify-end text-center px-5 md:px-6 pb-16 md:pb-[88px]">
+        <div className="relative z-10 h-full flex flex-col items-center justify-end text-center px-8 md:px-6 pb-20 md:pb-[88px]">
           <p className="text-white/90 text-xs md:text-base font-light mb-[2px]">
             חגית מועלם פסיכולוגית בהתמחות קלינית
           </p>
-          <h1 className="text-white text-3xl md:text-5xl lg:text-6xl font-light tracking-wide mb-3 md:mb-[14px]">
+          <h1 className="text-white text-3xl md:text-5xl lg:text-6xl font-light tracking-wide mb-4 md:mb-[14px]">
             כשחיבור מחולל תנועה
           </h1>
-          <p className="text-white/90 text-xs md:text-lg lg:text-xl font-light max-w-4xl md:whitespace-nowrap leading-relaxed px-2">
+          {/* Mobile: white pill with tagline */}
+          <div className="md:hidden bg-white/95 backdrop-blur-sm rounded-xl px-4 py-2.5 shadow-md mx-2">
+            <p className="text-foreground text-[11px] font-light leading-relaxed">
+              על התפתחות, יזמות, קהילה ושינוי שנולדים מעומק נפשי-רוחני וחיבור לייעוד ולמשמעות
+            </p>
+          </div>
+          {/* Desktop tagline */}
+          <p className="hidden md:block text-white/90 md:text-lg lg:text-xl font-light max-w-4xl md:whitespace-nowrap leading-relaxed px-2">
             על התפתחות, יזמות, קהילה ושינוי שנולדים מעומק נפשי-רוחני וחיבור לייעוד ולמשמעות
           </p>
         </div>
@@ -364,7 +371,7 @@ const Index = () => {
       </section>
 
       {/* Projects section - Listening Entrepreneurship */}
-      <section id="projects" className="relative w-full py-12 md:py-24 px-[15px] md:px-6 overflow-hidden">
+      <section id="projects" className="relative w-full py-12 md:py-24 px-[30px] md:px-6 overflow-hidden">
         {/* Background image - only top portion (ends ~1/3 into 2nd card) */}
         <div className="absolute top-0 left-0 right-0 h-[420px] md:h-[820px] overflow-hidden">
           <img
@@ -376,12 +383,17 @@ const Index = () => {
 
         <div className="relative z-10 w-full md:w-[min(1000px,72%)] mx-auto" dir="rtl">
           <div className="text-right mb-6 md:mb-10 px-1">
-            <h2 className="text-foreground text-[1.75rem] md:text-5xl font-light leading-tight mb-2 md:mb-3">
+            {/* Mobile: simplified title only */}
+            <h2 className="md:hidden text-white text-[1.75rem] font-light leading-tight drop-shadow-md">
+              הפרויקטים שלי
+            </h2>
+            {/* Desktop: full title + subtitle */}
+            <h2 className="hidden md:block text-foreground md:text-5xl font-light leading-tight mb-3">
               <span className="font-light">יזמות קשובה</span>
-              <span className="mx-2 md:mx-3 font-light">|</span>
+              <span className="mx-3 font-light">|</span>
               <span className="font-light">פרויקטים</span>
             </h2>
-            <p className="text-sm md:text-lg font-light">
+            <p className="hidden md:block md:text-lg font-light">
               <span className="text-primary font-normal">אמפתיה, הקשבה ויצירתיות -</span>
               <span className="text-foreground/80 mx-1">פתרונות שנולדים מתוך צורך אמיתי.</span>
             </p>
@@ -457,18 +469,23 @@ const Index = () => {
         {/* Title + Card aligned to same right edge as upper sections */}
         <div className="absolute inset-x-0 top-10 md:top-auto md:bottom-[390px] z-10 px-4 md:px-6">
           <div className="w-full md:w-[min(1000px,72%)] mx-auto text-right" dir="rtl">
-            <h2 className="text-white text-[1.75rem] md:text-5xl font-light tracking-wide">
+            {/* Mobile: simplified title only */}
+            <h2 className="md:hidden text-white text-[1.75rem] font-light tracking-wide">
+              הרצאות
+            </h2>
+            {/* Desktop: full title + subtitle */}
+            <h2 className="hidden md:block text-white md:text-5xl font-light tracking-wide">
               להעיר את הכוח מבפנים
             </h2>
-            <p className="mt-2 md:mt-3 text-white/95 text-sm md:text-lg font-light">
+            <p className="hidden md:block mt-3 text-white/95 md:text-lg font-light">
               <span className="text-primary font-normal">אמונה, פסיכולוגיה וייעוד</span>
-              <span className="mx-2 md:mx-3">הנהגה פנימית ותנועה מתוך משמעות ומימוש</span>
+              <span className="mx-3">הנהגה פנימית ותנועה מתוך משמעות ומימוש</span>
             </p>
           </div>
         </div>
 
-        {/* Floating white card */}
-        <div className="absolute -bottom-16 right-0 left-0 z-20 px-[15px] md:px-6">
+        {/* Floating white card — pushed lower on mobile so background image shows */}
+        <div className="absolute -bottom-16 right-0 left-0 z-20 px-[30px] md:px-6 top-[280px] md:top-auto">
           <div className="w-full md:w-[min(1000px,72%)] mx-auto">
             <div className="relative bg-card rounded-2xl md:rounded-3xl shadow-[0_20px_60px_-15px_hsl(0_0%_0%_/_0.18)] px-5 md:px-32 py-10 md:py-20 transition-all duration-500 ease-out hover:shadow-[0_28px_70px_-15px_hsl(var(--primary)/0.25)] hover:-translate-y-1">
               <span className="absolute top-4 left-4 md:top-6 md:left-6 inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-[10px] md:text-xs font-medium">
@@ -524,7 +541,7 @@ const Index = () => {
       <div className="h-32" />
 
       {/* Lecture details section */}
-      <section className="w-full py-12 md:py-20 px-[15px] md:px-6">
+      <section className="w-full py-12 md:py-20 px-[30px] md:px-6">
         <div className="w-full md:w-[min(1000px,72%)] mx-auto text-right mb-6 md:mb-8 px-1" dir="rtl">
           <h2 className="text-foreground text-[1.75rem] md:text-5xl font-light leading-tight mb-2 md:mb-3">
             <span className="font-light">הרצאות</span>
@@ -585,7 +602,7 @@ const Index = () => {
       </section>
 
       {/* Unique offering - Bibliotherapy gradient section */}
-      <section id="workshops" className="w-full py-12 md:py-20 px-[15px] md:px-6">
+      <section id="workshops" className="w-full py-12 md:py-20 px-[30px] md:px-6">
         <div className="w-full md:w-[min(1200px,82%)] mx-auto">
           <div
             className="rounded-2xl md:rounded-[40px] px-6 md:px-24 py-10 md:py-24 text-right"
@@ -636,7 +653,7 @@ const Index = () => {
       </section>
 
       {/* Blog section */}
-      <section id="blog" className="w-full py-12 md:py-20 px-[15px] md:px-6">
+      <section id="blog" className="w-full py-12 md:py-20 px-[30px] md:px-6">
         <div className="w-full md:w-[min(1000px,72%)] mx-auto" dir="rtl">
           <div className="text-right mb-6 md:mb-12 px-1">
             <h2 className="text-foreground text-[1.75rem] md:text-5xl font-light leading-tight mb-2 md:mb-3">
@@ -696,7 +713,7 @@ const Index = () => {
 
 
       {/* Podcast section */}
-      <section id="podcast" className="w-full py-12 md:py-20 px-[15px] md:px-0 overflow-hidden">
+      <section id="podcast" className="w-full py-12 md:py-20 px-[30px] md:px-0 overflow-hidden">
         <div className="w-full md:w-[min(1000px,72%)] mx-auto" dir="rtl">
           <div className="text-right mb-6 md:mb-12 px-1 md:px-0">
             <h2 className="text-foreground text-[1.75rem] md:text-5xl font-light leading-tight mb-2 md:mb-3">
@@ -750,7 +767,7 @@ const Index = () => {
       </section>
 
       {/* Contact section */}
-      <section id="contact" className="w-full bg-background py-12 md:py-24 px-[15px] md:px-6">
+      <section id="contact" className="w-full bg-background py-12 md:py-24 px-[30px] md:px-6">
         <div className="w-full md:w-[min(1100px,82%)] mx-auto" dir="rtl">
           <div className="bg-card rounded-2xl md:rounded-[40px] shadow-[0_20px_60px_-20px_hsl(0_0%_0%_/_0.12)] px-6 md:px-20 py-8 md:py-20">
             {/* Top: heart + heading centered */}
@@ -804,7 +821,7 @@ const Index = () => {
       </section>
 
       {/* Mobile-only: inline mailing list at bottom (replaces the floating hero form on mobile) */}
-      <section className="md:hidden w-full px-[15px] pb-24">
+      <section className="md:hidden w-full px-[30px] pb-24">
         <div className="bg-card rounded-2xl shadow-[0_15px_50px_-10px_hsl(0_0%_0%_/_0.15)] px-5 py-6">
           <div className="text-center mb-4">
             <p className="text-foreground text-base font-light leading-tight">
