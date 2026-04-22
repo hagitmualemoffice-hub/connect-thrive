@@ -104,7 +104,18 @@ const heroNav: { label: string; href: string }[] = [
 ];
 
 const Index = () => {
-  const [form, setForm] = useState({ name: "", email: "", phone: "", message: "" });
+  const [inquiryType, setInquiryType] = useState<InquiryType>("general");
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    organization: "",
+    participants: "",
+    date: "",
+    topic: "",
+    contactPerson: "",
+    message: "",
+  });
   const [submitting, setSubmitting] = useState(false);
   const [popupOpen, setPopupOpen] = useState(false);
 
@@ -123,7 +134,18 @@ const Index = () => {
       return;
     }
     toast({ title: "תודה!", description: "ההודעה נשלחה, אחזור אלייך בהקדם." });
-    setForm({ name: "", email: "", phone: "", message: "" });
+    setForm({
+      name: "",
+      email: "",
+      phone: "",
+      organization: "",
+      participants: "",
+      date: "",
+      topic: "",
+      contactPerson: "",
+      message: "",
+    });
+    setInquiryType("general");
   };
 
   return (
