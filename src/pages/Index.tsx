@@ -15,10 +15,26 @@ import contactHeart from "@/assets/contact-heart.png";
 import { blogPosts as allBlogPosts } from "@/data/blogPosts";
 
 const podcastEpisodes = [
-  { num: "1", title: "על חיבור לגוף עם נעם ארז" },
-  { num: "2", title: 'על הקשבה לגוף עם ד"ר מיכל פרנסט' },
-  { num: "3", title: "על חרדה והימנעות עם דורית בנגד אלבד" },
-  { num: "4", title: 'על התהליך עצמו עם ד"ר ירדנה היימן' },
+  {
+    num: "1",
+    title: "על חיבור לגוף עם נעם ארז",
+    driveUrl: "https://drive.google.com/file/d/1kEgTm8iRMiUmhaZ6Si4HXalrsmF2HKR5/view?usp=drive_link",
+  },
+  {
+    num: "2",
+    title: 'על הקשבה לגוף עם ד"ר מיכל פרנסט',
+    driveUrl: "https://drive.google.com/file/d/1w628JudX26Cx5_1szSSlCpO4mOGlolo7/view?usp=sharing",
+  },
+  {
+    num: "3",
+    title: "על חרדה והימנעות עם דורית בנגד אלבד",
+    driveUrl: "https://drive.google.com/file/d/1sobWuQQdj3UCgq0z40kI2zZxSchr1pyQ/view?usp=drive_link",
+  },
+  {
+    num: "4",
+    title: 'על התהליך עצמו עם ד"ר ירדנה היימן',
+    driveUrl: "https://drive.google.com/file/d/1E6uK-c1ABAzDFdKcBvgJRcXMAIPskOxk/view?usp=drive_link",
+  },
 ];
 
 
@@ -428,15 +444,13 @@ const Index = () => {
         {/* Floating white card */}
         <div className="absolute -bottom-16 right-0 left-0 z-20 px-6">
           <div className="w-[min(1000px,72%)] mx-auto">
-            <div className="bg-card rounded-3xl shadow-[0_20px_60px_-15px_hsl(0_0%_0%_/_0.18)] px-32 py-20 transition-all duration-500 ease-out hover:shadow-[0_28px_70px_-15px_hsl(var(--primary)/0.25)] hover:-translate-y-1">
+            <div className="relative bg-card rounded-3xl shadow-[0_20px_60px_-15px_hsl(0_0%_0%_/_0.18)] px-32 py-20 transition-all duration-500 ease-out hover:shadow-[0_28px_70px_-15px_hsl(var(--primary)/0.25)] hover:-translate-y-1">
+              <span className="absolute top-6 left-6 inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-medium">
+                הרצאת הדגל
+              </span>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-16 text-right" dir="rtl">
                 {/* Right column */}
                 <div>
-                  <div className="flex flex-wrap gap-2 mb-3 justify-start">
-                    <span className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-medium">
-                      הרצאת הדגל
-                    </span>
-                  </div>
                   <h3 className="text-foreground text-2xl font-bold mb-2">החיים שנועדו לי</h3>
                   <p className="text-foreground text-sm font-medium leading-relaxed mb-4">
                     אמונה, ביטחון וחיבור לייעוד ככוח לחיים מאושרים ומימוש עצמי עמוק
@@ -500,7 +514,7 @@ const Index = () => {
                 className="bg-card rounded-3xl shadow-[0_15px_40px_-15px_hsl(0_0%_0%_/_0.12)] px-12 py-14 text-right flex flex-col transition-all duration-300 ease-out hover:scale-[1.03] hover:shadow-[0_25px_50px_-15px_hsl(var(--primary)/0.25)] cursor-pointer"
               >
                 {card.badges && card.badges.length > 0 && (
-                  <div className="flex flex-wrap gap-2 mb-3 justify-start">
+                  <div className="flex flex-wrap gap-2 mb-3 justify-end">
                     {card.badges.map((b) => (
                       <span
                         key={b}
@@ -663,7 +677,7 @@ const Index = () => {
           <div className="grid grid-cols-3 gap-6">
             {podcastEpisodes.slice(0, 3).map((ep, idx) => (
               <a
-                href="https://open.spotify.com/show/2FIal7yOO7htlBkKUwCbxW?si=dtVPb1AQQomBBOTazo3hWA"
+                href={ep.driveUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 key={idx}

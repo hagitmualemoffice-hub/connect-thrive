@@ -1,6 +1,10 @@
 import { Link } from "react-router-dom";
 import { Play, ExternalLink } from "lucide-react";
 import podcastCover from "@/assets/podcast-cover.png";
+import SiteHeader from "@/components/SiteHeader";
+
+const SPOTIFY_SHOW =
+  "https://open.spotify.com/show/2FIal7yOO7htlBkKUwCbxW?si=dtVPb1AQQomBBOTazo3hWA";
 
 const episodes = [
   {
@@ -10,8 +14,9 @@ const episodes = [
       "על חיבור לגוף, למה שימור פוריות ואיך את יכולה לעשות את התהליך מתוך חיבור ובחירה.",
     duration: "47 דק׳",
     date: "מרץ 2026",
-    spotifyUrl: "https://open.spotify.com/show/2FIal7yOO7htlBkKUwCbxW?si=dtVPb1AQQomBBOTazo3hWA",
-    driveUrl: "#",
+    spotifyUrl: SPOTIFY_SHOW,
+    driveUrl:
+      "https://drive.google.com/file/d/1kEgTm8iRMiUmhaZ6Si4HXalrsmF2HKR5/view?usp=drive_link",
   },
   {
     num: "02",
@@ -20,8 +25,9 @@ const episodes = [
       "על הקשבה לגוף בתהליך שימור פוריות, ואיך זו יכולת שיכולה לעזור לך בתהליך.",
     duration: "52 דק׳",
     date: "פברואר 2026",
-    spotifyUrl: "https://open.spotify.com/show/2FIal7yOO7htlBkKUwCbxW?si=dtVPb1AQQomBBOTazo3hWA",
-    driveUrl: "#",
+    spotifyUrl: SPOTIFY_SHOW,
+    driveUrl:
+      "https://drive.google.com/file/d/1w628JudX26Cx5_1szSSlCpO4mOGlolo7/view?usp=sharing",
   },
   {
     num: "03",
@@ -30,8 +36,9 @@ const episodes = [
       "על חרדה והימנעות בתהליך שימור פוריות, ואיך את יכולה לעזור לעצמך עם זה.",
     duration: "58 דק׳",
     date: "ינואר 2026",
-    spotifyUrl: "https://open.spotify.com/show/2FIal7yOO7htlBkKUwCbxW?si=dtVPb1AQQomBBOTazo3hWA",
-    driveUrl: "#",
+    spotifyUrl: SPOTIFY_SHOW,
+    driveUrl:
+      "https://drive.google.com/file/d/1sobWuQQdj3UCgq0z40kI2zZxSchr1pyQ/view?usp=drive_link",
   },
   {
     num: "04",
@@ -40,38 +47,16 @@ const episodes = [
       'כל מה שאת רוצה לדעת על ההליך עצמו. ד"ר היימן עם הסבר בהיר ומענה לכל השאלות.',
     duration: "44 דק׳",
     date: "דצמבר 2025",
-    spotifyUrl: "https://open.spotify.com/show/2FIal7yOO7htlBkKUwCbxW?si=dtVPb1AQQomBBOTazo3hWA",
-    driveUrl: "#",
+    spotifyUrl: SPOTIFY_SHOW,
+    driveUrl:
+      "https://drive.google.com/file/d/1E6uK-c1ABAzDFdKcBvgJRcXMAIPskOxk/view?usp=drive_link",
   },
 ];
 
 const Podcast = () => {
   return (
     <div className="min-h-screen bg-background" dir="rtl">
-      {/* Top navigation */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm shadow-sm">
-        <div className="flex items-center justify-between px-10 py-5">
-          <Link to="/" className="text-foreground text-xl font-semibold tracking-tight">
-            חגית מועלם
-          </Link>
-          <nav className="flex items-center gap-10">
-            <Link to="/#about" className="text-sm font-normal text-foreground hover:text-primary transition-colors">הסנטר שלי</Link>
-            <Link to="/#entrepreneurship" className="text-sm font-normal text-foreground hover:text-primary transition-colors">יזמות קשובה</Link>
-            <Link to="/#projects" className="text-sm font-normal text-foreground hover:text-primary transition-colors">הפרוייקטים שלי</Link>
-            <Link to="/#lectures" className="text-sm font-normal text-foreground hover:text-primary transition-colors">סדנאות והרצאות</Link>
-            <Link to="/blog" className="text-sm font-normal text-foreground hover:text-primary transition-colors">בלוג</Link>
-            <Link to="/podcast" className="text-sm font-normal text-primary transition-colors">פודקאסט</Link>
-          </nav>
-          <div className="flex items-center gap-3">
-            <Link
-              to="/#contact"
-              className="px-6 py-2.5 rounded-lg bg-primary text-primary-foreground text-sm font-light hover:bg-[hsl(var(--primary-glow))] transition-colors"
-            >
-              דברו איתי
-            </Link>
-          </div>
-        </div>
-      </header>
+      <SiteHeader />
 
       <div className="h-20" />
 
@@ -91,83 +76,75 @@ const Podcast = () => {
           {/* Platform links */}
           <div className="flex flex-wrap gap-3 mt-8 justify-start">
             <a
-              href="#"
+              href={SPOTIFY_SHOW}
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-card border border-border text-foreground text-sm font-light hover:bg-accent hover:text-accent-foreground transition-colors"
             >
               <ExternalLink className="w-4 h-4" />
               האזנה ב-Spotify
             </a>
-            <a
-              href="#"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-card border border-border text-foreground text-sm font-light hover:bg-accent hover:text-accent-foreground transition-colors"
-            >
-              <ExternalLink className="w-4 h-4" />
-              צפייה ב-Google Drive
-            </a>
           </div>
         </div>
       </section>
 
-      {/* Episodes list - one full-width card per episode */}
+      {/* Episodes list - compact horizontal cards */}
       <section className="w-full pb-24 px-6">
-        <div className="w-[min(1100px,82%)] mx-auto space-y-6">
+        <div className="w-[min(1100px,82%)] mx-auto space-y-4">
           {episodes.map((ep) => (
             <article
               key={ep.num}
-              className="group bg-card rounded-3xl overflow-hidden shadow-[0_10px_30px_-15px_hsl(0_0%_0%_/_0.1)] hover:shadow-[0_20px_45px_-15px_hsl(var(--primary)/0.22)] transition-all duration-300"
+              className="group bg-card rounded-2xl overflow-hidden shadow-[0_8px_24px_-12px_hsl(0_0%_0%_/_0.08)] hover:shadow-[0_16px_36px_-12px_hsl(var(--primary)/0.18)] transition-all duration-300"
             >
-              <div className="grid grid-cols-1 md:grid-cols-[420px_1fr] gap-0">
+              <div className="grid grid-cols-1 md:grid-cols-[180px_1fr] gap-0">
                 {/* Cover */}
-                <div className="relative h-72 md:h-auto md:min-h-[360px] overflow-hidden bg-accent">
+                <div className="relative h-40 md:h-auto md:min-h-[160px] overflow-hidden bg-accent">
                   <img
                     src={podcastCover}
                     alt={ep.title}
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                     loading="lazy"
                   />
-                  <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/10 transition-colors flex items-center justify-center">
-                    <span className="w-14 h-14 rounded-full bg-white/95 shadow-lg flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                      <Play className="w-6 h-6 text-primary fill-primary mr-0.5" />
-                    </span>
-                  </div>
                 </div>
 
                 {/* Content */}
-                <div className="p-8 md:p-10 text-right flex flex-col">
-                  <div className="flex items-center gap-3 justify-start mb-3">
-                    <span className="inline-block px-3 py-1 rounded-md bg-accent text-primary text-xs font-light">
-                      פרק {ep.num}
-                    </span>
-                    <span className="text-foreground/50 text-xs font-light">{ep.date}</span>
-                    <span className="text-foreground/30">·</span>
-                    <span className="text-foreground/50 text-xs font-light">{ep.duration}</span>
+                <div className="p-5 md:p-6 text-right flex flex-col md:flex-row md:items-center gap-4">
+                  <div className="flex-1">
+                    <div className="flex items-center gap-2 justify-start mb-1.5 text-foreground/50 text-xs font-light">
+                      <span className="px-2 py-0.5 rounded-md bg-accent text-primary">
+                        פרק {ep.num}
+                      </span>
+                      <span>{ep.date}</span>
+                      <span className="text-foreground/30">·</span>
+                      <span>{ep.duration}</span>
+                    </div>
+
+                    <h2 className="text-foreground text-lg md:text-xl font-light leading-snug mb-1.5 group-hover:text-primary transition-colors">
+                      {ep.title}
+                    </h2>
+                    <p className="text-foreground/70 text-sm font-light leading-relaxed line-clamp-2">
+                      {ep.description}
+                    </p>
                   </div>
 
-                  <h2 className="text-foreground text-2xl md:text-3xl font-light leading-tight mb-4 group-hover:text-primary transition-colors">
-                    {ep.title}
-                  </h2>
-                  <p className="text-foreground/70 text-base font-light leading-relaxed mb-6 flex-1">
-                    {ep.description}
-                  </p>
-
-                  <div className="flex flex-wrap gap-3 justify-start">
+                  <div className="flex flex-wrap gap-2 justify-start shrink-0">
                     <a
                       href={ep.spotifyUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-primary text-primary-foreground text-sm font-light hover:bg-[hsl(var(--primary-glow))] transition-colors"
+                      className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-primary text-primary-foreground text-xs font-light hover:bg-[hsl(var(--primary-glow))] transition-colors"
                     >
-                      <Play className="w-4 h-4 fill-current" />
-                      האזנה ב-Spotify
+                      <Play className="w-3.5 h-3.5 fill-current" />
+                      Spotify
                     </a>
                     <a
                       href={ep.driveUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-card border border-border text-foreground text-sm font-light hover:bg-accent hover:text-accent-foreground transition-colors"
+                      className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-card border border-border text-foreground text-xs font-light hover:bg-accent hover:text-accent-foreground transition-colors"
                     >
-                      <ExternalLink className="w-4 h-4" />
-                      צפייה ב-Drive
+                      <ExternalLink className="w-3.5 h-3.5" />
+                      Drive
                     </a>
                   </div>
                 </div>
@@ -188,10 +165,10 @@ const Podcast = () => {
           >
             <div className="w-[min(680px,90%)] mr-0">
               <h2 className="text-white text-3xl md:text-4xl font-light leading-tight mb-5">
-                רוצה לקבל הודעה על פרקים חדשים?
+                רוצות לדעת מתי עולה פרק חדש?
               </h2>
               <p className="text-white/95 text-base md:text-lg font-light leading-relaxed mb-8">
-                הצטרפי למרחב שקט של נשימה וציפורים שנאספות בקפידה אל תיבת המייל שלך.
+                הצטרפו למרחב שקט של נשימה ותוכן שנאסף בקפידה אל תיבת המייל שלכן.
               </p>
               <Link
                 to="/"

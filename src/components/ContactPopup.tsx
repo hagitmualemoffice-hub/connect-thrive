@@ -244,18 +244,20 @@ const ContactPopup = ({ open, onOpenChange, defaultTab = "general" }: ContactPop
                   </>
                 )}
 
-                {/* תאריך רצוי - in every form */}
-                <div>
-                  <label className={labelCls}>תאריך רצוי {tab === "general" ? "(אופציונלי)" : ""}</label>
-                  <input
-                    type="text"
-                    placeholder="לדוגמה: 15/06/2026"
-                    value={form.date}
-                    onChange={(e) => setForm({ ...form, date: e.target.value })}
-                    maxLength={50}
-                    className={inputCls}
-                  />
-                </div>
+                {/* תאריך רצוי - only for lecture/workshop */}
+                {tab !== "general" && (
+                  <div>
+                    <label className={labelCls}>תאריך רצוי</label>
+                    <input
+                      type="text"
+                      placeholder="לדוגמה: 15/06/2026"
+                      value={form.date}
+                      onChange={(e) => setForm({ ...form, date: e.target.value })}
+                      maxLength={50}
+                      className={inputCls}
+                    />
+                  </div>
+                )}
 
                 <div>
                   <label className={labelCls}>
