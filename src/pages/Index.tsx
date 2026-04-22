@@ -585,43 +585,48 @@ const Index = () => {
       </section>
 
       {/* Unique offering - Bibliotherapy gradient section */}
-      <section id="workshops" className="w-full py-20 px-6">
-        <div className="w-[min(1200px,82%)] mx-auto">
+      <section id="workshops" className="w-full py-12 md:py-20 px-[15px] md:px-6">
+        <div className="w-full md:w-[min(1200px,82%)] mx-auto">
           <div
-            className="rounded-[40px] px-16 md:px-24 py-20 md:py-24 text-right"
+            className="rounded-2xl md:rounded-[40px] px-6 md:px-24 py-10 md:py-24 text-right"
             dir="rtl"
             style={{
               background: "linear-gradient(90deg, hsl(172 79% 79%) 0%, hsl(325 75% 69%) 100%)",
             }}
           >
-            <div className="w-[min(720px,75%)] mr-0">
-              <h2 className="text-white text-3xl md:text-5xl font-light leading-tight mb-10">
+            <div className="w-full md:w-[min(720px,75%)] mr-0">
+              <h2 className="text-white text-[1.75rem] md:text-5xl font-light leading-tight mb-5 md:mb-10">
                 <span className="font-light">סדנאות ביבליותרפיה</span>
                 <br />
                 <span className="font-light">הנבנות בקשב לצורך שלכם</span>
               </h2>
 
-              <p className="text-white/95 text-sm md:text-base font-light leading-relaxed mb-6">
-                מחפשים מרחב עמוק, חי ולא שגרתי לעבודה קבוצתית? סדנאות ביבליותרפיה המבוססות
-                על קריאה משותפת של טקסטים והנחיה של שיח קבוצתי משמעותי. הטקסטים אינם רק
-                תוכן - הם שער: פותחים רגשות, שאלות ונקודות כאב, ומאפשרים תנועה אמיתית בקבוצה.
-              </p>
-
-              <p className="text-white/95 text-sm md:text-base font-light leading-relaxed mb-6">
-                כל סדנה נבנית במיוחד עבורכם, מתוך הקשבה לצורך, לאנשים ולשלב שבו אתם נמצאים.
-                אני משלבת טקסטים מעולמות הפסיכולוגיה, הספרות וההגות, לצד מקורות מן המחשבה
-                היהודית - מפגש ייחודי בין עומק רגשי, משמעות ושיח אמוני־רוחני. ניתן גם לבנות
-                סדנאות עם דגש ייעודי על מקורות אלו.
-              </p>
-
-              <p className="text-white/95 text-sm md:text-base font-light leading-relaxed mb-10">
-                הסדנאות אינטימיות (עד 20 משתתפים), ומתאימות לצוותים, לקבוצות עומק ולארגונים
-                שמבקשים לגעת לעומק, לחדד תהליכים ולהניע שינוי דרך הקשבה, טקסט ושיח מונחה.
-              </p>
+              <ExpandableText
+                mobileLines={5}
+                className="text-white/95 text-sm md:text-base font-light leading-relaxed mb-6 md:mb-10"
+              >
+                <div className="space-y-4 md:space-y-6">
+                  <p>
+                    מחפשים מרחב עמוק, חי ולא שגרתי לעבודה קבוצתית? סדנאות ביבליותרפיה המבוססות
+                    על קריאה משותפת של טקסטים והנחיה של שיח קבוצתי משמעותי. הטקסטים אינם רק
+                    תוכן - הם שער: פותחים רגשות, שאלות ונקודות כאב, ומאפשרים תנועה אמיתית בקבוצה.
+                  </p>
+                  <p>
+                    כל סדנה נבנית במיוחד עבורכם, מתוך הקשבה לצורך, לאנשים ולשלב שבו אתם נמצאים.
+                    אני משלבת טקסטים מעולמות הפסיכולוגיה, הספרות וההגות, לצד מקורות מן המחשבה
+                    היהודית - מפגש ייחודי בין עומק רגשי, משמעות ושיח אמוני־רוחני. ניתן גם לבנות
+                    סדנאות עם דגש ייעודי על מקורות אלו.
+                  </p>
+                  <p>
+                    הסדנאות אינטימיות (עד 20 משתתפים), ומתאימות לצוותים, לקבוצות עומק ולארגונים
+                    שמבקשים לגעת לעומק, לחדד תהליכים ולהניע שינוי דרך הקשבה, טקסט ושיח מונחה.
+                  </p>
+                </div>
+              </ExpandableText>
 
               <button
                 onClick={() => openContact("workshop")}
-                className="px-10 py-3 rounded-lg bg-white text-foreground text-sm md:text-base font-light shadow-md hover:bg-primary hover:text-primary-foreground hover:shadow-lg transition-all"
+                className="px-8 md:px-10 py-3 rounded-lg bg-white text-foreground text-sm md:text-base font-light shadow-md hover:bg-primary hover:text-primary-foreground hover:shadow-lg transition-all"
               >
                 בואו נתכנן לכם סדנא
               </button>
