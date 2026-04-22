@@ -432,6 +432,11 @@ const Index = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-16 text-right" dir="rtl">
                 {/* Right column */}
                 <div>
+                  <div className="flex flex-wrap gap-2 mb-3 justify-start">
+                    <span className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-medium">
+                      הרצאת הדגל
+                    </span>
+                  </div>
                   <h3 className="text-foreground text-2xl font-bold mb-2">החיים שנועדו לי</h3>
                   <p className="text-foreground text-sm font-medium leading-relaxed mb-4">
                     אמונה, ביטחון וחיבור לייעוד ככוח לחיים מאושרים ומימוש עצמי עמוק
@@ -494,6 +499,18 @@ const Index = () => {
                 key={card.title}
                 className="bg-card rounded-3xl shadow-[0_15px_40px_-15px_hsl(0_0%_0%_/_0.12)] px-12 py-14 text-right flex flex-col transition-all duration-300 ease-out hover:scale-[1.03] hover:shadow-[0_25px_50px_-15px_hsl(var(--primary)/0.25)] cursor-pointer"
               >
+                {card.badges && card.badges.length > 0 && (
+                  <div className="flex flex-wrap gap-2 mb-3 justify-start">
+                    {card.badges.map((b) => (
+                      <span
+                        key={b}
+                        className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-medium"
+                      >
+                        {b}
+                      </span>
+                    ))}
+                  </div>
+                )}
                 <h3 className="text-foreground text-2xl font-bold leading-tight mb-1 whitespace-pre-line">
                   {card.title}
                 </h3>
@@ -670,14 +687,12 @@ const Index = () => {
           </div>
 
           <div className="mt-12 flex justify-center">
-            <a
-              href="https://open.spotify.com/show/2FIal7yOO7htlBkKUwCbxW?si=dtVPb1AQQomBBOTazo3hWA"
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              to="/podcast"
               className="px-10 py-3 rounded-lg bg-primary text-primary-foreground text-sm md:text-base font-light hover:bg-[hsl(var(--primary-glow))] transition-colors"
             >
               לכל הפרקים
-            </a>
+            </Link>
           </div>
         </div>
       </section>
