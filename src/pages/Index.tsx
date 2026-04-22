@@ -229,25 +229,32 @@ const Index = () => {
       </header>
 
       {/* Hero */}
-      <section id="top" className="relative w-full h-[420px] md:h-[640px] group">
+      <section id="top" className="relative w-full h-[480px] md:h-[640px] group">
         <div className="absolute inset-0 overflow-hidden">
           <img
             src={heroBg}
             alt="חגית מועלם - פסיכולוגית קלינית"
-            className="absolute inset-0 w-full h-full object-cover transition-transform duration-[2500ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.04]"
+            className="absolute inset-0 w-full h-full object-cover scale-110 md:scale-100 [object-position:center_top] md:[object-position:center] transition-transform duration-[2500ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.04]"
           />
           <div className="absolute inset-0 bg-black/25" />
         </div>
 
         {/* Hero content */}
-        <div className="relative z-10 h-full flex flex-col items-center justify-end text-center px-5 md:px-6 pb-16 md:pb-[88px]">
+        <div className="relative z-10 h-full flex flex-col items-center justify-end text-center px-8 md:px-6 pb-20 md:pb-[88px]">
           <p className="text-white/90 text-xs md:text-base font-light mb-[2px]">
             חגית מועלם פסיכולוגית בהתמחות קלינית
           </p>
-          <h1 className="text-white text-3xl md:text-5xl lg:text-6xl font-light tracking-wide mb-3 md:mb-[14px]">
+          <h1 className="text-white text-3xl md:text-5xl lg:text-6xl font-light tracking-wide mb-4 md:mb-[14px]">
             כשחיבור מחולל תנועה
           </h1>
-          <p className="text-white/90 text-xs md:text-lg lg:text-xl font-light max-w-4xl md:whitespace-nowrap leading-relaxed px-2">
+          {/* Mobile: white pill with tagline */}
+          <div className="md:hidden bg-white/95 backdrop-blur-sm rounded-xl px-4 py-2.5 shadow-md mx-2">
+            <p className="text-foreground text-[11px] font-light leading-relaxed">
+              על התפתחות, יזמות, קהילה ושינוי שנולדים מעומק נפשי-רוחני וחיבור לייעוד ולמשמעות
+            </p>
+          </div>
+          {/* Desktop tagline */}
+          <p className="hidden md:block text-white/90 md:text-lg lg:text-xl font-light max-w-4xl md:whitespace-nowrap leading-relaxed px-2">
             על התפתחות, יזמות, קהילה ושינוי שנולדים מעומק נפשי-רוחני וחיבור לייעוד ולמשמעות
           </p>
         </div>
