@@ -304,7 +304,7 @@ const Index = () => {
       <div className="hidden md:block h-28 md:h-24" />
 
       {/* About section */}
-      <section id="about" className="w-full py-12 md:py-20 px-4 md:px-6 mt-8 md:mt-0">
+      <section id="about" className="w-full pt-6 pb-8 md:py-20 px-[30px] md:px-6 mt-8 md:mt-0">
 
         <div className="w-full md:w-[min(1000px,72%)] mx-auto"><div className="w-full md:w-[min(720px,76%)] mr-0 text-right">
           <h2 className="text-foreground text-[1.75rem] md:text-5xl font-light leading-tight mb-5 md:mb-8">
@@ -328,8 +328,8 @@ const Index = () => {
             </div>
           </ExpandableText>
 
-          <div className="mt-6 md:mt-8 flex justify-start">
-            <Heart className="text-primary" size={32} strokeWidth={1.5} fill="hsl(var(--primary) / 0.15)" aria-hidden="true" />
+          <div className="mt-3 md:mt-8 flex justify-start">
+            <Heart className="text-primary w-5 h-5 md:w-8 md:h-8" strokeWidth={1.5} fill="hsl(var(--primary) / 0.15)" aria-hidden="true" />
           </div>
         </div></div>
       </section>
