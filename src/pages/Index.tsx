@@ -843,6 +843,7 @@ const Index = () => {
       <MailingListPopup open={popupOpen} onOpenChange={setPopupOpen} />
       <ContactPopup open={contactOpen} onOpenChange={setContactOpen} defaultTab={contactTab} />
       <HostingPopup open={hostingOpen} onOpenChange={setHostingOpen} />
+      <MobileBottomNav />
     </div>
   );
 };
