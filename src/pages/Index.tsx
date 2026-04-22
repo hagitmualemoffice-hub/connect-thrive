@@ -428,7 +428,10 @@ const Index = () => {
         {/* Floating white card */}
         <div className="absolute -bottom-16 right-0 left-0 z-20 px-6">
           <div className="w-[min(1000px,72%)] mx-auto">
-            <div className="bg-card rounded-3xl shadow-[0_20px_60px_-15px_hsl(0_0%_0%_/_0.18)] px-32 py-20 transition-all duration-500 ease-out hover:shadow-[0_28px_70px_-15px_hsl(var(--primary)/0.25)] hover:-translate-y-1">
+            <div className="relative bg-card rounded-3xl shadow-[0_20px_60px_-15px_hsl(0_0%_0%_/_0.18)] px-32 py-20 transition-all duration-500 ease-out hover:shadow-[0_28px_70px_-15px_hsl(var(--primary)/0.25)] hover:-translate-y-1">
+              <span className="absolute top-6 left-6 inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-medium">
+                הרצאת הדגל
+              </span>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-16 text-right" dir="rtl">
                 {/* Right column */}
                 <div>
