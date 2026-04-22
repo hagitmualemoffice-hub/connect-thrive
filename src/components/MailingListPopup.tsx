@@ -76,10 +76,10 @@ const MailingListPopup = ({ open, onOpenChange }: MailingListPopupProps) => {
             <div className="space-y-5 mb-10">
               <div className="w-12 h-px bg-primary mx-auto" />
               <h2 className="text-foreground text-3xl md:text-4xl font-light leading-tight tracking-tight">
-                משהו יפה בדרך אלייך
+                כמה טוב שאת מצטרפת
               </h2>
               <p className="text-foreground/70 text-base font-light leading-relaxed max-w-[34ch] mx-auto">
-                הצטרפי למרחב שקט של נשימה וציפורים שנאספות בקפידה אל תיבת המייל שלך.
+                מדי פעם אשלח אלייך תוכן שקט שמזמין אותך לעצור, לנשום ולהתחבר לעצמך. מקווה שתהני.
               </p>
             </div>
 
