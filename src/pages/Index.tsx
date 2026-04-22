@@ -229,7 +229,7 @@ const Index = () => {
       </header>
 
       {/* Hero */}
-      <section id="top" className="relative w-full h-[480px] md:h-[640px] group">
+      <section id="top" className="relative w-full h-[380px] md:h-[640px] group">
         <div className="absolute inset-0 overflow-hidden">
           <img
             src={heroBg}
