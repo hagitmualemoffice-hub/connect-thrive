@@ -469,18 +469,23 @@ const Index = () => {
         {/* Title + Card aligned to same right edge as upper sections */}
         <div className="absolute inset-x-0 top-10 md:top-auto md:bottom-[390px] z-10 px-4 md:px-6">
           <div className="w-full md:w-[min(1000px,72%)] mx-auto text-right" dir="rtl">
-            <h2 className="text-white text-[1.75rem] md:text-5xl font-light tracking-wide">
+            {/* Mobile: simplified title only */}
+            <h2 className="md:hidden text-white text-[1.75rem] font-light tracking-wide">
+              הרצאות
+            </h2>
+            {/* Desktop: full title + subtitle */}
+            <h2 className="hidden md:block text-white md:text-5xl font-light tracking-wide">
               להעיר את הכוח מבפנים
             </h2>
-            <p className="mt-2 md:mt-3 text-white/95 text-sm md:text-lg font-light">
+            <p className="hidden md:block mt-3 text-white/95 md:text-lg font-light">
               <span className="text-primary font-normal">אמונה, פסיכולוגיה וייעוד</span>
-              <span className="mx-2 md:mx-3">הנהגה פנימית ותנועה מתוך משמעות ומימוש</span>
+              <span className="mx-3">הנהגה פנימית ותנועה מתוך משמעות ומימוש</span>
             </p>
           </div>
         </div>
 
-        {/* Floating white card */}
-        <div className="absolute -bottom-16 right-0 left-0 z-20 px-[15px] md:px-6">
+        {/* Floating white card — pushed lower on mobile so background image shows */}
+        <div className="absolute -bottom-16 right-0 left-0 z-20 px-[30px] md:px-6 top-[280px] md:top-auto">
           <div className="w-full md:w-[min(1000px,72%)] mx-auto">
             <div className="relative bg-card rounded-2xl md:rounded-3xl shadow-[0_20px_60px_-15px_hsl(0_0%_0%_/_0.18)] px-5 md:px-32 py-10 md:py-20 transition-all duration-500 ease-out hover:shadow-[0_28px_70px_-15px_hsl(var(--primary)/0.25)] hover:-translate-y-1">
               <span className="absolute top-4 left-4 md:top-6 md:left-6 inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-[10px] md:text-xs font-medium">
