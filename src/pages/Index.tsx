@@ -541,7 +541,7 @@ const Index = () => {
       <div className="h-32" />
 
       {/* Lecture details section */}
-      <section className="w-full py-12 md:py-20 px-[15px] md:px-6">
+      <section className="w-full py-12 md:py-20 px-[30px] md:px-6">
         <div className="w-full md:w-[min(1000px,72%)] mx-auto text-right mb-6 md:mb-8 px-1" dir="rtl">
           <h2 className="text-foreground text-[1.75rem] md:text-5xl font-light leading-tight mb-2 md:mb-3">
             <span className="font-light">הרצאות</span>
@@ -602,7 +602,7 @@ const Index = () => {
       </section>
 
       {/* Unique offering - Bibliotherapy gradient section */}
-      <section id="workshops" className="w-full py-12 md:py-20 px-[15px] md:px-6">
+      <section id="workshops" className="w-full py-12 md:py-20 px-[30px] md:px-6">
         <div className="w-full md:w-[min(1200px,82%)] mx-auto">
           <div
             className="rounded-2xl md:rounded-[40px] px-6 md:px-24 py-10 md:py-24 text-right"
@@ -653,7 +653,7 @@ const Index = () => {
       </section>
 
       {/* Blog section */}
-      <section id="blog" className="w-full py-12 md:py-20 px-[15px] md:px-6">
+      <section id="blog" className="w-full py-12 md:py-20 px-[30px] md:px-6">
         <div className="w-full md:w-[min(1000px,72%)] mx-auto" dir="rtl">
           <div className="text-right mb-6 md:mb-12 px-1">
             <h2 className="text-foreground text-[1.75rem] md:text-5xl font-light leading-tight mb-2 md:mb-3">
@@ -713,7 +713,7 @@ const Index = () => {
 
 
       {/* Podcast section */}
-      <section id="podcast" className="w-full py-12 md:py-20 px-[15px] md:px-0 overflow-hidden">
+      <section id="podcast" className="w-full py-12 md:py-20 px-[30px] md:px-0 overflow-hidden">
         <div className="w-full md:w-[min(1000px,72%)] mx-auto" dir="rtl">
           <div className="text-right mb-6 md:mb-12 px-1 md:px-0">
             <h2 className="text-foreground text-[1.75rem] md:text-5xl font-light leading-tight mb-2 md:mb-3">
@@ -767,7 +767,7 @@ const Index = () => {
       </section>
 
       {/* Contact section */}
-      <section id="contact" className="w-full bg-background py-12 md:py-24 px-[15px] md:px-6">
+      <section id="contact" className="w-full bg-background py-12 md:py-24 px-[30px] md:px-6">
         <div className="w-full md:w-[min(1100px,82%)] mx-auto" dir="rtl">
           <div className="bg-card rounded-2xl md:rounded-[40px] shadow-[0_20px_60px_-20px_hsl(0_0%_0%_/_0.12)] px-6 md:px-20 py-8 md:py-20">
             {/* Top: heart + heading centered */}
@@ -821,7 +821,7 @@ const Index = () => {
       </section>
 
       {/* Mobile-only: inline mailing list at bottom (replaces the floating hero form on mobile) */}
-      <section className="md:hidden w-full px-[15px] pb-24">
+      <section className="md:hidden w-full px-[30px] pb-24">
         <div className="bg-card rounded-2xl shadow-[0_15px_50px_-10px_hsl(0_0%_0%_/_0.15)] px-5 py-6">
           <div className="text-center mb-4">
             <p className="text-foreground text-base font-light leading-tight">
