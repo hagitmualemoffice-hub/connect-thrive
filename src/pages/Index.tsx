@@ -70,19 +70,11 @@ const lectureCards = [
 const blogPosts = allBlogPosts.slice(0, 3);
 
 const topNav = [
-  { label: "הסנטר שלי", href: "#about" },
+  { label: "אודות", href: "#about" },
   { label: "יזמות קשובה", href: "#entrepreneurship" },
-  { label: "הפרוייקטים שלי", href: "#projects" },
-  { label: "סדנאות והרצאות", href: "#lectures" },
-  { label: "בלוג", href: "/blog" },
-  { label: "פודקאסט", href: "/podcast" },
-];
-
-const heroNav: { label: string; href: string }[] = [
   { label: "הרצאות", href: "#lectures" },
   { label: "סדנאות", href: "#workshops" },
-  { label: "יזמות קשובה", href: "#projects" },
-  { label: "בלוג", href: "#blog" },
+  { label: "בלוג", href: "/blog" },
   { label: "פודקאסט", href: "/podcast" },
 ];
 
