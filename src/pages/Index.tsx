@@ -17,21 +17,6 @@ const podcastEpisodes = [
   { num: "3", title: "על חרדה והימנעות עם דנה לוי" },
 ];
 
-type InquiryType = "general" | "lecture" | "workshop";
-
-const baseSchema = {
-  name: z.string().trim().min(1, "נא להזין שם").max(100, "שם ארוך מדי"),
-  email: z.string().trim().email("כתובת מייל לא תקינה").max(255, "מייל ארוך מדי"),
-  phone: z.string().trim().min(1, "נא להזין טלפון").max(20, "טלפון ארוך מדי"),
-  organization: z.string().trim().max(150, "שם ארוך מדי").optional().or(z.literal("")),
-  participants: z.string().trim().max(20, "ערך ארוך מדי").optional().or(z.literal("")),
-  date: z.string().trim().max(50, "ערך ארוך מדי").optional().or(z.literal("")),
-  topic: z.string().trim().max(200, "ערך ארוך מדי").optional().or(z.literal("")),
-  contactPerson: z.string().trim().max(100, "ערך ארוך מדי").optional().or(z.literal("")),
-  message: z.string().trim().max(1000, "הודעה ארוכה מדי").optional().or(z.literal("")),
-};
-
-const contactSchema = z.object(baseSchema);
 
 const projectCards = [
   {
@@ -103,49 +88,9 @@ const heroNav: { label: string; href: string }[] = [
 ];
 
 const Index = () => {
-  const [inquiryType, setInquiryType] = useState<InquiryType>("general");
-  const [form, setForm] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    organization: "",
-    participants: "",
-    date: "",
-    topic: "",
-    contactPerson: "",
-    message: "",
-  });
-  const [submitting, setSubmitting] = useState(false);
   const [popupOpen, setPopupOpen] = useState(false);
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    const result = contactSchema.safeParse(form);
-    if (!result.success) {
-      toast({ title: "שגיאה", description: result.error.issues[0].message, variant: "destructive" });
-      return;
-    }
-    setSubmitting(true);
-    const { error } = await supabase.from("leads").insert({ email: result.data.email });
-    setSubmitting(false);
-    if (error) {
-      toast({ title: "שגיאה", description: "אירעה שגיאה, נסי שוב", variant: "destructive" });
-      return;
-    }
-    toast({ title: "תודה!", description: "ההודעה נשלחה, אחזור אלייך בהקדם." });
-    setForm({
-      name: "",
-      email: "",
-      phone: "",
-      organization: "",
-      participants: "",
-      date: "",
-      topic: "",
-      contactPerson: "",
-      message: "",
-    });
-    setInquiryType("general");
-  };
+  const [lectureOpen, setLectureOpen] = useState(false);
+  const [workshopOpen, setWorkshopOpen] = useState(false);
 
   return (
     <div className="min-h-screen bg-background" dir="rtl">
