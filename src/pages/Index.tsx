@@ -355,7 +355,10 @@ const Index = () => {
               </div>
 
               <div className="mt-6 flex justify-start" dir="rtl">
-                <button className="px-8 py-2.5 rounded-lg bg-primary text-primary-foreground text-sm font-light hover:bg-[hsl(var(--primary-glow))] transition-colors">
+                <button
+                  onClick={() => setLectureOpen(true)}
+                  className="px-8 py-2.5 rounded-lg bg-primary text-primary-foreground text-sm font-light hover:bg-[hsl(var(--primary-glow))] transition-colors"
+                >
                   להזמנת הרצאה
                 </button>
               </div>
@@ -402,7 +405,10 @@ const Index = () => {
                   </p>
                 </div>
                 <div className="flex justify-start mt-auto">
-                  <button className="px-8 py-2.5 rounded-lg bg-primary text-primary-foreground text-sm font-light hover:bg-[hsl(var(--primary-glow))] transition-colors">
+                  <button
+                    onClick={() => setLectureOpen(true)}
+                    className="px-8 py-2.5 rounded-lg bg-primary text-primary-foreground text-sm font-light hover:bg-[hsl(var(--primary-glow))] transition-colors"
+                  >
                     להזמנת הרצאה
                   </button>
                 </div>
@@ -446,7 +452,10 @@ const Index = () => {
                 לחולל תנועה, חיבור ודיוק דרך הקשבה, טקסט ושיח.
               </p>
 
-              <button className="px-10 py-3 rounded-lg bg-white text-foreground text-sm md:text-base font-light shadow-md hover:bg-primary hover:text-primary-foreground hover:shadow-lg transition-all">
+              <button
+                onClick={() => setWorkshopOpen(true)}
+                className="px-10 py-3 rounded-lg bg-white text-foreground text-sm md:text-base font-light shadow-md hover:bg-primary hover:text-primary-foreground hover:shadow-lg transition-all"
+              >
                 בואו נתכנן לכם סדנא
               </button>
             </div>
@@ -590,177 +599,35 @@ const Index = () => {
                 </p>
               </div>
 
-              {/* Left side - form */}
-              <form onSubmit={handleSubmit} className="text-right space-y-4">
-                {/* Inquiry type selector */}
-                <div>
-                  <label className="block text-foreground text-sm font-light mb-2">סוג הפנייה</label>
-                  <div className="grid grid-cols-3 gap-2">
-                    {([
-                      { val: "general", label: "כללי" },
-                      { val: "lecture", label: "הזמנת הרצאה" },
-                      { val: "workshop", label: "סדנת ביבליותרפיה" },
-                    ] as { val: InquiryType; label: string }[]).map((opt) => (
-                      <button
-                        type="button"
-                        key={opt.val}
-                        onClick={() => setInquiryType(opt.val)}
-                        className={`h-11 px-2 rounded-md border text-xs font-light transition-colors ${
-                          inquiryType === opt.val
-                            ? "bg-primary text-primary-foreground border-primary"
-                            : "bg-white text-foreground/70 border-input hover:border-primary/40"
-                        }`}
-                      >
-                        {opt.label}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-
-                <div>
-                  <label className="block text-foreground text-sm font-light mb-2">השם שלך</label>
-                  <input
-                    type="text"
-                    value={form.name}
-                    onChange={(e) => setForm({ ...form, name: e.target.value })}
-                    maxLength={100}
-                    className="w-full h-11 px-4 rounded-md border border-input bg-white text-right text-sm focus:outline-none focus:ring-2 focus:ring-primary/40"
-                  />
-                </div>
-                <div>
-                  <label className="block text-foreground text-sm font-light mb-2">כתובת מייל</label>
-                  <input
-                    type="email"
-                    value={form.email}
-                    onChange={(e) => setForm({ ...form, email: e.target.value })}
-                    maxLength={255}
-                    className="w-full h-11 px-4 rounded-md border border-input bg-white text-right text-sm focus:outline-none focus:ring-2 focus:ring-primary/40"
-                  />
-                </div>
-                <div>
-                  <label className="block text-foreground text-sm font-light mb-2">טלפון</label>
-                  <input
-                    type="tel"
-                    value={form.phone}
-                    onChange={(e) => setForm({ ...form, phone: e.target.value })}
-                    maxLength={20}
-                    className="w-full h-11 px-4 rounded-md border border-input bg-white text-right text-sm focus:outline-none focus:ring-2 focus:ring-primary/40"
-                  />
-                </div>
-
-                {/* Lecture-specific fields */}
-                {inquiryType === "lecture" && (
-                  <>
-                    <div>
-                      <label className="block text-foreground text-sm font-light mb-2">שם הארגון / הגוף</label>
-                      <input
-                        type="text"
-                        value={form.organization}
-                        onChange={(e) => setForm({ ...form, organization: e.target.value })}
-                        maxLength={150}
-                        className="w-full h-11 px-4 rounded-md border border-input bg-white text-right text-sm focus:outline-none focus:ring-2 focus:ring-primary/40"
-                      />
-                    </div>
-                    <div className="grid grid-cols-2 gap-3">
-                      <div>
-                        <label className="block text-foreground text-sm font-light mb-2">מספר משתתפים</label>
-                        <input
-                          type="text"
-                          value={form.participants}
-                          onChange={(e) => setForm({ ...form, participants: e.target.value })}
-                          maxLength={20}
-                          className="w-full h-11 px-4 rounded-md border border-input bg-white text-right text-sm focus:outline-none focus:ring-2 focus:ring-primary/40"
-                        />
-                      </div>
-                      <div>
-                        <label className="block text-foreground text-sm font-light mb-2">תאריך מבוקש</label>
-                        <input
-                          type="text"
-                          placeholder="לדוגמה: 15/06/2026"
-                          value={form.date}
-                          onChange={(e) => setForm({ ...form, date: e.target.value })}
-                          maxLength={50}
-                          className="w-full h-11 px-4 rounded-md border border-input bg-white text-right text-sm placeholder:text-muted-foreground/60 focus:outline-none focus:ring-2 focus:ring-primary/40"
-                        />
-                      </div>
-                    </div>
-                  </>
-                )}
-
-                {/* Workshop-specific fields */}
-                {inquiryType === "workshop" && (
-                  <>
-                    <div>
-                      <label className="block text-foreground text-sm font-light mb-2">שם הארגון / הגוף</label>
-                      <input
-                        type="text"
-                        value={form.organization}
-                        onChange={(e) => setForm({ ...form, organization: e.target.value })}
-                        maxLength={150}
-                        className="w-full h-11 px-4 rounded-md border border-input bg-white text-right text-sm focus:outline-none focus:ring-2 focus:ring-primary/40"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-foreground text-sm font-light mb-2">איש קשר</label>
-                      <input
-                        type="text"
-                        value={form.contactPerson}
-                        onChange={(e) => setForm({ ...form, contactPerson: e.target.value })}
-                        maxLength={100}
-                        className="w-full h-11 px-4 rounded-md border border-input bg-white text-right text-sm focus:outline-none focus:ring-2 focus:ring-primary/40"
-                      />
-                    </div>
-                    <div className="grid grid-cols-2 gap-3">
-                      <div>
-                        <label className="block text-foreground text-sm font-light mb-2">מספר משתתפים</label>
-                        <input
-                          type="text"
-                          value={form.participants}
-                          onChange={(e) => setForm({ ...form, participants: e.target.value })}
-                          maxLength={20}
-                          className="w-full h-11 px-4 rounded-md border border-input bg-white text-right text-sm focus:outline-none focus:ring-2 focus:ring-primary/40"
-                        />
-                      </div>
-                      <div>
-                        <label className="block text-foreground text-sm font-light mb-2">נושא הסדנה</label>
-                        <input
-                          type="text"
-                          value={form.topic}
-                          onChange={(e) => setForm({ ...form, topic: e.target.value })}
-                          maxLength={200}
-                          className="w-full h-11 px-4 rounded-md border border-input bg-white text-right text-sm focus:outline-none focus:ring-2 focus:ring-primary/40"
-                        />
-                      </div>
-                    </div>
-                  </>
-                )}
-
-                <div>
-                  <label className="block text-foreground text-sm font-light mb-2">
-                    {inquiryType === "general" ? "מה תרצי לכתוב לנו" : "הודעה נוספת (אופציונלי)"}
-                  </label>
-                  <textarea
-                    value={form.message}
-                    onChange={(e) => setForm({ ...form, message: e.target.value })}
-                    maxLength={1000}
-                    rows={4}
-                    className="w-full px-4 py-3 rounded-md border border-input bg-white text-right text-sm focus:outline-none focus:ring-2 focus:ring-primary/40 resize-none"
-                  />
-                </div>
+              {/* Left side - CTA buttons */}
+              <div className="text-right space-y-4 self-center">
                 <button
-                  type="submit"
-                  disabled={submitting}
-                  className="w-full py-3 rounded-md bg-primary text-primary-foreground text-base font-light hover:bg-[hsl(var(--primary-glow))] transition-colors disabled:opacity-60"
+                  onClick={() => setLectureOpen(true)}
+                  className="w-full py-4 px-6 rounded-xl bg-primary text-primary-foreground text-base font-light hover:bg-[hsl(var(--primary-glow))] transition-all shadow-md shadow-primary/20 active:scale-[0.99]"
                 >
-                  {submitting ? "שולח..." : "שליחה"}
+                  להזמנת הרצאה
                 </button>
-              </form>
+                <button
+                  onClick={() => setWorkshopOpen(true)}
+                  className="w-full py-4 px-6 rounded-xl bg-white border border-primary/30 text-foreground text-base font-light hover:bg-accent hover:border-primary transition-all shadow-sm active:scale-[0.99]"
+                >
+                  בואו נתכנן לכם סדנת ביבליותרפיה
+                </button>
+                <button
+                  onClick={() => setPopupOpen(true)}
+                  className="w-full py-4 px-6 rounded-xl bg-muted text-foreground/80 text-base font-light hover:bg-muted/80 transition-all active:scale-[0.99]"
+                >
+                  הצטרפות לתפוצה
+                </button>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       <MailingListPopup open={popupOpen} onOpenChange={setPopupOpen} />
+      <LectureBookingPopup open={lectureOpen} onOpenChange={setLectureOpen} />
+      <WorkshopBookingPopup open={workshopOpen} onOpenChange={setWorkshopOpen} />
     </div>
   );
 };
