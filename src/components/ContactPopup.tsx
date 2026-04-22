@@ -4,6 +4,9 @@ import { X } from "lucide-react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "@/hooks/use-toast";
+import generalImage from "@/assets/popup-contact-general.jpg";
+import lectureImage from "@/assets/popup-contact-lecture.jpg";
+import workshopImage from "@/assets/popup-contact-workshop.jpg";
 
 export type ContactTab = "general" | "lecture" | "workshop";
 
@@ -37,18 +40,24 @@ const initial = {
   message: "",
 };
 
-const tabConfig: Record<ContactTab, { title: string; subtitle: string }> = {
+const tabConfig: Record<ContactTab, { title: string; subtitle: string; image: string; alt: string }> = {
   general: {
     title: "דברו איתי",
     subtitle: "כאן לכל שאלה או פנייה. אחזור אליכם בהקדם.",
+    image: generalImage,
+    alt: "דברו איתי",
   },
   lecture: {
     title: "להזמנת הרצאה",
     subtitle: "ספרו לי על הקהל והאירוע, ואחזור אליכם להתאמת ההרצאה.",
+    image: lectureImage,
+    alt: "להזמנת הרצאה",
   },
   workshop: {
     title: "בואו נתפור לכם חוויה במיוחד לצורך שלכם",
     subtitle: "ספרו לי על הקבוצה והנושא, ואבנה איתכם סדנה מותאמת.",
+    image: workshopImage,
+    alt: "בואו נתכנן סדנה",
   },
 };
 
@@ -92,7 +101,7 @@ const ContactPopup = ({ open, onOpenChange, defaultTab = "general" }: ContactPop
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent
         dir="rtl"
-        className="max-w-[600px] p-0 overflow-hidden rounded-[32px] border-0 bg-card shadow-[0_32px_64px_-16px_hsl(0_0%_0%_/_0.18)] gap-0 max-h-[92vh] flex flex-col"
+        className="max-w-[820px] p-0 overflow-hidden rounded-[32px] border-0 bg-card shadow-[0_32px_64px_-16px_hsl(0_0%_0%_/_0.18)] max-h-[92vh] flex flex-col gap-0"
       >
         <button
           onClick={() => onOpenChange(false)}
@@ -102,162 +111,179 @@ const ContactPopup = ({ open, onOpenChange, defaultTab = "general" }: ContactPop
           <X className="h-5 w-5" />
         </button>
 
-        {/* Scrollable content */}
-        <div className="flex-1 overflow-y-auto px-8 md:px-12 py-10">
-          <div className="text-center mb-8">
-            <div className="w-12 h-px bg-primary mx-auto mb-4" />
-            <h2 className="text-foreground text-2xl md:text-[26px] font-light leading-tight tracking-tight mb-2">
-              {cfg.title}
-            </h2>
-            <p className="text-foreground/70 text-sm font-light leading-relaxed max-w-[36ch] mx-auto">
-              {cfg.subtitle}
-            </p>
+        <div className="flex flex-col md:flex-row flex-1 min-h-0">
+          {/* Image side */}
+          <div className="md:w-5/12 relative min-h-[180px] md:min-h-full bg-muted overflow-hidden shrink-0">
+            <img
+              src={cfg.image}
+              alt={cfg.alt}
+              loading="lazy"
+              width={1024}
+              height={1024}
+              className="absolute inset-0 w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent to-card/20" />
           </div>
 
-          <form id="contact-popup-form" onSubmit={handleSubmit} className="space-y-4">
-            <div>
-              <label className={labelCls}>השם שלכם</label>
-              <input
-                type="text"
-                value={form.name}
-                onChange={(e) => setForm({ ...form, name: e.target.value })}
-                maxLength={100}
-                className={inputCls}
-              />
-            </div>
+          {/* Content side */}
+          <div className="md:w-7/12 flex flex-col min-h-0">
+            <div className="flex-1 overflow-y-auto px-8 py-9 md:px-12 md:py-10">
+              <div className="text-center mb-7">
+                <div className="w-12 h-px bg-primary mx-auto mb-4" />
+                <h2 className="text-foreground text-2xl md:text-[26px] font-light leading-tight tracking-tight mb-2">
+                  {cfg.title}
+                </h2>
+                <p className="text-foreground/70 text-sm font-light leading-relaxed max-w-[36ch] mx-auto">
+                  {cfg.subtitle}
+                </p>
+              </div>
 
-            <div>
-              <label className={labelCls}>טלפון</label>
-              <input
-                type="tel"
-                value={form.phone}
-                onChange={(e) => setForm({ ...form, phone: e.target.value })}
-                maxLength={20}
-                className={inputCls}
-              />
-            </div>
-
-            <div>
-              <label className={labelCls}>כתובת מייל</label>
-              <input
-                type="email"
-                value={form.email}
-                onChange={(e) => setForm({ ...form, email: e.target.value })}
-                maxLength={255}
-                className={inputCls}
-              />
-            </div>
-
-            {/* Lecture-specific fields */}
-            {tab === "lecture" && (
-              <>
+              <form id="contact-popup-form" onSubmit={handleSubmit} className="space-y-4">
                 <div>
-                  <label className={labelCls}>שם הארגון / הגוף</label>
+                  <label className={labelCls}>השם שלכם</label>
                   <input
                     type="text"
-                    value={form.organization}
-                    onChange={(e) => setForm({ ...form, organization: e.target.value })}
-                    maxLength={150}
-                    className={inputCls}
-                  />
-                </div>
-                <div>
-                  <label className={labelCls}>מספר משתתפים</label>
-                  <input
-                    type="text"
-                    value={form.participants}
-                    onChange={(e) => setForm({ ...form, participants: e.target.value })}
-                    maxLength={20}
-                    className={inputCls}
-                  />
-                </div>
-              </>
-            )}
-
-            {/* Workshop-specific fields */}
-            {tab === "workshop" && (
-              <>
-                <div>
-                  <label className={labelCls}>שם הארגון</label>
-                  <input
-                    type="text"
-                    value={form.organization}
-                    onChange={(e) => setForm({ ...form, organization: e.target.value })}
-                    maxLength={150}
-                    className={inputCls}
-                  />
-                </div>
-                <div>
-                  <label className={labelCls}>איש קשר</label>
-                  <input
-                    type="text"
-                    value={form.contactPerson}
-                    onChange={(e) => setForm({ ...form, contactPerson: e.target.value })}
+                    value={form.name}
+                    onChange={(e) => setForm({ ...form, name: e.target.value })}
                     maxLength={100}
                     className={inputCls}
                   />
                 </div>
+
                 <div>
-                  <label className={labelCls}>מספר משתתפים</label>
+                  <label className={labelCls}>טלפון</label>
                   <input
-                    type="text"
-                    value={form.participants}
-                    onChange={(e) => setForm({ ...form, participants: e.target.value })}
+                    type="tel"
+                    value={form.phone}
+                    onChange={(e) => setForm({ ...form, phone: e.target.value })}
                     maxLength={20}
                     className={inputCls}
                   />
                 </div>
+
                 <div>
-                  <label className={labelCls}>נושא הסדנה</label>
+                  <label className={labelCls}>כתובת מייל</label>
                   <input
-                    type="text"
-                    value={form.topic}
-                    onChange={(e) => setForm({ ...form, topic: e.target.value })}
-                    maxLength={200}
+                    type="email"
+                    value={form.email}
+                    onChange={(e) => setForm({ ...form, email: e.target.value })}
+                    maxLength={255}
                     className={inputCls}
                   />
                 </div>
-              </>
-            )}
 
-            {/* תאריך רצוי - in every form */}
-            <div>
-              <label className={labelCls}>תאריך רצוי {tab === "general" ? "(אופציונלי)" : ""}</label>
-              <input
-                type="text"
-                placeholder="לדוגמה: 15/06/2026"
-                value={form.date}
-                onChange={(e) => setForm({ ...form, date: e.target.value })}
-                maxLength={50}
-                className={inputCls}
-              />
+                {/* Lecture-specific fields */}
+                {tab === "lecture" && (
+                  <>
+                    <div>
+                      <label className={labelCls}>שם הארגון / הגוף</label>
+                      <input
+                        type="text"
+                        value={form.organization}
+                        onChange={(e) => setForm({ ...form, organization: e.target.value })}
+                        maxLength={150}
+                        className={inputCls}
+                      />
+                    </div>
+                    <div>
+                      <label className={labelCls}>מספר משתתפים</label>
+                      <input
+                        type="text"
+                        value={form.participants}
+                        onChange={(e) => setForm({ ...form, participants: e.target.value })}
+                        maxLength={20}
+                        className={inputCls}
+                      />
+                    </div>
+                  </>
+                )}
+
+                {/* Workshop-specific fields */}
+                {tab === "workshop" && (
+                  <>
+                    <div>
+                      <label className={labelCls}>שם הארגון</label>
+                      <input
+                        type="text"
+                        value={form.organization}
+                        onChange={(e) => setForm({ ...form, organization: e.target.value })}
+                        maxLength={150}
+                        className={inputCls}
+                      />
+                    </div>
+                    <div>
+                      <label className={labelCls}>איש קשר</label>
+                      <input
+                        type="text"
+                        value={form.contactPerson}
+                        onChange={(e) => setForm({ ...form, contactPerson: e.target.value })}
+                        maxLength={100}
+                        className={inputCls}
+                      />
+                    </div>
+                    <div>
+                      <label className={labelCls}>מספר משתתפים</label>
+                      <input
+                        type="text"
+                        value={form.participants}
+                        onChange={(e) => setForm({ ...form, participants: e.target.value })}
+                        maxLength={20}
+                        className={inputCls}
+                      />
+                    </div>
+                    <div>
+                      <label className={labelCls}>נושא הסדנה</label>
+                      <input
+                        type="text"
+                        value={form.topic}
+                        onChange={(e) => setForm({ ...form, topic: e.target.value })}
+                        maxLength={200}
+                        className={inputCls}
+                      />
+                    </div>
+                  </>
+                )}
+
+                {/* תאריך רצוי - in every form */}
+                <div>
+                  <label className={labelCls}>תאריך רצוי {tab === "general" ? "(אופציונלי)" : ""}</label>
+                  <input
+                    type="text"
+                    placeholder="לדוגמה: 15/06/2026"
+                    value={form.date}
+                    onChange={(e) => setForm({ ...form, date: e.target.value })}
+                    maxLength={50}
+                    className={inputCls}
+                  />
+                </div>
+
+                <div>
+                  <label className={labelCls}>
+                    {tab === "general" ? "מה תרצו לכתוב לי" : "הודעה נוספת (אופציונלי)"}
+                  </label>
+                  <textarea
+                    value={form.message}
+                    onChange={(e) => setForm({ ...form, message: e.target.value })}
+                    maxLength={1000}
+                    rows={tab === "general" ? 4 : 3}
+                    className={`${inputCls} resize-none`}
+                  />
+                </div>
+              </form>
             </div>
 
-            <div>
-              <label className={labelCls}>
-                {tab === "general" ? "מה תרצו לכתוב לי" : "הודעה נוספת (אופציונלי)"}
-              </label>
-              <textarea
-                value={form.message}
-                onChange={(e) => setForm({ ...form, message: e.target.value })}
-                maxLength={1000}
-                rows={tab === "general" ? 4 : 3}
-                className={`${inputCls} resize-none`}
-              />
+            {/* Sticky footer */}
+            <div className="sticky bottom-0 px-8 md:px-12 py-4 bg-card border-t border-border/60 shadow-[0_-8px_24px_-12px_hsl(0_0%_0%_/_0.08)]">
+              <button
+                type="submit"
+                form="contact-popup-form"
+                disabled={submitting}
+                className="w-full py-3.5 rounded-full bg-primary text-primary-foreground font-light tracking-wide hover:bg-[hsl(var(--primary-glow))] transition-all duration-300 shadow-md shadow-primary/20 active:scale-[0.99] disabled:opacity-60 disabled:cursor-not-allowed"
+              >
+                {submitting ? "שולחת..." : "שליחה"}
+              </button>
             </div>
-          </form>
-        </div>
-
-        {/* Sticky footer */}
-        <div className="sticky bottom-0 px-8 md:px-12 py-4 bg-card border-t border-border/60 shadow-[0_-8px_24px_-12px_hsl(0_0%_0%_/_0.08)]">
-          <button
-            type="submit"
-            form="contact-popup-form"
-            disabled={submitting}
-            className="w-full py-3.5 rounded-full bg-primary text-primary-foreground font-light tracking-wide hover:bg-[hsl(var(--primary-glow))] transition-all duration-300 shadow-md shadow-primary/20 active:scale-[0.99] disabled:opacity-60 disabled:cursor-not-allowed"
-          >
-            {submitting ? "שולחת..." : "שליחה"}
-          </button>
+          </div>
         </div>
       </DialogContent>
     </Dialog>
