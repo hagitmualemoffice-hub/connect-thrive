@@ -364,9 +364,9 @@ const Index = () => {
       </section>
 
       {/* Projects section - Listening Entrepreneurship */}
-      <section id="projects" className="relative w-full py-24 px-6 overflow-hidden">
+      <section id="projects" className="relative w-full py-12 md:py-24 px-[15px] md:px-6 overflow-hidden">
         {/* Background image - only top portion (ends ~1/3 into 2nd card) */}
-        <div className="absolute top-0 left-0 right-0 h-[820px] overflow-hidden">
+        <div className="absolute top-0 left-0 right-0 h-[420px] md:h-[820px] overflow-hidden">
           <img
             src={projectsBg}
             alt="יזמות קשובה - פרויקטים"
@@ -374,35 +374,40 @@ const Index = () => {
           />
         </div>
 
-        <div className="relative z-10 w-[min(1000px,72%)] mx-auto" dir="rtl">
-          <div className="text-right mb-10">
-            <h2 className="text-foreground text-4xl md:text-5xl font-light leading-tight mb-3">
+        <div className="relative z-10 w-full md:w-[min(1000px,72%)] mx-auto" dir="rtl">
+          <div className="text-right mb-6 md:mb-10 px-1">
+            <h2 className="text-foreground text-[1.75rem] md:text-5xl font-light leading-tight mb-2 md:mb-3">
               <span className="font-light">יזמות קשובה</span>
-              <span className="mx-3 font-light">|</span>
+              <span className="mx-2 md:mx-3 font-light">|</span>
               <span className="font-light">פרויקטים</span>
             </h2>
-            <p className="text-base md:text-lg font-light">
+            <p className="text-sm md:text-lg font-light">
               <span className="text-primary font-normal">אמפתיה, הקשבה ויצירתיות -</span>
               <span className="text-foreground/80 mx-1">פתרונות שנולדים מתוך צורך אמיתי.</span>
             </p>
           </div>
 
-          <div className="space-y-10">
+          <div className="space-y-6 md:space-y-10">
             {projectCards.map((card, idx) => (
               <div
                 key={idx}
-                className="bg-card rounded-3xl shadow-[0_20px_60px_-15px_hsl(0_0%_0%_/_0.18)] px-12 md:px-20 py-14 md:py-16 text-right w-full"
+                className="bg-card rounded-2xl md:rounded-3xl shadow-[0_20px_60px_-15px_hsl(0_0%_0%_/_0.18)] px-5 md:px-20 py-8 md:py-16 text-right w-full"
               >
-                <div className="w-[min(696px,100%)] mr-0 ml-auto">
-                  <h3 className="text-foreground text-2xl md:text-3xl font-bold leading-tight mb-6 whitespace-pre-line">
+                <div className="w-full md:w-[min(696px,100%)] mr-0 ml-auto">
+                  <h3 className="text-foreground text-xl md:text-3xl font-bold leading-tight mb-4 md:mb-6 whitespace-pre-line">
                     {card.title}
                   </h3>
-                  <div className="space-y-4 text-foreground/80 text-sm md:text-base font-light leading-relaxed mb-8">
-                    {card.paragraphs.map((p, i) => (
-                      <p key={i}>{p}</p>
-                    ))}
-                  </div>
-                  <div className="flex flex-wrap justify-start gap-3">
+                  <ExpandableText
+                    mobileLines={8}
+                    className="text-foreground/80 text-sm md:text-base font-light leading-relaxed mb-6 md:mb-8"
+                  >
+                    <div className="space-y-3 md:space-y-4">
+                      {card.paragraphs.map((p, i) => (
+                        <p key={i}>{p}</p>
+                      ))}
+                    </div>
+                  </ExpandableText>
+                  <div className="flex flex-wrap justify-start gap-2 md:gap-3">
                     {card.buttons.map((btn) => {
                       const cls =
                         "px-7 py-2.5 rounded-lg bg-primary text-primary-foreground text-sm font-light hover:bg-[hsl(var(--primary-glow))] transition-colors";
