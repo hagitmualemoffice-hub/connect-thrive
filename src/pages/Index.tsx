@@ -602,7 +602,7 @@ const Index = () => {
       </section>
 
       {/* Unique offering - Bibliotherapy gradient section */}
-      <section id="workshops" className="w-full py-12 md:py-20 px-[30px] md:px-6">
+      <section id="workshops" className="w-full pt-4 pb-12 md:py-20 px-[30px] md:px-6">
         <div className="w-full md:w-[min(1200px,82%)] mx-auto">
           <div
             className="rounded-2xl md:rounded-[40px] px-6 md:px-24 py-10 md:py-24 text-right"
