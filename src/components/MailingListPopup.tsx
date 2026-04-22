@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { z } from "zod";
-
+import { X } from "lucide-react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "@/hooks/use-toast";
@@ -47,9 +47,15 @@ const MailingListPopup = ({ open, onOpenChange }: MailingListPopupProps) => {
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent
         dir="rtl"
-        hideClose
         className="max-w-[760px] p-0 overflow-hidden rounded-[32px] border-0 bg-card shadow-[0_32px_64px_-16px_hsl(0_0%_0%_/_0.18)]"
       >
+        <button
+          onClick={() => onOpenChange(false)}
+          className="absolute top-5 left-5 z-20 p-2 rounded-full text-foreground/60 hover:text-foreground hover:bg-muted transition-colors"
+          aria-label="סגירה"
+        >
+          <X className="h-5 w-5" />
+        </button>
 
         <div className="flex flex-col md:flex-row">
           {/* Image side */}
@@ -98,7 +104,7 @@ const MailingListPopup = ({ open, onOpenChange }: MailingListPopupProps) => {
               <button
                 type="submit"
                 disabled={submitting}
-                className="px-12 py-3 rounded-full bg-[hsl(var(--primary-vivid))] text-primary-foreground font-light tracking-wide hover:bg-[hsl(var(--primary-vivid-glow))] transition-all duration-500 shadow-md shadow-[hsl(var(--primary-vivid))]/25 active:scale-[0.98] disabled:opacity-60 disabled:cursor-not-allowed"
+                className="w-full bg-primary text-primary-foreground py-4 rounded-full font-light tracking-wide hover:bg-[hsl(var(--primary-glow))] transition-all duration-500 shadow-md shadow-primary/20 active:scale-[0.98] disabled:opacity-60 disabled:cursor-not-allowed"
               >
                 {submitting ? "שולחת..." : "הצטרפות"}
               </button>
