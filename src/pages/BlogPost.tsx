@@ -1,12 +1,18 @@
 import { Link, useParams } from "react-router-dom";
-import { ArrowRight, Share2 } from "lucide-react";
+import { ArrowRight, Share2, DoorOpen, Sprout, Footprints, Heart, BookOpen, LucideIcon } from "lucide-react";
 import { blogPosts, getPostBySlug } from "@/data/blogPosts";
+
+const postIcons: Record<string, LucideIcon> = {
+  "pesach-freedom": DoorOpen,
+  "bereshit-end": Sprout,
+  "lech-lecha-hineni": Footprints,
+  "akeda-tears": Heart,
+};
 
 const BlogPost = () => {
   const { slug } = useParams();
   const post = getPostBySlug(slug);
-  const author = "חגית מועלם";
-  const authorTitle = "פסיכולוגית קלינית ויזמת";
+  const PostIcon = (slug && postIcons[slug]) || BookOpen;
   const relatedPosts = blogPosts.filter((p) => p.slug !== post.slug).slice(0, 3);
 
   return (
