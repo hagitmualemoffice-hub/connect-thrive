@@ -432,11 +432,6 @@ const Index = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-16 text-right" dir="rtl">
                 {/* Right column */}
                 <div>
-                  <div className="flex flex-wrap gap-2 mb-3 justify-start">
-                    <span className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-medium">
-                      הרצאת הדגל
-                    </span>
-                  </div>
                   <h3 className="text-foreground text-2xl font-bold mb-2">החיים שנועדו לי</h3>
                   <p className="text-foreground text-sm font-medium leading-relaxed mb-4">
                     אמונה, ביטחון וחיבור לייעוד ככוח לחיים מאושרים ומימוש עצמי עמוק
