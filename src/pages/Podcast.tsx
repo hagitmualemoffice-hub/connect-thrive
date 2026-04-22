@@ -70,7 +70,7 @@ const Podcast = () => {
             </h1>
           </div>
           <p className="text-foreground/70 text-lg md:text-xl font-light max-w-2xl pr-5">
-            שיחות שקטות על נפש, גוף ותנועה פנימית. בכל פרק אורחת אחרת, נושא אחר, ותמיד - הקשבה אמיתית.
+            פודקאסט על שימור פוריות וחוויה נפשית.
           </p>
 
           {/* Platform links */}
@@ -88,63 +88,66 @@ const Podcast = () => {
         </div>
       </section>
 
-      {/* Episodes list - compact horizontal cards */}
+      {/* Episodes list - one full-width card per episode */}
       <section className="w-full pb-24 px-6">
-        <div className="w-[min(1100px,82%)] mx-auto space-y-4">
+        <div className="w-[min(1100px,82%)] mx-auto space-y-6">
           {episodes.map((ep) => (
             <article
               key={ep.num}
-              className="group bg-card rounded-2xl overflow-hidden shadow-[0_8px_24px_-12px_hsl(0_0%_0%_/_0.08)] hover:shadow-[0_16px_36px_-12px_hsl(var(--primary)/0.18)] transition-all duration-300"
+              className="group bg-card rounded-3xl overflow-hidden shadow-[0_10px_30px_-15px_hsl(0_0%_0%_/_0.1)] hover:shadow-[0_20px_45px_-15px_hsl(var(--primary)/0.22)] transition-all duration-300"
             >
-              <div className="grid grid-cols-1 md:grid-cols-[180px_1fr] gap-0">
+              <div className="grid grid-cols-1 md:grid-cols-[420px_1fr] gap-0">
                 {/* Cover */}
-                <div className="relative h-40 md:h-auto md:min-h-[160px] overflow-hidden bg-accent">
+                <div className="relative h-72 md:h-auto md:min-h-[360px] overflow-hidden bg-accent">
                   <img
                     src={podcastCover}
                     alt={ep.title}
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                     loading="lazy"
                   />
+                  <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/10 transition-colors flex items-center justify-center">
+                    <span className="w-14 h-14 rounded-full bg-white/95 shadow-lg flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                      <Play className="w-6 h-6 text-primary fill-primary mr-0.5" />
+                    </span>
+                  </div>
                 </div>
 
                 {/* Content */}
-                <div className="p-5 md:p-6 text-right flex flex-col md:flex-row md:items-center gap-4">
-                  <div className="flex-1">
-                    <div className="flex items-center gap-2 justify-start mb-1.5 text-foreground/50 text-xs font-light">
-                      <span className="px-2 py-0.5 rounded-md bg-accent text-primary">
-                        פרק {ep.num}
-                      </span>
-                      <span>{ep.date}</span>
-                      <span className="text-foreground/30">·</span>
-                      <span>{ep.duration}</span>
-                    </div>
-
-                    <h2 className="text-foreground text-lg md:text-xl font-light leading-snug mb-1.5 group-hover:text-primary transition-colors">
-                      {ep.title}
-                    </h2>
-                    <p className="text-foreground/70 text-sm font-light leading-relaxed line-clamp-2">
-                      {ep.description}
-                    </p>
+                <div className="p-8 md:p-10 text-right flex flex-col">
+                  <div className="flex items-center gap-3 justify-start mb-3">
+                    <span className="inline-block px-3 py-1 rounded-md bg-accent text-primary text-xs font-light">
+                      פרק {ep.num}
+                    </span>
+                    <span className="text-foreground/50 text-xs font-light">{ep.date}</span>
+                    <span className="text-foreground/30">·</span>
+                    <span className="text-foreground/50 text-xs font-light">{ep.duration}</span>
                   </div>
 
-                  <div className="flex flex-wrap gap-2 justify-start shrink-0">
+                  <h2 className="text-foreground text-2xl md:text-3xl font-light leading-tight mb-4 group-hover:text-primary transition-colors">
+                    {ep.title}
+                  </h2>
+                  <p className="text-foreground/70 text-base font-light leading-relaxed mb-6 flex-1">
+                    {ep.description}
+                  </p>
+
+                  <div className="flex flex-wrap gap-3 justify-start">
                     <a
                       href={ep.spotifyUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-primary text-primary-foreground text-xs font-light hover:bg-[hsl(var(--primary-glow))] transition-colors"
+                      className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-primary text-primary-foreground text-sm font-light hover:bg-[hsl(var(--primary-glow))] transition-colors"
                     >
-                      <Play className="w-3.5 h-3.5 fill-current" />
-                      Spotify
+                      <Play className="w-4 h-4 fill-current" />
+                      האזנה ב-Spotify
                     </a>
                     <a
                       href={ep.driveUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-card border border-border text-foreground text-xs font-light hover:bg-accent hover:text-accent-foreground transition-colors"
+                      className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-card border border-border text-foreground text-sm font-light hover:bg-accent hover:text-accent-foreground transition-colors"
                     >
-                      <ExternalLink className="w-3.5 h-3.5" />
-                      Drive
+                      <ExternalLink className="w-4 h-4" />
+                      צפייה ב-Drive
                     </a>
                   </div>
                 </div>

@@ -168,12 +168,6 @@ const Blog = () => {
             ))}
           </div>
 
-          {/* Load more */}
-          <div className="mt-16 flex justify-center">
-            <button className="px-12 py-3 rounded-lg bg-primary text-primary-foreground text-base font-light hover:bg-[hsl(var(--primary-glow))] transition-colors">
-              טעני עוד פוסטים
-            </button>
-          </div>
         </div>
       </section>
 
