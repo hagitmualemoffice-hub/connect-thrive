@@ -606,17 +606,23 @@ const Index = () => {
                 </p>
               </div>
 
-              {/* Left side - CTA buttons */}
+              {/* Left side - CTA buttons (vivid pink) */}
               <div className="text-right space-y-4 self-center">
                 <button
-                  onClick={() => openContact("lecture")}
-                  className="w-full py-4 px-6 rounded-xl bg-primary text-primary-foreground text-base font-light hover:bg-[hsl(var(--primary-glow))] transition-all shadow-md shadow-primary/20 active:scale-[0.99]"
+                  onClick={() => openContact()}
+                  className="w-full py-4 px-6 rounded-xl bg-[hsl(var(--primary-vivid))] text-primary-foreground text-base font-light hover:bg-[hsl(var(--primary-vivid-glow))] transition-all shadow-md shadow-[hsl(var(--primary-vivid))]/25 active:scale-[0.99]"
+                >
+                  יצירת קשר
+                </button>
+                <button
+                  onClick={openLecture}
+                  className="w-full py-4 px-6 rounded-xl bg-[hsl(var(--primary-vivid))] text-primary-foreground text-base font-light hover:bg-[hsl(var(--primary-vivid-glow))] transition-all shadow-md shadow-[hsl(var(--primary-vivid))]/25 active:scale-[0.99]"
                 >
                   להזמנת הרצאה
                 </button>
                 <button
-                  onClick={() => openContact("workshop")}
-                  className="w-full py-4 px-6 rounded-xl bg-white border border-primary/30 text-foreground text-base font-light hover:bg-accent hover:border-primary transition-all shadow-sm active:scale-[0.99]"
+                  onClick={openWorkshop}
+                  className="w-full py-4 px-6 rounded-xl bg-[hsl(var(--primary-vivid))] text-primary-foreground text-base font-light hover:bg-[hsl(var(--primary-vivid-glow))] transition-all shadow-md shadow-[hsl(var(--primary-vivid))]/25 active:scale-[0.99]"
                 >
                   בואו נתכנן לכם סדנת ביבליותרפיה
                 </button>
@@ -633,7 +639,9 @@ const Index = () => {
       </section>
 
       <MailingListPopup open={popupOpen} onOpenChange={setPopupOpen} />
-      <ContactPopup open={contactOpen} onOpenChange={setContactOpen} defaultTab={contactTab} />
+      <ContactPopup open={contactOpen} onOpenChange={setContactOpen} defaultTab="general" />
+      <ContactPopup open={lectureOpen} onOpenChange={setLectureOpen} defaultTab="lecture" lockTab />
+      <ContactPopup open={workshopOpen} onOpenChange={setWorkshopOpen} defaultTab="workshop" lockTab />
     </div>
   );
 };
