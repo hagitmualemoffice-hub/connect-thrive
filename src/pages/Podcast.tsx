@@ -7,7 +7,7 @@ const episodes = [
     num: "01",
     title: "על חיבור לגוף עם נעם ארז",
     description:
-      "שיחה עמוקה על הדרך שבה הגוף שלנו זוכר, מאחסן ומשחרר. נעם ארז מתארחת לשיחה על הקשר בין נפש לגוף ואיך מתחילים להקשיב פנימה.",
+      "על חיבור לגוף, למה שימור פוריות ואיך את יכולה לעשות את התהליך מתוך חיבור ובחירה.",
     duration: "47 דק׳",
     date: "מרץ 2026",
     spotifyUrl: "https://open.spotify.com/show/2FIal7yOO7htlBkKUwCbxW?si=dtVPb1AQQomBBOTazo3hWA",
@@ -17,7 +17,7 @@ const episodes = [
     num: "02",
     title: 'על הקשבה לגוף עם ד"ר מיכל פרנסט',
     description:
-      'שיחה עם ד"ר מיכל פרנסט על המקום שבו הגוף מדבר ואנחנו לא תמיד יודעות להקשיב. על האותות הקטנים, על הקשב הפנימי ועל איך לומדים מחדש את שפת הגוף.',
+      "על הקשבה לגוף בתהליך שימור פוריות, ואיך זו יכולת שיכולה לעזור לך בתהליך.",
     duration: "52 דק׳",
     date: "פברואר 2026",
     spotifyUrl: "https://open.spotify.com/show/2FIal7yOO7htlBkKUwCbxW?si=dtVPb1AQQomBBOTazo3hWA",
@@ -27,7 +27,7 @@ const episodes = [
     num: "03",
     title: "על חרדה והימנעות עם דורית בנגד אלבד",
     description:
-      "החרדה היא לא אויב - היא מורה. בפרק הזה נצלול לעולם של הימנעות, מה היא מנסה להגן עלינו ממנו, ואיך מתחילים לזוז גם כשהיא נוכחת.",
+      "על חרדה והימנעות בתהליך שימור פוריות, ואיך את יכולה לעזור לעצמך עם זה.",
     duration: "58 דק׳",
     date: "ינואר 2026",
     spotifyUrl: "https://open.spotify.com/show/2FIal7yOO7htlBkKUwCbxW?si=dtVPb1AQQomBBOTazo3hWA",
@@ -37,7 +37,7 @@ const episodes = [
     num: "04",
     title: 'על התהליך עצמו עם ד"ר ירדנה היימן',
     description:
-      'שיחה עם ד"ר ירדנה היימן על התהליך הנפשי שמתרחש בתוכנו - איך נראית עבודה פנימית אמיתית, מה קורה בדרך, ואיך לומדים לסמוך על הקצב שלנו.',
+      'כל מה שאת רוצה לדעת על ההליך עצמו. ד"ר היימן עם הסבר בהיר ומענה לכל השאלות.',
     duration: "44 דק׳",
     date: "דצמבר 2025",
     spotifyUrl: "https://open.spotify.com/show/2FIal7yOO7htlBkKUwCbxW?si=dtVPb1AQQomBBOTazo3hWA",
