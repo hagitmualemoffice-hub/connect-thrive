@@ -670,56 +670,48 @@ const Index = () => {
       </section>
 
       {/* Contact section */}
-      <section id="contact" className="relative w-full bg-white">
-        {/* Background image - only top ~half */}
-        <div
-          className="w-full bg-cover bg-center h-[360px] md:h-[560px]"
-          style={{ backgroundImage: `url(${contactBg})` }}
-        />
-        {/* White card overlapping - covers ~half of bg image */}
-        <div className="w-[min(900px,60%)] mx-auto -mt-40 md:-mt-72 relative z-10" dir="rtl">
-          <div className="bg-white rounded-t-[32px] shadow-[0_-15px_40px_-15px_hsl(0_0%_0%_/_0.15)] px-12 md:px-24 py-12 md:py-16">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-14 items-start">
-              {/* Right side - icon + heading */}
-              <div className="text-right">
-                <div className="flex justify-start mb-6">
-                  <img
-                    src={contactHeart}
-                    alt="דברי איתי"
-                    width={160}
-                    height={120}
-                    className="w-28 md:w-36 h-auto"
-                  />
-                </div>
-                <h2 className="text-foreground text-4xl md:text-5xl font-light mb-5">
-                  דברי איתי
-                </h2>
-                <p className="text-foreground/75 text-base md:text-lg font-light leading-relaxed">
-                  כאן לכל שאלה, להזמנת הרצאה, בניית סדנה מותאמת אליכם או שיתופי פעולה לפרויקטים שלי.
-                </p>
+      <section id="contact" className="w-full bg-background py-24 px-6">
+        <div className="w-[min(1100px,82%)] mx-auto" dir="rtl">
+          <div className="bg-card rounded-[40px] shadow-[0_20px_60px_-20px_hsl(0_0%_0%_/_0.12)] px-10 md:px-20 py-14 md:py-20">
+            {/* Top: heart + heading centered */}
+            <div className="text-center mb-12">
+              <div className="flex justify-center mb-5">
+                <img
+                  src={contactHeart}
+                  alt="דברו איתי"
+                  width={160}
+                  height={120}
+                  className="w-24 md:w-28 h-auto"
+                />
               </div>
+              <h2 className="text-foreground text-4xl md:text-5xl font-light mb-4">
+                דברו איתי
+              </h2>
+              <p className="text-foreground/70 text-base md:text-lg font-light leading-relaxed max-w-[52ch] mx-auto">
+                כאן לכל שאלה, להזמנת הרצאה, בניית סדנה מותאמת אליכם או שיתופי פעולה לפרויקטים שלי.
+              </p>
+            </div>
 
-              {/* Left side - CTA buttons */}
-              <div className="text-right space-y-4 self-center">
-                <button
-                  onClick={() => openContact("lecture")}
-                  className="w-full py-4 px-6 rounded-xl bg-primary text-primary-foreground text-base font-light hover:bg-[hsl(var(--primary-glow))] transition-all shadow-md shadow-primary/20 active:scale-[0.99]"
-                >
-                  להזמנת הרצאה
-                </button>
-                <button
-                  onClick={() => openContact("workshop")}
-                  className="w-full py-4 px-6 rounded-xl bg-white border border-primary/30 text-foreground text-base font-light hover:bg-accent hover:border-primary transition-all shadow-sm active:scale-[0.99]"
-                >
-                  בואו נתכנן לכם סדנת ביבליותרפיה
-                </button>
-                <button
-                  onClick={() => setPopupOpen(true)}
-                  className="w-full py-4 px-6 rounded-xl bg-muted text-foreground/80 text-base font-light hover:bg-muted/80 transition-all active:scale-[0.99]"
-                >
-                  הצטרפות לתפוצה
-                </button>
-              </div>
+            {/* Bottom: 3 CTA buttons in a row */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-3xl mx-auto">
+              <button
+                onClick={() => openContact("lecture")}
+                className="py-4 px-6 rounded-xl bg-primary text-primary-foreground text-base font-light hover:bg-[hsl(var(--primary-glow))] transition-all shadow-md shadow-primary/20 active:scale-[0.99]"
+              >
+                להזמנת הרצאה
+              </button>
+              <button
+                onClick={() => openContact("workshop")}
+                className="py-4 px-6 rounded-xl bg-card border border-primary/30 text-foreground text-base font-light hover:bg-accent hover:border-primary transition-all shadow-sm active:scale-[0.99]"
+              >
+                בואו נתכנן סדנת ביבליותרפיה
+              </button>
+              <button
+                onClick={() => setPopupOpen(true)}
+                className="py-4 px-6 rounded-xl bg-muted text-foreground/80 text-base font-light hover:bg-muted/80 transition-all active:scale-[0.99]"
+              >
+                הצטרפות לתפוצה
+              </button>
             </div>
           </div>
         </div>
@@ -727,6 +719,7 @@ const Index = () => {
 
       <MailingListPopup open={popupOpen} onOpenChange={setPopupOpen} />
       <ContactPopup open={contactOpen} onOpenChange={setContactOpen} defaultTab={contactTab} />
+      <HostingPopup open={hostingOpen} onOpenChange={setHostingOpen} />
     </div>
   );
 };
