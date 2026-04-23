@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { BookOpen, Mic, Mail, MessageCircle, Menu, X, FolderOpen, Mic2, Home, Info } from "lucide-react";
+import { Mail, Menu, X, FolderOpen, Mic2, Home, Sparkles } from "lucide-react";
 import MailingListPopup from "@/components/MailingListPopup";
 import ContactPopup from "@/components/ContactPopup";
 
@@ -10,6 +10,7 @@ const sectionLinks = [
   { label: "בית", href: "/" },
   { label: "אודות", href: "/#about" },
   { label: "יזמות קשובה", href: "/#entrepreneurship" },
+  { label: "עבודה עם ארגונים", href: "/#org-work" },
   { label: "סדנאות", href: "/#workshops" },
   { label: "בלוג", href: "/blog" },
   { label: "פודקאסט", href: "/podcast" },
