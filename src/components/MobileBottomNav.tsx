@@ -139,10 +139,10 @@ const MobileBottomNav = () => {
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => setMenuOpen(false)}
-              className="w-full mb-2 py-3 rounded-xl bg-[#25D366] text-white text-sm font-light flex items-center justify-center gap-2 hover:opacity-90 transition-opacity"
+              className="w-full mb-2 py-3 rounded-xl bg-[#DCF8C6] text-[#075E54] text-sm font-medium flex items-center justify-center gap-2 border-2 border-[#25D366] hover:bg-[#c6f0a8] transition-colors"
             >
-              <WhatsAppIcon className="h-4 w-4" />
-              שלחו לי הודעה בוואטסאפ
+              <WhatsAppIcon className="h-4 w-4 text-[#25D366]" />
+              דברו איתי בווצאפ
             </a>
             <button
               onClick={() => {

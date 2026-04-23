@@ -333,7 +333,7 @@ const Index = () => {
           </h2>
 
           <ExpandableText
-            mobileLines={5}
+            mobileLines={3}
             className="text-foreground/80 text-sm md:text-base font-light leading-relaxed"
           >
             <div className="space-y-4 md:space-y-6">
