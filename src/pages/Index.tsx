@@ -241,7 +241,7 @@ const Index = () => {
         </div>
 
         {/* Mobile: title block over the image — fonts 1.5x larger, sensible line breaks */}
-        <div className="md:hidden absolute top-0 left-0 right-0 h-[86%] z-10 flex flex-col items-center justify-end text-center px-6 pb-[80px]">
+        <div className="md:hidden absolute top-0 left-0 right-0 h-[86%] z-10 flex flex-col items-center justify-end text-center px-6 pb-[56px]">
           <p className="text-white/90 text-[18px] font-light leading-snug mb-1">
             חגית מועלם
             <br />
@@ -257,9 +257,6 @@ const Index = () => {
         {/* Mobile: white pill positioned half on image, half on white background */}
         <div className="md:hidden absolute top-[86%] left-0 right-0 z-20 -translate-y-1/4 -mt-[15px] px-[30px]">
           <div className="relative bg-white/95 backdrop-blur-sm rounded-xl px-4 pt-3 pb-3 shadow-md mx-auto">
-            <div className="flex justify-center mb-1.5">
-              <Heart className="text-primary w-5 h-5" strokeWidth={1.5} fill="hsl(var(--primary) / 0.15)" aria-hidden="true" />
-            </div>
             <p className="text-foreground text-[16px] font-light leading-relaxed text-center">
               על התפתחות, יזמות, קהילה ושינוי
               <br />
