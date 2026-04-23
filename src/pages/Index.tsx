@@ -229,9 +229,9 @@ const Index = () => {
       </header>
 
       {/* Hero */}
-      <section id="top" className="relative w-full h-[78vh] md:h-[640px] group">
-        {/* Mobile: image takes 80% of section so pill sits at midpoint of image bottom */}
-        <div className="absolute top-0 left-0 right-0 h-[80%] md:h-full overflow-hidden md:inset-0">
+      <section id="top" className="relative w-full h-[88vh] md:h-[640px] group">
+        {/* Mobile: image takes 86% of section so pill sits at midpoint of image bottom */}
+        <div className="absolute top-0 left-0 right-0 h-[86%] md:h-full overflow-hidden md:inset-0">
           <img
             src={heroBg}
             alt="חגית מועלם - פסיכולוגית קלינית"
@@ -241,7 +241,7 @@ const Index = () => {
         </div>
 
         {/* Mobile: title block over the image — fonts 1.5x larger, sensible line breaks */}
-        <div className="md:hidden absolute top-0 left-0 right-0 h-[80%] z-10 flex flex-col items-center justify-end text-center px-6 pb-[80px]">
+        <div className="md:hidden absolute top-0 left-0 right-0 h-[86%] z-10 flex flex-col items-center justify-end text-center px-6 pb-[80px]">
           <p className="text-white/90 text-[18px] font-light leading-snug mb-1">
             חגית מועלם
             <br />
@@ -255,8 +255,11 @@ const Index = () => {
         </div>
 
         {/* Mobile: white pill positioned half on image, half on white background */}
-        <div className="md:hidden absolute top-[80%] left-0 right-0 z-20 -translate-y-1/2 px-[30px]">
-          <div className="bg-white/95 backdrop-blur-sm rounded-xl px-4 py-3 shadow-md mx-auto">
+        <div className="md:hidden absolute top-[86%] left-0 right-0 z-20 -translate-y-1/2 px-[30px]">
+          <div className="relative bg-white/95 backdrop-blur-sm rounded-xl px-4 py-3 shadow-md mx-auto">
+            <span className="absolute -top-3 right-4 inline-flex items-center justify-center w-8 h-8 rounded-full bg-primary/15 border border-primary/30 shadow-sm">
+              <Heart className="w-4 h-4 text-primary" strokeWidth={2} fill="hsl(var(--primary) / 0.4)" aria-hidden="true" />
+            </span>
             <p className="text-foreground text-[16px] font-light leading-relaxed text-center">
               על התפתחות, יזמות, קהילה ושינוי
               <br />
@@ -404,10 +407,16 @@ const Index = () => {
 
         <div className="relative z-10 w-full md:w-[min(1000px,72%)] mx-auto" dir="rtl">
           <div className="text-right mb-8 md:mb-10 px-1 mt-[50px] md:mt-0">
-            {/* Mobile: simplified title only */}
-            <h2 className="md:hidden text-foreground text-[1.75rem] font-light leading-tight">
-              הפרויקטים שלי
-            </h2>
+            {/* Mobile: title + subtitle in style of lectures strip */}
+            <div className="md:hidden">
+              <h2 className="text-foreground text-[1.75rem] font-light leading-tight">
+                הפרויקטים שלי
+              </h2>
+              <p className="mt-1.5 text-sm font-light">
+                <span className="text-primary font-normal">אמפתיה, הקשבה ויצירתיות -</span>
+                <span className="text-foreground/80 mx-1">פתרונות שנולדים מתוך צורך אמיתי.</span>
+              </p>
+            </div>
             {/* Desktop: full title + subtitle */}
             <h2 className="hidden md:block text-foreground md:text-5xl font-light leading-tight mb-3">
               <span className="font-light">יזמות קשובה</span>
