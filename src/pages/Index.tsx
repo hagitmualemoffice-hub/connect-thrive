@@ -260,7 +260,9 @@ const Index = () => {
             <p className="text-foreground text-[16px] font-light leading-relaxed text-center">
               על התפתחות, יזמות, קהילה ושינוי
               <br />
-              שנולדים מעומק נפשי-רוחני וחיבור לייעוד ולמשמעות
+              שנולדים מעומק נפשי-רוחני
+              <br />
+              וחיבור לייעוד ולמשמעות
             </p>
           </div>
         </div>
