@@ -260,7 +260,9 @@ const Index = () => {
             <p className="text-foreground text-[16px] font-light leading-relaxed text-center">
               על התפתחות, יזמות, קהילה ושינוי
               <br />
-              שנולדים מעומק נפשי-רוחני וחיבור לייעוד ולמשמעות
+              שנולדים מעומק נפשי-רוחני
+              <br />
+              וחיבור לייעוד ולמשמעות
             </p>
           </div>
         </div>
@@ -486,7 +488,7 @@ const Index = () => {
         <div className="absolute inset-0 bg-black/25" />
 
         {/* Title + Card aligned to same right edge as upper sections */}
-        <div className="absolute inset-x-0 top-[210px] md:top-auto md:bottom-[390px] z-10 px-[30px] md:px-6">
+        <div className="absolute inset-x-0 top-[180px] md:top-auto md:bottom-[390px] z-10 px-[30px] md:px-6">
           <div className="w-full md:w-[min(1000px,72%)] mx-auto text-right" dir="rtl">
             {/* Mobile: simplified title + subtitle (deduped from lower section) */}
             <div className="md:hidden">
