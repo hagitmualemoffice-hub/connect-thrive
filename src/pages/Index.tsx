@@ -496,7 +496,7 @@ const Index = () => {
                 </ExpandableText>
                 <div className="flex flex-wrap justify-start gap-2 md:gap-3">
                   <button
-                    onClick={() => openContact("entrepreneurship")}
+                    onClick={() => openContact("general")}
                     className="px-7 py-2.5 rounded-lg bg-primary text-primary-foreground text-sm font-light hover:bg-[hsl(var(--primary-glow))] transition-colors"
                   >
                     צרו קשר
