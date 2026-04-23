@@ -99,13 +99,15 @@ const MobileBottomNav = () => {
             <div className="grid grid-cols-2 gap-2 mb-4">
               {sectionLinks.map((item) => {
                 const isInternal = !item.href.startsWith("/#");
+                const baseClasses =
+                  "py-3 px-4 rounded-xl bg-white text-foreground text-sm font-light text-right border-2 border-border hover:border-primary hover:text-primary transition-colors";
                 if (isInternal) {
                   return (
                     <Link
                       key={item.label}
                       to={item.href}
                       onClick={() => setMenuOpen(false)}
-                      className="py-3 px-4 rounded-xl bg-muted text-foreground text-sm font-light text-right hover:bg-accent transition-colors"
+                      className={baseClasses}
                     >
                       {item.label}
                     </Link>
@@ -116,12 +118,21 @@ const MobileBottomNav = () => {
                     key={item.label}
                     href={item.href}
                     onClick={() => setMenuOpen(false)}
-                    className="py-3 px-4 rounded-xl bg-muted text-foreground text-sm font-light text-right hover:bg-accent transition-colors"
+                    className={baseClasses}
                   >
                     {item.label}
                   </a>
                 );
               })}
+              <button
+                onClick={() => {
+                  setMenuOpen(false);
+                  setContactOpen(true);
+                }}
+                className="py-3 px-4 rounded-xl bg-white text-foreground text-sm font-light text-right border-2 border-border hover:border-primary hover:text-primary transition-colors col-span-2"
+              >
+                דברו איתי
+              </button>
             </div>
             <a
               href={WHATSAPP_URL}
