@@ -56,17 +56,31 @@ const MobileBottomNav = () => {
             className="flex flex-col items-center justify-center gap-0.5 text-foreground/70 hover:text-primary transition-colors"
           >
             <Mic2 className="h-5 w-5" />
-            <span className="text-[10px] font-light">הרצאות</span>
+            <span className="text-[10px] font-light">מוצרים</span>
           </a>
           <a
-            href={WHATSAPP_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex flex-col items-center justify-center gap-0.5 text-[#5FE080] hover:opacity-80 transition-opacity"
-            aria-label="וואטסאפ"
+            href="/#org-work"
+            className="flex flex-col items-center justify-center gap-0.5 transition-opacity hover:opacity-80"
+            aria-label="עבודה עם ארגונים"
           >
-            <WhatsAppIcon className="h-5 w-5" />
-            <span className="text-[10px] font-light">וואטסאפ</span>
+            <span
+              className="inline-flex items-center justify-center h-7 w-7 rounded-full text-white shadow-[0_4px_12px_-4px_hsl(325_75%_60%/0.6)]"
+              style={{
+                background:
+                  "linear-gradient(135deg, hsl(172 79% 55%) 0%, hsl(325 75% 65%) 100%)",
+              }}
+            >
+              <Sparkles className="h-3.5 w-3.5" />
+            </span>
+            <span
+              className="text-[10px] font-medium bg-clip-text text-transparent"
+              style={{
+                backgroundImage:
+                  "linear-gradient(90deg, hsl(172 79% 45%) 0%, hsl(325 75% 60%) 100%)",
+              }}
+            >
+              ארגונים
+            </span>
           </a>
           <button
             onClick={() => setMenuOpen(true)}
