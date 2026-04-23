@@ -229,9 +229,9 @@ const Index = () => {
       </header>
 
       {/* Hero */}
-      <section id="top" className="relative w-full h-[75vh] md:h-[640px] group">
-        {/* Mobile: image takes 75% of section, white space below for pill overlap */}
-        <div className="absolute top-0 left-0 right-0 h-[75%] md:h-full overflow-hidden md:inset-0">
+      <section id="top" className="relative w-full h-[78vh] md:h-[640px] group">
+        {/* Mobile: image takes 80% of section so pill sits at midpoint of image bottom */}
+        <div className="absolute top-0 left-0 right-0 h-[80%] md:h-full overflow-hidden md:inset-0">
           <img
             src={heroBg}
             alt="חגית מועלם - פסיכולוגית קלינית"
@@ -240,21 +240,27 @@ const Index = () => {
           <div className="absolute inset-0 bg-black/25" />
         </div>
 
-        {/* Mobile: title block over the image - raised higher, gap to pill = side margin (~30px) */}
-        <div className="md:hidden absolute top-0 left-0 right-0 h-[75%] z-10 flex flex-col items-center justify-end text-center px-8 pb-[60px]">
-          <p className="text-white/90 text-xs font-light mb-[2px]">
-            חגית מועלם פסיכולוגית בהתמחות קלינית
+        {/* Mobile: title block over the image — fonts 1.5x larger, sensible line breaks */}
+        <div className="md:hidden absolute top-0 left-0 right-0 h-[80%] z-10 flex flex-col items-center justify-end text-center px-6 pb-[80px]">
+          <p className="text-white/90 text-[18px] font-light leading-snug mb-1">
+            חגית מועלם
+            <br />
+            פסיכולוגית בהתמחות קלינית
           </p>
-          <h1 className="text-white text-3xl font-light tracking-wide">
-            כשחיבור מחולל תנועה
+          <h1 className="text-white text-[2.8rem] font-light tracking-wide leading-[1.05]">
+            כשחיבור
+            <br />
+            מחולל תנועה
           </h1>
         </div>
 
         {/* Mobile: white pill positioned half on image, half on white background */}
-        <div className="md:hidden absolute top-[75%] left-0 right-0 z-20 -translate-y-1/2 px-[30px]">
+        <div className="md:hidden absolute top-[80%] left-0 right-0 z-20 -translate-y-1/2 px-[30px]">
           <div className="bg-white/95 backdrop-blur-sm rounded-xl px-4 py-3 shadow-md mx-auto">
-            <p className="text-foreground text-[11px] font-light leading-relaxed text-center">
-              על התפתחות, יזמות, קהילה ושינוי שנולדים מעומק נפשי-רוחני וחיבור לייעוד ולמשמעות
+            <p className="text-foreground text-[16px] font-light leading-relaxed text-center">
+              על התפתחות, יזמות, קהילה ושינוי
+              <br />
+              שנולדים מעומק נפשי-רוחני וחיבור לייעוד ולמשמעות
             </p>
           </div>
         </div>
