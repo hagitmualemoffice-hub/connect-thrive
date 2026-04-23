@@ -241,7 +241,7 @@ const Index = () => {
         </div>
 
         {/* Mobile: title block over the image — fonts 1.5x larger, sensible line breaks */}
-        <div className="md:hidden absolute top-0 left-0 right-0 h-[86%] z-10 flex flex-col items-center justify-end text-center px-6 pb-[56px]">
+        <div className="md:hidden absolute top-0 left-0 right-0 h-[86%] z-10 flex flex-col items-center justify-end text-center px-6 pb-[68px]">
           <p className="text-white/90 text-[18px] font-light leading-snug mb-1">
             חגית מועלם
             <br />
