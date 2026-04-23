@@ -139,9 +139,9 @@ const MobileBottomNav = () => {
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => setMenuOpen(false)}
-              className="w-full mb-2 py-3 rounded-xl bg-[#DCF8C6] text-[#075E54] text-sm font-medium flex items-center justify-center gap-2 border-2 border-[#25D366] hover:bg-[#c6f0a8] transition-colors"
+              className="w-full mb-2 py-3 rounded-xl bg-[#E8FAD4] text-[#075E54] text-sm font-medium flex items-center justify-center gap-2 border-2 border-[#5FE080] hover:bg-[#dcf5bf] transition-colors"
             >
-              <WhatsAppIcon className="h-4 w-4 text-[#25D366]" />
+              <WhatsAppIcon className="h-4 w-4 text-[#5FE080]" />
               דברו איתי בווצאפ
             </a>
             <button
