@@ -404,15 +404,16 @@ const Index = () => {
 
         <div className="relative z-10 w-full md:w-[min(1000px,72%)] mx-auto" dir="rtl">
           <div className="text-right mb-8 md:mb-10 px-1 mt-[50px] md:mt-0">
-            {/* Mobile: title only (subtitle removed, spacing preserved) */}
+            {/* Mobile: title + subtitle with custom line breaks */}
             <div className="md:hidden">
               <h2 className="text-foreground text-[1.75rem] font-light leading-tight">
                 הפרויקטים שלי
               </h2>
-              <div className="mt-1.5 text-sm font-light invisible" aria-hidden="true">
-                <span>אמפתיה, הקשבה ויצירתיות -</span>
-                <span className="mx-1">פתרונות שנולדים מתוך צורך אמיתי.</span>
-              </div>
+              <p className="mt-1.5 text-sm font-light leading-relaxed">
+                <span className="text-primary font-normal block">אמפתיה, הקשבה ויצירתיות -</span>
+                <span className="text-foreground/80 block">פתרונות שנולדים מתוך</span>
+                <span className="text-foreground/80 block">צורך אמיתי</span>
+              </p>
             </div>
             {/* Desktop: full title + subtitle */}
             <h2 className="hidden md:block text-foreground md:text-5xl font-light leading-tight mb-3">
