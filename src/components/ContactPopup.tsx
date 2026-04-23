@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { z } from "zod";
 import { X } from "lucide-react";
-import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { ResponsiveDialog } from "@/components/ResponsiveDialog";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "@/hooks/use-toast";
 import generalImage from "@/assets/popup-contact-general.jpg";
@@ -98,11 +98,7 @@ const ContactPopup = ({ open, onOpenChange, defaultTab = "general" }: ContactPop
   const cfg = tabConfig[tab];
 
   return (
-    <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent
-        dir="rtl"
-        className="max-w-[820px] p-0 overflow-hidden rounded-[32px] border-0 bg-card shadow-[0_32px_64px_-16px_hsl(0_0%_0%_/_0.18)] max-h-[92vh] flex flex-col gap-0"
-      >
+    <ResponsiveDialog open={open} onOpenChange={onOpenChange}>
         <button
           onClick={() => onOpenChange(false)}
           className="absolute top-5 left-5 z-30 p-2 rounded-full text-foreground/60 hover:text-foreground hover:bg-muted transition-colors bg-card/80 backdrop-blur-sm"
@@ -287,8 +283,7 @@ const ContactPopup = ({ open, onOpenChange, defaultTab = "general" }: ContactPop
             </div>
           </div>
         </div>
-      </DialogContent>
-    </Dialog>
+    </ResponsiveDialog>
   );
 };
 
