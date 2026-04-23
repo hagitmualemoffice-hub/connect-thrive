@@ -131,6 +131,7 @@ const topNav = [
   { label: "אודות", href: "#about" },
   { label: "יזמות קשובה", href: "#entrepreneurship" },
   { label: "הפרויקטים שלי", href: "#projects" },
+  { label: "עבודה עם ארגונים", href: "#org-work" },
   { label: "הרצאות", href: "#lectures" },
   { label: "סדנאות", href: "#workshops" },
   { label: "בלוג", href: "/blog" },
@@ -763,11 +764,8 @@ const Index = () => {
       <section id="workshops" className="w-full pt-4 pb-12 md:py-20 px-[30px] md:px-6">
         <div className="w-full md:w-[min(1200px,82%)] mx-auto">
           <div
-            className="rounded-2xl md:rounded-[40px] px-6 md:px-24 py-10 md:py-24 text-right"
+            className="rounded-2xl md:rounded-[40px] px-6 md:px-24 py-10 md:py-24 text-right bg-[linear-gradient(180deg,hsl(172_79%_79%)_0%,hsl(325_75%_69%)_100%)] md:bg-[linear-gradient(90deg,hsl(172_79%_79%)_0%,hsl(325_75%_69%)_100%)]"
             dir="rtl"
-            style={{
-              background: "linear-gradient(90deg, hsl(172 79% 79%) 0%, hsl(325 75% 69%) 100%)",
-            }}
           >
             <div className="w-full md:w-[min(720px,75%)] mr-0">
               <h2 className="text-white text-[1.75rem] md:text-5xl font-light leading-tight mb-5 md:mb-10">
