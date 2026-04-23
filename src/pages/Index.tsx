@@ -256,10 +256,16 @@ const Index = () => {
 
         {/* Mobile: white pill positioned half on image, half on white background */}
         <div className="md:hidden absolute top-[86%] left-0 right-0 z-20 -translate-y-1/2 px-[30px]">
-          <div className="relative bg-white/95 backdrop-blur-sm rounded-xl px-4 pt-4 pb-3 shadow-md mx-auto">
-            <div className="flex justify-center mb-2">
+          <div className="relative bg-white/95 backdrop-blur-sm rounded-xl px-4 pt-3 pb-3 shadow-md mx-auto">
+            <div className="flex justify-center gap-2 mb-1.5">
               <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-primary/15 border border-primary/30 shadow-sm">
-                <Heart className="w-4 h-4 text-primary" strokeWidth={2} fill="hsl(var(--primary) / 0.4)" aria-hidden="true" />
+                <Sprout className="w-4 h-4 text-primary" strokeWidth={2} aria-hidden="true" />
+              </span>
+              <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-primary/15 border border-primary/30 shadow-sm">
+                <Lightbulb className="w-4 h-4 text-primary" strokeWidth={2} aria-hidden="true" />
+              </span>
+              <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-primary/15 border border-primary/30 shadow-sm">
+                <Users className="w-4 h-4 text-primary" strokeWidth={2} aria-hidden="true" />
               </span>
             </div>
             <p className="text-foreground text-[16px] font-light leading-relaxed text-center">
