@@ -502,7 +502,7 @@ const Index = () => {
                     Product · Strategy · Build
                   </span>
 
-                  <h3 className="text-2xl md:text-4xl font-bold leading-tight mb-5 md:mb-8">
+                  <h3 className="text-2xl md:text-4xl font-bold leading-tight mb-4 md:mb-6">
                     <span
                       className="bg-clip-text text-transparent"
                       style={{
@@ -514,7 +514,7 @@ const Index = () => {
                     </span>
                   </h3>
 
-                  {/* Pull quote */}
+                  {/* Pull quote / tagline */}
                   <div className="relative pr-5 md:pr-6 mb-7 md:mb-10">
                     <span
                       className="absolute right-0 top-1 bottom-1 w-[3px] rounded-full"
@@ -524,69 +524,35 @@ const Index = () => {
                       }}
                     />
                     <p className="text-foreground text-base md:text-xl font-light leading-relaxed">
-                      יש רגע בתחילת רעיון שבו ברור שיש <span className="font-medium">צורך</span>, אבל
-                      עוד אין פתרון.
+                      <span className="font-medium">מבעיה לפתרון שעובד.</span>
                       <br />
-                      <span className="font-medium text-foreground">אני נכנסת בדיוק לשם.</span>
+                      יוצרת בשבילכם מוצר מקצה לקצה.
                     </p>
                   </div>
 
-                  {/* Process timeline */}
+                  {/* Body copy */}
                   <ExpandableText
                     mobileLines={10}
-                    className="text-foreground/80 text-sm md:text-base font-light leading-relaxed mb-7 md:mb-10"
+                    className="text-foreground/85 text-sm md:text-base font-light leading-relaxed mb-7 md:mb-10"
                   >
-                    <ol className="relative space-y-5 md:space-y-6 pr-7 md:pr-8">
-                      {/* Vertical track */}
-                      <span
-                        className="absolute right-[11px] md:right-[13px] top-2 bottom-2 w-[2px] rounded-full opacity-60"
-                        style={{
-                          background:
-                            "linear-gradient(180deg, hsl(172 79% 65%) 0%, hsl(325 75% 65%) 100%)",
-                        }}
-                        aria-hidden="true"
-                      />
-                      {[
-                        {
-                          n: "01",
-                          t: "מקשיבים לצורך",
-                          d: "מתחילים בהבנה עמוקה של הקהל, השטח ונקודות הכאב, לפני שמדברים על פתרון.",
-                        },
-                        {
-                          n: "02",
-                          t: "מדייקים כיוון",
-                          d: "ממפים יחד את השאלה האמיתית, מגדירים יעד, סקופ ומדדי ערך ברורים לשלב הראשון.",
-                        },
-                        {
-                          n: "03",
-                          t: "בונים מוצר חי",
-                          d: "מקונספט לאב טיפוס דיגיטלי עובד, בקצב שמאפשר ללמוד מהשטח תוך כדי תנועה.",
-                        },
-                        {
-                          n: "04",
-                          t: "מוציאים לעולם",
-                          d: "משיקים גרסה ראשונה שמייצרת ערך אמיתי, ומחדדים אותה לפי תגובות, נתונים והקשבה מתמשכת.",
-                        },
-                      ].map((step) => (
-                        <li key={step.n} className="relative">
-                          <span
-                            className="absolute -right-7 md:-right-8 top-0.5 flex items-center justify-center w-6 h-6 md:w-7 md:h-7 rounded-full text-white text-[10px] md:text-xs font-semibold shadow-md"
-                            style={{
-                              background:
-                                "linear-gradient(135deg, hsl(172 79% 55%) 0%, hsl(325 75% 65%) 100%)",
-                            }}
-                          >
-                            {step.n}
-                          </span>
-                          <div className="bg-accent/40 rounded-xl p-4 md:p-5 border border-border/60">
-                            <div className="text-foreground text-sm md:text-base font-semibold mb-1">
-                              {step.t}
-                            </div>
-                            <p>{step.d}</p>
-                          </div>
-                        </li>
-                      ))}
-                    </ol>
+                    <div className="space-y-4 md:space-y-5">
+                      <p>
+                        אני מלווה ארגונים ויזמים בהפיכת צורך לא מוגדר למוצר דיגיטלי עובד. אני מדייקת את הבעיה, מגדירה כיוון, ומפתחת מענה שלם, מקונספט ועד מוצר שאפשר להוציא לעולם במהירות.
+                      </p>
+                      <p>
+                        העבודה שלי משלבת הבנה עמוקה של אנשים עם חשיבה של פתרון בעיות ויכולת ביצוע מהירה: פירוק של צורך מורכב לגורמים, זיהוי מה באמת קריטי, ובניית פתרון מדויק. בעזרת כלים של{" "}
+                        <span
+                          className="font-semibold bg-clip-text text-transparent"
+                          style={{
+                            backgroundImage:
+                              "linear-gradient(90deg, hsl(172 79% 45%) 0%, hsl(325 75% 60%) 100%)",
+                          }}
+                        >
+                          No-Code
+                        </span>{" "}
+                        אני מתרגמת רעיון למוצר ממשי בזמן קצר, כזה שמייצר ערך אמיתי בעולם.
+                      </p>
+                    </div>
                   </ExpandableText>
 
                   <div className="flex flex-wrap justify-start gap-2 md:gap-3">
