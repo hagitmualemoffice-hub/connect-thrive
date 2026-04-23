@@ -488,10 +488,16 @@ const Index = () => {
         {/* Title + Card aligned to same right edge as upper sections */}
         <div className="absolute inset-x-0 top-[210px] md:top-auto md:bottom-[390px] z-10 px-[30px] md:px-6">
           <div className="w-full md:w-[min(1000px,72%)] mx-auto text-right" dir="rtl">
-            {/* Mobile: simplified title only */}
-            <h2 className="md:hidden text-white text-[1.75rem] font-light tracking-wide">
-              הרצאות וסדנאות
-            </h2>
+            {/* Mobile: simplified title + subtitle (deduped from lower section) */}
+            <div className="md:hidden">
+              <h2 className="text-white text-[1.75rem] font-light tracking-wide leading-tight">
+                הרצאות וסדנאות
+              </h2>
+              <p className="mt-1.5 text-sm font-light">
+                <span className="text-primary font-normal">פסיכולוגיה של עשייה -</span>
+                <span className="text-white/95 mx-1">הנהגה פנימית ותנועה בעולם של יזמות ועשייה</span>
+              </p>
+            </div>
             {/* Desktop: full title + subtitle */}
             <h2 className="hidden md:block text-white md:text-5xl font-light tracking-wide">
               להעיר את הכוח מבפנים
