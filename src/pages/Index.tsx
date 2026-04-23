@@ -131,7 +131,6 @@ const topNav = [
   { label: "אודות", href: "#about" },
   { label: "יזמות קשובה", href: "#entrepreneurship" },
   { label: "הפרויקטים שלי", href: "#projects" },
-  { label: "עבודה עם ארגונים", href: "#org-work" },
   { label: "הרצאות", href: "#lectures" },
   { label: "סדנאות", href: "#workshops" },
   { label: "בלוג", href: "/blog" },
@@ -259,11 +258,11 @@ const Index = () => {
         <div className="md:hidden absolute top-[86%] left-0 right-0 z-20 -translate-y-1/4 -mt-[15px] px-[30px]">
           <div className="relative bg-white/95 backdrop-blur-sm rounded-xl px-4 pt-3 pb-3 shadow-md mx-auto">
             <p className="text-foreground text-[16px] font-light leading-relaxed text-center">
-              על חיבור בין עומק נפשי ליצירה בעולם -
+              על התפתחות, יזמות, קהילה ושינוי
               <br />
-              פיתוח מענים ופתרונות מתוך
+              שנולדים מעומק נפשי-רוחני
               <br />
-              צורך אנושי אמיתי
+              וחיבור לייעוד ולמשמעות
             </p>
           </div>
         </div>
@@ -277,7 +276,7 @@ const Index = () => {
             כשחיבור מחולל תנועה
           </h1>
           <p className="text-white/90 text-lg lg:text-xl font-light max-w-4xl whitespace-nowrap leading-relaxed px-2">
-            על חיבור בין עומק נפשי ליצירה בעולם - פיתוח מענים ופתרונות מתוך צורך אנושי אמיתי
+            על התפתחות, יזמות, קהילה ושינוי שנולדים מעומק נפשי-רוחני וחיבור לייעוד ולמשמעות
           </p>
         </div>
 
@@ -330,7 +329,7 @@ const Index = () => {
 
         <div className="w-full md:w-[min(1000px,72%)] mx-auto"><div className="w-full md:w-[min(720px,76%)] mr-0 text-right">
           <h2 className="text-foreground text-[1.75rem] md:text-5xl font-light leading-tight mb-5 md:mb-8">
-            נעים מאוד, חגית מועלם, פסיכולוגית בהתמחות קלינית, מרצה ויזמת המפתחת מענים ופתרונות מתוך צורך אנושי.
+            נעים מאוד, חגית מועלם פסיכולוגית בהתמחות קלינית, מרצה ויזמת.
           </h2>
 
           <ExpandableText
@@ -339,10 +338,13 @@ const Index = () => {
           >
             <div className="space-y-4 md:space-y-6">
               <p>
-                העוגן המקצועי והאישי שלי נטוע בגישה דינמית-אינטגרטיבית, בשילוב גישות עכשוויות המבוססות על ערכים, משמעות וקבלה, ובחיבור חי ומשמעותי למקורות יהודיים. לצד העבודה הקלינית, העשייה שלי מתרחבת גם לפיתוח מענים ופתרונות - קהילתיים ודיגיטליים - שנולדים מתוך מפגש עם צרכים אמיתיים.
+                העוגן המקצועי והאישי שלי נטוע בגישה דינמית-אינטגרטיבית, בשילוב גישות עכשוויות
+                המבוססות על ערכים, משמעות וקבלה, ובחיבור חי ומשמעותי למקורות יהודיים.
               </p>
               <p>
-                חיבור עמוק לעצמנו ולייעוד הגבוה שלנו הוא בעיניי הבסיס לתנועה שיש בה משמעות - בחיים האישיים, בעשייה מקצועית, ביזמות ובהנהגה. כשה"סנטר" הפנימי שלנו ברור, התנועה שנובעת מתוכנו אל העולם נעשית מדויקת יותר, יציבה יותר ובעלת השפעה עמוקה.
+                אני מאמינה שחיבור עמוק לעצמנו ולייעוד הגבוה שלנו הוא הבסיס לתנועה שיש בה משמעות –
+                בחיים האישיים, בעשייה מקצועית, ביזמות ובהנהגה. כש"הסנטר" הפנימי שלנו ברור, התנועה
+                שנובעת מתוכנו אל העולם נעשית מדויקת יותר, יציבה יותר ובעלת השפעה עמוקה.
               </p>
             </div>
           </ExpandableText>
@@ -358,7 +360,7 @@ const Index = () => {
 
         <div className="w-full md:w-[min(1000px,72%)] mx-auto"><div className="w-full md:w-[min(720px,76%)] mr-0 text-right">
           <h2 className="text-foreground text-[1.75rem] md:text-5xl font-light leading-tight mb-5 md:mb-8">
-            העשייה שלי נעה בין עומק נפשי לפעולה בעולם
+            אני מאמינה בכוח של יצירה ועשייה מתוך קשיבות ותוך כדי תנועה
           </h2>
 
           <ExpandableText
@@ -367,10 +369,18 @@ const Index = () => {
           >
             <div className="space-y-4 md:space-y-6">
               <p>
-                יזמות חברתית, אקטיביזם, תהליכי ליווי ופיתוח של פתרונות חדשים מאפס, כולל כלים ומוצרים דיגיטליים. אני פועלת מתוך קשיבות ותוך כדי תנועה, לא כהמתנה לבהירות מושלמת, אלא כהיכרות מתמשכת עם המציאות דרך עשייה. עבורי, תנועה, חיבור לייעוד והעמקה נפשית אינם שלבים נפרדים, אלא תהליך אחד חי ומתפתח, שמאפשר שינוי אישי, קהילתי וחברתי.
+                העשייה שלי נעה בין עומק נפשי לפעולה בעולם: יזמות חברתית, אקטיביזם, הרצאות
+                ותהליכי ליווי. אני מאמינה ביצירה תוך כדי תנועה – לא כהמתנה לבהירות מושלמת, אלא
+                כהיכרות מתמשכת עם עצמנו דרך בחירה, עשייה והליכה בדרך. עבורי, תנועה, חיבור
+                לייעוד והעמקה נפשית אינם שלבים נפרדים, אלא תהליך אחד חי ומתפתח – שמאפשר שינוי
+                אישי, קהילתי וחברתי.
               </p>
               <p>
-                העבודה שלי נשענת על יזמות קשובה - כזו שמחוברת לשטח, נובעת מתוך צורך אמיתי, ושואפת לפצח נקודות כאב דרך הבנה עמוקה של אנשים והקשר. מתוך ההבנה הזו מתפתחת גם הפעולה: בניית מענים, פיתוח כלים ויצירת פתרונות שמתאימים למציאות המשתנה, תוך למידה מתמשכת, דיוק והתאמה לאורך הדרך.
+                אני מאמינה ביזמות קשובה – יזמות שמחוברת לשטח, נובעת מתוך צורך אמיתי, חותרת
+                לפתרון נקודות כאב, וקשובה לעצמה תוך כדי תנועה ומתוך דיוק מתמשך. זו יזמות שלא
+                ממהרת לייצר פתרונות מהירים, אלא עוצרת להקשיב, להבין לעומק את האנשים וההקשר,
+                ולפעול מתוך אחריות וחיבור. היא מתפתחת יחד עם המציאות, לומדת ממנה, ומשתנה
+                בהתאם – מתוך מחויבות אמיתית ליצירת ערך, רלוונטיות והשפעה.
               </p>
             </div>
           </ExpandableText>
@@ -471,106 +481,6 @@ const Index = () => {
                 </div>
               </div>
             ))}
-          </div>
-
-          {/* New strip: Working with organizations & businesses — digital-product process */}
-          <div id="org-work" className="mt-6 md:mt-10">
-            <div
-              className="relative rounded-2xl md:rounded-[32px] p-[1.5px] shadow-[0_25px_70px_-20px_hsl(325_75%_69%/0.45)]"
-              style={{
-                background: "linear-gradient(135deg, hsl(172 79% 79%) 0%, hsl(325 75% 69%) 100%)",
-              }}
-            >
-              <div className="relative bg-card rounded-2xl md:rounded-[31px] px-7 md:px-20 py-9 md:py-16 text-right overflow-hidden">
-                {/* Decorative gradient blob */}
-                <div
-                  className="pointer-events-none absolute -top-24 -left-24 w-72 h-72 rounded-full opacity-30 blur-3xl"
-                  style={{
-                    background: "linear-gradient(135deg, hsl(172 79% 79%) 0%, hsl(325 75% 69%) 100%)",
-                  }}
-                />
-                <div className="pointer-events-none absolute -bottom-32 -right-16 w-80 h-80 rounded-full opacity-20 blur-3xl bg-primary" />
-
-                <div className="relative w-full md:w-[min(820px,100%)] mr-0 ml-auto">
-                  <span
-                    className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[10px] md:text-xs font-medium text-white mb-4 md:mb-6"
-                    style={{
-                      background: "linear-gradient(90deg, hsl(172 79% 50%) 0%, hsl(325 75% 60%) 100%)",
-                    }}
-                  >
-                    <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
-                    Product · Strategy · Build
-                  </span>
-
-                  <h3 className="text-2xl md:text-4xl font-bold leading-tight mb-4 md:mb-6">
-                    <span
-                      className="bg-clip-text text-transparent"
-                      style={{
-                        backgroundImage:
-                          "linear-gradient(90deg, hsl(172 79% 45%) 0%, hsl(325 75% 60%) 100%)",
-                      }}
-                    >
-                      עבודה עם ארגונים ועסקים
-                    </span>
-                  </h3>
-
-                  {/* Pull quote / tagline */}
-                  <div className="relative pr-5 md:pr-6 mb-7 md:mb-10">
-                    <span
-                      className="absolute right-0 top-1 bottom-1 w-[3px] rounded-full"
-                      style={{
-                        background:
-                          "linear-gradient(180deg, hsl(172 79% 65%) 0%, hsl(325 75% 65%) 100%)",
-                      }}
-                    />
-                    <p className="text-foreground text-base md:text-xl font-light leading-relaxed">
-                      <span className="font-medium">מבעיה לפתרון שעובד.</span>
-                      <br />
-                      יוצרת בשבילכם מוצר מקצה לקצה.
-                    </p>
-                  </div>
-
-                  {/* Body copy */}
-                  <ExpandableText
-                    mobileLines={10}
-                    className="text-foreground/85 text-sm md:text-base font-light leading-relaxed mb-7 md:mb-10"
-                  >
-                    <div className="space-y-4 md:space-y-5">
-                      <p>
-                        אני מלווה ארגונים ויזמים בהפיכת צורך לא מוגדר למוצר דיגיטלי עובד. אני מדייקת את הבעיה, מגדירה כיוון, ומפתחת מענה שלם, מקונספט ועד מוצר שאפשר להוציא לעולם במהירות.
-                      </p>
-                      <p>
-                        העבודה שלי משלבת הבנה עמוקה של אנשים עם חשיבה של פתרון בעיות ויכולת ביצוע מהירה: פירוק של צורך מורכב לגורמים, זיהוי מה באמת קריטי, ובניית פתרון מדויק. בעזרת כלים של{" "}
-                        <span
-                          className="font-semibold bg-clip-text text-transparent"
-                          style={{
-                            backgroundImage:
-                              "linear-gradient(90deg, hsl(172 79% 45%) 0%, hsl(325 75% 60%) 100%)",
-                          }}
-                        >
-                          No-Code
-                        </span>{" "}
-                        אני מתרגמת רעיון למוצר ממשי בזמן קצר, כזה שמייצר ערך אמיתי בעולם.
-                      </p>
-                    </div>
-                  </ExpandableText>
-
-                  <div className="flex flex-wrap justify-start gap-2 md:gap-3">
-                    <button
-                      onClick={() => openContact("general")}
-                      className="group relative inline-flex items-center gap-2 px-7 md:px-8 py-3 rounded-xl text-white text-sm md:text-base font-medium shadow-[0_10px_30px_-10px_hsl(325_75%_60%/0.6)] hover:shadow-[0_18px_40px_-10px_hsl(325_75%_60%/0.7)] hover:-translate-y-0.5 transition-all"
-                      style={{
-                        background:
-                          "linear-gradient(90deg, hsl(172 79% 55%) 0%, hsl(325 75% 65%) 100%)",
-                      }}
-                    >
-                      בואו נפצח את זה יחד
-                      <span className="transition-transform group-hover:-translate-x-1">←</span>
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </section>
@@ -730,8 +640,11 @@ const Index = () => {
       <section id="workshops" className="w-full pt-4 pb-12 md:py-20 px-[30px] md:px-6">
         <div className="w-full md:w-[min(1200px,82%)] mx-auto">
           <div
-            className="rounded-2xl md:rounded-[40px] px-6 md:px-24 py-10 md:py-24 text-right bg-[linear-gradient(180deg,hsl(172_79%_79%)_0%,hsl(325_75%_69%)_100%)] md:bg-[linear-gradient(90deg,hsl(172_79%_79%)_0%,hsl(325_75%_69%)_100%)]"
+            className="rounded-2xl md:rounded-[40px] px-6 md:px-24 py-10 md:py-24 text-right"
             dir="rtl"
+            style={{
+              background: "linear-gradient(90deg, hsl(172 79% 79%) 0%, hsl(325 75% 69%) 100%)",
+            }}
           >
             <div className="w-full md:w-[min(720px,75%)] mr-0">
               <h2 className="text-white text-[1.75rem] md:text-5xl font-light leading-tight mb-5 md:mb-10">
