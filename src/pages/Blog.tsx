@@ -101,34 +101,34 @@ const Blog = () => {
       </section>
 
       {/* Featured post */}
-      <section className="w-full pb-16 px-6">
-        <div className="w-[min(1100px,82%)] mx-auto">
+      <section className="w-full pb-10 md:pb-16 px-[30px] md:px-6">
+        <div className="w-full md:w-[min(1100px,82%)] mx-auto">
           <Link
             to="/blog/pesach-freedom"
-            className="group block bg-card rounded-3xl overflow-hidden shadow-[0_15px_50px_-15px_hsl(0_0%_0%_/_0.12)] hover:shadow-[0_25px_60px_-15px_hsl(var(--primary)/0.25)] transition-all duration-300"
+            className="group block bg-card rounded-2xl md:rounded-3xl overflow-hidden shadow-[0_15px_50px_-15px_hsl(0_0%_0%_/_0.12)] hover:shadow-[0_25px_60px_-15px_hsl(var(--primary)/0.25)] transition-all duration-300"
           >
             <div className="grid grid-cols-1 md:grid-cols-2 gap-0">
-              <div className="relative h-[280px] md:h-[420px] overflow-hidden bg-accent">
+              <div className="relative h-[220px] md:h-[420px] overflow-hidden bg-accent">
                 <img
                   src={featuredPost.image}
                   alt={featuredPost.title}
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
               </div>
-              <div className="p-10 md:p-14 text-right flex flex-col justify-center">
-                <div className="flex items-center gap-3 justify-start mb-5">
-                  <span className="inline-block px-4 py-1.5 rounded-full bg-accent text-primary text-xs font-light">
+              <div className="p-7 md:p-14 text-right flex flex-col justify-center">
+                <div className="flex items-center gap-3 justify-start mb-4 md:mb-5">
+                  <span className="inline-block px-3 md:px-4 py-1 md:py-1.5 rounded-full bg-accent text-primary text-xs font-light">
                     פוסט מומלץ
                   </span>
-                  <span className="text-foreground/50 text-sm font-light">{featuredPost.date}</span>
+                  <span className="text-foreground/50 text-xs md:text-sm font-light">{featuredPost.date}</span>
                 </div>
-                <span className="inline-block self-start px-3 py-1 rounded-md text-primary text-xs font-light mb-4">
+                <span className="inline-block self-start px-3 py-1 rounded-md text-primary text-xs font-light mb-3 md:mb-4">
                   {featuredPost.category}
                 </span>
-                <h2 className="text-foreground text-2xl md:text-3xl font-light leading-tight mb-5 group-hover:text-primary transition-colors">
+                <h2 className="text-foreground text-xl md:text-3xl font-light leading-tight mb-4 md:mb-5 group-hover:text-primary transition-colors">
                   {featuredPost.title}
                 </h2>
-                <p className="text-foreground/70 text-base font-light leading-relaxed mb-8">
+                <p className="text-foreground/70 text-sm md:text-base font-light leading-relaxed mb-6 md:mb-8">
                   {featuredPost.excerpt}
                 </p>
                 <div className="self-start">
@@ -143,33 +143,33 @@ const Blog = () => {
       </section>
 
       {/* Posts grid */}
-      <section className="w-full pb-24 px-6">
-        <div className="w-[min(1100px,82%)] mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <section className="w-full pb-16 md:pb-24 px-[30px] md:px-6">
+        <div className="w-full md:w-[min(1100px,82%)] mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-8">
             {posts.map((post: any, idx) => (
               <Link
                 to={post.slug ? `/blog/${post.slug}` : `/blog/${idx + 1}`}
                 key={idx}
-                className="group bg-card rounded-3xl overflow-hidden shadow-[0_10px_30px_-15px_hsl(0_0%_0%_/_0.1)] hover:shadow-[0_20px_45px_-15px_hsl(var(--primary)/0.22)] transition-all duration-300 hover:-translate-y-1 flex flex-col"
+                className="group bg-card rounded-2xl md:rounded-3xl overflow-hidden shadow-[0_10px_30px_-15px_hsl(0_0%_0%_/_0.1)] hover:shadow-[0_20px_45px_-15px_hsl(var(--primary)/0.22)] transition-all duration-300 hover:-translate-y-1 flex flex-col"
               >
-                <div className="relative h-52 overflow-hidden bg-accent">
+                <div className="relative h-44 md:h-52 overflow-hidden bg-accent">
                   <img
                     src={post.image}
                     alt={post.title}
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                 </div>
-                <div className="p-7 text-right flex flex-col flex-1">
+                <div className="p-6 md:p-7 text-right flex flex-col flex-1">
                   <div className="flex items-center justify-start gap-3 mb-3">
                     <span className="inline-block px-3 py-1 rounded-md bg-accent text-primary text-xs font-light">
                       {post.category}
                     </span>
                     <span className="text-foreground/50 text-xs font-light">{post.date}</span>
                   </div>
-                  <h3 className="text-foreground text-lg md:text-xl font-light leading-tight mb-3 group-hover:text-primary transition-colors">
+                  <h3 className="text-foreground text-base md:text-xl font-light leading-tight mb-3 group-hover:text-primary transition-colors">
                     {post.title}
                   </h3>
-                  <p className="text-foreground/70 text-sm font-light leading-relaxed mb-6 flex-1">
+                  <p className="text-foreground/70 text-sm font-light leading-relaxed mb-5 md:mb-6 flex-1">
                     {post.excerpt}
                   </p>
                   <span className="self-start text-primary text-sm font-medium group-hover:text-[hsl(var(--primary-glow))] transition-colors">
@@ -184,24 +184,24 @@ const Blog = () => {
       </section>
 
       {/* Newsletter CTA */}
-      <section className="w-full pb-24 px-6">
-        <div className="w-[min(1100px,82%)] mx-auto">
+      <section className="w-full pb-16 md:pb-24 px-[30px] md:px-6">
+        <div className="w-full md:w-[min(1100px,82%)] mx-auto">
           <div
-            className="rounded-[40px] px-12 md:px-20 py-16 md:py-20 text-right"
+            className="rounded-2xl md:rounded-[40px] px-7 md:px-20 py-10 md:py-20 text-right"
             style={{
               background: "linear-gradient(90deg, hsl(172 79% 79%) 0%, hsl(325 75% 69%) 100%)",
             }}
           >
-            <div className="w-[min(680px,90%)] mr-0">
-              <h2 className="text-white text-3xl md:text-4xl font-light leading-tight mb-5">
+            <div className="w-full md:w-[min(680px,90%)] mr-0">
+              <h2 className="text-white text-[1.5rem] md:text-4xl font-light leading-tight mb-4 md:mb-5">
                 רוצה לקבל פוסטים חדשים ישר למייל?
               </h2>
-              <p className="text-white/95 text-base md:text-lg font-light leading-relaxed mb-8">
+              <p className="text-white/95 text-sm md:text-lg font-light leading-relaxed mb-6 md:mb-8">
                 הצטרפי למרחב שקט של נשימה וציפורים שנאספות בקפידה אל תיבת המייל שלך.
               </p>
               <Link
                 to="/"
-                className="inline-block px-10 py-3 rounded-lg bg-white text-foreground text-base font-light shadow-md hover:bg-primary hover:text-primary-foreground transition-all"
+                className="inline-block px-8 md:px-10 py-3 rounded-lg bg-white text-foreground text-sm md:text-base font-light shadow-md hover:bg-primary hover:text-primary-foreground transition-all"
               >
                 להצטרפות לתפוצה
               </Link>
@@ -209,6 +209,8 @@ const Blog = () => {
           </div>
         </div>
       </section>
+
+      <MobileBottomNav />
     </div>
   );
 };
