@@ -49,34 +49,45 @@ const categories = ["הכל", "פרשה ופסיכולוגיה", "טיפול ב�
 
 const Blog = () => {
   return (
-    <div className="min-h-screen bg-background" dir="rtl">
-      <SiteHeader />
+    <div className="min-h-screen bg-background pb-20 md:pb-0" dir="rtl">
+      <div className="hidden md:block">
+        <SiteHeader />
+      </div>
 
-      <div className="h-20" />
+      {/* Mobile-only header logo strip */}
+      <header className="md:hidden fixed top-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-sm shadow-sm">
+        <div className="flex items-center justify-center px-5 py-3">
+          <Link to="/" className="text-foreground text-base font-semibold tracking-tight">
+            חגית מועלם
+          </Link>
+        </div>
+      </header>
+
+      <div className="h-12 md:h-20" />
 
       {/* Hero / Page header */}
-      <section className="w-full pt-20 pb-12 px-6">
-        <div className="w-[min(1100px,82%)] mx-auto text-right">
-          <div className="flex items-center gap-4 mb-4">
-            <span className="block w-1 h-12 bg-primary rounded-full" />
-            <h1 className="text-foreground text-5xl md:text-6xl font-light tracking-tight">
+      <section className="w-full pt-6 pb-8 md:pt-20 md:pb-12 px-[30px] md:px-6">
+        <div className="w-full md:w-[min(1100px,82%)] mx-auto text-right">
+          <div className="flex items-center gap-3 md:gap-4 mb-3 md:mb-4">
+            <span className="block w-1 h-8 md:h-12 bg-primary rounded-full" />
+            <h1 className="text-foreground text-[1.75rem] md:text-6xl font-light tracking-tight leading-tight">
               מרחב פנימי - הבלוג
             </h1>
           </div>
-          <p className="text-foreground/70 text-lg md:text-xl font-light max-w-2xl pr-5">
+          <p className="text-foreground/70 text-sm md:text-xl font-light max-w-2xl pr-3 md:pr-5 leading-relaxed">
             על נפש, תנועה ומשמעות - כפי שהן פוגשות חיים, יזמות והקשבה פנימית.
           </p>
         </div>
       </section>
 
       {/* Category filters */}
-      <section className="w-full pb-10 px-6">
-        <div className="w-[min(1100px,82%)] mx-auto">
-          <div className="flex flex-wrap items-center gap-3 justify-start">
+      <section className="w-full pb-8 md:pb-10 px-[30px] md:px-6">
+        <div className="w-full md:w-[min(1100px,82%)] mx-auto">
+          <div className="flex flex-wrap items-center gap-2 md:gap-3 justify-start">
             {categories.map((cat, idx) => (
               <button
                 key={cat}
-                className={`px-5 py-2 rounded-full text-sm font-light transition-all ${
+                className={`px-4 md:px-5 py-1.5 md:py-2 rounded-full text-xs md:text-sm font-light transition-all ${
                   idx === 0
                     ? "bg-primary text-primary-foreground shadow-sm"
                     : "bg-card text-foreground/70 hover:bg-accent hover:text-accent-foreground border border-border"
