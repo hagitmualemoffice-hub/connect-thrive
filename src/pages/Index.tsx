@@ -472,35 +472,106 @@ const Index = () => {
             ))}
           </div>
 
-          {/* New strip: Working with organizations & initiatives */}
+          {/* New strip: Working with organizations & initiatives — digital-product style */}
           <div className="mt-6 md:mt-10">
-            <div className="bg-card rounded-2xl md:rounded-3xl shadow-[0_20px_60px_-15px_hsl(0_0%_0%_/_0.18)] px-7 md:px-20 py-8 md:py-16 text-right w-full">
-              <div className="w-full md:w-[min(696px,100%)] mr-0 ml-auto">
-                <h3 className="text-foreground text-xl md:text-3xl font-bold leading-tight mb-4 md:mb-6">
-                  עבודה עם ארגונים ויוזמות
-                </h3>
-                <ExpandableText
-                  mobileLines={8}
-                  className="text-foreground/80 text-sm md:text-base font-light leading-relaxed mb-6 md:mb-8"
-                >
-                  <div className="space-y-3 md:space-y-4">
-                    <p>יש רגע בתחילת רעיון שבו ברור שיש צורך - אבל אין עדיין פתרון.</p>
-                    <p>אני נכנסת בדיוק לשם.</p>
-                    <p>
-                      אני מלווה ארגונים ויזמים בהפיכת צורך לא מוגדר למוצר דיגיטלי עובד. יחד אנחנו מדייקים את הבעיה, מגדירים כיוון, ובונים מענה שלם — מקונספט ועד מוצר שאפשר להוציא לעולם.
-                    </p>
-                    <p>
-                      העבודה שלי מחברת בין הבנה עמוקה של אנשים לבין יכולת ביצוע מהירה: לזהות מה באמת חשוב, להוריד רעיונות לקרקע, ולבנות מוצר שמייצר ערך אמיתי כבר מהשלבים הראשונים.
+            <div
+              className="relative rounded-2xl md:rounded-[32px] p-[1.5px] shadow-[0_25px_70px_-20px_hsl(325_75%_69%/0.45)]"
+              style={{
+                background: "linear-gradient(135deg, hsl(172 79% 79%) 0%, hsl(325 75% 69%) 100%)",
+              }}
+            >
+              <div className="relative bg-card rounded-2xl md:rounded-[31px] px-7 md:px-20 py-9 md:py-16 text-right overflow-hidden">
+                {/* Decorative gradient blob */}
+                <div
+                  className="pointer-events-none absolute -top-24 -left-24 w-72 h-72 rounded-full opacity-30 blur-3xl"
+                  style={{
+                    background: "linear-gradient(135deg, hsl(172 79% 79%) 0%, hsl(325 75% 69%) 100%)",
+                  }}
+                />
+                <div className="pointer-events-none absolute -bottom-32 -right-16 w-80 h-80 rounded-full opacity-20 blur-3xl bg-primary" />
+
+                <div className="relative w-full md:w-[min(720px,100%)] mr-0 ml-auto">
+                  <span
+                    className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[10px] md:text-xs font-medium text-white mb-4 md:mb-6"
+                    style={{
+                      background: "linear-gradient(90deg, hsl(172 79% 50%) 0%, hsl(325 75% 60%) 100%)",
+                    }}
+                  >
+                    <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
+                    Product · Strategy · Build
+                  </span>
+
+                  <h3 className="text-foreground text-2xl md:text-4xl font-bold leading-tight mb-5 md:mb-8">
+                    עבודה עם{" "}
+                    <span
+                      className="bg-clip-text text-transparent"
+                      style={{
+                        backgroundImage:
+                          "linear-gradient(90deg, hsl(172 79% 45%) 0%, hsl(325 75% 60%) 100%)",
+                      }}
+                    >
+                      ארגונים ויוזמות
+                    </span>
+                  </h3>
+
+                  {/* Pull quote */}
+                  <div className="relative pr-5 md:pr-6 mb-6 md:mb-8">
+                    <span
+                      className="absolute right-0 top-1 bottom-1 w-[3px] rounded-full"
+                      style={{
+                        background:
+                          "linear-gradient(180deg, hsl(172 79% 65%) 0%, hsl(325 75% 65%) 100%)",
+                      }}
+                    />
+                    <p className="text-foreground text-base md:text-xl font-light leading-relaxed">
+                      יש רגע בתחילת רעיון שבו ברור שיש <span className="font-medium">צורך</span> —
+                      אבל אין עדיין פתרון.
+                      <br />
+                      <span className="font-medium text-foreground">אני נכנסת בדיוק לשם.</span>
                     </p>
                   </div>
-                </ExpandableText>
-                <div className="flex flex-wrap justify-start gap-2 md:gap-3">
-                  <button
-                    onClick={() => openContact("general")}
-                    className="px-7 py-2.5 rounded-lg bg-primary text-primary-foreground text-sm font-light hover:bg-[hsl(var(--primary-glow))] transition-colors"
+
+                  <ExpandableText
+                    mobileLines={6}
+                    className="text-foreground/80 text-sm md:text-base font-light leading-relaxed mb-6 md:mb-10"
                   >
-                    צרו קשר
-                  </button>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-7">
+                      <div className="relative bg-accent/40 rounded-xl p-4 md:p-5 border border-border/60">
+                        <div className="text-[11px] md:text-xs font-semibold text-primary mb-2 tracking-wide">
+                          01 · מצורך למוצר
+                        </div>
+                        <p>
+                          אני מלווה ארגונים ויזמים בהפיכת צורך לא מוגדר למוצר דיגיטלי עובד. יחד אנחנו
+                          מדייקים את הבעיה, מגדירים כיוון, ובונים מענה שלם — מקונספט ועד מוצר שאפשר
+                          להוציא לעולם.
+                        </p>
+                      </div>
+                      <div className="relative bg-accent/40 rounded-xl p-4 md:p-5 border border-border/60">
+                        <div className="text-[11px] md:text-xs font-semibold text-primary mb-2 tracking-wide">
+                          02 · הבנה + ביצוע
+                        </div>
+                        <p>
+                          העבודה שלי מחברת בין הבנה עמוקה של אנשים ליכולת ביצוע מהירה: לזהות מה
+                          באמת חשוב, להוריד רעיונות לקרקע, ולבנות מוצר שמייצר ערך אמיתי כבר משלביו
+                          הראשונים.
+                        </p>
+                      </div>
+                    </div>
+                  </ExpandableText>
+
+                  <div className="flex flex-wrap justify-start gap-2 md:gap-3">
+                    <button
+                      onClick={() => openContact("general")}
+                      className="group relative inline-flex items-center gap-2 px-7 md:px-8 py-3 rounded-xl text-white text-sm md:text-base font-medium shadow-[0_10px_30px_-10px_hsl(325_75%_60%/0.6)] hover:shadow-[0_18px_40px_-10px_hsl(325_75%_60%/0.7)] hover:-translate-y-0.5 transition-all"
+                      style={{
+                        background:
+                          "linear-gradient(90deg, hsl(172 79% 55%) 0%, hsl(325 75% 65%) 100%)",
+                      }}
+                    >
+                      בואו נפצח את זה יחד
+                      <span className="transition-transform group-hover:-translate-x-1">←</span>
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
