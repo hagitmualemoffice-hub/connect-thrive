@@ -37,6 +37,13 @@ const MobileBottomNav = () => {
       >
         <div className="grid grid-cols-5 h-14">
           <a
+            href="/"
+            className="flex flex-col items-center justify-center gap-0.5 text-foreground/70 hover:text-primary transition-colors"
+          >
+            <Home className="h-5 w-5" />
+            <span className="text-[10px] font-light">בית</span>
+          </a>
+          <a
             href="/#projects"
             className="flex flex-col items-center justify-center gap-0.5 text-foreground/70 hover:text-primary transition-colors"
           >
@@ -60,13 +67,6 @@ const MobileBottomNav = () => {
             <WhatsAppIcon className="h-5 w-5" />
             <span className="text-[10px] font-light">וואטסאפ</span>
           </a>
-          <button
-            onClick={() => setContactOpen(true)}
-            className="flex flex-col items-center justify-center gap-0.5 text-foreground/70 hover:text-primary transition-colors"
-          >
-            <MessageCircle className="h-5 w-5" />
-            <span className="text-[10px] font-light">דברו איתי</span>
-          </button>
           <button
             onClick={() => setMenuOpen(true)}
             className="flex flex-col items-center justify-center gap-0.5 text-foreground/70 hover:text-primary transition-colors"
