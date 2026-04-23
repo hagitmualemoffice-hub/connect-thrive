@@ -471,6 +471,40 @@ const Index = () => {
               </div>
             ))}
           </div>
+
+          {/* New strip: Working with organizations & initiatives */}
+          <div className="mt-6 md:mt-10">
+            <div className="bg-card rounded-2xl md:rounded-3xl shadow-[0_20px_60px_-15px_hsl(0_0%_0%_/_0.18)] px-7 md:px-20 py-8 md:py-16 text-right w-full">
+              <div className="w-full md:w-[min(696px,100%)] mr-0 ml-auto">
+                <h3 className="text-foreground text-xl md:text-3xl font-bold leading-tight mb-4 md:mb-6">
+                  עבודה עם ארגונים ויוזמות
+                </h3>
+                <ExpandableText
+                  mobileLines={8}
+                  className="text-foreground/80 text-sm md:text-base font-light leading-relaxed mb-6 md:mb-8"
+                >
+                  <div className="space-y-3 md:space-y-4">
+                    <p>יש רגע בתחילת רעיון שבו ברור שיש צורך - אבל אין עדיין פתרון.</p>
+                    <p>אני נכנסת בדיוק לשם.</p>
+                    <p>
+                      אני מלווה ארגונים ויזמים בהפיכת צורך לא מוגדר למוצר דיגיטלי עובד. יחד אנחנו מדייקים את הבעיה, מגדירים כיוון, ובונים מענה שלם — מקונספט ועד מוצר שאפשר להוציא לעולם.
+                    </p>
+                    <p>
+                      העבודה שלי מחברת בין הבנה עמוקה של אנשים לבין יכולת ביצוע מהירה: לזהות מה באמת חשוב, להוריד רעיונות לקרקע, ולבנות מוצר שמייצר ערך אמיתי כבר מהשלבים הראשונים.
+                    </p>
+                  </div>
+                </ExpandableText>
+                <div className="flex flex-wrap justify-start gap-2 md:gap-3">
+                  <button
+                    onClick={() => openContact("entrepreneurship")}
+                    className="px-7 py-2.5 rounded-lg bg-primary text-primary-foreground text-sm font-light hover:bg-[hsl(var(--primary-glow))] transition-colors"
+                  >
+                    צרו קשר
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
