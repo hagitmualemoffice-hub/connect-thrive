@@ -255,7 +255,7 @@ const Index = () => {
         </div>
 
         {/* Mobile: white pill positioned half on image, half on white background */}
-        <div className="md:hidden absolute top-[86%] left-0 right-0 z-20 -translate-y-1/2 px-[30px]">
+        <div className="md:hidden absolute top-[86%] left-0 right-0 z-20 -translate-y-1/4 px-[30px]">
           <div className="relative bg-white/95 backdrop-blur-sm rounded-xl px-4 pt-3 pb-3 shadow-md mx-auto">
             <div className="flex justify-center mb-1.5">
               <Heart className="text-primary w-5 h-5" strokeWidth={1.5} fill="hsl(var(--primary) / 0.15)" aria-hidden="true" />
