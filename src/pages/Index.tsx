@@ -256,10 +256,12 @@ const Index = () => {
 
         {/* Mobile: white pill positioned half on image, half on white background */}
         <div className="md:hidden absolute top-[86%] left-0 right-0 z-20 -translate-y-1/2 px-[30px]">
-          <div className="relative bg-white/95 backdrop-blur-sm rounded-xl px-4 py-3 shadow-md mx-auto">
-            <span className="absolute -top-3 right-4 inline-flex items-center justify-center w-8 h-8 rounded-full bg-primary/15 border border-primary/30 shadow-sm">
-              <Heart className="w-4 h-4 text-primary" strokeWidth={2} fill="hsl(var(--primary) / 0.4)" aria-hidden="true" />
-            </span>
+          <div className="relative bg-white/95 backdrop-blur-sm rounded-xl px-4 pt-4 pb-3 shadow-md mx-auto">
+            <div className="flex justify-center mb-2">
+              <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-primary/15 border border-primary/30 shadow-sm">
+                <Heart className="w-4 h-4 text-primary" strokeWidth={2} fill="hsl(var(--primary) / 0.4)" aria-hidden="true" />
+              </span>
+            </div>
             <p className="text-foreground text-[16px] font-light leading-relaxed text-center">
               על התפתחות, יזמות, קהילה ושינוי
               <br />
