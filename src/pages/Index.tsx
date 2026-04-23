@@ -404,15 +404,15 @@ const Index = () => {
 
         <div className="relative z-10 w-full md:w-[min(1000px,72%)] mx-auto" dir="rtl">
           <div className="text-right mb-8 md:mb-10 px-1 mt-[50px] md:mt-0">
-            {/* Mobile: title + subtitle in style of lectures strip */}
+            {/* Mobile: title only (subtitle removed, spacing preserved) */}
             <div className="md:hidden">
               <h2 className="text-foreground text-[1.75rem] font-light leading-tight">
                 הפרויקטים שלי
               </h2>
-              <p className="mt-1.5 text-sm font-light">
-                <span className="text-primary font-normal">אמפתיה, הקשבה ויצירתיות -</span>
-                <span className="text-foreground/80 mx-1">פתרונות שנולדים מתוך צורך אמיתי.</span>
-              </p>
+              <div className="mt-1.5 text-sm font-light invisible" aria-hidden="true">
+                <span>אמפתיה, הקשבה ויצירתיות -</span>
+                <span className="mx-1">פתרונות שנולדים מתוך צורך אמיתי.</span>
+              </div>
             </div>
             {/* Desktop: full title + subtitle */}
             <h2 className="hidden md:block text-foreground md:text-5xl font-light leading-tight mb-3">
@@ -503,7 +503,8 @@ const Index = () => {
               </h2>
               <p className="mt-1.5 text-sm font-light">
                 <span className="text-primary font-normal">פסיכולוגיה של עשייה -</span>
-                <span className="text-white/95 mx-1">הנהגה פנימית ותנועה בעולם של יזמות ועשייה</span>
+                <span className="text-white/95 mx-1">הנהגה פנימית ותנועה</span>
+                <span className="text-white/95 block">בעולם של יזמות ועשייה</span>
               </p>
             </div>
             {/* Desktop: full title + subtitle */}

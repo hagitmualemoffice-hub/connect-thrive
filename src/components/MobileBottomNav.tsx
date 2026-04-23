@@ -61,7 +61,7 @@ const MobileBottomNav = () => {
             href={WHATSAPP_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex flex-col items-center justify-center gap-0.5 text-[#25D366] hover:opacity-80 transition-opacity"
+            className="flex flex-col items-center justify-center gap-0.5 text-[#5FE080] hover:opacity-80 transition-opacity"
             aria-label="וואטסאפ"
           >
             <WhatsAppIcon className="h-5 w-5" />
