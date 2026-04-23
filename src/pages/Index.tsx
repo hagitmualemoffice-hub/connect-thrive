@@ -255,7 +255,7 @@ const Index = () => {
         </div>
 
         {/* Mobile: white pill positioned half on image, half on white background */}
-        <div className="md:hidden absolute top-[86%] left-0 right-0 z-20 -translate-y-1/4 px-[30px]">
+        <div className="md:hidden absolute top-[86%] left-0 right-0 z-20 -translate-y-1/4 -mt-[15px] px-[30px]">
           <div className="relative bg-white/95 backdrop-blur-sm rounded-xl px-4 pt-3 pb-3 shadow-md mx-auto">
             <div className="flex justify-center mb-1.5">
               <Heart className="text-primary w-5 h-5" strokeWidth={1.5} fill="hsl(var(--primary) / 0.15)" aria-hidden="true" />
@@ -328,7 +328,7 @@ const Index = () => {
       <div className="hidden md:block h-28 md:h-24" />
 
       {/* About section */}
-      <section id="about" className="w-full pt-5 pb-8 md:py-20 px-[30px] md:px-6 mt-0 md:mt-0">
+      <section id="about" className="w-full pt-10 pb-8 md:py-20 px-[30px] md:px-6 mt-0 md:mt-0">
 
         <div className="w-full md:w-[min(1000px,72%)] mx-auto"><div className="w-full md:w-[min(720px,76%)] mr-0 text-right">
           <h2 className="text-foreground text-[1.75rem] md:text-5xl font-light leading-tight mb-5 md:mb-8">
