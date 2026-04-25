@@ -1,66 +1,11 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight, Mic, Sparkles } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import ContactPopup, { type ContactTab } from "@/components/ContactPopup";
 import MobileBottomNav from "@/components/MobileBottomNav";
+import ExpandableText from "@/components/ExpandableText";
 import lectureBg from "@/assets/woman-beach.jpg";
-
-type Item = {
-  title: string;
-  lines: [string, string];
-  type: "lecture" | "workshop";
-};
-
-const items: Item[] = [
-  {
-    title: "חיים בגלים",
-    lines: [
-      "על תקופות שמשתנות בקצב משלהן",
-      "ואיך מוצאים יציבות בתוך תנועה",
-    ],
-    type: "lecture",
-  },
-  {
-    title: "להרוג חלומות",
-    lines: [
-      "על הפרידה ממה שדמיינו לעצמנו",
-      "ועל מה שנפתח כשמשחררים",
-    ],
-    type: "lecture",
-  },
-  {
-    title: "חיבור לייעוד",
-    lines: [
-      "על הקשבה לקול הפנימי",
-      "ובחירה בדרך שמרגישה נכונה",
-    ],
-    type: "lecture",
-  },
-  {
-    title: "תנועה מתוך חרדה",
-    lines: [
-      "על איך לפעול גם כשהפחד נוכח",
-      "ולא לתת לו להחליט בשבילנו",
-    ],
-    type: "lecture",
-  },
-  {
-    title: "לחיות את הרגע הזה",
-    lines: [
-      "על נוכחות בתוך חיים מלאים",
-      "ועל המתנה שיש בקטן והיומיומי",
-    ],
-    type: "lecture",
-  },
-  {
-    title: "סדנת חיבור ותנועה",
-    lines: [
-      "מרחב קבוצתי לחשיבה משותפת",
-      "על מציאות מורכבת ופעולה מתוכה",
-    ],
-    type: "workshop",
-  },
-];
+import { lectureCards } from "@/data/lectures";
 
 const Lectures = () => {
   const [contactOpen, setContactOpen] = useState(false);
@@ -73,98 +18,202 @@ const Lectures = () => {
 
   return (
     <div dir="rtl" className="min-h-screen bg-background text-foreground font-light">
-      {/* HERO */}
-      <section className="relative min-h-[60vh] flex items-center overflow-hidden">
-        <div className="absolute inset-0">
-          <img src={lectureBg} alt="" className="w-full h-full object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-l from-background/95 via-background/75 to-background/40" />
-        </div>
-        <div className="relative z-10 max-w-5xl mx-auto px-6 md:px-10 py-16 md:py-24 w-full">
-          <div className="text-right max-w-2xl ml-auto">
+      {/* HERO with image */}
+      <section className="relative w-full h-[480px] md:h-[600px] overflow-hidden">
+        <img
+          src={lectureBg}
+          alt="הרצאות וסדנאות"
+          className="absolute inset-0 w-full h-full object-cover [object-position:80%_center] md:[object-position:5%_center]"
+        />
+        <div className="absolute inset-0 bg-black/35" />
+
+        <div className="relative z-10 h-full flex items-end pb-14 md:pb-20 px-[30px] md:px-6">
+          <div className="w-full md:w-[min(1000px,72%)] mx-auto text-right">
             <Link
               to="/"
-              className="inline-flex items-center gap-1.5 text-sm text-foreground/60 hover:text-primary mb-6 transition-colors"
+              className="inline-flex items-center gap-1.5 text-sm text-white/85 hover:text-white mb-5 transition-colors"
             >
               <ArrowRight className="w-4 h-4" />
               חזרה לדף הבית
             </Link>
-            <div className="w-12 h-px bg-primary mb-5 ml-auto" />
-            <h1 className="text-3xl md:text-5xl font-light leading-tight tracking-tight mb-4">
-              הרצאות וסדנאות
+            <div className="w-12 h-px bg-white/70 mb-5" />
+            <h1 className="text-white text-[2rem] md:text-5xl font-light leading-tight mb-3">
+              להעיר את הכוח מבפנים
             </h1>
-            <p className="text-base md:text-lg text-foreground/70 leading-relaxed">
-              שיחות ומרחבים על איך חיים, בוחרים ונעים
-              <br />
-              בתוך מציאות שלא תמיד מסתדרת
+            <p className="text-white/95 text-sm md:text-lg font-light leading-relaxed max-w-2xl">
+              <span className="font-normal">אמונה, פסיכולוגיה וייעוד</span>
+              <span className="mx-2 md:mx-3">·</span>
+              <span>הנהגה פנימית ותנועה מתוך משמעות ומימוש</span>
             </p>
           </div>
         </div>
       </section>
 
-      {/* LIST */}
-      <section className="py-16 md:py-24 px-6 md:px-10">
-        <div className="max-w-4xl mx-auto">
-          <div className="space-y-4 md:space-y-5">
-            {items.map((item) => {
-              const Icon = item.type === "lecture" ? Mic : Sparkles;
-              const tag = item.type === "lecture" ? "הרצאה" : "סדנה";
-              return (
-                <article
-                  key={item.title}
-                  className="group bg-card border border-border/60 rounded-2xl p-6 md:p-8 hover:border-primary/40 hover:shadow-md transition-all"
+      {/* FLAGSHIP LECTURE */}
+      <section className="w-full pt-12 md:pt-20 pb-8 md:pb-10 px-[30px] md:px-6">
+        <div className="w-full md:w-[min(1000px,72%)] mx-auto">
+          <div className="relative bg-card rounded-2xl md:rounded-3xl shadow-[0_20px_60px_-15px_hsl(0_0%_0%_/_0.18)] px-5 md:px-20 py-10 md:py-16 transition-all duration-500 hover:shadow-[0_28px_70px_-15px_hsl(var(--primary)/0.25)] hover:-translate-y-1">
+            <span className="absolute top-4 left-4 md:top-6 md:left-6 inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-[10px] md:text-xs font-medium">
+              הרצאת הדגל
+            </span>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-16 text-right mt-6 md:mt-0">
+              <div>
+                <h2 className="text-foreground text-xl md:text-3xl font-bold mb-2">
+                  החיים שנועדו לי
+                </h2>
+                <p className="text-foreground text-xs md:text-sm font-medium leading-relaxed mb-3 md:mb-4">
+                  אמונה, ביטחון וחיבור לייעוד ככוח לחיים מאושרים ומימוש עצמי עמוק
+                </p>
+                <ExpandableText
+                  mobileLines={4}
+                  className="text-foreground/75 text-xs md:text-sm font-light leading-relaxed"
                 >
-                  <div className="flex items-start gap-5 text-right">
-                    <div className="shrink-0 w-11 h-11 rounded-full bg-primary/10 flex items-center justify-center">
-                      <Icon className="w-5 h-5 text-primary" strokeWidth={1.5} />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-baseline justify-between gap-3 mb-2">
-                        <h3 className="text-lg md:text-xl font-light tracking-tight">
-                          {item.title}
-                        </h3>
-                        <span className="shrink-0 text-[11px] uppercase tracking-widest text-primary/70">
-                          {tag}
-                        </span>
-                      </div>
-                      <p className="text-sm md:text-base text-foreground/70 leading-relaxed">
-                        {item.lines[0]}
-                        <br />
-                        {item.lines[1]}
-                      </p>
-                    </div>
+                  הרצאה על הקשר העמוק בין אמונה, ביטחון והיכולת לחיות חיים מלאים - כאלה שיש בהם גם שמחה, גם משמעות, וגם תנועה בעולם. לא כוויתור על עשייה, אלא כעשייה שנובעת מחיבור, הקשבה ואמון.
+                </ExpandableText>
+              </div>
+
+              <div className="space-y-3 md:space-y-4">
+                <div>
+                  <h4 className="text-foreground text-sm md:text-base font-semibold mb-1.5">
+                    קהל יעד
+                  </h4>
+                  <p className="text-foreground/75 text-xs md:text-sm font-light leading-relaxed">
+                    נשים, ארגונים, קהילות עומק, ימי כיף, ערבי השראה, צעירות, קבוצות מתמודדות
+                  </p>
+                </div>
+                <div>
+                  <h4 className="text-foreground text-sm md:text-base font-semibold mb-1.5">
+                    סוג פעילות
+                  </h4>
+                  <div className="text-foreground/75 text-xs md:text-sm font-light space-y-0.5">
+                    <p>הרצאה <span className="mx-2 text-border">|</span> עד 1.5 שעות</p>
+                    <p>סדנה אינטימית <span className="mx-2 text-border">|</span> עד שעתיים</p>
                   </div>
-                </article>
-              );
-            })}
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-6 flex justify-start">
+              <button
+                onClick={() => openContact("lecture")}
+                className="px-6 md:px-8 py-2.5 rounded-lg bg-primary text-primary-foreground text-sm font-light hover:bg-[hsl(var(--primary-glow))] transition-colors"
+              >
+                להזמנת הרצאה
+              </button>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="py-20 md:py-28 px-6 md:px-10 bg-card/40">
-        <div className="max-w-2xl mx-auto text-center">
-          <div className="w-12 h-px bg-primary mx-auto mb-6" />
-          <h2 className="text-2xl md:text-3xl font-light tracking-tight mb-4">
-            רוצים להזמין הרצאה או סדנה?
-          </h2>
-          <p className="text-foreground/70 text-sm md:text-base leading-relaxed mb-8">
-            אשמח לשמוע על הקהל, האירוע והנושא שמעניין אתכם
-            <br />
-            ולהתאים יחד את המפגש.
-          </p>
-          <div className="flex flex-wrap justify-center gap-3">
-            <button
-              onClick={() => openContact("lecture")}
-              className="px-7 py-3 rounded-full bg-primary text-primary-foreground hover:bg-[hsl(var(--primary-glow))] transition-all duration-500 shadow-md shadow-primary/20 text-sm tracking-wide"
-            >
-              להזמנת הרצאה
-            </button>
-            <button
-              onClick={() => openContact("workshop")}
-              className="px-7 py-3 rounded-full border border-primary/40 text-foreground hover:bg-primary/5 transition-all duration-500 text-sm tracking-wide"
-            >
-              להזמנת סדנה
-            </button>
+      {/* LECTURE GRID */}
+      <section className="w-full py-10 md:py-16 px-[30px] md:px-6">
+        <div className="w-full md:w-[min(1000px,72%)] mx-auto">
+          <div className="text-right mb-6 md:mb-10 px-1">
+            <h2 className="text-foreground text-[1.5rem] md:text-4xl font-light leading-tight mb-2 md:mb-3">
+              <span className="font-light">עוד הרצאות</span>
+            </h2>
+            <p className="text-sm md:text-lg font-light">
+              <span className="text-primary font-normal">פסיכולוגיה של עשייה -</span>
+              <span className="text-foreground/80 mx-2">הנהגה פנימית ותנועה בעולם של יזמות ועשייה</span>
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+            {lectureCards.map((card) => (
+              <article
+                key={card.title}
+                className="bg-card rounded-2xl md:rounded-3xl shadow-[0_15px_40px_-15px_hsl(0_0%_0%_/_0.12)] px-7 md:px-10 py-9 md:py-12 text-right flex flex-col transition-all duration-300 ease-out hover:scale-[1.03] hover:shadow-[0_25px_50px_-15px_hsl(var(--primary)/0.25)]"
+              >
+                <div className="h-7 mb-3 flex flex-wrap gap-2 justify-start">
+                  {card.badges?.map((b) => (
+                    <span
+                      key={b}
+                      className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-[10px] md:text-xs font-medium leading-none"
+                    >
+                      {b}
+                    </span>
+                  ))}
+                </div>
+                <h3 className="text-foreground text-xl md:text-2xl font-bold leading-tight mb-1 whitespace-pre-line">
+                  {card.title}
+                </h3>
+                <p className="text-foreground text-xs md:text-sm font-medium leading-relaxed mb-0.5">
+                  {card.subtitle}
+                </p>
+                <ExpandableText
+                  mobileLines={4}
+                  className="text-foreground/70 text-xs md:text-sm font-light leading-relaxed mb-2 md:mb-1 flex-1"
+                >
+                  {card.desc}
+                </ExpandableText>
+                <div className="mb-5 md:mb-6">
+                  <h4 className="text-foreground text-xs md:text-sm font-semibold mb-1.5 md:mb-2">
+                    קהל יעד
+                  </h4>
+                  <p className="text-foreground/70 text-xs md:text-sm font-light leading-relaxed">
+                    {card.audience}
+                  </p>
+                </div>
+                <div className="flex justify-start mt-auto">
+                  <button
+                    onClick={() => openContact("lecture")}
+                    className="px-6 md:px-8 py-2.5 rounded-lg bg-primary text-primary-foreground text-sm font-light hover:bg-[hsl(var(--primary-glow))] transition-colors"
+                  >
+                    להזמנת הרצאה
+                  </button>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* WORKSHOPS - gradient block */}
+      <section className="w-full py-12 md:py-20 px-[30px] md:px-6">
+        <div className="w-full md:w-[min(1200px,82%)] mx-auto">
+          <div
+            className="rounded-2xl md:rounded-[40px] px-6 md:px-24 py-10 md:py-24 text-right"
+            style={{
+              background: "linear-gradient(90deg, hsl(172 79% 79%) 0%, hsl(325 75% 69%) 100%)",
+            }}
+          >
+            <div className="w-full md:w-[min(720px,75%)] mr-0">
+              <h2 className="text-white text-[1.75rem] md:text-5xl font-light leading-tight mb-5 md:mb-10">
+                <span className="font-light">סדנאות ביבליותרפיה</span>
+                <br />
+                <span className="font-light">הנבנות בקשב לצורך שלכם</span>
+              </h2>
+
+              <ExpandableText
+                mobileLines={5}
+                className="text-white/95 text-sm md:text-base font-light leading-relaxed mb-6 md:mb-10"
+              >
+                <div className="space-y-4 md:space-y-6">
+                  <p>
+                    מחפשים מרחב עמוק, חי ולא שגרתי לעבודה קבוצתית? סדנאות ביבליותרפיה המבוססות
+                    על קריאה משותפת של טקסטים והנחיה של שיח קבוצתי משמעותי. הטקסטים אינם רק
+                    תוכן - הם שער: פותחים רגשות, שאלות ונקודות כאב, ומאפשרים תנועה אמיתית בקבוצה.
+                  </p>
+                  <p>
+                    כל סדנה נבנית במיוחד עבורכם, מתוך הקשבה לצורך, לאנשים ולשלב שבו אתם נמצאים.
+                    אני משלבת טקסטים מעולמות הפסיכולוגיה, הספרות וההגות, לצד מקורות מן המחשבה
+                    היהודית - מפגש ייחודי בין עומק רגשי, משמעות ושיח אמוני־רוחני. ניתן גם לבנות
+                    סדנאות עם דגש ייעודי על מקורות אלו.
+                  </p>
+                  <p>
+                    הסדנאות אינטימיות (עד 20 משתתפים), ומתאימות לצוותים, לקבוצות עומק ולארגונים
+                    שמבקשים לגעת לעומק, לחדד תהליכים ולהניע שינוי דרך הקשבה, טקסט ושיח מונחה.
+                  </p>
+                </div>
+              </ExpandableText>
+
+              <button
+                onClick={() => openContact("workshop")}
+                className="px-8 md:px-10 py-3 rounded-lg bg-white text-foreground text-sm md:text-base font-light shadow-md hover:bg-primary hover:text-primary-foreground hover:shadow-lg transition-all"
+              >
+                בואו נתכנן לכם סדנא
+              </button>
+            </div>
           </div>
         </div>
       </section>
