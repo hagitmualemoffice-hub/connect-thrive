@@ -56,7 +56,7 @@ const Lectures = () => {
 
       {/* FLAGSHIP LECTURE */}
       <section className="w-full pt-12 md:pt-20 pb-8 md:pb-10 px-[30px] md:px-6">
-        <div className="w-full md:w-[min(1000px,72%)] mx-auto">
+        <div className="w-full md:w-[min(1100px,82%)] mx-auto">
           <div className="relative bg-card rounded-2xl md:rounded-3xl shadow-[0_20px_60px_-15px_hsl(0_0%_0%_/_0.18)] px-5 md:px-20 py-10 md:py-16 transition-all duration-500 hover:shadow-[0_28px_70px_-15px_hsl(var(--primary)/0.25)] hover:-translate-y-1">
             <span className="absolute top-4 left-4 md:top-6 md:left-6 inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-[10px] md:text-xs font-medium">
               הרצאת הדגל
@@ -112,7 +112,7 @@ const Lectures = () => {
 
       {/* LECTURE GRID */}
       <section className="w-full py-10 md:py-16 px-[30px] md:px-6">
-        <div className="w-full md:w-[min(1000px,72%)] mx-auto">
+        <div className="w-full md:w-[min(1100px,82%)] mx-auto">
           <div className="text-right mb-6 md:mb-10 px-1">
             <h2 className="text-foreground text-[1.5rem] md:text-4xl font-light leading-tight mb-2 md:mb-3">
               <span className="font-light">עוד הרצאות</span>
@@ -175,7 +175,7 @@ const Lectures = () => {
 
       {/* WORKSHOPS - gradient block */}
       <section className="w-full py-12 md:py-20 px-[30px] md:px-6">
-        <div className="w-full md:w-[min(1200px,82%)] mx-auto">
+        <div className="w-full md:w-[min(1100px,82%)] mx-auto">
           <div
             className="rounded-2xl md:rounded-[40px] px-6 md:px-24 py-10 md:py-24 text-right"
             style={{

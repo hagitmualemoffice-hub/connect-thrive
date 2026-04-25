@@ -26,7 +26,7 @@ const Projects = () => {
         <div className="absolute inset-0 bg-gradient-to-l from-background/95 via-background/55 to-background/20" />
 
         <div className="relative z-10 h-full flex items-end pb-14 md:pb-20 px-[30px] md:px-6">
-          <div className="w-full md:w-[min(1000px,72%)] mx-auto text-right">
+          <div className="w-full md:w-[min(1100px,82%)] mx-auto text-right">
             <Link
               to="/"
               className="inline-flex items-center gap-1.5 text-sm text-foreground/70 hover:text-primary mb-5 transition-colors"
@@ -50,7 +50,7 @@ const Projects = () => {
 
       {/* PROJECT CARDS */}
       <section className="w-full py-14 md:py-20 px-[30px] md:px-6">
-        <div className="w-full md:w-[min(1000px,72%)] mx-auto">
+        <div className="w-full md:w-[min(1100px,82%)] mx-auto">
           <div className="space-y-6 md:space-y-10">
             {projectCards.map((card, idx) => (
               <article
@@ -117,7 +117,7 @@ const Projects = () => {
 
       {/* CTA */}
       <section className="w-full pb-20 md:pb-28 px-[30px] md:px-6">
-        <div className="w-full md:w-[min(1000px,72%)] mx-auto">
+        <div className="w-full md:w-[min(1100px,82%)] mx-auto">
           <div
             className="rounded-2xl md:rounded-[40px] px-6 md:px-20 py-10 md:py-16 text-right"
             style={{
