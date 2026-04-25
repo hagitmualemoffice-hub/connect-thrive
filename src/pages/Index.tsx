@@ -247,10 +247,12 @@ const Index = () => {
             <br />
             פסיכולוגית בהתמחות קלינית
           </p>
-          <h1 className="text-white text-[2.8rem] font-light tracking-wide leading-[1.05]">
-            כשחיבור
+          <h1 className="text-white text-[2.4rem] font-light tracking-wide leading-[1.1]">
+            לבנות את עצמך
             <br />
-            מחולל תנועה
+            מתוך המציאות כמו שהיא
+            <br />
+            <span className="text-[1.6rem] text-white/90">גם כשהיא מורכבת</span>
           </h1>
         </div>
 
