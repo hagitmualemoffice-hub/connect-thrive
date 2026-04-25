@@ -378,84 +378,101 @@ const Index = () => {
             <div className="mt-3 md:mt-4 h-px w-16 bg-primary/40" />
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6 items-stretch">
             {[
               {
+                tag: "מפגש חי",
                 title: "הרצאות",
                 body: (
                   <>
-                    מפגש עם חשיבה על החיים כפי שהם -<br />
-                    על קבלת החלטות במצבים מורכבים,<br />
-                    ועל האפשרות לנוע גם כשאין בהירות מלאה.
+                    מפגש עם חשיבה על החיים כפי שהם — על קבלת החלטות במצבים מורכבים, ועל האפשרות לנוע גם כשאין בהירות מלאה.
                     <br />
                     <br />
-                    אם אתם מחפשים שיחה שמצליחה לגעת גם במורכב - זו הזמנה להיפגש.
+                    אם אתם מחפשים שיחה שמצליחה לגעת גם במורכב — זו הזמנה להיפגש.
                   </>
                 ),
+                Icon: Lightbulb,
                 cta: { label: "להזמנת הרצאה", action: () => openContact("lecture") },
               },
               {
+                tag: "תהליך קבוצתי",
                 title: "סדנאות ביבליותרפיה",
                 body: (
                   <>
-                    עבודה דרך טקסטים, שיחה והתבוננות משותפת -<br />
-                    שמאפשרת לפגוש את מה שקורה בפנים,<br />
-                    ולנוע ממנו אל פעולה בעולם.
+                    עבודה דרך טקסטים, שיחה והתבוננות משותפת — שמאפשרת לפגוש את מה שקורה בפנים, ולנוע ממנו אל פעולה בעולם.
                     <br />
                     <br />
                     לקבוצות שמבקשות תהליך עמוק, שמתחיל מבפנים ונוגע גם בחוץ.
                   </>
                 ),
+                Icon: Users,
                 cta: { label: "להזמנת סדנה", action: () => openContact("workshop") },
               },
               {
+                tag: "כתיבה",
                 title: "תוכן",
                 body: (
                   <>
-                    כתיבה על החיים כפי שהם -<br />
-                    דרך זווית פסיכולוגית ורוחנית־יהודית.
+                    כתיבה על החיים כפי שהם — דרך זווית פסיכולוגית ורוחנית־יהודית.
                     <br />
                     <br />
-                    בלוג שפותח מרחב לחשוב, להרגיש ולהתחבר -<br />
-                    ומזמין אותך לפגוש את החיים מזווית אחרת.
+                    בלוג שפותח מרחב לחשוב, להרגיש ולהתחבר — ומזמין אותך לפגוש את החיים מזווית אחרת.
                   </>
                 ),
+                Icon: Sprout,
                 cta: { label: "לקריאה בבלוג", to: "/blog" },
               },
-            ].map((card, idx) => (
-              <div
-                key={idx}
-                className="group relative bg-card rounded-2xl md:rounded-3xl shadow-[0_15px_45px_-15px_hsl(0_0%_0%_/_0.15)] px-6 md:px-7 py-7 md:py-9 text-right flex flex-col transition-all duration-500 ease-out hover:shadow-[0_22px_55px_-15px_hsl(var(--primary)/0.22)] hover:-translate-y-1"
-              >
-                <div className="absolute top-0 right-6 md:right-7 h-1 w-10 bg-primary/60 rounded-b-full" />
-                <h3 className="text-foreground text-xl md:text-2xl font-bold leading-tight mb-3 md:mb-4">
-                  {card.title}
-                </h3>
-                <ExpandableText
-                  mobileLines={5}
-                  className="text-foreground/75 text-sm md:text-[15px] font-light leading-relaxed mb-5 md:mb-6 flex-1"
+            ].map((card, idx) => {
+              const Icon = card.Icon;
+              return (
+                <div
+                  key={idx}
+                  className="group relative bg-gradient-to-b from-card to-[hsl(var(--accent)/0.35)] rounded-2xl md:rounded-3xl shadow-[0_15px_45px_-15px_hsl(0_0%_0%_/_0.12)] px-6 md:px-7 pt-8 md:pt-9 pb-7 md:pb-8 text-right flex flex-col transition-all duration-500 ease-out hover:shadow-[0_25px_60px_-15px_hsl(var(--primary)/0.28)] hover:-translate-y-1.5 border border-primary/5"
                 >
-                  <p>{card.body}</p>
-                </ExpandableText>
-                <div className="flex justify-start">
-                  {card.cta.to ? (
-                    <Link
-                      to={card.cta.to}
-                      className="px-5 py-2 rounded-full bg-primary/10 text-primary text-sm font-light hover:bg-primary hover:text-primary-foreground transition-colors"
-                    >
-                      {card.cta.label}
-                    </Link>
-                  ) : (
-                    <button
-                      onClick={card.cta.action}
-                      className="px-5 py-2 rounded-full bg-primary/10 text-primary text-sm font-light hover:bg-primary hover:text-primary-foreground transition-colors"
-                    >
-                      {card.cta.label}
-                    </button>
-                  )}
+                  {/* Top accent line */}
+                  <div className="absolute top-0 right-8 h-1 w-12 bg-gradient-to-l from-primary to-[hsl(var(--primary-glow))] rounded-b-full" />
+
+                  {/* Icon circle */}
+                  <div className="mb-4 md:mb-5 w-12 h-12 md:w-14 md:h-14 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 group-hover:scale-105 transition-all duration-500">
+                    <Icon className="w-5 h-5 md:w-6 md:h-6 text-primary" strokeWidth={1.5} />
+                  </div>
+
+                  <span className="text-primary text-[11px] md:text-xs font-medium tracking-wide uppercase mb-1.5">
+                    {card.tag}
+                  </span>
+                  <h3 className="text-foreground text-xl md:text-2xl font-bold leading-tight mb-3 md:mb-4">
+                    {card.title}
+                  </h3>
+
+                  {/* Subtle divider */}
+                  <div className="h-px w-8 bg-primary/30 mb-3 md:mb-4" />
+
+                  <ExpandableText
+                    mobileLines={5}
+                    className="text-foreground/75 text-sm md:text-[15px] font-light leading-relaxed mb-5 md:mb-6 flex-1"
+                  >
+                    <p>{card.body}</p>
+                  </ExpandableText>
+                  <div className="flex justify-start">
+                    {card.cta.to ? (
+                      <Link
+                        to={card.cta.to}
+                        className="px-5 py-2 rounded-full bg-primary/10 text-primary text-sm font-light hover:bg-primary hover:text-primary-foreground transition-colors"
+                      >
+                        {card.cta.label}
+                      </Link>
+                    ) : (
+                      <button
+                        onClick={card.cta.action}
+                        className="px-5 py-2 rounded-full bg-primary/10 text-primary text-sm font-light hover:bg-primary hover:text-primary-foreground transition-colors"
+                      >
+                        {card.cta.label}
+                      </button>
+                    )}
+                  </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
