@@ -514,60 +514,27 @@ const Index = () => {
             </p>
           </div>
 
-          <div className="space-y-6 md:space-y-10">
-            {projectCards.map((card, idx) => (
-              <div
-                key={idx}
-                className="bg-card rounded-2xl md:rounded-3xl shadow-[0_20px_60px_-15px_hsl(0_0%_0%_/_0.18)] px-7 md:px-20 py-8 md:py-16 text-right w-full"
-              >
-                <div className="w-full md:w-[min(696px,100%)] mr-0 ml-auto">
-                  <h3 className="text-foreground text-xl md:text-3xl font-bold leading-tight mb-4 md:mb-6 whitespace-pre-line">
-                    {card.title}
-                  </h3>
-                  <ExpandableText
-                    mobileLines={8}
-                    className="text-foreground/80 text-sm md:text-base font-light leading-relaxed mb-6 md:mb-8"
-                  >
-                    <div className="space-y-3 md:space-y-4">
-                      {card.paragraphs.map((p, i) => (
-                        <p key={i}>{p}</p>
-                      ))}
-                    </div>
-                  </ExpandableText>
-                  <div className="flex flex-wrap justify-start gap-2 md:gap-3">
-                    {card.buttons.map((btn) => {
-                      const cls =
-                        "px-7 py-2.5 rounded-lg bg-primary text-primary-foreground text-sm font-light hover:bg-[hsl(var(--primary-glow))] transition-colors";
-                      if (btn.href) {
-                        return (
-                          <a
-                            key={btn.label}
-                            href={btn.href}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className={cls}
-                          >
-                            {btn.label}
-                          </a>
-                        );
-                      }
-                      return (
-                        <button
-                          key={btn.label}
-                          onClick={() => {
-                            if (btn.action === "hosting") setHostingOpen(true);
-                            else if (btn.action === "mailing") setPopupOpen(true);
-                          }}
-                          className={cls}
-                        >
-                          {btn.label}
-                        </button>
-                      );
-                    })}
-                  </div>
-                </div>
+          <div
+            className="bg-card rounded-2xl md:rounded-3xl shadow-[0_20px_60px_-15px_hsl(0_0%_0%_/_0.18)] px-7 md:px-20 py-8 md:py-16 text-right w-full"
+          >
+            <div className="w-full md:w-[min(696px,100%)] mr-0 ml-auto">
+              <div className="space-y-4 md:space-y-5 text-foreground/80 text-sm md:text-base font-light leading-relaxed mb-6 md:mb-8">
+                <p>
+                  לצד העבודה הקלינית, אני מפתחת פתרונות עבור קהלים ומצבים שלא מקבלים מענה רגשי או חברתי מספק.
+                </p>
+                <p>
+                  אני משלבת הבנה פסיכולוגית עם חשיבה מערכתית, ומתרגמת צרכים מהשטח ליוזמות, שירותים ומענים שמייצרים שינוי ממשי ומחזקים אנשים וקהילות בהתמודדות עם מציאות חיים מורכבת.
+                </p>
               </div>
-            ))}
+              <div className="flex flex-wrap justify-start gap-2 md:gap-3">
+                <Link
+                  to="/projects"
+                  className="px-7 py-2.5 rounded-lg bg-primary text-primary-foreground text-sm font-light hover:bg-[hsl(var(--primary-glow))] transition-colors"
+                >
+                  להכיר את הפרויקט
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
       </section>
