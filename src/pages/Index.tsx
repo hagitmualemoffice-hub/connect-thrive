@@ -275,11 +275,9 @@ const Index = () => {
           </p>
           <h1 className="text-white text-5xl lg:text-6xl font-light tracking-wide mb-[10px] leading-tight">
             לבנות את עצמך מתוך המציאות
-            <br />
-            כפי שהיא
           </h1>
           <p className="text-white/90 text-2xl lg:text-3xl font-light mb-[14px]">
-            כן, גם כשהיא מורכבת
+            כפי שהיא. כן, גם כשהיא מורכבת
           </p>
           <p className="text-white/90 text-lg lg:text-xl font-light max-w-4xl whitespace-nowrap leading-relaxed px-2">
             הרצאות · סדנאות · תוכן על חיים בתוך מורכבות ותנועה מתוך חוסר ודאות
