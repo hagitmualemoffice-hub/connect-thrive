@@ -368,6 +368,98 @@ const Index = () => {
         </div></div>
       </section>
 
+      {/* Where to meet me section */}
+      <section id="meet" className="w-full pt-2 pb-12 md:pb-20 md:pt-6 px-[30px] md:px-6">
+        <div className="w-full md:w-[min(1000px,72%)] mx-auto" dir="rtl">
+          <div className="text-right mb-6 md:mb-10">
+            <h2 className="text-foreground text-[1.75rem] md:text-5xl font-light leading-tight">
+              איפה פוגשים אותי
+            </h2>
+            <div className="mt-3 md:mt-4 h-px w-16 bg-primary/40" />
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6">
+            {[
+              {
+                title: "הרצאות",
+                body: (
+                  <>
+                    מפגש עם חשיבה על החיים כפי שהם -<br />
+                    על קבלת החלטות במצבים מורכבים,<br />
+                    ועל האפשרות לנוע גם כשאין בהירות מלאה.
+                    <br />
+                    <br />
+                    אם אתם מחפשים שיחה שמצליחה לגעת גם במורכב - זו הזמנה להיפגש.
+                  </>
+                ),
+                cta: { label: "להזמנת הרצאה", action: () => openContact("lecture") },
+              },
+              {
+                title: "סדנאות ביבליותרפיה",
+                body: (
+                  <>
+                    עבודה דרך טקסטים, שיחה והתבוננות משותפת -<br />
+                    שמאפשרת לפגוש את מה שקורה בפנים,<br />
+                    ולנוע ממנו אל פעולה בעולם.
+                    <br />
+                    <br />
+                    לקבוצות שמבקשות תהליך עמוק, שמתחיל מבפנים ונוגע גם בחוץ.
+                  </>
+                ),
+                cta: { label: "להזמנת סדנה", action: () => openContact("workshop") },
+              },
+              {
+                title: "תוכן",
+                body: (
+                  <>
+                    כתיבה על החיים כפי שהם -<br />
+                    דרך זווית פסיכולוגית ורוחנית־יהודית.
+                    <br />
+                    <br />
+                    בלוג שפותח מרחב לחשוב, להרגיש ולהתחבר -<br />
+                    ומזמין אותך לפגוש את החיים מזווית אחרת.
+                  </>
+                ),
+                cta: { label: "לקריאה בבלוג", to: "/blog" },
+              },
+            ].map((card, idx) => (
+              <div
+                key={idx}
+                className="group relative bg-card rounded-2xl md:rounded-3xl shadow-[0_15px_45px_-15px_hsl(0_0%_0%_/_0.15)] px-6 md:px-7 py-7 md:py-9 text-right flex flex-col transition-all duration-500 ease-out hover:shadow-[0_22px_55px_-15px_hsl(var(--primary)/0.22)] hover:-translate-y-1"
+              >
+                <div className="absolute top-0 right-6 md:right-7 h-1 w-10 bg-primary/60 rounded-b-full" />
+                <h3 className="text-foreground text-xl md:text-2xl font-bold leading-tight mb-3 md:mb-4">
+                  {card.title}
+                </h3>
+                <ExpandableText
+                  mobileLines={5}
+                  className="text-foreground/75 text-sm md:text-[15px] font-light leading-relaxed mb-5 md:mb-6 flex-1"
+                >
+                  <p>{card.body}</p>
+                </ExpandableText>
+                <div className="flex justify-start">
+                  {card.cta.to ? (
+                    <Link
+                      to={card.cta.to}
+                      className="px-5 py-2 rounded-full bg-primary/10 text-primary text-sm font-light hover:bg-primary hover:text-primary-foreground transition-colors"
+                    >
+                      {card.cta.label}
+                    </Link>
+                  ) : (
+                    <button
+                      onClick={card.cta.action}
+                      className="px-5 py-2 rounded-full bg-primary/10 text-primary text-sm font-light hover:bg-primary hover:text-primary-foreground transition-colors"
+                    >
+                      {card.cta.label}
+                    </button>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
 
       {/* Projects section - Listening Entrepreneurship */}
       <section id="projects" className="relative w-full py-12 md:py-24 px-[30px] md:px-6 overflow-hidden">
