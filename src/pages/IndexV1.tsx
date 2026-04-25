@@ -142,7 +142,7 @@ const inlineSchema = z.object({
   email: z.string().trim().email("כתובת מייל לא תקינה").max(255, "מייל ארוך מדי"),
 });
 
-const Index = () => {
+const IndexV1 = () => {
   const [popupOpen, setPopupOpen] = useState(false);
   const [contactOpen, setContactOpen] = useState(false);
   const [contactTab, setContactTab] = useState<ContactTab>("general");
@@ -900,4 +900,4 @@ const Index = () => {
   );
 };
 
-export default Index;
+export default IndexV1;
