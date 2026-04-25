@@ -248,12 +248,13 @@ const Index = () => {
             פסיכולוגית בהתמחות קלינית
           </p>
           <h1 className="text-white text-[2.4rem] font-light tracking-wide leading-[1.1]">
-            לבנות את עצמך
+            לבנות את עצמך מתוך המציאות
             <br />
-            מתוך המציאות כמו שהיא
-            <br />
-            <span className="text-[1.6rem] text-white/90">גם כשהיא מורכבת</span>
+            כפי שהיא
           </h1>
+          <p className="text-white/90 text-[1.4rem] font-light leading-snug mt-2">
+            כן, גם כשהיא מורכבת
+          </p>
         </div>
 
         {/* Mobile: white pill positioned half on image, half on white background */}
