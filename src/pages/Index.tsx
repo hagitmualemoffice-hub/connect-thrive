@@ -247,10 +247,12 @@ const Index = () => {
             <br />
             פסיכולוגית בהתמחות קלינית
           </p>
-          <h1 className="text-white text-[2.8rem] font-light tracking-wide leading-[1.05]">
-            כשחיבור
+          <h1 className="text-white text-[2.4rem] font-light tracking-wide leading-[1.1]">
+            לבנות את עצמך
             <br />
-            מחולל תנועה
+            מתוך המציאות כמו שהיא
+            <br />
+            <span className="text-[1.6rem] text-white/90">גם כשהיא מורכבת</span>
           </h1>
         </div>
 
@@ -272,11 +274,14 @@ const Index = () => {
           <p className="text-white/90 text-base font-light mb-[2px]">
             חגית מועלם פסיכולוגית בהתמחות קלינית
           </p>
-          <h1 className="text-white text-5xl lg:text-6xl font-light tracking-wide mb-[14px]">
-            כשחיבור מחולל תנועה
+          <h1 className="text-white text-5xl lg:text-6xl font-light tracking-wide mb-[10px] leading-tight">
+            לבנות את עצמך מתוך המציאות כמו שהיא
           </h1>
+          <p className="text-white/90 text-2xl lg:text-3xl font-light mb-[14px]">
+            גם כשהיא מורכבת
+          </p>
           <p className="text-white/90 text-lg lg:text-xl font-light max-w-4xl whitespace-nowrap leading-relaxed px-2">
-            על התפתחות, יזמות, קהילה ושינוי שנולדים מעומק נפשי-רוחני וחיבור לייעוד ולמשמעות
+            הרצאות · סדנאות · תוכן על חיים בתוך מורכבות ותנועה מתוך חוסר ודאות
           </p>
         </div>
 
