@@ -368,44 +368,6 @@ const Index = () => {
         </div></div>
       </section>
 
-      {/* Movement section */}
-      <section id="entrepreneurship" className="w-full pt-2 pb-8 md:py-20 px-[30px] md:px-6">
-
-        <div className="w-full md:w-[min(1000px,72%)] mx-auto"><div className="w-full md:w-[min(720px,76%)] mr-0 text-right">
-          <h2 className="text-foreground text-[1.75rem] md:text-5xl font-light leading-tight mb-5 md:mb-8">
-            מה קורה כאן?
-          </h2>
-
-          <ExpandableText
-            mobileLines={4}
-            className="text-foreground/80 text-sm md:text-base font-light leading-relaxed"
-          >
-            <div className="space-y-4 md:space-y-6">
-              <p>
-                זה מרחב להתבונן על החיים כפי שהם - בלי לעקוף, בלי למהר לפתור.
-              </p>
-              <p>
-                על רגעים של חוסר ודאות,
-                <br />
-                על מצבים שאין בהם תשובה אחת נכונה,
-                <br />
-                על תקופות של כאב - ואיך מחזיקים בהן,
-                <br />
-                על הפער בין הרצון לבין המציאות.
-              </p>
-              <p>
-                ואיך, דווקא מתוך כל זה -
-                <br />
-                ממשיכים לנוע, לבחור, ולבנות דרך.
-              </p>
-            </div>
-          </ExpandableText>
-
-          <div className="hidden md:flex mt-3 md:mt-8 justify-start">
-            <Sprout className="text-primary w-5 h-5 md:w-8 md:h-8" strokeWidth={1.5} aria-hidden="true" />
-          </div>
-        </div></div>
-      </section>
 
       {/* Projects section - Listening Entrepreneurship */}
       <section id="projects" className="relative w-full py-12 md:py-24 px-[30px] md:px-6 overflow-hidden">
