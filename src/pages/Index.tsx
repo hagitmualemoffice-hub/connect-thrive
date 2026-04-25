@@ -248,12 +248,13 @@ const Index = () => {
             פסיכולוגית בהתמחות קלינית
           </p>
           <h1 className="text-white text-[2.4rem] font-light tracking-wide leading-[1.1]">
-            לבנות את עצמך
+            לבנות את עצמך מתוך המציאות
             <br />
-            מתוך המציאות כמו שהיא
-            <br />
-            <span className="text-[1.6rem] text-white/90">גם כשהיא מורכבת</span>
+            כפי שהיא
           </h1>
+          <p className="text-white/90 text-[1.4rem] font-light leading-snug mt-2">
+            כן, גם כשהיא מורכבת
+          </p>
         </div>
 
         {/* Mobile: white pill positioned half on image, half on white background */}
@@ -275,10 +276,12 @@ const Index = () => {
             חגית מועלם פסיכולוגית בהתמחות קלינית
           </p>
           <h1 className="text-white text-5xl lg:text-6xl font-light tracking-wide mb-[10px] leading-tight">
-            לבנות את עצמך מתוך המציאות כמו שהיא
+            לבנות את עצמך מתוך המציאות
+            <br />
+            כפי שהיא
           </h1>
           <p className="text-white/90 text-2xl lg:text-3xl font-light mb-[14px]">
-            גם כשהיא מורכבת
+            כן, גם כשהיא מורכבת
           </p>
           <p className="text-white/90 text-lg lg:text-xl font-light max-w-4xl whitespace-nowrap leading-relaxed px-2">
             הרצאות · סדנאות · תוכן על חיים בתוך מורכבות ותנועה מתוך חוסר ודאות
