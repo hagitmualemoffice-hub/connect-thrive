@@ -7,6 +7,7 @@ import HostingPopup from "@/components/HostingPopup";
 import ContactPopup from "@/components/ContactPopup";
 import MobileBottomNav from "@/components/MobileBottomNav";
 import ExpandableText from "@/components/ExpandableText";
+import projectsBg from "@/assets/woman-beach-projects.jpg";
 import { projectCards } from "@/data/projects";
 
 const Projects = () => {
