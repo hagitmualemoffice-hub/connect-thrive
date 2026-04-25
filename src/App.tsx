@@ -11,6 +11,7 @@ import BlogPost from "./pages/BlogPost.tsx";
 import Podcast from "./pages/Podcast.tsx";
 import NotFound from "./pages/NotFound.tsx";
 import ScrollToTop from "./components/ScrollToTop";
+import V2Link from "./components/V2Link";
 
 const queryClient = new QueryClient();
 
