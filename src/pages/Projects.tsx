@@ -32,25 +32,34 @@ const Projects = () => {
 
       <div className="h-12 md:h-20" />
 
-      {/* Page header */}
-      <section className="w-full pt-6 pb-8 md:pt-20 md:pb-12 px-[30px] md:px-6">
-        <div className="w-full md:w-[min(1100px,82%)] mx-auto text-right">
-          <Link
-            to="/"
-            className="inline-flex items-center gap-1.5 text-sm text-foreground/70 hover:text-primary mb-5 transition-colors"
-          >
-            <ArrowRight className="w-4 h-4" />
-            חזרה לדף הבית
-          </Link>
-          <h1 className="text-foreground text-[1.75rem] md:text-6xl font-light tracking-tight leading-tight mb-3 md:mb-4">
-            <span className="font-light">יזמות קשובה</span>
-            <span className="mx-3 font-light text-foreground/40">|</span>
-            <span className="font-light">הפרויקטים שלי</span>
-          </h1>
-          <p className="text-foreground/70 text-sm md:text-xl font-light max-w-2xl leading-relaxed">
-            <span className="text-primary font-normal">אמפתיה, הקשבה ויצירתיות -</span>
-            <span className="mx-1">פתרונות שנולדים מתוך צורך אמיתי.</span>
-          </p>
+      {/* Hero with background image (≈ 75vh) */}
+      <section className="relative w-full h-[60vh] md:h-[75vh] overflow-hidden">
+        <img
+          src={projectsBg}
+          alt="הפרויקטים שלי - יזמות קשובה"
+          className="absolute inset-0 w-full h-full object-cover [object-position:center_15%]"
+        />
+        <div className="absolute inset-0 bg-gradient-to-l from-black/55 via-black/30 to-black/15" />
+
+        <div className="relative z-10 h-full flex items-end pb-10 md:pb-16 px-[30px] md:px-6">
+          <div className="w-full md:w-[min(1100px,82%)] mx-auto text-right">
+            <Link
+              to="/"
+              className="inline-flex items-center gap-1.5 text-sm text-white/85 hover:text-white mb-5 transition-colors"
+            >
+              <ArrowRight className="w-4 h-4" />
+              חזרה לדף הבית
+            </Link>
+            <h1 className="text-white text-[1.75rem] md:text-6xl font-light tracking-tight leading-tight mb-3 md:mb-4">
+              <span className="font-light">יזמות קשובה</span>
+              <span className="mx-3 font-light text-white/50">|</span>
+              <span className="font-light">הפרויקטים שלי</span>
+            </h1>
+            <p className="text-white/90 text-sm md:text-xl font-light max-w-2xl leading-relaxed">
+              <span className="text-white font-normal">אמפתיה, הקשבה ויצירתיות -</span>
+              <span className="mx-1">פתרונות שנולדים מתוך צורך אמיתי.</span>
+            </p>
+          </div>
         </div>
       </section>
 
