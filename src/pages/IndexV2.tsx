@@ -298,7 +298,7 @@ const IndexV2 = () => {
       </section>
 
       <div className="md:hidden h-20" />
-      <MobileBottomNav onContactClick={() => openContact("general")} />
+      <MobileBottomNav />
       <ContactPopup open={contactOpen} onOpenChange={setContactOpen} defaultTab={contactTab} />
     </div>
   );
