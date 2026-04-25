@@ -43,9 +43,8 @@ const blogPosts = allBlogPosts.slice(0, 3);
 const topNav = [
   { label: "אודות", href: "#about" },
   { label: "יזמות קשובה", href: "#entrepreneurship" },
-  { label: "הפרויקטים שלי", href: "#projects" },
-  { label: "הרצאות", href: "#lectures" },
-  { label: "סדנאות", href: "#workshops" },
+  { label: "הפרויקטים שלי", href: "/projects" },
+  { label: "הרצאות וסדנאות", href: "/lectures" },
   { label: "בלוג", href: "/blog" },
   { label: "פודקאסט", href: "/podcast" },
 ];
