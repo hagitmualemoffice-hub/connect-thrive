@@ -240,7 +240,7 @@ const Index = () => {
           <div className="absolute inset-0 bg-black/25" />
         </div>
 
-        {/* Mobile: title block over the image — fonts 1.5x larger, sensible line breaks */}
+        {/* Mobile: title block over the image */}
         <div className="md:hidden absolute top-0 left-0 right-0 h-[86%] z-10 flex flex-col items-center justify-end text-center px-6 pb-[68px]">
           <p className="text-white/90 text-[18px] font-light leading-snug mb-1">
             חגית מועלם
@@ -248,23 +248,37 @@ const Index = () => {
             פסיכולוגית בהתמחות קלינית
           </p>
           <h1 className="text-white text-[2.4rem] font-light tracking-wide leading-[1.1]">
-            לבנות את עצמך מתוך המציאות
+            לבנות את עצמך
+            <br />
+            מתוך המציאות כפי שהיא
           </h1>
-          <p className="text-white/90 text-[1.4rem] font-light leading-snug mt-2">
-            כפי שהיא. כן, גם כשהיא מורכבת
+          <p className="text-white/90 text-[1.25rem] font-light leading-snug mt-3">
+            כן, גם כשהיא מורכבת
           </p>
         </div>
 
         {/* Mobile: white pill positioned half on image, half on white background */}
         <div className="md:hidden absolute top-[86%] left-0 right-0 z-20 -translate-y-1/4 -mt-[15px] px-[30px]">
-          <div className="relative bg-white/95 backdrop-blur-sm rounded-xl px-4 pt-3 pb-3 shadow-md mx-auto">
-            <p className="text-foreground text-[16px] font-light leading-relaxed text-center">
-              על התפתחות, יזמות, קהילה ושינוי
+          <div className="relative bg-white/95 backdrop-blur-sm rounded-xl px-4 pt-4 pb-4 shadow-md mx-auto">
+            <p className="text-foreground text-[15px] font-light leading-relaxed text-center mb-3">
+              הרצאות · סדנאות · תוכן
               <br />
-              שנולדים מעומק נפשי-רוחני
-              <br />
-              וחיבור לייעוד ולמשמעות
+              על חיים בתוך מורכבות ותנועה מתוך חוסר ודאות
             </p>
+            <div className="flex flex-col gap-2">
+              <button
+                onClick={() => openContact("lecture")}
+                className="w-full px-5 py-2.5 rounded-full bg-primary text-primary-foreground text-sm font-light hover:bg-[hsl(var(--primary-glow))] transition-all shadow-sm shadow-primary/20"
+              >
+                להזמנת הרצאה
+              </button>
+              <button
+                onClick={() => setPopupOpen(true)}
+                className="w-full px-5 py-2.5 rounded-full border border-primary/40 text-foreground text-sm font-light hover:bg-primary/5 transition-all"
+              >
+                הצטרפות לתפוצה
+              </button>
+            </div>
           </div>
         </div>
 
@@ -274,53 +288,40 @@ const Index = () => {
             חגית מועלם פסיכולוגית בהתמחות קלינית
           </p>
           <h1 className="text-white text-5xl lg:text-6xl font-light tracking-wide mb-[10px] leading-tight">
-            לבנות את עצמך מתוך המציאות
+            לבנות את עצמך
+            <br />
+            מתוך המציאות כפי שהיא
           </h1>
-          <p className="text-white/90 text-2xl lg:text-3xl font-light mb-[14px]">
-            כפי שהיא. כן, גם כשהיא מורכבת
-          </p>
-          <p className="text-white/90 text-lg lg:text-xl font-light max-w-4xl whitespace-nowrap leading-relaxed px-2">
-            הרצאות · סדנאות · תוכן על חיים בתוך מורכבות ותנועה מתוך חוסר ודאות
+          <p className="text-white/90 text-2xl lg:text-3xl font-light">
+            כן, גם כשהיא מורכבת
           </p>
         </div>
 
-        {/* Floating mailing list signup bar — desktop/tablet only */}
+        {/* Floating CTA bar — desktop/tablet only */}
         <div className="hidden md:block absolute -bottom-12 left-1/2 -translate-x-1/2 w-[min(1000px,94%)] z-20">
           <div className="bg-card rounded-2xl shadow-[0_15px_50px_-10px_hsl(0_0%_0%_/_0.15)] px-6 py-5 md:px-8 md:py-6 flex flex-col md:flex-row items-center justify-between gap-5">
-            <div className="text-center md:text-right shrink-0">
-              <p className="text-foreground text-base md:text-lg font-light leading-tight">
-                בואי להתחבר לעצמך דרך תוכן איכותי
+            <div className="text-center md:text-right">
+              <p className="text-foreground text-base md:text-lg font-light leading-snug">
+                הרצאות · סדנאות · תוכן
               </p>
-              <p className="text-foreground/60 text-xs md:text-sm font-light leading-tight mt-1">
-                הצטרפי לתפוצה השקטה שלי
+              <p className="text-foreground/60 text-xs md:text-sm font-light leading-snug mt-1">
+                על חיים בתוך מורכבות ותנועה מתוך חוסר ודאות
               </p>
             </div>
-            <form
-              onSubmit={handleInlineSubscribe}
-              className="flex flex-col sm:flex-row items-stretch gap-2 w-full md:w-auto md:flex-1 md:max-w-[560px]"
-            >
-              <input
-                type="text"
-                placeholder="שם"
-                value={inlineForm.name}
-                onChange={(e) => setInlineForm({ ...inlineForm, name: e.target.value })}
-                className="flex-1 min-w-0 bg-muted/50 border border-transparent rounded-full px-5 py-2.5 text-sm font-light text-foreground placeholder:text-muted-foreground/70 focus:outline-none focus:border-primary/40 focus:bg-background transition-colors text-right"
-              />
-              <input
-                type="email"
-                placeholder="כתובת מייל"
-                value={inlineForm.email}
-                onChange={(e) => setInlineForm({ ...inlineForm, email: e.target.value })}
-                className="flex-1 min-w-0 bg-muted/50 border border-transparent rounded-full px-5 py-2.5 text-sm font-light text-foreground placeholder:text-muted-foreground/70 focus:outline-none focus:border-primary/40 focus:bg-background transition-colors text-right"
-              />
+            <div className="flex flex-col sm:flex-row items-stretch gap-2 w-full md:w-auto">
               <button
-                type="submit"
-                disabled={inlineSubmitting}
-                className="px-6 py-2.5 rounded-full bg-primary text-primary-foreground text-sm md:text-base font-light hover:bg-[hsl(var(--primary-glow))] transition-all whitespace-nowrap shadow-sm shadow-primary/20 disabled:opacity-60 disabled:cursor-not-allowed"
+                onClick={() => openContact("lecture")}
+                className="px-6 py-2.5 rounded-full bg-primary text-primary-foreground text-sm md:text-base font-light hover:bg-[hsl(var(--primary-glow))] transition-all whitespace-nowrap shadow-sm shadow-primary/20"
               >
-                {inlineSubmitting ? "שולחת..." : "הצטרפות"}
+                להזמנת הרצאה
               </button>
-            </form>
+              <button
+                onClick={() => setPopupOpen(true)}
+                className="px-6 py-2.5 rounded-full border border-primary/40 text-foreground text-sm md:text-base font-light hover:bg-primary/5 transition-all whitespace-nowrap"
+              >
+                הצטרפות לתפוצה
+              </button>
+            </div>
           </div>
         </div>
       </section>
