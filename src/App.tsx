@@ -4,6 +4,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import Index from "./pages/Index.tsx";
+import IndexV1 from "./pages/IndexV1.tsx";
 import IndexV2 from "./pages/IndexV2.tsx";
 import Lectures from "./pages/Lectures.tsx";
 import Blog from "./pages/Blog.tsx";
@@ -25,6 +26,7 @@ const App = () => (
         <V2Link />
         <Routes>
           <Route path="/" element={<Index />} />
+          <Route path="/v1" element={<IndexV1 />} />
           <Route path="/v2" element={<IndexV2 />} />
           <Route path="/lectures" element={<Lectures />} />
           <Route path="/blog" element={<Blog />} />
