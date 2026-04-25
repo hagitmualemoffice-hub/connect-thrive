@@ -10,8 +10,6 @@ import HostingPopup from "@/components/HostingPopup";
 import MobileBottomNav from "@/components/MobileBottomNav";
 import ExpandableText from "@/components/ExpandableText";
 import heroBg from "@/assets/hero-bg.jpg";
-import lectureBg from "@/assets/woman-beach.jpg";
-import projectsBg from "@/assets/woman-beach-projects.jpg";
 import podcastCover from "@/assets/podcast-cover.png";
 import contactHeart from "@/assets/contact-heart.png";
 import { blogPosts as allBlogPosts } from "@/data/blogPosts";
