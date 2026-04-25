@@ -5,6 +5,7 @@ import SiteHeader from "@/components/SiteHeader";
 import ContactPopup, { type ContactTab } from "@/components/ContactPopup";
 import MobileBottomNav from "@/components/MobileBottomNav";
 import ExpandableText from "@/components/ExpandableText";
+import lectureBg from "@/assets/woman-beach.jpg";
 import { lectureCards } from "@/data/lectures";
 
 const Lectures = () => {
