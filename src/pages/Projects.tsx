@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
+import SiteHeader from "@/components/SiteHeader";
 import MailingListPopup from "@/components/MailingListPopup";
 import HostingPopup from "@/components/HostingPopup";
 import ContactPopup from "@/components/ContactPopup";
 import MobileBottomNav from "@/components/MobileBottomNav";
 import ExpandableText from "@/components/ExpandableText";
-import projectsBg from "@/assets/woman-beach-projects.jpg";
 import { projectCards } from "@/data/projects";
 
 const Projects = () => {
@@ -15,36 +15,41 @@ const Projects = () => {
   const [contactOpen, setContactOpen] = useState(false);
 
   return (
-    <div dir="rtl" className="min-h-screen bg-background text-foreground font-light">
-      {/* HERO */}
-      <section className="relative w-full h-[440px] md:h-[560px] overflow-hidden">
-        <img
-          src={projectsBg}
-          alt="הפרויקטים שלי - יזמות קשובה"
-          className="absolute inset-0 w-full h-full object-cover [object-position:center_15%]"
-        />
-        <div className="absolute inset-0 bg-gradient-to-l from-background/95 via-background/55 to-background/20" />
+    <div dir="rtl" className="min-h-screen bg-background text-foreground font-light pb-20 md:pb-0">
+      <div className="hidden md:block">
+        <SiteHeader />
+      </div>
 
-        <div className="relative z-10 h-full flex items-end pb-14 md:pb-20 px-[30px] md:px-6">
-          <div className="w-full md:w-[min(1100px,82%)] mx-auto text-right">
-            <Link
-              to="/"
-              className="inline-flex items-center gap-1.5 text-sm text-foreground/70 hover:text-primary mb-5 transition-colors"
-            >
-              <ArrowRight className="w-4 h-4" />
-              חזרה לדף הבית
-            </Link>
-            <div className="w-12 h-px bg-primary mb-5" />
-            <h1 className="text-foreground text-[2rem] md:text-5xl font-light leading-tight mb-3">
-              <span className="font-light">יזמות קשובה</span>
-              <span className="mx-3 font-light text-foreground/40">|</span>
-              <span className="font-light">הפרויקטים שלי</span>
-            </h1>
-            <p className="text-sm md:text-lg font-light leading-relaxed max-w-2xl">
-              <span className="text-primary font-normal">אמפתיה, הקשבה ויצירתיות -</span>
-              <span className="text-foreground/80 mx-1">פתרונות שנולדים מתוך צורך אמיתי.</span>
-            </p>
-          </div>
+      {/* Mobile-only header logo strip */}
+      <header className="md:hidden fixed top-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-sm shadow-sm">
+        <div className="flex items-center justify-center px-5 py-3">
+          <Link to="/" className="text-foreground text-base font-semibold tracking-tight">
+            חגית מועלם
+          </Link>
+        </div>
+      </header>
+
+      <div className="h-12 md:h-20" />
+
+      {/* Page header */}
+      <section className="w-full pt-6 pb-8 md:pt-20 md:pb-12 px-[30px] md:px-6">
+        <div className="w-full md:w-[min(1100px,82%)] mx-auto text-right">
+          <Link
+            to="/"
+            className="inline-flex items-center gap-1.5 text-sm text-foreground/70 hover:text-primary mb-5 transition-colors"
+          >
+            <ArrowRight className="w-4 h-4" />
+            חזרה לדף הבית
+          </Link>
+          <h1 className="text-foreground text-[1.75rem] md:text-6xl font-light tracking-tight leading-tight mb-3 md:mb-4">
+            <span className="font-light">יזמות קשובה</span>
+            <span className="mx-3 font-light text-foreground/40">|</span>
+            <span className="font-light">הפרויקטים שלי</span>
+          </h1>
+          <p className="text-foreground/70 text-sm md:text-xl font-light max-w-2xl leading-relaxed">
+            <span className="text-primary font-normal">אמפתיה, הקשבה ויצירתיות -</span>
+            <span className="mx-1">פתרונות שנולדים מתוך צורך אמיתי.</span>
+          </p>
         </div>
       </section>
 
