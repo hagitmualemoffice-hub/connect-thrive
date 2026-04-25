@@ -478,96 +478,48 @@ const Index = () => {
       </section>
 
 
-      {/* Projects section - Listening Entrepreneurship */}
-      <section id="projects" className="relative w-full py-12 md:py-24 px-[30px] md:px-6 overflow-hidden">
-        {/* Background image - only top portion (ends ~1/3 into 2nd card) */}
-        <div className="absolute top-0 left-0 right-0 h-[420px] md:h-[820px] overflow-hidden">
+      {/* Projects section - Listening Entrepreneurship (intro + CTA to /projects) */}
+      <section id="projects" className="relative w-full py-16 md:py-28 px-[30px] md:px-6 overflow-hidden">
+        {/* Background image */}
+        <div className="absolute inset-0 overflow-hidden">
           <img
             src={projectsBg}
             alt="יזמות קשובה - פרויקטים"
             className="absolute inset-0 w-full h-full object-cover [object-position:center_15%]"
           />
+          <div className="absolute inset-0 bg-gradient-to-l from-white/95 via-white/80 to-white/40 md:from-white/90 md:via-white/70 md:to-white/20" />
         </div>
 
         <div className="relative z-10 w-full md:w-[min(1000px,72%)] mx-auto" dir="rtl">
-          <div className="text-right mb-[24px] md:mb-10 px-1 mt-[20px] md:mt-0">
-            {/* Mobile: title + subtitle with custom line breaks */}
-            <div className="md:hidden">
-              <h2 className="text-foreground text-[1.75rem] font-light leading-tight">
-                הפרויקטים שלי
-              </h2>
-              <p className="mt-1.5 text-sm font-light leading-relaxed">
-                <span className="text-primary font-normal block">אמפתיה, הקשבה ויצירתיות -</span>
-                <span className="text-foreground/80 block">פתרונות שנולדים מתוך</span>
-                <span className="text-foreground/80 block">צורך אמיתי</span>
-              </p>
-            </div>
-            {/* Desktop: full title + subtitle */}
-            <h2 className="hidden md:block text-foreground md:text-5xl font-light leading-tight mb-3">
+          <div className="text-right md:w-[min(640px,90%)] mr-0 ml-auto">
+            {/* Title */}
+            <h2 className="text-foreground text-[1.75rem] md:text-5xl font-light leading-tight mb-3 md:mb-4">
               <span className="font-light">יזמות קשובה</span>
-              <span className="mx-3 font-light">|</span>
+              <span className="mx-2 md:mx-3 font-light text-foreground/40">|</span>
               <span className="font-light">פרויקטים</span>
             </h2>
-            <p className="hidden md:block md:text-lg font-light">
+            <p className="text-sm md:text-lg font-light mb-6 md:mb-8">
               <span className="text-primary font-normal">אמפתיה, הקשבה ויצירתיות -</span>
               <span className="text-foreground/80 mx-1">פתרונות שנולדים מתוך צורך אמיתי.</span>
             </p>
-          </div>
 
-          <div className="space-y-6 md:space-y-10">
-            {projectCards.map((card, idx) => (
-              <div
-                key={idx}
-                className="bg-card rounded-2xl md:rounded-3xl shadow-[0_20px_60px_-15px_hsl(0_0%_0%_/_0.18)] px-7 md:px-20 py-8 md:py-16 text-right w-full"
+            <div className="space-y-4 md:space-y-5 text-foreground/85 text-sm md:text-base font-light leading-relaxed">
+              <p>
+                לצד העבודה הקלינית, אני מפתחת פתרונות עבור קהלים ומצבים שלא מקבלים מענה רגשי או חברתי מספק.
+              </p>
+              <p>
+                אני משלבת הבנה פסיכולוגית עם חשיבה מערכתית, ומתרגמת צרכים מהשטח ליוזמות, שירותים ומענים שמייצרים שינוי ממשי ומחזקים אנשים וקהילות בהתמודדות עם מציאות חיים מורכבת.
+              </p>
+            </div>
+
+            <div className="mt-8 md:mt-10">
+              <Link
+                to="/projects"
+                className="inline-block px-8 md:px-10 py-3 rounded-lg bg-primary text-primary-foreground text-sm md:text-base font-light shadow-md hover:bg-[hsl(var(--primary-glow))] hover:shadow-lg transition-all"
               >
-                <div className="w-full md:w-[min(696px,100%)] mr-0 ml-auto">
-                  <h3 className="text-foreground text-xl md:text-3xl font-bold leading-tight mb-4 md:mb-6 whitespace-pre-line">
-                    {card.title}
-                  </h3>
-                  <ExpandableText
-                    mobileLines={8}
-                    className="text-foreground/80 text-sm md:text-base font-light leading-relaxed mb-6 md:mb-8"
-                  >
-                    <div className="space-y-3 md:space-y-4">
-                      {card.paragraphs.map((p, i) => (
-                        <p key={i}>{p}</p>
-                      ))}
-                    </div>
-                  </ExpandableText>
-                  <div className="flex flex-wrap justify-start gap-2 md:gap-3">
-                    {card.buttons.map((btn) => {
-                      const cls =
-                        "px-7 py-2.5 rounded-lg bg-primary text-primary-foreground text-sm font-light hover:bg-[hsl(var(--primary-glow))] transition-colors";
-                      if (btn.href) {
-                        return (
-                          <a
-                            key={btn.label}
-                            href={btn.href}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className={cls}
-                          >
-                            {btn.label}
-                          </a>
-                        );
-                      }
-                      return (
-                        <button
-                          key={btn.label}
-                          onClick={() => {
-                            if (btn.action === "hosting") setHostingOpen(true);
-                            else if (btn.action === "mailing") setPopupOpen(true);
-                          }}
-                          className={cls}
-                        >
-                          {btn.label}
-                        </button>
-                      );
-                    })}
-                  </div>
-                </div>
-              </div>
-            ))}
+                להכיר את הפרויקטים שלי
+              </Link>
+            </div>
           </div>
         </div>
       </section>
