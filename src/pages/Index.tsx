@@ -260,7 +260,7 @@ const Index = () => {
 
         {/* Mobile: white pill positioned half on image, half on white background */}
         <div className="md:hidden absolute top-[86%] left-0 right-0 z-20 -translate-y-1/4 -mt-[15px] px-[30px]">
-          <div className="relative bg-white/95 backdrop-blur-sm rounded-xl px-4 pt-4 pb-4 shadow-md mx-auto">
+          <div className="relative bg-white/95 backdrop-blur-sm rounded-xl px-4 pt-8 pb-8 md:pt-4 md:pb-4 shadow-md mx-auto">
             <p className="text-foreground text-[15px] font-light leading-relaxed text-center mb-3">
               <strong className="font-semibold text-[16px]">הרצאות · סדנאות · תוכן</strong>
               <br />
@@ -331,7 +331,7 @@ const Index = () => {
       <div className="hidden md:block h-28 md:h-24" />
 
       {/* About section */}
-      <section id="about" className="w-full pt-10 pb-32 md:py-20 px-[30px] md:px-6 mt-0 md:mt-0">
+      <section id="about" className="w-full pt-60 pb-16 md:py-20 px-[30px] md:px-6 mt-0 md:mt-0">
 
         <div className="w-full md:w-[min(1000px,72%)] mx-auto"><div className="w-full md:w-[min(720px,76%)] mr-0 text-right">
           <h2 className="text-foreground text-[1.75rem] md:text-5xl font-light leading-tight mb-5 md:mb-8">
