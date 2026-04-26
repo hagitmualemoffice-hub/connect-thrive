@@ -389,7 +389,10 @@ const Index = () => {
                   </>
                 ),
                 Icon: Lightbulb,
-                cta: { label: "להזמנת הרצאה", action: () => openContact("lecture") },
+                ctas: [
+                  { label: "להזמנת הרצאה", action: () => openContact("lecture") },
+                  { label: "לכל ההרצאות", to: "/lectures" },
+                ],
               },
               {
                 tag: "תהליך קבוצתי",
