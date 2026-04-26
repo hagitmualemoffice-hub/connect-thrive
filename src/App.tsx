@@ -11,6 +11,7 @@ import Projects from "./pages/Projects.tsx";
 import Blog from "./pages/Blog.tsx";
 import BlogPost from "./pages/BlogPost.tsx";
 import Podcast from "./pages/Podcast.tsx";
+import ApiTester from "./pages/ApiTester.tsx";
 import NotFound from "./pages/NotFound.tsx";
 import ScrollToTop from "./components/ScrollToTop";
 import V2Link from "./components/V2Link";
@@ -34,6 +35,7 @@ const App = () => (
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:slug" element={<BlogPost />} />
           <Route path="/podcast" element={<Podcast />} />
+          <Route path="/api-tester" element={<ApiTester />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
