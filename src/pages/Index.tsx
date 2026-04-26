@@ -129,9 +129,8 @@ const blogPosts = allBlogPosts.slice(0, 3);
 
 const topNav = [
   { label: "אודות", href: "#about" },
-  { label: "יזמות קשובה", href: "#entrepreneurship" },
-  { label: "הפרויקטים שלי", href: "#projects" },
-  { label: "הרצאות", href: "#lectures" },
+  { label: "הפרויקטים שלי", href: "/projects" },
+  { label: "הרצאות", href: "/lectures" },
   { label: "סדנאות", href: "#workshops" },
   { label: "בלוג", href: "/blog" },
   { label: "פודקאסט", href: "/podcast" },
@@ -255,13 +254,13 @@ const Index = () => {
             כפי שהיא
           </h1>
           <p className="text-white/90 text-[1.05rem] font-light leading-snug mt-3">
-            כן, גם כשהיא מורכבת
+            כן, כן, גם כשהיא מורכבת
           </p>
         </div>
 
         {/* Mobile: white pill positioned half on image, half on white background */}
         <div className="md:hidden absolute top-[86%] left-0 right-0 z-20 -translate-y-1/4 -mt-[15px] px-[30px]">
-          <div className="relative bg-white/95 backdrop-blur-sm rounded-xl px-4 pt-4 pb-4 shadow-md mx-auto">
+          <div className="relative bg-white/95 backdrop-blur-sm rounded-xl px-4 pt-8 pb-8 md:pt-4 md:pb-4 shadow-md mx-auto">
             <p className="text-foreground text-[15px] font-light leading-relaxed text-center mb-3">
               <strong className="font-semibold text-[16px]">הרצאות · סדנאות · תוכן</strong>
               <br />
@@ -295,7 +294,7 @@ const Index = () => {
             מתוך המציאות כפי שהיא
           </h1>
           <p className="text-white/90 text-2xl lg:text-3xl font-light">
-            כן, גם כשהיא מורכבת
+            כן, כן, גם כשהיא מורכבת
           </p>
         </div>
 
@@ -332,7 +331,7 @@ const Index = () => {
       <div className="hidden md:block h-28 md:h-24" />
 
       {/* About section */}
-      <section id="about" className="w-full pt-10 pb-32 md:py-20 px-[30px] md:px-6 mt-0 md:mt-0">
+      <section id="about" className="w-full pt-60 pb-16 md:py-20 px-[30px] md:px-6 mt-0 md:mt-0">
 
         <div className="w-full md:w-[min(1000px,72%)] mx-auto"><div className="w-full md:w-[min(720px,76%)] mr-0 text-right">
           <h2 className="text-foreground text-[1.75rem] md:text-5xl font-light leading-tight mb-5 md:mb-8">
@@ -629,9 +628,31 @@ const Index = () => {
 
               <button
                 onClick={() => openContact("workshop")}
-                className="px-8 md:px-10 py-3 rounded-lg bg-white text-foreground text-sm md:text-base font-light shadow-md hover:bg-primary hover:text-primary-foreground hover:shadow-lg transition-all"
+                className="group relative inline-flex items-center gap-2 px-8 md:px-10 py-3 md:py-3.5 rounded-full bg-white text-foreground text-sm md:text-base font-medium shadow-[0_10px_30px_-10px_hsl(var(--primary)/0.55)] hover:shadow-[0_18px_40px_-10px_hsl(var(--primary)/0.7)] hover:-translate-y-0.5 transition-all overflow-hidden"
+                style={{
+                  backgroundImage:
+                    "linear-gradient(white, white), linear-gradient(90deg, hsl(172 79% 79%) 0%, hsl(325 75% 69%) 100%)",
+                  backgroundOrigin: "border-box",
+                  backgroundClip: "padding-box, border-box",
+                  border: "2px solid transparent",
+                }}
               >
-                בואו נתכנן לכם סדנא
+                <span
+                  className="bg-clip-text text-transparent font-semibold tracking-wide"
+                  style={{
+                    backgroundImage:
+                      "linear-gradient(90deg, hsl(172 60% 45%) 0%, hsl(325 75% 55%) 100%)",
+                  }}
+                >
+                  בואו נתכנן לכם סדנא
+                </span>
+                <span
+                  aria-hidden="true"
+                  className="text-lg leading-none transition-transform duration-300 group-hover:-translate-x-1"
+                  style={{ color: "hsl(325 75% 55%)" }}
+                >
+                  ←
+                </span>
               </button>
             </div>
           </div>
@@ -708,9 +729,7 @@ const Index = () => {
               <span className="font-light">פודקאסט</span>
             </h2>
             <p className="text-foreground/80 text-sm md:text-lg font-light leading-relaxed">
-              פודקאסט שנולד מתוך עבודה עם תהליך מורכב של שימור פוריות
-              <br />
-              ומתרחב לשאלות על התמודדות, בחירה וחיים בתוך מציאות שיש בה מורכבות וחוסר ודאות.
+              פודקאסט שנולד מתוך עבודה עם תהליך מורכב של שימור פוריות ומתרחב לשאלות על התמודדות, בחירה וחיים בתוך מציאות שיש בה מורכבות וחוסר ודאות.
               <br />
               הצצה לדרך אחרת להיות בתוך זה.
             </p>
