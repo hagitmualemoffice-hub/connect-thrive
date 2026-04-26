@@ -499,6 +499,7 @@ const Index = () => {
               <p className="mt-1.5 text-sm font-light leading-relaxed">
                 <span className="text-primary font-normal block">אמפתיה, הקשבה ויצירתיות -</span>
                 <span className="text-foreground/80 block">פתרונות שנולדים מתוך צורך אמיתי</span>
+                <span className="text-foreground/80 block">- יזמות קשובה</span>
               </p>
             </div>
             {/* Desktop: full title + subtitle */}
@@ -507,7 +508,7 @@ const Index = () => {
             </h2>
             <p className="hidden md:block md:text-lg font-light">
               <span className="text-primary font-normal">אמפתיה, הקשבה ויצירתיות -</span>
-              <span className="text-foreground/80 mx-1">פתרונות שנולדים מתוך צורך אמיתי.</span>
+              <span className="text-foreground/80 mx-1">פתרונות שנולדים מתוך צורך אמיתי - יזמות קשובה.</span>
             </p>
           </div>
 
@@ -515,15 +516,6 @@ const Index = () => {
             className="bg-card rounded-2xl md:rounded-3xl shadow-[0_20px_60px_-15px_hsl(0_0%_0%_/_0.18)] px-7 md:px-20 py-8 md:py-16 text-right w-full"
           >
             <div className="w-full md:w-[min(696px,100%)] mr-0 ml-auto">
-              <div className="flex items-center gap-3 mb-4 md:mb-5">
-                <span className="text-primary text-[11px] md:text-xs font-medium tracking-widest uppercase">
-                  יזמות חברתית
-                </span>
-                <div className="h-px flex-1 bg-primary/20" />
-              </div>
-              <h3 className="text-foreground text-xl md:text-3xl font-bold leading-tight mb-4 md:mb-6">
-                יזמות קשובה
-              </h3>
               <div className="space-y-4 md:space-y-5 text-foreground/80 text-sm md:text-base font-light leading-relaxed mb-6 md:mb-8">
                 <p>
                   לצד העבודה הקלינית, אני מפתחת פתרונות עבור קהלים ומצבים שלא מקבלים מענה רגשי או חברתי מספק.
