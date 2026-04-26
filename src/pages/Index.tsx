@@ -374,7 +374,6 @@ const Index = () => {
             <h2 className="text-foreground text-[1.75rem] md:text-5xl font-light leading-tight">
               איפה פוגשים אותי
             </h2>
-            <div className="mt-3 md:mt-4 h-px w-16 bg-primary/40" />
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6 items-stretch">
