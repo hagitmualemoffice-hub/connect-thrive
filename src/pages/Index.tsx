@@ -406,7 +406,7 @@ const Index = () => {
                   </>
                 ),
                 Icon: Users,
-                cta: { label: "להזמנת סדנה", action: () => openContact("workshop") },
+                ctas: [{ label: "להזמנת סדנה", action: () => openContact("workshop") }],
               },
               {
                 tag: "כתיבה",
