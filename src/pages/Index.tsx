@@ -422,7 +422,7 @@ const Index = () => {
                 Icon: Sprout,
                 ctas: [
                   { label: "לקריאה בבלוג", to: "/blog" },
-                  { label: "להרשמה לתפוצה", action: () => setMailingOpen(true) },
+                  { label: "להרשמה לתפוצה", action: () => setPopupOpen(true) },
                 ],
               },
             ].map((card, idx) => {
