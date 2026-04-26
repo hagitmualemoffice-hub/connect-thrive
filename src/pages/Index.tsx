@@ -290,7 +290,7 @@ const Index = () => {
             חגית מועלם פסיכולוגית בהתמחות קלינית
           </p>
           <h1 className="text-white text-5xl lg:text-6xl font-light tracking-wide mb-[10px] leading-tight">
-            לבנות את עצמך
+            איך לבנות את עצמך
             <br />
             מתוך המציאות כפי שהיא
           </h1>
