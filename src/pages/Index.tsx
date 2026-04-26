@@ -499,6 +499,7 @@ const Index = () => {
               <p className="mt-1.5 text-sm font-light leading-relaxed">
                 <span className="text-primary font-normal block">אמפתיה, הקשבה ויצירתיות -</span>
                 <span className="text-foreground/80 block">פתרונות שנולדים מתוך צורך אמיתי</span>
+                <span className="text-foreground/80 block">- יזמות קשובה</span>
               </p>
             </div>
             {/* Desktop: full title + subtitle */}
@@ -507,7 +508,7 @@ const Index = () => {
             </h2>
             <p className="hidden md:block md:text-lg font-light">
               <span className="text-primary font-normal">אמפתיה, הקשבה ויצירתיות -</span>
-              <span className="text-foreground/80 mx-1">פתרונות שנולדים מתוך צורך אמיתי.</span>
+              <span className="text-foreground/80 mx-1">פתרונות שנולדים מתוך צורך אמיתי - יזמות קשובה.</span>
             </p>
           </div>
 
