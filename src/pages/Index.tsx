@@ -250,7 +250,9 @@ const Index = () => {
           <h1 className="text-white text-[2.4rem] font-light tracking-wide leading-[1.1]">
             לבנות את עצמך
             <br />
-            מתוך המציאות כפי שהיא
+            מתוך המציאות
+            <br />
+            כפי שהיא
           </h1>
           <p className="text-white/90 text-[1.25rem] font-light leading-snug mt-3">
             כן, גם כשהיא מורכבת
