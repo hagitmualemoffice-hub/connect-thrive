@@ -75,7 +75,7 @@ const Blog = () => {
             </h1>
           </div>
           <p className="text-foreground/70 text-sm md:text-xl font-light max-w-2xl pr-3 md:pr-5 leading-relaxed">
-            על נפש, תנועה ומשמעות - כפי שהן פוגשות חיים, יזמות והקשבה פנימית.
+            על נפש, תנועה ומשמעות כפי שהן פוגשות חיים.
           </p>
         </div>
       </section>
