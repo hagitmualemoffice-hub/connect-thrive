@@ -509,7 +509,7 @@ const Index = () => {
               <h3 className="text-foreground text-xl md:text-3xl font-bold leading-tight mb-4 md:mb-6">
                 <span>יזמות קשובה</span>
                 <span className="mx-2 md:mx-3 text-primary/60 font-light">|</span>
-                <span className="font-light text-foreground/85 text-base md:text-xl">אמפתיה, הקשבה ויצירתיות - פתרונות שנולדים מתוך צורך אמיתי</span>
+                <span className="font-light text-foreground/85">אמפתיה, הקשבה ויצירתיות - פתרונות שנולדים מתוך צורך אמיתי</span>
               </h3>
               <div className="space-y-4 md:space-y-5 text-foreground/80 text-sm md:text-base font-light leading-relaxed mb-6 md:mb-8">
                 <p>
