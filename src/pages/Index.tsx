@@ -534,7 +534,7 @@ const Index = () => {
 
 
       {/* Lecture details section */}
-      <section className="w-full pt-2 pb-12 md:py-20 px-[30px] md:px-6">
+      <section id="lectures" className="w-full pt-2 pb-12 md:py-20 px-[30px] md:px-6">
         <div className="hidden md:block w-full md:w-[min(1000px,72%)] mx-auto text-right mb-4 md:mb-8 px-1" dir="rtl">
           <h2 className="text-foreground text-[1.75rem] md:text-5xl font-light leading-tight mb-2 md:mb-3">
             <span className="font-light">הרצאות וסדנאות</span>
