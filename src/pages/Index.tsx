@@ -240,7 +240,7 @@ const Index = () => {
         </div>
 
         {/* Mobile: title block over the image */}
-        <div className="md:hidden absolute top-0 left-0 right-0 h-[86%] z-10 flex flex-col items-center justify-end text-center px-6 pb-[68px]">
+        <div className="md:hidden absolute top-0 left-0 right-0 h-[86%] z-10 flex flex-col items-center justify-end text-center px-6 pb-[110px]">
           <p className="text-white/90 text-[16px] font-light leading-snug mb-1">
             חגית מועלם
             <br />
@@ -331,7 +331,7 @@ const Index = () => {
       <div className="hidden md:block h-28 md:h-24" />
 
       {/* About section */}
-      <section id="about" className="w-full pt-60 pb-16 md:py-20 px-[30px] md:px-6 mt-0 md:mt-0">
+      <section id="about" className="w-full pt-[7.5rem] pb-16 md:py-20 px-[30px] md:px-6 mt-0 md:mt-0">
 
         <div className="w-full md:w-[min(1000px,72%)] mx-auto"><div className="w-full md:w-[min(720px,76%)] mr-0 text-right">
           <h2 className="text-foreground text-[1.75rem] md:text-5xl font-light leading-tight mb-5 md:mb-8">
@@ -802,25 +802,40 @@ const Index = () => {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4 max-w-4xl mx-auto">
               <button
                 onClick={() => openContact("general")}
-                className="py-3 md:py-4 px-5 md:px-6 rounded-xl bg-card border border-primary/30 text-foreground text-sm md:text-base font-light hover:bg-accent hover:border-primary transition-all shadow-sm active:scale-[0.99]"
+                className="py-3 md:py-4 px-5 md:px-6 rounded-xl bg-card border border-border text-foreground text-sm md:text-base font-light hover:bg-accent hover:border-foreground/40 transition-all shadow-sm active:scale-[0.99]"
               >
                 יצירת קשר
               </button>
               <button
                 onClick={() => openContact("lecture")}
-                className="py-3 md:py-4 px-5 md:px-6 rounded-xl bg-card border border-primary/30 text-foreground text-sm md:text-base font-light hover:bg-accent hover:border-primary transition-all shadow-sm active:scale-[0.99]"
+                className="py-3 md:py-4 px-5 md:px-6 rounded-xl bg-card border border-border text-foreground text-sm md:text-base font-light hover:bg-accent hover:border-foreground/40 transition-all shadow-sm active:scale-[0.99]"
               >
                 להזמנת הרצאה
               </button>
               <button
                 onClick={() => openContact("workshop")}
-                className="py-3 md:py-4 px-5 md:px-6 rounded-xl bg-card border border-primary/30 text-foreground text-sm md:text-base font-light hover:bg-accent hover:border-primary transition-all shadow-sm active:scale-[0.99]"
+                className="group relative inline-flex items-center justify-center gap-2 py-3 md:py-4 px-5 md:px-6 rounded-xl bg-white text-foreground text-sm md:text-base font-medium shadow-[0_10px_30px_-10px_hsl(var(--primary)/0.55)] hover:shadow-[0_18px_40px_-10px_hsl(var(--primary)/0.7)] hover:-translate-y-0.5 transition-all overflow-hidden"
+                style={{
+                  backgroundImage:
+                    "linear-gradient(white, white), linear-gradient(90deg, hsl(172 79% 79%) 0%, hsl(325 75% 69%) 100%)",
+                  backgroundOrigin: "border-box",
+                  backgroundClip: "padding-box, border-box",
+                  border: "2px solid transparent",
+                }}
               >
-                בואו נתכנן סדנת ביבליותרפיה
+                <span
+                  className="bg-clip-text text-transparent font-semibold tracking-wide"
+                  style={{
+                    backgroundImage:
+                      "linear-gradient(90deg, hsl(172 60% 45%) 0%, hsl(325 75% 55%) 100%)",
+                  }}
+                >
+                  בואו נתכנן סדנת ביבליותרפיה
+                </span>
               </button>
               <button
                 onClick={() => setPopupOpen(true)}
-                className="py-3 md:py-4 px-5 md:px-6 rounded-xl bg-card border border-primary/30 text-foreground text-sm md:text-base font-light hover:bg-accent hover:border-primary transition-all shadow-sm active:scale-[0.99]"
+                className="py-3 md:py-4 px-5 md:px-6 rounded-xl bg-card border border-border text-foreground text-sm md:text-base font-light hover:bg-accent hover:border-foreground/40 transition-all shadow-sm active:scale-[0.99]"
               >
                 הצטרפות לתפוצה
               </button>
