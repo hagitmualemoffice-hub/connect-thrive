@@ -420,7 +420,10 @@ const Index = () => {
                   </>
                 ),
                 Icon: Sprout,
-                cta: { label: "לקריאה בבלוג", to: "/blog" },
+                ctas: [
+                  { label: "לקריאה בבלוג", to: "/blog" },
+                  { label: "להרשמה לתפוצה", action: () => setMailingOpen(true) },
+                ],
               },
             ].map((card, idx) => {
               return (
