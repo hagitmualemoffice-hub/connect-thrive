@@ -450,21 +450,25 @@ const Index = () => {
                   >
                     <p>{card.body}</p>
                   </ExpandableText>
-                  <div className="flex justify-start">
-                    {card.cta.to ? (
-                      <Link
-                        to={card.cta.to}
-                        className="px-5 py-2 rounded-full bg-primary/10 text-primary text-sm font-light hover:bg-primary hover:text-primary-foreground transition-colors"
-                      >
-                        {card.cta.label}
-                      </Link>
-                    ) : (
-                      <button
-                        onClick={card.cta.action}
-                        className="px-5 py-2 rounded-full bg-primary/10 text-primary text-sm font-light hover:bg-primary hover:text-primary-foreground transition-colors"
-                      >
-                        {card.cta.label}
-                      </button>
+                  <div className="flex flex-wrap justify-start gap-2">
+                    {card.ctas.map((cta, i) =>
+                      "to" in cta ? (
+                        <Link
+                          key={i}
+                          to={cta.to}
+                          className="px-5 py-2 rounded-full bg-primary/10 text-primary text-sm font-light hover:bg-primary hover:text-primary-foreground transition-colors"
+                        >
+                          {cta.label}
+                        </Link>
+                      ) : (
+                        <button
+                          key={i}
+                          onClick={cta.action}
+                          className="px-5 py-2 rounded-full bg-primary/10 text-primary text-sm font-light hover:bg-primary hover:text-primary-foreground transition-colors"
+                        >
+                          {cta.label}
+                        </button>
+                      )
                     )}
                   </div>
                 </div>
