@@ -240,20 +240,20 @@ const Index = () => {
         </div>
 
         {/* Mobile: title block over the image */}
-        <div className="md:hidden absolute top-0 left-0 right-0 h-[86%] z-10 flex flex-col items-center justify-end text-center px-6 pb-[110px]">
-          <p className="text-white/90 text-[16px] font-light leading-snug mb-1">
+        <div className="md:hidden absolute top-0 left-0 right-0 h-[86%] z-10 flex flex-col items-center justify-end text-center px-6 pb-[60px]">
+          <p className="text-white/90 text-[14px] font-light leading-snug mb-1">
             חגית מועלם
             <br />
             פסיכולוגית בהתמחות קלינית
           </p>
-          <h1 className="text-white text-[2.15rem] font-light tracking-wide leading-[1.1]">
+          <h1 className="text-white text-[1.9rem] font-light tracking-wide leading-[1.1]">
             איך לבנות את עצמך
             <br />
             מתוך המציאות
             <br />
             כפי שהיא
           </h1>
-          <p className="text-white/90 text-[1.05rem] font-light leading-snug mt-3">
+          <p className="text-white/90 text-[0.9rem] font-light leading-snug mt-3">
             כן, כן, גם כשהיא מורכבת
           </p>
         </div>
