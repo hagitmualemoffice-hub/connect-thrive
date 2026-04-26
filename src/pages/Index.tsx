@@ -629,9 +629,31 @@ const Index = () => {
 
               <button
                 onClick={() => openContact("workshop")}
-                className="px-8 md:px-10 py-3 rounded-lg bg-white text-foreground text-sm md:text-base font-light shadow-md hover:bg-primary hover:text-primary-foreground hover:shadow-lg transition-all"
+                className="group relative inline-flex items-center gap-2 px-8 md:px-10 py-3 md:py-3.5 rounded-full bg-white text-foreground text-sm md:text-base font-medium shadow-[0_10px_30px_-10px_hsl(var(--primary)/0.55)] hover:shadow-[0_18px_40px_-10px_hsl(var(--primary)/0.7)] hover:-translate-y-0.5 transition-all overflow-hidden"
+                style={{
+                  backgroundImage:
+                    "linear-gradient(white, white), linear-gradient(90deg, hsl(172 79% 79%) 0%, hsl(325 75% 69%) 100%)",
+                  backgroundOrigin: "border-box",
+                  backgroundClip: "padding-box, border-box",
+                  border: "2px solid transparent",
+                }}
               >
-                בואו נתכנן לכם סדנא
+                <span
+                  className="bg-clip-text text-transparent font-semibold tracking-wide"
+                  style={{
+                    backgroundImage:
+                      "linear-gradient(90deg, hsl(172 60% 45%) 0%, hsl(325 75% 55%) 100%)",
+                  }}
+                >
+                  בואו נתכנן לכם סדנא
+                </span>
+                <span
+                  aria-hidden="true"
+                  className="text-lg leading-none transition-transform duration-300 group-hover:-translate-x-1"
+                  style={{ color: "hsl(325 75% 55%)" }}
+                >
+                  ←
+                </span>
               </button>
             </div>
           </div>
