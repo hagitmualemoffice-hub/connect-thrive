@@ -707,8 +707,12 @@ const Index = () => {
               <span className="mx-2 md:mx-3 font-light">|</span>
               <span className="font-light">פודקאסט</span>
             </h2>
-            <p className="text-foreground/80 text-sm md:text-lg font-light">
-              פודקאסט על שימור פוריות וחוויה נפשית - בואי לרכוש ידע, חיבור, כוח ויכולת להיות על התהליך.
+            <p className="text-foreground/80 text-sm md:text-lg font-light leading-relaxed">
+              פודקאסט שנולד מתוך עבודה עם תהליך מורכב של שימור פוריות
+              <br />
+              ומתרחב לשאלות על התמודדות, בחירה וחיים בתוך מציאות שיש בה מורכבות וחוסר ודאות.
+              <br />
+              הצצה לדרך אחרת להיות בתוך זה.
             </p>
           </div>
         </div>
