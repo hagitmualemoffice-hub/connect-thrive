@@ -420,7 +420,6 @@ const Index = () => {
                 cta: { label: "לקריאה בבלוג", to: "/blog" },
               },
             ].map((card, idx) => {
-              const Icon = card.Icon;
               return (
                 <div
                   key={idx}
@@ -428,11 +427,6 @@ const Index = () => {
                 >
                   {/* Top accent line */}
                   <div className="absolute top-0 right-8 h-1 w-12 bg-gradient-to-l from-primary to-[hsl(var(--primary-glow))] rounded-b-full" />
-
-                  {/* Icon circle */}
-                  <div className="mb-4 md:mb-5 w-12 h-12 md:w-14 md:h-14 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 group-hover:scale-105 transition-all duration-500">
-                    <Icon className="w-5 h-5 md:w-6 md:h-6 text-primary" strokeWidth={1.5} />
-                  </div>
 
                   <span className="text-primary text-[11px] md:text-xs font-medium tracking-wide uppercase mb-1.5">
                     {card.tag}
