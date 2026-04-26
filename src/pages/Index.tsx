@@ -297,7 +297,7 @@ const Index = () => {
           </p>
         </div>
 
-        {/* Floating CTA bar — desktop/tablet only */}
+        {/* Floating CTA bar - desktop/tablet only */}
         <div className="hidden md:block absolute -bottom-12 left-1/2 -translate-x-1/2 w-[min(1000px,94%)] z-20">
           <div className="bg-card rounded-2xl shadow-[0_15px_50px_-10px_hsl(0_0%_0%_/_0.15)] px-6 py-5 md:px-8 md:py-6 flex flex-col md:flex-row items-center justify-between gap-5">
             <div className="text-center md:text-right">
@@ -326,7 +326,7 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Spacer to account for floating bar — desktop only */}
+      {/* Spacer to account for floating bar - desktop only */}
       <div className="hidden md:block h-28 md:h-24" />
 
       {/* About section */}
@@ -382,10 +382,10 @@ const Index = () => {
                 title: "הרצאות",
                 body: (
                   <>
-                    מפגש עם חשיבה על החיים כפי שהם — על קבלת החלטות במצבים מורכבים, ועל האפשרות לנוע גם כשאין בהירות מלאה.
+                    מפגש עם חשיבה על החיים כפי שהם - על קבלת החלטות במצבים מורכבים, ועל האפשרות לנוע גם כשאין בהירות מלאה.
                     <br />
                     <br />
-                    אם אתם מחפשים שיחה שמצליחה לגעת גם במורכב — זו הזמנה להיפגש.
+                    אם אתם מחפשים שיחה שמצליחה לגעת גם במורכב - זו הזמנה להיפגש.
                   </>
                 ),
                 Icon: Lightbulb,
@@ -396,7 +396,7 @@ const Index = () => {
                 title: "סדנאות ביבליותרפיה",
                 body: (
                   <>
-                    עבודה דרך טקסטים, שיחה והתבוננות משותפת — שמאפשרת לפגוש את מה שקורה בפנים, ולנוע ממנו אל פעולה בעולם.
+                    עבודה דרך טקסטים, שיחה והתבוננות משותפת - שמאפשרת לפגוש את מה שקורה בפנים, ולנוע ממנו אל פעולה בעולם.
                     <br />
                     <br />
                     לקבוצות שמבקשות תהליך עמוק, שמתחיל מבפנים ונוגע גם בחוץ.
@@ -410,10 +410,10 @@ const Index = () => {
                 title: "תוכן",
                 body: (
                   <>
-                    כתיבה על החיים כפי שהם — דרך זווית פסיכולוגית ורוחנית־יהודית.
+                    כתיבה על החיים כפי שהם - דרך זווית פסיכולוגית ורוחנית־יהודית.
                     <br />
                     <br />
-                    בלוג שפותח מרחב לחשוב, להרגיש ולהתחבר — ומזמין אותך לפגוש את החיים מזווית אחרת.
+                    בלוג שפותח מרחב לחשוב, להרגיש ולהתחבר - ומזמין אותך לפגוש את החיים מזווית אחרת.
                   </>
                 ),
                 Icon: Sprout,
