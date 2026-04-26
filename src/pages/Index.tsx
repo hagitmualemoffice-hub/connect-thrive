@@ -240,7 +240,7 @@ const Index = () => {
         </div>
 
         {/* Mobile: title block over the image */}
-        <div className="md:hidden absolute top-0 left-0 right-0 h-[86%] z-10 flex flex-col items-center justify-end text-center px-6 pb-[60px]">
+        <div className="md:hidden absolute top-0 left-0 right-0 h-[86%] z-10 flex flex-col items-center justify-end text-center px-6 pb-[90px]">
           <p className="text-white/90 text-[14px] font-light leading-snug mb-1">
             חגית מועלם
             <br />
