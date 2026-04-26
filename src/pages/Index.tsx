@@ -267,16 +267,16 @@ const Index = () => {
               <br />
               על חיים בתוך מורכבות ותנועה מתוך חוסר ודאות
             </p>
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-row gap-2">
               <button
                 onClick={() => openContact("lecture")}
-                className="w-full px-5 py-2.5 rounded-full bg-primary text-primary-foreground text-sm font-light hover:bg-[hsl(var(--primary-glow))] transition-all shadow-sm shadow-primary/20"
+                className="flex-1 px-3 py-2.5 rounded-full bg-primary text-primary-foreground text-sm font-light hover:bg-[hsl(var(--primary-glow))] transition-all shadow-sm shadow-primary/20"
               >
                 להזמנת הרצאה
               </button>
               <button
                 onClick={() => setPopupOpen(true)}
-                className="w-full px-5 py-2.5 rounded-full border border-primary/40 text-foreground text-sm font-light hover:bg-primary/5 transition-all"
+                className="flex-1 px-3 py-2.5 rounded-full border border-border text-foreground text-sm font-light hover:bg-muted/40 transition-all"
               >
                 הצטרפות לתפוצה
               </button>
