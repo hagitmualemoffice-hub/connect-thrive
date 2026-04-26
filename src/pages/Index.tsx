@@ -810,42 +810,7 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Mobile-only: inline mailing list at bottom (replaces the floating hero form on mobile) */}
-      <section className="md:hidden w-full px-[30px] pb-24">
-        <div className="bg-card rounded-2xl shadow-[0_15px_50px_-10px_hsl(0_0%_0%_/_0.15)] px-5 py-6">
-          <div className="text-center mb-4">
-            <p className="text-foreground text-base font-light leading-tight">
-              בואו להתחבר לעצמכם דרך תוכן איכותי
-            </p>
-            <p className="text-foreground/60 text-xs font-light leading-tight mt-1">
-              הצטרפו לתפוצה השקטה שלי
-            </p>
-          </div>
-          <form onSubmit={handleInlineSubscribe} className="flex flex-col gap-2">
-            <input
-              type="text"
-              placeholder="שם"
-              value={inlineForm.name}
-              onChange={(e) => setInlineForm({ ...inlineForm, name: e.target.value })}
-              className="bg-muted/50 border border-transparent rounded-full px-5 py-2.5 text-sm font-light text-foreground placeholder:text-muted-foreground/70 focus:outline-none focus:border-primary/40 focus:bg-background transition-colors text-right"
-            />
-            <input
-              type="email"
-              placeholder="כתובת מייל"
-              value={inlineForm.email}
-              onChange={(e) => setInlineForm({ ...inlineForm, email: e.target.value })}
-              className="bg-muted/50 border border-transparent rounded-full px-5 py-2.5 text-sm font-light text-foreground placeholder:text-muted-foreground/70 focus:outline-none focus:border-primary/40 focus:bg-background transition-colors text-right"
-            />
-            <button
-              type="submit"
-              disabled={inlineSubmitting}
-              className="px-6 py-2.5 rounded-full bg-primary text-primary-foreground text-sm font-light hover:bg-[hsl(var(--primary-glow))] transition-all whitespace-nowrap shadow-sm shadow-primary/20 disabled:opacity-60 disabled:cursor-not-allowed"
-            >
-              {inlineSubmitting ? "שולחת..." : "הצטרפות"}
-            </button>
-          </form>
-        </div>
-      </section>
+
 
       <MailingListPopup open={popupOpen} onOpenChange={setPopupOpen} />
       <ContactPopup open={contactOpen} onOpenChange={setContactOpen} defaultTab={contactTab} />
