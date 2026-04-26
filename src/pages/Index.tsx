@@ -105,9 +105,9 @@ type LectureCard = {
 
 const lectureCards: LectureCard[] = [
   {
-    title: "הנהגה שמתחילה\nמבפנים",
-    subtitle: "הנהגה פנימית, ביקורת, ובניית ערך עצמי שלא תלוי באישור חיצוני",
-    desc: "הרצאה מקרקעת על המתח בין קבלה עצמית לצמיחה, ועל הובלה מבפנים והחזקה לאורך זמן.",
+    title: "החיים\nשנועדו לי",
+    subtitle: "אמונה, ביטחון וחיבור לייעוד ככוח לחיים מאושרים ומימוש עצמי עמוק",
+    desc: "הרצאה על הקשר בין אמונה, ביטחון והיכולת לחיות חיים מלאים - לא כמצב יציב, אלא כתנועה בגלים, בין בהירות לחוסר ודאות ובין שמחה לקושי.",
     audience: "ארגונים, פעילות חברתיות, סדנאות עומק, קבוצות הנהגה נשית.",
   },
   {
@@ -362,9 +362,6 @@ const Index = () => {
             </div>
           </ExpandableText>
 
-          <div className="hidden md:flex mt-3 md:mt-8 justify-start">
-            <Heart className="text-primary w-5 h-5 md:w-8 md:h-8" strokeWidth={1.5} fill="hsl(var(--primary) / 0.15)" aria-hidden="true" />
-          </div>
         </div></div>
       </section>
 
