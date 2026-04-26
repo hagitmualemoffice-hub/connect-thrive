@@ -12,7 +12,7 @@ interface ExpandableTextProps {
 
 /**
  * Wraps content with a line-clamp + show more/less toggle.
- * Only active on mobile — desktop renders children fully.
+ * Only active on mobile - desktop renders children fully.
  */
 const ExpandableText = ({
   children,

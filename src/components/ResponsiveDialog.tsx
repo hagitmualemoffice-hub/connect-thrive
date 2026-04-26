@@ -18,7 +18,7 @@ interface ResponsiveDialogProps {
 
 /**
  * Renders content inside a centered Dialog on desktop and a bottom Drawer on mobile.
- * Preserves visual styling of children — only the surrounding chrome changes.
+ * Preserves visual styling of children - only the surrounding chrome changes.
  */
 export const ResponsiveDialog = ({
   open,

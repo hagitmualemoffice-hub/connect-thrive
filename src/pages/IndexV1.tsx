@@ -240,7 +240,7 @@ const IndexV1 = () => {
           <div className="absolute inset-0 bg-black/25" />
         </div>
 
-        {/* Mobile: title block over the image — fonts 1.5x larger, sensible line breaks */}
+        {/* Mobile: title block over the image - fonts 1.5x larger, sensible line breaks */}
         <div className="md:hidden absolute top-0 left-0 right-0 h-[86%] z-10 flex flex-col items-center justify-end text-center px-6 pb-[68px]">
           <p className="text-white/90 text-[18px] font-light leading-snug mb-1">
             חגית מועלם
@@ -280,7 +280,7 @@ const IndexV1 = () => {
           </p>
         </div>
 
-        {/* Floating mailing list signup bar — desktop/tablet only */}
+        {/* Floating mailing list signup bar - desktop/tablet only */}
         <div className="hidden md:block absolute -bottom-12 left-1/2 -translate-x-1/2 w-[min(1000px,94%)] z-20">
           <div className="bg-card rounded-2xl shadow-[0_15px_50px_-10px_hsl(0_0%_0%_/_0.15)] px-6 py-5 md:px-8 md:py-6 flex flex-col md:flex-row items-center justify-between gap-5">
             <div className="text-center md:text-right shrink-0">
@@ -321,7 +321,7 @@ const IndexV1 = () => {
         </div>
       </section>
 
-      {/* Spacer to account for floating bar — desktop only */}
+      {/* Spacer to account for floating bar - desktop only */}
       <div className="hidden md:block h-28 md:h-24" />
 
       {/* About section */}
@@ -519,7 +519,7 @@ const IndexV1 = () => {
           </div>
         </div>
 
-        {/* Floating white card — pushed lower on mobile so background image shows */}
+        {/* Floating white card - pushed lower on mobile so background image shows */}
         <div className="absolute -bottom-16 right-0 left-0 z-20 px-[30px] md:px-6 top-[280px] md:top-auto">
           <div className="w-full md:w-[min(1000px,72%)] mx-auto">
             <div className="relative bg-card rounded-2xl md:rounded-3xl shadow-[0_20px_60px_-15px_hsl(0_0%_0%_/_0.18)] px-5 md:px-32 py-10 md:py-20 transition-all duration-500 ease-out hover:shadow-[0_28px_70px_-15px_hsl(var(--primary)/0.25)] hover:-translate-y-1">
