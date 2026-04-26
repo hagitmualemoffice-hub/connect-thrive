@@ -866,13 +866,7 @@ const Index = () => {
                   border: "2px solid transparent",
                 }}
               >
-                <span
-                  className="bg-clip-text text-transparent font-semibold tracking-wide"
-                  style={{
-                    backgroundImage:
-                      "linear-gradient(90deg, hsl(172 60% 45%) 0%, hsl(325 75% 55%) 100%)",
-                  }}
-                >
+                <span className="text-foreground font-semibold tracking-wide">
                   בואו נתכנן סדנת ביבליותרפיה
                 </span>
               </button>
