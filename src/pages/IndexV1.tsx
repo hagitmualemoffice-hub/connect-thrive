@@ -801,6 +801,37 @@ const IndexV1 = () => {
         </div>
       </section>
 
+      {/* About / Get to know me section */}
+      <section id="about-me" className="w-full bg-background pt-8 md:pt-16 pb-4 md:pb-8 px-[30px] md:px-6">
+        <div className="w-full md:w-[min(1100px,82%)] mx-auto" dir="rtl">
+          <div className="bg-card rounded-2xl md:rounded-[40px] shadow-[0_20px_60px_-20px_hsl(0_0%_0%_/_0.12)] px-6 md:px-20 py-10 md:py-16">
+            <div className="text-center mb-8 md:mb-10">
+              <h2 className="text-2xl md:text-4xl font-light tracking-tight text-foreground">
+                בואו נכיר קצת יותר
+              </h2>
+              <div className="w-16 h-px bg-primary/40 mx-auto mt-4" />
+            </div>
+            <div className="max-w-3xl mx-auto space-y-5 text-foreground/80 leading-loose text-sm md:text-base text-right">
+              <p>
+                אני חגית מועלם, פסיכולוגית בהתמחות קלינית.
+                <br />
+                בוגרת תואר שני בפסיכולוגיה קלינית מהאוניברסיטה העברית, וכיום מתמחה בכללית.
+              </p>
+              <p>
+                בשנים האחרונות אני עובדת עם מצבים אנושיים מורכבים - דרך מפגש אישי, עבודה עם קבוצות, והובלת תהליכים בקהילות וארגונים.
+                <br />
+                אני משלבת הבנה פסיכולוגית עם חשיבה של פתרון בעיות, ומפתחת מענים ויוזמות שנולדים מתוך הצרכים שעולים מהשטח.
+              </p>
+              <p>
+                את תחום שימור הפוריות והחוויה הנפשית חקרתי לעומק -
+                <br />
+                ומתוך העבודה בו התחדדה גם הדרך שבה אני פוגשת מורכבות, ומתרגמת אותה לחשיבה, עשייה ותנועה בעולם.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Contact section */}
       <section id="contact" className="w-full bg-background py-12 md:py-24 px-[30px] md:px-6">
         <div className="w-full md:w-[min(1100px,82%)] mx-auto" dir="rtl">
