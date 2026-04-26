@@ -131,11 +131,11 @@ const MobileBottomNav = () => {
                 <X className="h-5 w-5" />
               </button>
             </div>
-            <div className="grid grid-cols-2 gap-2 mb-4">
+            <div className="flex flex-col mb-4 border-t border-border">
               {sectionLinks.map((item) => {
                 const isInternal = !item.href.startsWith("/#");
                 const baseClasses =
-                  "py-3 px-4 rounded-xl bg-white text-foreground text-sm font-light text-right border-2 border-border hover:border-primary hover:text-primary transition-colors";
+                  "py-4 text-foreground text-base font-light text-right border-b border-border hover:text-primary transition-colors";
                 if (isInternal) {
                   return (
                     <Link
@@ -159,47 +159,30 @@ const MobileBottomNav = () => {
                   </a>
                 );
               })}
-              {/* Content bubble in menu */}
-              <div className="col-span-2 relative">
-                <button
-                  onClick={() => setMenuContentOpen((v) => !v)}
-                  className="w-full py-3 px-4 rounded-xl bg-white text-foreground text-sm font-light text-right border-2 border-border hover:border-primary hover:text-primary transition-colors flex items-center justify-between"
-                  aria-haspopup="true"
-                  aria-expanded={menuContentOpen}
-                >
-                  <ChevronDown
-                    className={`h-4 w-4 transition-transform ${menuContentOpen ? "rotate-180" : ""}`}
-                  />
-                  <span>תוכן</span>
-                </button>
-                {menuContentOpen && (
-                  <div className="mt-2 grid grid-cols-2 gap-2 animate-in fade-in slide-in-from-top-1 duration-200">
-                    {contentLinks.map((item) => {
-                      const Icon = item.icon;
-                      return (
-                        <Link
-                          key={item.label}
-                          to={item.href}
-                          onClick={() => {
-                            setMenuContentOpen(false);
-                            setMenuOpen(false);
-                          }}
-                          className="py-3 px-4 rounded-xl bg-muted/40 text-foreground text-sm font-light text-right border-2 border-border hover:border-primary hover:text-primary transition-colors flex items-center justify-end gap-2"
-                        >
-                          <span>{item.label}</span>
-                          <Icon className="h-4 w-4" />
-                        </Link>
-                      );
-                    })}
-                  </div>
-                )}
+              {/* Content - always open with separators */}
+              <div className="py-4 text-foreground/50 text-xs font-light text-right border-b border-border tracking-wider uppercase">
+                תוכן
               </div>
+              {contentLinks.map((item) => {
+                const Icon = item.icon;
+                return (
+                  <Link
+                    key={item.label}
+                    to={item.href}
+                    onClick={() => setMenuOpen(false)}
+                    className="py-4 text-foreground text-base font-light text-right border-b border-border hover:text-primary transition-colors flex items-center justify-end gap-2"
+                  >
+                    <span>{item.label}</span>
+                    <Icon className="h-4 w-4" />
+                  </Link>
+                );
+              })}
               <button
                 onClick={() => {
                   setMenuOpen(false);
                   setContactOpen(true);
                 }}
-                className="py-3 px-4 rounded-xl bg-white text-foreground text-sm font-light text-right border-2 border-border hover:border-primary hover:text-primary transition-colors col-span-2"
+                className="py-4 text-foreground text-base font-light text-right border-b border-border hover:text-primary transition-colors"
               >
                 דברו איתי
               </button>
