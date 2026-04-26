@@ -242,19 +242,19 @@ const Index = () => {
 
         {/* Mobile: title block over the image */}
         <div className="md:hidden absolute top-0 left-0 right-0 h-[86%] z-10 flex flex-col items-center justify-end text-center px-6 pb-[68px]">
-          <p className="text-white/90 text-[18px] font-light leading-snug mb-1">
+          <p className="text-white/90 text-[16px] font-light leading-snug mb-1">
             חגית מועלם
             <br />
             פסיכולוגית בהתמחות קלינית
           </p>
-          <h1 className="text-white text-[2.4rem] font-light tracking-wide leading-[1.1]">
-            לבנות את עצמך
+          <h1 className="text-white text-[2.15rem] font-light tracking-wide leading-[1.1]">
+            איך לבנות את עצמך
             <br />
             מתוך המציאות
             <br />
             כפי שהיא
           </h1>
-          <p className="text-white/90 text-[1.25rem] font-light leading-snug mt-3">
+          <p className="text-white/90 text-[1.05rem] font-light leading-snug mt-3">
             כן, גם כשהיא מורכבת
           </p>
         </div>
@@ -263,20 +263,20 @@ const Index = () => {
         <div className="md:hidden absolute top-[86%] left-0 right-0 z-20 -translate-y-1/4 -mt-[15px] px-[30px]">
           <div className="relative bg-white/95 backdrop-blur-sm rounded-xl px-4 pt-4 pb-4 shadow-md mx-auto">
             <p className="text-foreground text-[15px] font-light leading-relaxed text-center mb-3">
-              הרצאות · סדנאות · תוכן
+              <strong className="font-semibold text-[16px]">הרצאות · סדנאות · תוכן</strong>
               <br />
-              על חיים בתוך מורכבות ותנועה מתוך חוסר ודאות
+              <span className="whitespace-nowrap text-[13px]">על חיים בתוך מורכבות ותנועה מתוך חוסר ודאות</span>
             </p>
-            <div className="flex flex-row gap-2">
+            <div className="flex flex-col gap-2">
               <button
                 onClick={() => openContact("lecture")}
-                className="flex-1 px-3 py-2.5 rounded-full bg-primary text-primary-foreground text-sm font-light hover:bg-[hsl(var(--primary-glow))] transition-all shadow-sm shadow-primary/20"
+                className="w-full px-3 py-2.5 rounded-full bg-primary text-primary-foreground text-sm font-light hover:bg-[hsl(var(--primary-glow))] transition-all shadow-sm shadow-primary/20"
               >
                 להזמנת הרצאה
               </button>
               <button
                 onClick={() => setPopupOpen(true)}
-                className="flex-1 px-3 py-2.5 rounded-full border border-border text-foreground text-sm font-light hover:bg-muted/40 transition-all"
+                className="w-full px-3 py-2.5 rounded-full border border-border text-foreground text-sm font-light hover:bg-muted/40 transition-all"
               >
                 הצטרפות לתפוצה
               </button>
