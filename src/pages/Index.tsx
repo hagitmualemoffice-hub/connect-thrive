@@ -255,7 +255,7 @@ const Index = () => {
             כפי שהיא
           </h1>
           <p className="text-white/90 text-[1.05rem] font-light leading-snug mt-3">
-            כן, גם כשהיא מורכבת
+            כן, כן, גם כשהיא מורכבת
           </p>
         </div>
 
@@ -295,7 +295,7 @@ const Index = () => {
             מתוך המציאות כפי שהיא
           </h1>
           <p className="text-white/90 text-2xl lg:text-3xl font-light">
-            כן, גם כשהיא מורכבת
+            כן, כן, גם כשהיא מורכבת
           </p>
         </div>
 
