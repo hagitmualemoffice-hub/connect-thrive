@@ -389,7 +389,10 @@ const Index = () => {
                   </>
                 ),
                 Icon: Lightbulb,
-                cta: { label: "להזמנת הרצאה", action: () => openContact("lecture") },
+                ctas: [
+                  { label: "להזמנת הרצאה", action: () => openContact("lecture") },
+                  { label: "לכל ההרצאות", to: "/lectures" },
+                ],
               },
               {
                 tag: "תהליך קבוצתי",
@@ -403,7 +406,7 @@ const Index = () => {
                   </>
                 ),
                 Icon: Users,
-                cta: { label: "להזמנת סדנה", action: () => openContact("workshop") },
+                ctas: [{ label: "להזמנת סדנה", action: () => openContact("workshop") }],
               },
               {
                 tag: "כתיבה",
@@ -417,7 +420,10 @@ const Index = () => {
                   </>
                 ),
                 Icon: Sprout,
-                cta: { label: "לקריאה בבלוג", to: "/blog" },
+                ctas: [
+                  { label: "לקריאה בבלוג", to: "/blog" },
+                  { label: "להרשמה לתפוצה", action: () => setPopupOpen(true) },
+                ],
               },
             ].map((card, idx) => {
               return (
@@ -444,21 +450,25 @@ const Index = () => {
                   >
                     <p>{card.body}</p>
                   </ExpandableText>
-                  <div className="flex justify-start">
-                    {card.cta.to ? (
-                      <Link
-                        to={card.cta.to}
-                        className="px-5 py-2 rounded-full bg-primary/10 text-primary text-sm font-light hover:bg-primary hover:text-primary-foreground transition-colors"
-                      >
-                        {card.cta.label}
-                      </Link>
-                    ) : (
-                      <button
-                        onClick={card.cta.action}
-                        className="px-5 py-2 rounded-full bg-primary/10 text-primary text-sm font-light hover:bg-primary hover:text-primary-foreground transition-colors"
-                      >
-                        {card.cta.label}
-                      </button>
+                  <div className="flex flex-wrap justify-start gap-2">
+                    {card.ctas.map((cta, i) =>
+                      "to" in cta ? (
+                        <Link
+                          key={i}
+                          to={cta.to}
+                          className="px-5 py-2 rounded-full bg-primary/10 text-primary text-sm font-light hover:bg-primary hover:text-primary-foreground transition-colors"
+                        >
+                          {cta.label}
+                        </Link>
+                      ) : (
+                        <button
+                          key={i}
+                          onClick={cta.action}
+                          className="px-5 py-2 rounded-full bg-primary/10 text-primary text-sm font-light hover:bg-primary hover:text-primary-foreground transition-colors"
+                        >
+                          {cta.label}
+                        </button>
+                      )
                     )}
                   </div>
                 </div>
@@ -637,19 +647,12 @@ const Index = () => {
                   border: "2px solid transparent",
                 }}
               >
-                <span
-                  className="bg-clip-text text-transparent font-semibold tracking-wide"
-                  style={{
-                    backgroundImage:
-                      "linear-gradient(90deg, hsl(172 60% 45%) 0%, hsl(325 75% 55%) 100%)",
-                  }}
-                >
+                <span className="text-foreground font-semibold tracking-wide">
                   בואו נתכנן לכם סדנא
                 </span>
                 <span
                   aria-hidden="true"
-                  className="text-lg leading-none transition-transform duration-300 group-hover:-translate-x-1"
-                  style={{ color: "hsl(325 75% 55%)" }}
+                  className="text-lg leading-none transition-transform duration-300 group-hover:-translate-x-1 text-foreground"
                 >
                   ←
                 </span>
@@ -863,13 +866,7 @@ const Index = () => {
                   border: "2px solid transparent",
                 }}
               >
-                <span
-                  className="bg-clip-text text-transparent font-semibold tracking-wide"
-                  style={{
-                    backgroundImage:
-                      "linear-gradient(90deg, hsl(172 60% 45%) 0%, hsl(325 75% 55%) 100%)",
-                  }}
-                >
+                <span className="text-foreground font-semibold tracking-wide">
                   בואו נתכנן סדנת ביבליותרפיה
                 </span>
               </button>
