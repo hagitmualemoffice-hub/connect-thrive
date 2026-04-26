@@ -647,19 +647,12 @@ const Index = () => {
                   border: "2px solid transparent",
                 }}
               >
-                <span
-                  className="bg-clip-text text-transparent font-semibold tracking-wide"
-                  style={{
-                    backgroundImage:
-                      "linear-gradient(90deg, hsl(172 60% 45%) 0%, hsl(325 75% 55%) 100%)",
-                  }}
-                >
+                <span className="text-foreground font-semibold tracking-wide">
                   בואו נתכנן לכם סדנא
                 </span>
                 <span
                   aria-hidden="true"
-                  className="text-lg leading-none transition-transform duration-300 group-hover:-translate-x-1"
-                  style={{ color: "hsl(325 75% 55%)" }}
+                  className="text-lg leading-none transition-transform duration-300 group-hover:-translate-x-1 text-foreground"
                 >
                   ←
                 </span>
