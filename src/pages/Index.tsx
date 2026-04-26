@@ -105,20 +105,20 @@ type LectureCard = {
 
 const lectureCards: LectureCard[] = [
   {
-    title: "החיים\nשנועדו לי",
+    title: "החיים שנועדו לי",
     subtitle: "אמונה, ביטחון וחיבור לייעוד ככוח לחיים מאושרים ומימוש עצמי עמוק",
     desc: "הרצאה על הקשר בין אמונה, ביטחון והיכולת לחיות חיים מלאים - לא כמצב יציב, אלא כתנועה בגלים, בין בהירות לחוסר ודאות ובין שמחה לקושי.",
     audience: "ארגונים, פעילות חברתיות, סדנאות עומק, קבוצות הנהגה נשית.",
   },
   {
-    title: "יזמות\nקשובה",
+    title: "יזמות קשובה",
     subtitle: "על יזמות שנובעת מהקשבה, מצורך אמיתי ומדיוק מתמשך",
     desc: "הרצאה על יזמות שמתחילה בהבנה ולא בפתרון - על הקשבה לשטח, זיהוי נקודות כאב, ועל בניית פתרונות שצומחים יחד עם המציאות.",
     audience: "ארגונים, פעילות חברתיות, צוותים יזמיים, קהילות עשייה.",
     badges: ["הרצאה מומלצת"],
   },
   {
-    title: "להרוג\nחלומות",
+    title: "להרוג חלומות",
     subtitle: "איך מגיעים להגשמה בלי לדעת מראש לאן הולכים.",
     desc: "הרצאה על קיפאון, פחד משינוי, החלטות לא מושלמות, תנועה שמחזירה חיים והרגע שהו החיים מזמינים אותנו לזוז",
     audience: "צעירות, יזמיות, אנשים בתחילת או אמצע קריירה, קבוצות חיפוש דרך.",
@@ -250,7 +250,9 @@ const Index = () => {
           <h1 className="text-white text-[2.4rem] font-light tracking-wide leading-[1.1]">
             לבנות את עצמך
             <br />
-            מתוך המציאות כפי שהיא
+            מתוך המציאות
+            <br />
+            כפי שהיא
           </h1>
           <p className="text-white/90 text-[1.25rem] font-light leading-snug mt-3">
             כן, גם כשהיא מורכבת
@@ -265,16 +267,16 @@ const Index = () => {
               <br />
               על חיים בתוך מורכבות ותנועה מתוך חוסר ודאות
             </p>
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-row gap-2">
               <button
                 onClick={() => openContact("lecture")}
-                className="w-full px-5 py-2.5 rounded-full bg-primary text-primary-foreground text-sm font-light hover:bg-[hsl(var(--primary-glow))] transition-all shadow-sm shadow-primary/20"
+                className="flex-1 px-3 py-2.5 rounded-full bg-primary text-primary-foreground text-sm font-light hover:bg-[hsl(var(--primary-glow))] transition-all shadow-sm shadow-primary/20"
               >
                 להזמנת הרצאה
               </button>
               <button
                 onClick={() => setPopupOpen(true)}
-                className="w-full px-5 py-2.5 rounded-full border border-primary/40 text-foreground text-sm font-light hover:bg-primary/5 transition-all"
+                className="flex-1 px-3 py-2.5 rounded-full border border-border text-foreground text-sm font-light hover:bg-muted/40 transition-all"
               >
                 הצטרפות לתפוצה
               </button>
@@ -297,7 +299,7 @@ const Index = () => {
           </p>
         </div>
 
-        {/* Floating CTA bar — desktop/tablet only */}
+        {/* Floating CTA bar - desktop/tablet only */}
         <div className="hidden md:block absolute -bottom-12 left-1/2 -translate-x-1/2 w-[min(1000px,94%)] z-20">
           <div className="bg-card rounded-2xl shadow-[0_15px_50px_-10px_hsl(0_0%_0%_/_0.15)] px-6 py-5 md:px-8 md:py-6 flex flex-col md:flex-row items-center justify-between gap-5">
             <div className="text-center md:text-right">
@@ -326,11 +328,11 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Spacer to account for floating bar — desktop only */}
+      {/* Spacer to account for floating bar - desktop only */}
       <div className="hidden md:block h-28 md:h-24" />
 
       {/* About section */}
-      <section id="about" className="w-full pt-10 pb-8 md:py-20 px-[30px] md:px-6 mt-0 md:mt-0">
+      <section id="about" className="w-full pt-10 pb-16 md:py-20 px-[30px] md:px-6 mt-0 md:mt-0">
 
         <div className="w-full md:w-[min(1000px,72%)] mx-auto"><div className="w-full md:w-[min(720px,76%)] mr-0 text-right">
           <h2 className="text-foreground text-[1.75rem] md:text-5xl font-light leading-tight mb-5 md:mb-8">
@@ -382,10 +384,10 @@ const Index = () => {
                 title: "הרצאות",
                 body: (
                   <>
-                    מפגש עם חשיבה על החיים כפי שהם — על קבלת החלטות במצבים מורכבים, ועל האפשרות לנוע גם כשאין בהירות מלאה.
+                    מפגש עם חשיבה על החיים כפי שהם - על קבלת החלטות במצבים מורכבים, ועל האפשרות לנוע גם כשאין בהירות מלאה.
                     <br />
                     <br />
-                    אם אתם מחפשים שיחה שמצליחה לגעת גם במורכב — זו הזמנה להיפגש.
+                    אם אתם מחפשים שיחה שמצליחה לגעת גם במורכב - זו הזמנה להיפגש.
                   </>
                 ),
                 Icon: Lightbulb,
@@ -396,7 +398,7 @@ const Index = () => {
                 title: "סדנאות ביבליותרפיה",
                 body: (
                   <>
-                    עבודה דרך טקסטים, שיחה והתבוננות משותפת — שמאפשרת לפגוש את מה שקורה בפנים, ולנוע ממנו אל פעולה בעולם.
+                    עבודה דרך טקסטים, שיחה והתבוננות משותפת - שמאפשרת לפגוש את מה שקורה בפנים, ולנוע ממנו אל פעולה בעולם.
                     <br />
                     <br />
                     לקבוצות שמבקשות תהליך עמוק, שמתחיל מבפנים ונוגע גם בחוץ.
@@ -410,10 +412,10 @@ const Index = () => {
                 title: "תוכן",
                 body: (
                   <>
-                    כתיבה על החיים כפי שהם — דרך זווית פסיכולוגית ורוחנית־יהודית.
+                    כתיבה על החיים כפי שהם - דרך זווית פסיכולוגית ורוחנית־יהודית.
                     <br />
                     <br />
-                    בלוג שפותח מרחב לחשוב, להרגיש ולהתחבר — ומזמין אותך לפגוש את החיים מזווית אחרת.
+                    בלוג שפותח מרחב לחשוב, להרגיש ולהתחבר - ומזמין אותך לפגוש את החיים מזווית אחרת.
                   </>
                 ),
                 Icon: Sprout,
@@ -531,8 +533,9 @@ const Index = () => {
             <span className="font-light">הרצאות וסדנאות</span>
           </h2>
           <p className="text-sm md:text-lg font-light">
-            <span className="text-primary font-normal">פסיכולוגיה של עשייה -</span>
-            <span className="text-foreground/80 mx-2">הנהגה פנימית ותנועה בעולם של יזמות ועשייה</span>
+            <span className="text-primary font-normal">לארגונים, צוותים, קהילות וקבוצות</span>
+            <br />
+            <span className="text-foreground/80">הרצאות וסדנאות שמזמינות לחשוב, להרגיש ולהעמיק</span>
           </p>
         </div>
 
@@ -553,7 +556,7 @@ const Index = () => {
                     </span>
                   ))}
                 </div>
-                <h3 className="text-foreground text-xl md:text-2xl font-bold leading-tight mb-1 whitespace-pre-line">
+                <h3 className="text-foreground text-xl md:text-2xl font-bold leading-tight mb-1">
                   {card.title}
                 </h3>
                 <p className="text-foreground text-xs md:text-sm font-medium leading-relaxed mb-0.5">

@@ -149,7 +149,7 @@ const Lectures = () => {
                     </span>
                   ))}
                 </div>
-                <h3 className="text-foreground text-xl md:text-2xl font-bold leading-tight mb-1 whitespace-pre-line">
+                <h3 className="text-foreground text-xl md:text-2xl font-bold leading-tight mb-1">
                   {card.title}
                 </h3>
                 <p className="text-foreground text-xs md:text-sm font-medium leading-relaxed mb-0.5">

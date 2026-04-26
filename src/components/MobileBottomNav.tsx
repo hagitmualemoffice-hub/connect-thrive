@@ -29,7 +29,7 @@ const MobileBottomNav = () => {
 
   return (
     <>
-      {/* Sticky bottom bar — mobile only */}
+      {/* Sticky bottom bar - mobile only */}
       <nav
         dir="rtl"
         className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-t border-border shadow-[0_-8px_24px_-12px_hsl(0_0%_0%_/_0.12)]"
