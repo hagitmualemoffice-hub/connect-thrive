@@ -128,8 +128,6 @@ const Lectures = () => {
               <span className="font-light">הרצאות וסדנאות</span>
             </h2>
             <p className="text-sm md:text-lg font-light">
-              <span className="text-primary font-normal">לארגונים, צוותים, קהילות וקבוצות</span>
-              <br />
               <span className="text-foreground/80">הרצאות וסדנאות שמזמינות לחשוב, להרגיש ולהעמיק</span>
             </p>
           </div>
