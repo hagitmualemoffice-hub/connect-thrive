@@ -121,14 +121,7 @@ const Lectures = () => {
       {/* LECTURE GRID */}
       <section className="w-full py-10 md:py-16 px-[30px] md:px-6">
         <div className="w-full md:w-[min(1100px,82%)] mx-auto">
-          <div className="text-right mb-6 md:mb-10 px-1">
-            <h2 className="text-foreground text-[1.5rem] md:text-4xl font-light leading-tight mb-2 md:mb-3">
-              <span className="font-light">הרצאות וסדנאות</span>
-            </h2>
-            <p className="text-sm md:text-lg font-light">
-              <span className="text-foreground/80">הרצאות וסדנאות שמזמינות לחשוב, להרגיש ולהעמיק</span>
-            </p>
-          </div>
+
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
             {lectureCards.map((card) => (
