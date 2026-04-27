@@ -56,7 +56,9 @@ const Lectures = () => {
               הרצאות וסדנאות
             </h1>
             <p className="text-white/90 text-sm md:text-xl font-light max-w-2xl leading-relaxed">
-              הרצאות וסדנאות שמזמינות לחשוב, להרגיש ולהעמיק
+              <span className="font-normal text-white">לארגונים, צוותים, קהילות וקבוצות</span>
+              <span className="mx-2 md:mx-3">·</span>
+              <span>הרצאות וסדנאות שמזמינות לחשוב, להרגיש ולהעמיק</span>
             </p>
           </div>
         </div>
