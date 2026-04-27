@@ -53,7 +53,7 @@ const Lectures = () => {
               חזרה לדף הבית
             </Link>
             <h1 className="text-white text-[1.75rem] md:text-6xl font-light tracking-tight leading-tight mb-3 md:mb-4">
-              להעיר את הכוח מבפנים | <br className="md:hidden" /> הרצאות וסדנאות
+              להעיר את הכוח מבפנים | <br /> הרצאות וסדנאות
             </h1>
             <p className="text-white/90 text-sm md:text-xl font-light max-w-2xl leading-relaxed">
               <span className="font-normal text-white">לארגונים, צוותים, קהילות וקבוצות</span>
