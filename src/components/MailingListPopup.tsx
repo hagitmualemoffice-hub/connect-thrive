@@ -40,6 +40,7 @@ const MailingListPopup = ({ open, onOpenChange }: MailingListPopupProps) => {
     setSubmitting(true);
     const { error } = await supabase.from("leads").insert({ email: result.data.email });
     setSubmitting(false);
+    void result.data.name;
     if (error) {
       toast({ title: "שגיאה", description: "אירעה שגיאה, נסו שוב", variant: "destructive" });
       return;
