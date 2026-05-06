@@ -203,10 +203,10 @@ const BlogComments = ({ postSlug }: { postSlug: string }) => {
                   <button
                     type="button"
                     onClick={() => handleReactionClick(r.label)}
-                    className={`inline-flex items-center gap-2 px-4 md:px-5 py-2 md:py-2.5 rounded-full backdrop-blur-sm shadow-md text-xs md:text-sm font-light transition-all ${
+                    className={`inline-flex items-center gap-2 px-4 md:px-5 py-2 md:py-2.5 rounded-full text-xs md:text-sm font-light transition-all border ${
                       isActive
-                        ? "bg-[hsl(var(--primary-glow))] text-[hsl(var(--primary-dark))]"
-                        : "bg-white/95 text-foreground hover:bg-white"
+                        ? "bg-[hsl(var(--accent))] text-[hsl(var(--primary-dark))] border-[hsl(var(--primary)/0.5)] shadow-sm"
+                        : "bg-white/95 text-foreground border-transparent shadow-md hover:bg-white"
                     }`}
                   >
                     <Icon className="w-4 h-4" />
