@@ -126,9 +126,9 @@ const BlogComments = ({ postSlug }: { postSlug: string }) => {
   };
 
   return (
-    <section className="w-full px-[30px] md:px-6 pb-12 md:pb-16">
+    <section className="w-full px-[30px] md:px-6 pb-12 md:pb-16" dir="rtl">
       <div className="w-full md:w-[min(820px,92%)] mx-auto">
-        <div className="bg-card rounded-2xl md:rounded-[32px] shadow-[0_15px_50px_-20px_hsl(0_0%_0%_/_0.12)] px-6 md:px-14 py-8 md:py-12 text-right">
+        <div className="bg-card rounded-2xl md:rounded-[32px] shadow-[0_15px_50px_-20px_hsl(0_0%_0%_/_0.12)] px-6 md:px-14 py-8 md:py-12 text-right" dir="rtl">
           <div className="flex items-center gap-3 justify-end mb-6 md:mb-8">
             <h2 className="text-foreground text-xl md:text-3xl font-light">
               במילה אחת:
