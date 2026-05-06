@@ -56,12 +56,39 @@ export type Database = {
         }
         Relationships: []
       }
+      quick_reaction_counts: {
+        Row: {
+          count: number
+          id: string
+          post_slug: string
+          reaction: string
+          updated_at: string
+        }
+        Insert: {
+          count?: number
+          id?: string
+          post_slug: string
+          reaction: string
+          updated_at?: string
+        }
+        Update: {
+          count?: number
+          id?: string
+          post_slug?: string
+          reaction?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      increment_quick_reaction: {
+        Args: { _post_slug: string; _reaction: string }
+        Returns: number
+      }
     }
     Enums: {
       [_ in never]: never

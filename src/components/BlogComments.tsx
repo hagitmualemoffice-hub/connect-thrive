@@ -25,11 +25,13 @@ const commentSchema = z.object({
 });
 
 const quickReactions = [
-  { label: "אהבתי", icon: HeartHandshake, prompt: "אהבתי כי" },
-  { label: "דיבר אלי", icon: Flame, prompt: "זה דיבר אליי כי" },
-  { label: "רוצה לדייק", icon: Crosshair, prompt: "רוצה לדייק:" },
-  { label: "פחות", icon: Meh, prompt: "פחות התחברתי כי" },
+  { label: "אהבתי", icon: HeartHandshake },
+  { label: "דיבר אלי", icon: Flame },
+  { label: "רוצה לדייק", icon: Crosshair },
+  { label: "פחות", icon: Meh },
 ];
+
+const STORAGE_PREFIX = "quick_reaction_voted:";
 
 const formatDate = (iso: string) => {
   const d = new Date(iso);
@@ -47,7 +49,8 @@ const BlogComments = ({ postSlug }: { postSlug: string }) => {
   const [submitting, setSubmitting] = useState(false);
   const [name, setName] = useState("");
   const [content, setContent] = useState("");
-  const [activeReaction, setActiveReaction] = useState<string | null>(null);
+  const [reactionCounts, setReactionCounts] = useState<Record<string, number>>({});
+  const [myReaction, setMyReaction] = useState<string | null>(null);
 
   const loadComments = async () => {
     setLoading(true);
@@ -65,24 +68,63 @@ const BlogComments = ({ postSlug }: { postSlug: string }) => {
     setLoading(false);
   };
 
+  const loadReactionCounts = async () => {
+    const { data, error } = await supabase
+      .from("quick_reaction_counts")
+      .select("reaction, count")
+      .eq("post_slug", postSlug);
+
+    if (!error && data) {
+      const map: Record<string, number> = {};
+      data.forEach((row: { reaction: string; count: number }) => {
+        map[row.reaction] = row.count;
+      });
+      setReactionCounts(map);
+    }
+  };
+
   useEffect(() => {
     loadComments();
+    loadReactionCounts();
+    const stored = localStorage.getItem(STORAGE_PREFIX + postSlug);
+    if (stored) setMyReaction(stored);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [postSlug]);
 
-  const handleReactionClick = (label: string, prompt: string) => {
-    setActiveReaction(label);
-    if (!content.trim()) {
-      setContent(prompt + " ");
+  const handleReactionClick = async (label: string) => {
+    if (myReaction) {
+      toast({
+        title: "כבר הצבעת על הפוסט הזה 💛",
+      });
+      return;
     }
-    setTimeout(() => {
-      const el = document.getElementById("comment-content") as HTMLTextAreaElement | null;
-      el?.focus();
-      if (el) {
-        const len = el.value.length;
-        el.setSelectionRange(len, len);
-      }
-    }, 0);
+
+    // Optimistic update
+    setMyReaction(label);
+    setReactionCounts((prev) => ({ ...prev, [label]: (prev[label] || 0) + 1 }));
+    localStorage.setItem(STORAGE_PREFIX + postSlug, label);
+
+    const { data, error } = await supabase.rpc("increment_quick_reaction", {
+      _post_slug: postSlug,
+      _reaction: label,
+    });
+
+    if (error) {
+      // Rollback
+      setMyReaction(null);
+      setReactionCounts((prev) => ({ ...prev, [label]: Math.max(0, (prev[label] || 1) - 1) }));
+      localStorage.removeItem(STORAGE_PREFIX + postSlug);
+      toast({
+        title: "אופס, ההצבעה לא נקלטה",
+        description: "נסי שוב בעוד רגע",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    if (typeof data === "number") {
+      setReactionCounts((prev) => ({ ...prev, [label]: data }));
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -121,49 +163,53 @@ const BlogComments = ({ postSlug }: { postSlug: string }) => {
     });
     setName("");
     setContent("");
-    setActiveReaction(null);
     loadComments();
   };
 
   return (
     <section className="w-full px-[30px] md:px-6 pb-12 md:pb-16" dir="rtl">
       <div className="w-full md:w-[min(820px,92%)] mx-auto">
-        <div className="bg-card rounded-2xl md:rounded-[32px] shadow-[0_15px_50px_-20px_hsl(0_0%_0%_/_0.12)] px-6 md:px-14 py-8 md:py-12 text-right" dir="rtl">
-          <div className="flex items-center gap-3 justify-end mb-6 md:mb-8">
+        <div className="bg-card rounded-2xl md:rounded-[32px] shadow-[0_15px_50px_-20px_hsl(0_0%_0%_/_0.12)] px-6 md:px-14 py-8 md:py-12" dir="rtl">
+          <div className="flex items-center gap-3 mb-6 md:mb-8">
+            <span className="block w-1 h-7 md:h-9 bg-primary rounded-full" />
             <h2 className="text-foreground text-xl md:text-3xl font-light">
               במילה אחת:
             </h2>
-            <span className="block w-1 h-7 md:h-9 bg-primary rounded-full" />
           </div>
 
-          {/* Quick reaction buttons - styled like the floating top utility bar */}
-          <div className="flex flex-wrap gap-2 md:gap-3 justify-end mb-10 md:mb-12" dir="rtl">
+          {/* Quick reaction buttons with vote counts */}
+          <div className="flex flex-wrap gap-3 md:gap-4 mb-10 md:mb-12" dir="rtl">
             {quickReactions.map((r) => {
               const Icon = r.icon;
-              const isActive = activeReaction === r.label;
+              const isActive = myReaction === r.label;
+              const count = reactionCounts[r.label] || 0;
               return (
-                <button
-                  key={r.label}
-                  type="button"
-                  onClick={() => handleReactionClick(r.label, r.prompt)}
-                  className={`inline-flex items-center gap-2 px-4 md:px-5 py-2 md:py-2.5 rounded-full backdrop-blur-sm shadow-md text-xs md:text-sm font-light transition-all ${
-                    isActive
-                      ? "bg-primary text-primary-foreground"
-                      : "bg-white/95 text-foreground hover:bg-white"
-                  }`}
-                >
-                  <Icon className="w-4 h-4" />
-                  {r.label}
-                </button>
+                <div key={r.label} className="flex flex-col items-center gap-1.5">
+                  <button
+                    type="button"
+                    onClick={() => handleReactionClick(r.label)}
+                    className={`inline-flex items-center gap-2 px-4 md:px-5 py-2 md:py-2.5 rounded-full backdrop-blur-sm shadow-md text-xs md:text-sm font-light transition-all ${
+                      isActive
+                        ? "bg-[hsl(var(--primary-glow))] text-[hsl(var(--primary-dark))]"
+                        : "bg-white/95 text-foreground hover:bg-white"
+                    }`}
+                  >
+                    <Icon className="w-4 h-4" />
+                    {r.label}
+                  </button>
+                  <span className="text-foreground/50 text-xs font-light">
+                    {count}
+                  </span>
+                </div>
               );
             })}
           </div>
 
-          <div className="flex items-center gap-3 justify-end mb-6 md:mb-8">
+          <div className="flex items-center gap-3 mb-6 md:mb-8">
+            <span className="block w-1 h-7 md:h-9 bg-primary rounded-full" />
             <h2 className="text-foreground text-xl md:text-3xl font-light">
               שתפי אותי במחשבות שלך
             </h2>
-            <span className="block w-1 h-7 md:h-9 bg-primary rounded-full" />
           </div>
 
           {/* Form */}
@@ -177,6 +223,7 @@ const BlogComments = ({ postSlug }: { postSlug: string }) => {
                 maxLength={80}
                 disabled={submitting}
                 placeholder="השם שלך"
+                dir="rtl"
                 className="w-full px-4 py-3 rounded-xl bg-background border border-border text-foreground text-sm md:text-base font-light text-right placeholder:text-foreground/40 focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary transition-all"
               />
             </div>
@@ -189,13 +236,14 @@ const BlogComments = ({ postSlug }: { postSlug: string }) => {
                 disabled={submitting}
                 rows={4}
                 placeholder="מה תרצי לכתוב?"
+                dir="rtl"
                 className="w-full px-4 py-3 rounded-xl bg-background border border-border text-foreground text-sm md:text-base font-light text-right placeholder:text-foreground/40 resize-none focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary transition-all"
               />
-              <div className="text-foreground/40 text-xs font-light mt-1 text-left">
+              <div className="text-foreground/40 text-xs font-light mt-1 text-right">
                 {content.length}/2000
               </div>
             </div>
-            <div className="flex justify-end">
+            <div className="flex justify-start">
               <button
                 type="submit"
                 disabled={submitting}
@@ -223,32 +271,33 @@ const BlogComments = ({ postSlug }: { postSlug: string }) => {
                 <Loader2 className="w-6 h-6 animate-spin text-primary" />
               </div>
             ) : comments.length === 0 ? (
-              <div className="text-center py-8 md:py-10">
-                <PartyPopper className="w-8 h-8 md:w-10 md:h-10 text-primary/50 mx-auto mb-3" />
+              <div className="text-right py-8 md:py-10">
+                <PartyPopper className="w-8 h-8 md:w-10 md:h-10 text-primary/50 mb-3" />
                 <p className="text-foreground/60 text-sm md:text-base font-light">
                   עדיין אין כאן תגובות - בואי נפתח את השיחה 💛
                 </p>
               </div>
             ) : (
               <>
-                <div className="flex items-center gap-2 justify-end mb-5">
+                <div className="flex items-center gap-2 mb-5">
+                  <MessageCircle className="w-4 h-4 text-primary" />
                   <span className="text-foreground/70 text-sm md:text-base font-light">
                     {comments.length} תגובות
                   </span>
-                  <MessageCircle className="w-4 h-4 text-primary" />
                 </div>
                 <div className="space-y-5 md:space-y-6">
                   {comments.map((c) => (
                     <div
                       key={c.id}
-                      className="bg-accent/40 rounded-xl md:rounded-2xl px-5 md:px-7 py-4 md:py-5"
+                      className="bg-accent/40 rounded-xl md:rounded-2xl px-5 md:px-7 py-4 md:py-5 text-right"
+                      dir="rtl"
                     >
-                      <div className="flex items-center justify-end gap-3 mb-2">
-                        <span className="text-foreground/50 text-xs font-light">
-                          {formatDate(c.created_at)}
-                        </span>
+                      <div className="flex items-center gap-3 mb-2">
                         <span className="text-primary text-sm md:text-base font-medium">
                           {c.name}
+                        </span>
+                        <span className="text-foreground/50 text-xs font-light">
+                          {formatDate(c.created_at)}
                         </span>
                       </div>
                       <p className="text-foreground/85 text-sm md:text-base font-light leading-relaxed whitespace-pre-wrap">
