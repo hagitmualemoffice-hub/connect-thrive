@@ -9,7 +9,6 @@ import popupImage from "@/assets/popup-turquoise-coffee.jpg";
 const schema = z.object({
   name: z.string().trim().min(1, "נא להזין שם").max(100, "שם ארוך מדי"),
   email: z.string().trim().email("כתובת מייל לא תקינה").max(255, "מייל ארוך מדי"),
-  date: z.string().trim().max(50, "ערך ארוך מדי").optional().or(z.literal("")),
 });
 
 interface MailingListPopupProps {
@@ -40,7 +39,7 @@ const MailingListPopup = ({ open, onOpenChange }: MailingListPopupProps) => {
     setSubmitting(true);
     const { error } = await supabase.from("leads").insert({ email: result.data.email });
     setSubmitting(false);
-    void result.data.name;
+    
     if (error) {
       toast({ title: "שגיאה", description: "אירעה שגיאה, נסו שוב", variant: "destructive" });
       return;
