@@ -92,16 +92,18 @@ const BlogComments = ({ postSlug }: { postSlug: string }) => {
   }, [postSlug]);
 
   const handleReactionClick = async (label: string) => {
-    if (myReaction) {
-      toast({
-        title: "כבר הצבעת על הפוסט הזה 💛",
-      });
-      return;
-    }
+    if (myReaction === label) return;
 
+    const previous = myReaction;
     // Optimistic update
     setMyReaction(label);
-    setReactionCounts((prev) => ({ ...prev, [label]: (prev[label] || 0) + 1 }));
+    setReactionCounts((prev) => {
+      const next = { ...prev, [label]: (prev[label] || 0) + 1 };
+      if (previous) {
+        next[previous] = Math.max(0, (prev[previous] || 1) - 1);
+      }
+      return next;
+    });
     localStorage.setItem(STORAGE_PREFIX + postSlug, label);
 
     const { data, error } = await supabase.rpc("increment_quick_reaction", {
@@ -111,9 +113,14 @@ const BlogComments = ({ postSlug }: { postSlug: string }) => {
 
     if (error) {
       // Rollback
-      setMyReaction(null);
-      setReactionCounts((prev) => ({ ...prev, [label]: Math.max(0, (prev[label] || 1) - 1) }));
-      localStorage.removeItem(STORAGE_PREFIX + postSlug);
+      setMyReaction(previous);
+      setReactionCounts((prev) => {
+        const next = { ...prev, [label]: Math.max(0, (prev[label] || 1) - 1) };
+        if (previous) next[previous] = (prev[previous] || 0) + 1;
+        return next;
+      });
+      if (previous) localStorage.setItem(STORAGE_PREFIX + postSlug, previous);
+      else localStorage.removeItem(STORAGE_PREFIX + postSlug);
       toast({
         title: "אופס, ההצבעה לא נקלטה",
         description: "נסי שוב בעוד רגע",
@@ -124,6 +131,14 @@ const BlogComments = ({ postSlug }: { postSlug: string }) => {
 
     if (typeof data === "number") {
       setReactionCounts((prev) => ({ ...prev, [label]: data }));
+    }
+
+    // Decrement previous reaction in DB (best-effort, no rollback if it fails)
+    if (previous) {
+      await supabase.rpc("decrement_quick_reaction", {
+        _post_slug: postSlug,
+        _reaction: previous,
+      });
     }
   };
 
