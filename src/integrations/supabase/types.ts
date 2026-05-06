@@ -85,6 +85,10 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      decrement_quick_reaction: {
+        Args: { _post_slug: string; _reaction: string }
+        Returns: number
+      }
       increment_quick_reaction: {
         Args: { _post_slug: string; _reaction: string }
         Returns: number
