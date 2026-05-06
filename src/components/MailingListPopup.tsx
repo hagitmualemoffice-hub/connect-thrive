@@ -46,7 +46,7 @@ const MailingListPopup = ({ open, onOpenChange }: MailingListPopupProps) => {
       return;
     }
     toast({ title: "תודה!", description: "נרשמתם בהצלחה לתפוצה." });
-    setForm({ name: "", email: "", date: "" });
+    setForm({ name: "", email: "" });
     onOpenChange(false);
   };
 
