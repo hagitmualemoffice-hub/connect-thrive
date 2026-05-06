@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { z } from "zod";
-import { MessageCircle, Send, Loader2, Heart, PartyPopper, Sparkles, Target, ThumbsDown } from "lucide-react";
+import { MessageCircle, Send, Loader2, HeartHandshake, PartyPopper, Flame, Crosshair, Meh } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 
@@ -25,10 +25,10 @@ const commentSchema = z.object({
 });
 
 const quickReactions = [
-  { label: "אהבתי", icon: Heart, prompt: "אהבתי כי" },
-  { label: "דיבר אלי", icon: Sparkles, prompt: "זה דיבר אליי כי" },
-  { label: "רוצה לדייק", icon: Target, prompt: "רוצה לדייק:" },
-  { label: "פחות", icon: ThumbsDown, prompt: "פחות התחברתי כי" },
+  { label: "אהבתי", icon: HeartHandshake, prompt: "אהבתי כי" },
+  { label: "דיבר אלי", icon: Flame, prompt: "זה דיבר אליי כי" },
+  { label: "רוצה לדייק", icon: Crosshair, prompt: "רוצה לדייק:" },
+  { label: "פחות", icon: Meh, prompt: "פחות התחברתי כי" },
 ];
 
 const formatDate = (iso: string) => {
@@ -129,18 +129,15 @@ const BlogComments = ({ postSlug }: { postSlug: string }) => {
     <section className="w-full px-[30px] md:px-6 pb-12 md:pb-16">
       <div className="w-full md:w-[min(820px,92%)] mx-auto">
         <div className="bg-card rounded-2xl md:rounded-[32px] shadow-[0_15px_50px_-20px_hsl(0_0%_0%_/_0.12)] px-6 md:px-14 py-8 md:py-12 text-right">
-          <div className="flex items-center gap-3 justify-end mb-2">
+          <div className="flex items-center gap-3 justify-end mb-6 md:mb-8">
             <h2 className="text-foreground text-xl md:text-3xl font-light">
-              מה נגע בך? 💗
+              במילה אחת:
             </h2>
             <span className="block w-1 h-7 md:h-9 bg-primary rounded-full" />
           </div>
-          <p className="text-foreground/60 text-sm md:text-base font-light text-right mb-6 md:mb-8">
-            בחרי תגובה מהירה או כתבי לי כמה מילים - אשמח לשמוע ✨
-          </p>
 
-          {/* Quick reaction buttons */}
-          <div className="flex flex-wrap gap-2 md:gap-3 justify-end mb-6">
+          {/* Quick reaction buttons - styled like the floating top utility bar */}
+          <div className="flex flex-wrap gap-2 md:gap-3 justify-end mb-10 md:mb-12" dir="rtl">
             {quickReactions.map((r) => {
               const Icon = r.icon;
               const isActive = activeReaction === r.label;
@@ -149,10 +146,10 @@ const BlogComments = ({ postSlug }: { postSlug: string }) => {
                   key={r.label}
                   type="button"
                   onClick={() => handleReactionClick(r.label, r.prompt)}
-                  className={`inline-flex items-center gap-2 px-4 md:px-5 py-2 md:py-2.5 rounded-full border text-sm md:text-base font-light transition-all ${
+                  className={`inline-flex items-center gap-2 px-4 md:px-5 py-2 md:py-2.5 rounded-full backdrop-blur-sm shadow-md text-xs md:text-sm font-light transition-all ${
                     isActive
-                      ? "bg-primary text-primary-foreground border-primary shadow-md"
-                      : "bg-background text-foreground/80 border-border hover:border-primary hover:text-primary"
+                      ? "bg-primary text-primary-foreground"
+                      : "bg-white/95 text-foreground hover:bg-white"
                   }`}
                 >
                   <Icon className="w-4 h-4" />
@@ -162,8 +159,15 @@ const BlogComments = ({ postSlug }: { postSlug: string }) => {
             })}
           </div>
 
+          <div className="flex items-center gap-3 justify-end mb-6 md:mb-8">
+            <h2 className="text-foreground text-xl md:text-3xl font-light">
+              שתפי אותי במחשבות שלך
+            </h2>
+            <span className="block w-1 h-7 md:h-9 bg-primary rounded-full" />
+          </div>
+
           {/* Form */}
-          <form onSubmit={handleSubmit} className="mb-8 md:mb-10 space-y-4">
+          <form onSubmit={handleSubmit} className="mb-8 md:mb-10 space-y-4" dir="rtl">
             <div>
               <input
                 id="comment-name"
@@ -184,14 +188,14 @@ const BlogComments = ({ postSlug }: { postSlug: string }) => {
                 maxLength={2000}
                 disabled={submitting}
                 rows={4}
-                placeholder="מה תרצי לכתוב לנו?"
+                placeholder="מה תרצי לכתוב?"
                 className="w-full px-4 py-3 rounded-xl bg-background border border-border text-foreground text-sm md:text-base font-light text-right placeholder:text-foreground/40 resize-none focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary transition-all"
               />
               <div className="text-foreground/40 text-xs font-light mt-1 text-left">
                 {content.length}/2000
               </div>
             </div>
-            <div className="flex justify-start">
+            <div className="flex justify-end">
               <button
                 type="submit"
                 disabled={submitting}
@@ -205,7 +209,7 @@ const BlogComments = ({ postSlug }: { postSlug: string }) => {
                 ) : (
                   <>
                     <Send className="w-4 h-4" />
-                    תרצי לשתף מה נגע בך
+                    פרסום תגובה
                   </>
                 )}
               </button>
