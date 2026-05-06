@@ -80,7 +80,7 @@ const MailingListPopup = ({ open, onOpenChange }: MailingListPopupProps) => {
               <div className="text-center mb-8">
                 <div className="w-12 h-px bg-primary mx-auto mb-5" />
                 <h2 className="text-foreground text-2xl md:text-3xl font-light leading-tight tracking-tight mb-3">
-                  כמה טוב שהצטרפתם
+                  כמה טוב שאתם מצטרפים
                 </h2>
                 <p className="text-foreground/70 text-sm md:text-base font-light leading-relaxed max-w-[36ch] mx-auto">
                   אשלח לכם תוכן שקט שיזמין אתכם לעצור, לנשום ולהתחבר לעצמכם.
@@ -108,16 +108,6 @@ const MailingListPopup = ({ open, onOpenChange }: MailingListPopupProps) => {
                   />
                 </div>
 
-                <div>
-                  <label className={labelCls}>תאריך רצוי (אופציונלי)</label>
-                  <input
-                    type="text"
-                    placeholder="לדוגמה: 15/06/2026"
-                    value={form.date}
-                    onChange={(e) => setForm({ ...form, date: e.target.value })}
-                    className={inputCls}
-                  />
-                </div>
               </form>
 
               <p className="mt-8 text-center text-[11px] uppercase tracking-widest text-muted-foreground/70 font-light">
