@@ -9,7 +9,6 @@ import popupImage from "@/assets/popup-turquoise-coffee.jpg";
 const schema = z.object({
   name: z.string().trim().min(1, "נא להזין שם").max(100, "שם ארוך מדי"),
   email: z.string().trim().email("כתובת מייל לא תקינה").max(255, "מייל ארוך מדי"),
-  date: z.string().trim().max(50, "ערך ארוך מדי").optional().or(z.literal("")),
 });
 
 interface MailingListPopupProps {
@@ -23,7 +22,7 @@ const inputCls =
 const labelCls = "block text-foreground/80 text-xs font-light mb-1.5 text-right";
 
 const MailingListPopup = ({ open, onOpenChange }: MailingListPopupProps) => {
-  const [form, setForm] = useState({ name: "", email: "", date: "" });
+  const [form, setForm] = useState({ name: "", email: "" });
   const [submitting, setSubmitting] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -40,12 +39,13 @@ const MailingListPopup = ({ open, onOpenChange }: MailingListPopupProps) => {
     setSubmitting(true);
     const { error } = await supabase.from("leads").insert({ email: result.data.email });
     setSubmitting(false);
+    
     if (error) {
       toast({ title: "שגיאה", description: "אירעה שגיאה, נסו שוב", variant: "destructive" });
       return;
     }
     toast({ title: "תודה!", description: "נרשמתם בהצלחה לתפוצה." });
-    setForm({ name: "", email: "", date: "" });
+    setForm({ name: "", email: "" });
     onOpenChange(false);
   };
 
@@ -79,7 +79,7 @@ const MailingListPopup = ({ open, onOpenChange }: MailingListPopupProps) => {
               <div className="text-center mb-8">
                 <div className="w-12 h-px bg-primary mx-auto mb-5" />
                 <h2 className="text-foreground text-2xl md:text-3xl font-light leading-tight tracking-tight mb-3">
-                  כמה טוב שהצטרפתם
+                  כמה טוב שאתם מצטרפים
                 </h2>
                 <p className="text-foreground/70 text-sm md:text-base font-light leading-relaxed max-w-[36ch] mx-auto">
                   אשלח לכם תוכן שקט שיזמין אתכם לעצור, לנשום ולהתחבר לעצמכם.
@@ -107,16 +107,6 @@ const MailingListPopup = ({ open, onOpenChange }: MailingListPopupProps) => {
                   />
                 </div>
 
-                <div>
-                  <label className={labelCls}>תאריך רצוי (אופציונלי)</label>
-                  <input
-                    type="text"
-                    placeholder="לדוגמה: 15/06/2026"
-                    value={form.date}
-                    onChange={(e) => setForm({ ...form, date: e.target.value })}
-                    className={inputCls}
-                  />
-                </div>
               </form>
 
               <p className="mt-8 text-center text-[11px] uppercase tracking-widest text-muted-foreground/70 font-light">
