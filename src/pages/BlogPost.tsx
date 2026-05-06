@@ -1,5 +1,5 @@
 import { Link, useParams } from "react-router-dom";
-import { ArrowRight, Share2, DoorOpen, Sprout, Footprints, Heart, BookOpen, LucideIcon } from "lucide-react";
+import { ArrowRight, Share2, DoorOpen, Sprout, Flame, Heart, BookOpen, LucideIcon } from "lucide-react";
 import { blogPosts, getPostBySlug } from "@/data/blogPosts";
 import SiteHeader from "@/components/SiteHeader";
 import MobileBottomNav from "@/components/MobileBottomNav";
@@ -7,7 +7,7 @@ import MobileBottomNav from "@/components/MobileBottomNav";
 const postIcons: Record<string, LucideIcon> = {
   "pesach-freedom": DoorOpen,
   "bereshit-end": Sprout,
-  "lech-lecha-hineni": Footprints,
+  "lag-baomer-rashbi": Flame,
   "akeda-tears": Heart,
 };
 

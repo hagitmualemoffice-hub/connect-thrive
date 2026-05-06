@@ -3,7 +3,7 @@ import SiteHeader from "@/components/SiteHeader";
 import MobileBottomNav from "@/components/MobileBottomNav";
 import pesachFreedom from "@/assets/blog-pesach-freedom.jpg";
 import bereshitImg from "@/assets/blog-bereshit.jpg";
-import lechLechaImg from "@/assets/blog-lech-lecha.jpg";
+import lagBaomerImg from "@/assets/blog-lag-baomer.jpg";
 import akedaTearsImg from "@/assets/blog-akeda-tears.jpg";
 
 const featuredPost = {
@@ -27,12 +27,12 @@ const posts = [
   },
   {
     category: "פרשה ופסיכולוגיה",
-    date: "נובמבר 2025",
-    title: "פרשת לך לך - הינני, השתמש בי",
+    date: "מאי 2026",
+    title: "ל״ג בעומר - כוח האהבה של רשב״י",
     excerpt:
-      "אברהם אבינו אומר להקב״ה 'הינני'. צ'ארלי קירק תרגם את זה ל-'use me' - תשתמש בי. מבט פסיכולוגי על הרצון שלנו לייעוד בתנאים שלנו, מול היכולת להתבטל לתפקיד כפי שהקב״ה רואה אותו.",
-    image: lechLechaImg,
-    slug: "lech-lecha-hineni",
+      "ל״ג בעומר - יום שכל עם ישראל מתחבר אליו. מה הכוח המיוחד של רשב״י? על היכולת לראות את האור בכל יהודי, על השנה הנוספת במערה, ועל הרגעים בחיים שבהם נדמה שחזרנו אחורה - אבל באמת זו תנועה עמוקה יותר פנימה.",
+    image: lagBaomerImg,
+    slug: "lag-baomer-rashbi",
   },
   {
     category: "פרשה ופסיכולוגיה",
