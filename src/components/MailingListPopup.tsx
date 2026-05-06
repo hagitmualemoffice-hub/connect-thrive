@@ -23,7 +23,7 @@ const inputCls =
 const labelCls = "block text-foreground/80 text-xs font-light mb-1.5 text-right";
 
 const MailingListPopup = ({ open, onOpenChange }: MailingListPopupProps) => {
-  const [form, setForm] = useState({ name: "", email: "", date: "" });
+  const [form, setForm] = useState({ name: "", email: "" });
   const [submitting, setSubmitting] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
