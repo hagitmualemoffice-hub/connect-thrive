@@ -199,23 +199,30 @@ const BlogComments = ({ postSlug }: { postSlug: string }) => {
               const isActive = myReaction === r.label;
               const count = reactionCounts[r.label] || 0;
               return (
-                <div key={r.label} className="flex flex-col items-center gap-1.5">
-                  <button
-                    type="button"
-                    onClick={() => handleReactionClick(r.label)}
-                    className={`inline-flex items-center gap-2 px-4 md:px-5 py-2 md:py-2.5 rounded-full text-xs md:text-sm font-light transition-all border ${
-                      isActive
-                        ? "bg-[hsl(var(--accent))] text-[hsl(var(--primary-dark))] border-[hsl(var(--primary)/0.5)] shadow-sm"
-                        : "bg-white/95 text-foreground border-transparent shadow-md hover:bg-white"
-                    }`}
-                  >
-                    <Icon className="w-4 h-4" />
-                    {r.label}
-                  </button>
-                  <span className="text-foreground/50 text-xs font-light">
-                    {count}
-                  </span>
-                </div>
+                <button
+                  key={r.label}
+                  type="button"
+                  onClick={() => handleReactionClick(r.label)}
+                  className={`inline-flex items-center gap-2 pr-4 pl-2 md:pr-5 md:pl-2.5 py-1.5 md:py-2 rounded-full text-xs md:text-sm font-light transition-all border ${
+                    isActive
+                      ? "bg-[hsl(var(--accent))] text-[hsl(var(--primary-dark))] border-[hsl(var(--primary)/0.5)] shadow-sm"
+                      : "bg-white/95 text-foreground border-transparent shadow-md hover:bg-white"
+                  }`}
+                >
+                  <Icon className="w-4 h-4" />
+                  <span>{r.label}</span>
+                  {count > 0 && (
+                    <span
+                      className={`inline-flex items-center justify-center min-w-[22px] h-[22px] px-1.5 rounded-full text-[11px] font-medium transition-colors ${
+                        isActive
+                          ? "bg-[hsl(var(--primary)/0.2)] text-[hsl(var(--primary-dark))]"
+                          : "bg-[hsl(var(--accent))] text-[hsl(var(--primary-dark))]"
+                      }`}
+                    >
+                      {count}
+                    </span>
+                  )}
+                </button>
               );
             })}
           </div>
