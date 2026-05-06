@@ -3,6 +3,7 @@ import { ArrowRight, Share2, DoorOpen, Sprout, Flame, Heart, BookOpen, LucideIco
 import { blogPosts, getPostBySlug } from "@/data/blogPosts";
 import SiteHeader from "@/components/SiteHeader";
 import MobileBottomNav from "@/components/MobileBottomNav";
+import BlogComments from "@/components/BlogComments";
 
 const postIcons: Record<string, LucideIcon> = {
   "pesach-freedom": DoorOpen,
@@ -93,6 +94,11 @@ const BlogPost = () => {
             ))}
           </div>
         </article>
+      </section>
+
+      {/* Comments */}
+      <section className="w-full pt-12 md:pt-20">
+        <BlogComments postSlug={post.slug} />
       </section>
 
       {/* Newsletter CTA */}
