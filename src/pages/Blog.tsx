@@ -5,6 +5,7 @@ import pesachFreedom from "@/assets/blog-pesach-freedom.jpg";
 import bereshitImg from "@/assets/blog-bereshit.jpg";
 import lagBaomerImg from "@/assets/blog-lag-baomer.jpg";
 import akedaTearsImg from "@/assets/blog-akeda-tears.jpg";
+import whenLifeHitsImg from "@/assets/blog-when-life-hits-hard.jpg";
 
 const featuredPost = {
   category: "פרשה ופסיכולוגיה",
@@ -16,6 +17,15 @@ const featuredPost = {
 };
 
 const posts = [
+  {
+    category: "מימוש עצמי",
+    date: "מאי 2026",
+    title: "כשמשהו בחיים פוגש אותנו חזק מדי",
+    excerpt:
+      "אם היה לך רגע כזה השבוע שהוציא אותך מאיזון - שיחה אחת שנכנסה ללב, רגש שלא הצלחת להחזיק, רגע של קנאה, ייאוש, עצב או כעס שלא כל כך אהבת לפגוש בעצמך. כמה מחשבות על מה אפשר לעשות עם כאב, ואיך להישאר רגע בתוכו בלי לברוח.",
+    image: whenLifeHitsImg,
+    slug: "when-life-hits-hard",
+  },
   {
     category: "פרשה ופסיכולוגיה",
     date: "מרץ 2026",
