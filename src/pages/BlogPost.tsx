@@ -10,6 +10,7 @@ const postIcons: Record<string, LucideIcon> = {
   "bereshit-end": Sprout,
   "lag-baomer-rashbi": Flame,
   "akeda-tears": Heart,
+  "when-life-hits-hard": HeartHandshake,
 };
 
 const BlogPost = () => {
