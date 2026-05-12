@@ -5,6 +5,7 @@ import pesachFreedom from "@/assets/blog-pesach-freedom.jpg";
 import bereshitImg from "@/assets/blog-bereshit.jpg";
 import lagBaomerImg from "@/assets/blog-lag-baomer.jpg";
 import akedaTearsImg from "@/assets/blog-akeda-tears.jpg";
+import whenLifeHitsImg from "@/assets/blog-when-life-hits-hard.jpg";
 
 const featuredPost = {
   category: "פרשה ופסיכולוגיה",
