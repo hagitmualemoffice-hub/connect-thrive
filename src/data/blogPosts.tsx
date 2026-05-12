@@ -23,7 +23,7 @@ export const blogPosts: BlogPostData[] = [
     category: "מימוש עצמי",
     date: "מאי 2026",
     title: "כשמשהו בחיים פוגש אותנו חזק מדי",
-    subtitle: "על רגעים של כאב ומה עושים איתו",
+    subtitle: "על רגעים של כאב ומה אפשר לעשות איתו",
     excerpt:
       "אם היה לך רגע כזה השבוע שהוציא אותך מאיזון - שיחה אחת שנכנסה ללב, רגש שלא הצלחת להחזיק, רגע של קנאה, ייאוש, עצב או כעס שלא כל כך אהבת לפגוש בעצמך. כמה מחשבות על מה אפשר לעשות עם כאב, ואיך להישאר רגע בתוכו בלי לברוח.",
     image: whenLifeHitsImg,
@@ -31,7 +31,7 @@ export const blogPosts: BlogPostData[] = [
     content: (
       <>
         <p className="text-foreground text-lg md:text-xl font-light leading-relaxed">
-          על רגעים של כאב ומה עושים איתו
+          על רגעים של כאב ומה אפשר לעשות איתו
         </p>
 
         <p>
