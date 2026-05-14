@@ -31,7 +31,7 @@ export const blogPosts: BlogPostData[] = [
     content: (
       <>
         <p className="text-foreground text-lg md:text-xl font-light leading-relaxed">
-          על רגעים של כאב ומה אפשר לעשות איתו
+          {"\n"}
         </p>
 
         <p>
