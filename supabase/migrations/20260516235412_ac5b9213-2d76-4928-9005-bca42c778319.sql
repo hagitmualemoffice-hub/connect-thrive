@@ -1,0 +1,1 @@
+DELETE FROM public.blog_comments WHERE id IN ('26388d03-c38a-4cf4-af63-510e3a03160e','b55a8f15-339b-4b29-abac-e28b678015fe');

@@ -115,7 +115,7 @@ const Blog = () => {
       <section className="w-full pb-10 md:pb-16 px-[30px] md:px-6">
         <div className="w-full md:w-[min(1100px,82%)] mx-auto">
           <Link
-            to="/blog/pesach-freedom"
+            to={`/blog/${featuredPost.slug}`}
             className="group block bg-card rounded-2xl md:rounded-3xl overflow-hidden shadow-[0_15px_50px_-15px_hsl(0_0%_0%_/_0.12)] hover:shadow-[0_25px_60px_-15px_hsl(var(--primary)/0.25)] transition-all duration-300"
           >
             <div className="grid grid-cols-1 md:grid-cols-2 gap-0">
