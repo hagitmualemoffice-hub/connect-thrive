@@ -20,6 +20,7 @@ export type Database = {
           created_at: string
           id: string
           name: string
+          parent_id: string | null
           post_slug: string
         }
         Insert: {
@@ -27,6 +28,7 @@ export type Database = {
           created_at?: string
           id?: string
           name: string
+          parent_id?: string | null
           post_slug: string
         }
         Update: {
@@ -34,9 +36,50 @@ export type Database = {
           created_at?: string
           id?: string
           name?: string
+          parent_id?: string | null
           post_slug?: string
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "blog_comments_parent_id_fkey"
+            columns: ["parent_id"]
+            isOneToOne: false
+            referencedRelation: "blog_comments"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      comment_reaction_counts: {
+        Row: {
+          comment_id: string
+          count: number
+          emoji: string
+          id: string
+          updated_at: string
+        }
+        Insert: {
+          comment_id: string
+          count?: number
+          emoji: string
+          id?: string
+          updated_at?: string
+        }
+        Update: {
+          comment_id?: string
+          count?: number
+          emoji?: string
+          id?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "comment_reaction_counts_comment_id_fkey"
+            columns: ["comment_id"]
+            isOneToOne: false
+            referencedRelation: "blog_comments"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       leads: {
         Row: {
@@ -85,8 +128,17 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      _is_allowed_comment_emoji: { Args: { _e: string }; Returns: boolean }
+      decrement_comment_reaction: {
+        Args: { _comment_id: string; _emoji: string }
+        Returns: number
+      }
       decrement_quick_reaction: {
         Args: { _post_slug: string; _reaction: string }
+        Returns: number
+      }
+      increment_comment_reaction: {
+        Args: { _comment_id: string; _emoji: string }
         Returns: number
       }
       increment_quick_reaction: {

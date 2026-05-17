@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { z } from "zod";
-import { MessageCircle, Send, Loader2, HeartHandshake, PartyPopper, Flame, Crosshair, Meh } from "lucide-react";
+import { MessageCircle, Send, Loader2, HeartHandshake, PartyPopper, Flame, PlusCircle, Meh, Reply, X } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 
@@ -9,6 +9,7 @@ interface Comment {
   name: string;
   content: string;
   created_at: string;
+  parent_id: string | null;
 }
 
 const commentSchema = z.object({
@@ -27,11 +28,14 @@ const commentSchema = z.object({
 const quickReactions = [
   { label: "אהבתי", icon: HeartHandshake },
   { label: "דיבר אלי", icon: Flame },
-  { label: "רוצה לדייק", icon: Crosshair },
+  { label: "רוצה להוסיף", icon: PlusCircle },
   { label: "פחות", icon: Meh },
 ];
 
+const commentEmojis = ["❤️", "😊", "🤩", "😢", "🙏", "👍", "🌷", "💪"];
+
 const STORAGE_PREFIX = "quick_reaction_voted:";
+const COMMENT_EMOJI_PREFIX = "comment_emoji_voted:"; // + commentId -> emoji
 
 const formatDate = (iso: string) => {
   const d = new Date(iso);
@@ -52,18 +56,54 @@ const BlogComments = ({ postSlug }: { postSlug: string }) => {
   const [reactionCounts, setReactionCounts] = useState<Record<string, number>>({});
   const [myReaction, setMyReaction] = useState<string | null>(null);
 
+  // Replies state
+  const [replyTo, setReplyTo] = useState<string | null>(null);
+  const [replyName, setReplyName] = useState("");
+  const [replyContent, setReplyContent] = useState("");
+  const [replySubmitting, setReplySubmitting] = useState(false);
+  const [emojiPickerFor, setEmojiPickerFor] = useState<string | null>(null);
+
+  // Comment reactions: { [commentId]: { [emoji]: count } }
+  const [commentReactions, setCommentReactions] = useState<Record<string, Record<string, number>>>({});
+  // { [commentId]: emoji }
+  const [myCommentReaction, setMyCommentReaction] = useState<Record<string, string>>({});
+
   const loadComments = async () => {
     setLoading(true);
     const { data, error } = await supabase
       .from("blog_comments")
-      .select("id, name, content, created_at")
+      .select("id, name, content, created_at, parent_id")
       .eq("post_slug", postSlug)
       .order("created_at", { ascending: false });
 
     if (error) {
       console.error("Failed to load comments", error);
     } else {
-      setComments(data || []);
+      const list = (data || []) as Comment[];
+      setComments(list);
+      // Load comment reactions for these comments
+      const ids = list.map((c) => c.id);
+      if (ids.length > 0) {
+        const { data: rxData, error: rxErr } = await supabase
+          .from("comment_reaction_counts")
+          .select("comment_id, emoji, count")
+          .in("comment_id", ids);
+        if (!rxErr && rxData) {
+          const map: Record<string, Record<string, number>> = {};
+          rxData.forEach((row: { comment_id: string; emoji: string; count: number }) => {
+            if (!map[row.comment_id]) map[row.comment_id] = {};
+            map[row.comment_id][row.emoji] = row.count;
+          });
+          setCommentReactions(map);
+        }
+        // Load my reactions from localStorage
+        const mine: Record<string, string> = {};
+        ids.forEach((id) => {
+          const v = localStorage.getItem(COMMENT_EMOJI_PREFIX + id);
+          if (v) mine[id] = v;
+        });
+        setMyCommentReaction(mine);
+      }
     }
     setLoading(false);
   };
@@ -91,17 +131,33 @@ const BlogComments = ({ postSlug }: { postSlug: string }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [postSlug]);
 
+  // Group comments: top-level + replies map
+  const { topLevel, repliesByParent } = useMemo(() => {
+    const top: Comment[] = [];
+    const replies: Record<string, Comment[]> = {};
+    comments.forEach((c) => {
+      if (c.parent_id) {
+        if (!replies[c.parent_id]) replies[c.parent_id] = [];
+        replies[c.parent_id].push(c);
+      } else {
+        top.push(c);
+      }
+    });
+    // Replies oldest first for natural reading
+    Object.keys(replies).forEach((k) => {
+      replies[k].sort((a, b) => new Date(a.created_at).getTime() - new Date(b.created_at).getTime());
+    });
+    return { topLevel: top, repliesByParent: replies };
+  }, [comments]);
+
   const handleReactionClick = async (label: string) => {
     if (myReaction === label) return;
 
     const previous = myReaction;
-    // Optimistic update
     setMyReaction(label);
     setReactionCounts((prev) => {
       const next = { ...prev, [label]: (prev[label] || 0) + 1 };
-      if (previous) {
-        next[previous] = Math.max(0, (prev[previous] || 1) - 1);
-      }
+      if (previous) next[previous] = Math.max(0, (prev[previous] || 1) - 1);
       return next;
     });
     localStorage.setItem(STORAGE_PREFIX + postSlug, label);
@@ -112,7 +168,6 @@ const BlogComments = ({ postSlug }: { postSlug: string }) => {
     });
 
     if (error) {
-      // Rollback
       setMyReaction(previous);
       setReactionCounts((prev) => {
         const next = { ...prev, [label]: Math.max(0, (prev[label] || 1) - 1) };
@@ -121,40 +176,78 @@ const BlogComments = ({ postSlug }: { postSlug: string }) => {
       });
       if (previous) localStorage.setItem(STORAGE_PREFIX + postSlug, previous);
       else localStorage.removeItem(STORAGE_PREFIX + postSlug);
-      toast({
-        title: "אופס, ההצבעה לא נקלטה",
-        description: "נסי שוב בעוד רגע",
-        variant: "destructive",
-      });
+      toast({ title: "אופס, ההצבעה לא נקלטה", description: "נסי שוב בעוד רגע", variant: "destructive" });
       return;
     }
 
     if (typeof data === "number") {
       setReactionCounts((prev) => ({ ...prev, [label]: data }));
     }
-
-    // Decrement previous reaction in DB (best-effort, no rollback if it fails)
     if (previous) {
-      await supabase.rpc("decrement_quick_reaction", {
-        _post_slug: postSlug,
-        _reaction: previous,
+      await supabase.rpc("decrement_quick_reaction", { _post_slug: postSlug, _reaction: previous });
+    }
+  };
+
+  const handleCommentEmoji = async (commentId: string, emoji: string) => {
+    const previous = myCommentReaction[commentId];
+    if (previous === emoji) return;
+
+    // Optimistic
+    setMyCommentReaction((prev) => ({ ...prev, [commentId]: emoji }));
+    setCommentReactions((prev) => {
+      const forC = { ...(prev[commentId] || {}) };
+      forC[emoji] = (forC[emoji] || 0) + 1;
+      if (previous) forC[previous] = Math.max(0, (forC[previous] || 1) - 1);
+      return { ...prev, [commentId]: forC };
+    });
+    localStorage.setItem(COMMENT_EMOJI_PREFIX + commentId, emoji);
+    setEmojiPickerFor(null);
+
+    const { data, error } = await supabase.rpc("increment_comment_reaction", {
+      _comment_id: commentId,
+      _emoji: emoji,
+    });
+
+    if (error) {
+      // Rollback
+      setMyCommentReaction((prev) => {
+        const next = { ...prev };
+        if (previous) next[commentId] = previous;
+        else delete next[commentId];
+        return next;
       });
+      setCommentReactions((prev) => {
+        const forC = { ...(prev[commentId] || {}) };
+        forC[emoji] = Math.max(0, (forC[emoji] || 1) - 1);
+        if (previous) forC[previous] = (forC[previous] || 0) + 1;
+        return { ...prev, [commentId]: forC };
+      });
+      if (previous) localStorage.setItem(COMMENT_EMOJI_PREFIX + commentId, previous);
+      else localStorage.removeItem(COMMENT_EMOJI_PREFIX + commentId);
+      toast({ title: "אופס, ההצבעה לא נקלטה", description: "נסי שוב בעוד רגע", variant: "destructive" });
+      return;
+    }
+
+    if (typeof data === "number") {
+      setCommentReactions((prev) => {
+        const forC = { ...(prev[commentId] || {}) };
+        forC[emoji] = data;
+        return { ...prev, [commentId]: forC };
+      });
+    }
+
+    if (previous) {
+      await supabase.rpc("decrement_comment_reaction", { _comment_id: commentId, _emoji: previous });
     }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
     const result = commentSchema.safeParse({ name, content });
     if (!result.success) {
-      toast({
-        title: "שגיאה",
-        description: result.error.errors[0].message,
-        variant: "destructive",
-      });
+      toast({ title: "שגיאה", description: result.error.errors[0].message, variant: "destructive" });
       return;
     }
-
     setSubmitting(true);
     const { error } = await supabase.from("blog_comments").insert({
       post_slug: postSlug,
@@ -162,23 +255,181 @@ const BlogComments = ({ postSlug }: { postSlug: string }) => {
       content: result.data.content,
     });
     setSubmitting(false);
-
     if (error) {
-      toast({
-        title: "אופס, לא הצליח",
-        description: "נסי שוב בעוד רגע 💛",
-        variant: "destructive",
-      });
+      toast({ title: "אופס, לא הצליח", description: "נסי שוב בעוד רגע 💛", variant: "destructive" });
       return;
     }
-
-    toast({
-      title: "תודה רבה! 🥰",
-      description: "התגובה שלך פורסמה",
-    });
+    toast({ title: "תודה רבה! 🥰", description: "התגובה שלך פורסמה" });
     setName("");
     setContent("");
     loadComments();
+  };
+
+  const handleReplySubmit = async (parentId: string, e: React.FormEvent) => {
+    e.preventDefault();
+    const result = commentSchema.safeParse({ name: replyName, content: replyContent });
+    if (!result.success) {
+      toast({ title: "שגיאה", description: result.error.errors[0].message, variant: "destructive" });
+      return;
+    }
+    setReplySubmitting(true);
+    const { error } = await supabase.from("blog_comments").insert({
+      post_slug: postSlug,
+      name: result.data.name,
+      content: result.data.content,
+      parent_id: parentId,
+    });
+    setReplySubmitting(false);
+    if (error) {
+      toast({ title: "אופס, לא הצליח", description: "נסי שוב בעוד רגע 💛", variant: "destructive" });
+      return;
+    }
+    toast({ title: "תודה רבה! 🥰", description: "התגובה שלך פורסמה" });
+    setReplyName("");
+    setReplyContent("");
+    setReplyTo(null);
+    loadComments();
+  };
+
+  const renderComment = (c: Comment, isReply = false) => {
+    const rx = commentReactions[c.id] || {};
+    const mine = myCommentReaction[c.id];
+    const usedEmojis = Object.entries(rx).filter(([, n]) => n > 0);
+
+    return (
+      <div
+        key={c.id}
+        className={`${
+          isReply ? "bg-accent/25" : "bg-accent/40"
+        } rounded-xl md:rounded-2xl px-5 md:px-7 py-4 md:py-5 text-right`}
+        dir="rtl"
+      >
+        <div className="flex items-center gap-3 mb-2">
+          <span className="text-primary text-sm md:text-base font-medium">{c.name}</span>
+          <span className="text-foreground/50 text-xs font-light">{formatDate(c.created_at)}</span>
+        </div>
+        <p className="text-foreground/85 text-sm md:text-base font-light leading-relaxed whitespace-pre-wrap">
+          {c.content}
+        </p>
+
+        {/* Reaction bar */}
+        <div className="mt-3 flex flex-wrap items-center gap-2">
+          {usedEmojis.map(([emoji, count]) => (
+            <button
+              key={emoji}
+              type="button"
+              onClick={() => handleCommentEmoji(c.id, emoji)}
+              className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs border transition-all ${
+                mine === emoji
+                  ? "bg-[hsl(var(--accent))] border-[hsl(var(--primary)/0.5)] text-[hsl(var(--primary-dark))]"
+                  : "bg-white/90 border-transparent text-foreground hover:bg-white"
+              }`}
+            >
+              <span className="text-sm leading-none">{emoji}</span>
+              <span className="font-medium">{count}</span>
+            </button>
+          ))}
+
+          <div className="relative">
+            <button
+              type="button"
+              onClick={() => setEmojiPickerFor(emojiPickerFor === c.id ? null : c.id)}
+              className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs bg-white/90 text-foreground/70 hover:bg-white shadow-sm transition-colors"
+              aria-label="הוספת אימוג'י"
+            >
+              <span className="text-sm leading-none">😊</span>
+              <span>+</span>
+            </button>
+            {emojiPickerFor === c.id && (
+              <div className="absolute z-20 top-full mt-2 right-0 bg-white rounded-2xl shadow-lg border border-border p-2 flex gap-1">
+                {commentEmojis.map((emoji) => (
+                  <button
+                    key={emoji}
+                    type="button"
+                    onClick={() => handleCommentEmoji(c.id, emoji)}
+                    className={`text-xl w-9 h-9 rounded-full hover:bg-accent transition-colors ${
+                      mine === emoji ? "bg-accent" : ""
+                    }`}
+                  >
+                    {emoji}
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+
+          {!isReply && (
+            <button
+              type="button"
+              onClick={() => {
+                setReplyTo(replyTo === c.id ? null : c.id);
+                setReplyName("");
+                setReplyContent("");
+              }}
+              className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs text-primary hover:bg-accent/60 transition-colors ms-auto"
+            >
+              <Reply className="w-3.5 h-3.5" />
+              {replyTo === c.id ? "ביטול" : "תגובה"}
+            </button>
+          )}
+        </div>
+
+        {/* Reply form */}
+        {!isReply && replyTo === c.id && (
+          <form
+            onSubmit={(e) => handleReplySubmit(c.id, e)}
+            className="mt-4 space-y-3 bg-white/70 rounded-xl p-4"
+            dir="rtl"
+          >
+            <input
+              type="text"
+              value={replyName}
+              onChange={(e) => setReplyName(e.target.value)}
+              maxLength={80}
+              disabled={replySubmitting}
+              placeholder="השם שלך"
+              dir="rtl"
+              className="w-full px-3 py-2 rounded-lg bg-background border border-border text-foreground text-sm font-light text-right placeholder:text-foreground/40 focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary"
+            />
+            <textarea
+              value={replyContent}
+              onChange={(e) => setReplyContent(e.target.value)}
+              maxLength={2000}
+              disabled={replySubmitting}
+              rows={3}
+              placeholder={`להגיב ל${c.name}...`}
+              dir="rtl"
+              className="w-full px-3 py-2 rounded-lg bg-background border border-border text-foreground text-sm font-light text-right placeholder:text-foreground/40 resize-none focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary"
+            />
+            <div className="flex justify-start gap-2">
+              <button
+                type="submit"
+                disabled={replySubmitting}
+                className="inline-flex items-center gap-2 px-5 py-2 rounded-lg bg-primary text-primary-foreground text-sm font-light shadow hover:bg-[hsl(var(--primary-glow))] transition-all disabled:opacity-60"
+              >
+                {replySubmitting ? <Loader2 className="w-4 h-4 animate-spin" /> : <Send className="w-4 h-4" />}
+                שליחת תגובה
+              </button>
+              <button
+                type="button"
+                onClick={() => setReplyTo(null)}
+                className="inline-flex items-center gap-1 px-3 py-2 rounded-lg text-foreground/60 text-sm hover:bg-accent/60"
+              >
+                <X className="w-4 h-4" />
+                ביטול
+              </button>
+            </div>
+          </form>
+        )}
+
+        {/* Replies */}
+        {!isReply && repliesByParent[c.id]?.length > 0 && (
+          <div className="mt-4 pr-4 md:pr-6 border-r-2 border-primary/20 space-y-3">
+            {repliesByParent[c.id].map((r) => renderComment(r, true))}
+          </div>
+        )}
+      </div>
+    );
   };
 
   return (
@@ -187,12 +438,9 @@ const BlogComments = ({ postSlug }: { postSlug: string }) => {
         <div className="bg-card rounded-2xl md:rounded-[32px] shadow-[0_15px_50px_-20px_hsl(0_0%_0%_/_0.12)] px-6 md:px-14 py-8 md:py-12" dir="rtl">
           <div className="flex items-center gap-3 mb-6 md:mb-8">
             <span className="block w-1 h-7 md:h-9 bg-primary rounded-full" />
-            <h2 className="text-foreground text-xl md:text-3xl font-light">
-              במילה אחת:
-            </h2>
+            <h2 className="text-foreground text-xl md:text-3xl font-light">במילה אחת:</h2>
           </div>
 
-          {/* Quick reaction buttons with vote counts */}
           <div className="flex flex-wrap gap-3 md:gap-4 mb-10 md:mb-12" dir="rtl">
             {quickReactions.map((r) => {
               const Icon = r.icon;
@@ -229,12 +477,9 @@ const BlogComments = ({ postSlug }: { postSlug: string }) => {
 
           <div className="flex items-center gap-3 mb-6 md:mb-8">
             <span className="block w-1 h-7 md:h-9 bg-primary rounded-full" />
-            <h2 className="text-foreground text-xl md:text-3xl font-light">
-              שתפי אותי במחשבות שלך
-            </h2>
+            <h2 className="text-foreground text-xl md:text-3xl font-light">שתפי אותי במחשבות שלך</h2>
           </div>
 
-          {/* Form */}
           <form onSubmit={handleSubmit} className="mb-8 md:mb-10 space-y-4" dir="rtl">
             <div>
               <input
@@ -261,9 +506,7 @@ const BlogComments = ({ postSlug }: { postSlug: string }) => {
                 dir="rtl"
                 className="w-full px-4 py-3 rounded-xl bg-background border border-border text-foreground text-sm md:text-base font-light text-right placeholder:text-foreground/40 resize-none focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary transition-all"
               />
-              <div className="text-foreground/40 text-xs font-light mt-1 text-right">
-                {content.length}/2000
-              </div>
+              <div className="text-foreground/40 text-xs font-light mt-1 text-right">{content.length}/2000</div>
             </div>
             <div className="flex justify-start">
               <button
@@ -286,13 +529,12 @@ const BlogComments = ({ postSlug }: { postSlug: string }) => {
             </div>
           </form>
 
-          {/* Comments list */}
           <div className="border-t border-border pt-6 md:pt-8">
             {loading ? (
               <div className="flex justify-center py-8">
                 <Loader2 className="w-6 h-6 animate-spin text-primary" />
               </div>
-            ) : comments.length === 0 ? (
+            ) : topLevel.length === 0 ? (
               <div className="text-right py-8 md:py-10">
                 <PartyPopper className="w-8 h-8 md:w-10 md:h-10 text-primary/50 mb-3" />
                 <p className="text-foreground/60 text-sm md:text-base font-light">
@@ -307,27 +549,7 @@ const BlogComments = ({ postSlug }: { postSlug: string }) => {
                     {comments.length} תגובות
                   </span>
                 </div>
-                <div className="space-y-5 md:space-y-6">
-                  {comments.map((c) => (
-                    <div
-                      key={c.id}
-                      className="bg-accent/40 rounded-xl md:rounded-2xl px-5 md:px-7 py-4 md:py-5 text-right"
-                      dir="rtl"
-                    >
-                      <div className="flex items-center gap-3 mb-2">
-                        <span className="text-primary text-sm md:text-base font-medium">
-                          {c.name}
-                        </span>
-                        <span className="text-foreground/50 text-xs font-light">
-                          {formatDate(c.created_at)}
-                        </span>
-                      </div>
-                      <p className="text-foreground/85 text-sm md:text-base font-light leading-relaxed whitespace-pre-wrap">
-                        {c.content}
-                      </p>
-                    </div>
-                  ))}
-                </div>
+                <div className="space-y-5 md:space-y-6">{topLevel.map((c) => renderComment(c))}</div>
               </>
             )}
           </div>
