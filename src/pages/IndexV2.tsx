@@ -114,24 +114,89 @@ const IndexV2 = () => {
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-14">
             <div className="w-12 h-px bg-primary mx-auto mb-6" />
-            <h2 className="text-2xl md:text-4xl font-light tracking-tight">איפה פוגשים אותי</h2>
+            <h2 className="text-2xl md:text-4xl font-light tracking-tight">איפה אפשר לפגוש אותי?</h2>
           </div>
-          <div className="grid md:grid-cols-3 gap-6 md:gap-8">
-            {pillars.map(({ icon: Icon, title, text }) => (
-              <div
-                key={title}
-                className="bg-card border border-border/60 rounded-2xl p-8 text-center hover:shadow-md transition-shadow"
-              >
-                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-5">
-                  <Icon className="w-5 h-5 text-primary" strokeWidth={1.5} />
-                </div>
-                <h3 className="text-xl font-light mb-3">{title}</h3>
-                <p className="text-sm text-foreground/65 leading-relaxed">{text}</p>
+          <div className="grid md:grid-cols-2 gap-6 md:gap-8">
+            {/* Lectures */}
+            <div className="bg-card border border-border/60 rounded-2xl p-8 text-right flex flex-col hover:shadow-md transition-shadow">
+              <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-5">
+                <Mic className="w-5 h-5 text-primary" strokeWidth={1.5} />
               </div>
-            ))}
+              <h3 className="text-xl font-light mb-4">הרצאות</h3>
+              <div className="space-y-3 text-sm text-foreground/70 leading-relaxed mb-6 flex-1">
+                <p>הרצאות בגובה העיניים שמחברות בין פסיכולוגיה, משמעות וחיים עצמם.</p>
+                <p>על התמודדות רגשית, קבלת החלטות, חוסן, רווקות, שימור פוריות, נשיות, תנועה בתוך תקופות מורכבות וחיבור לכיוון אישי.</p>
+                <p>מפגש שמאפשר לעצור, לחשוב, ולהמשיך הלאה עם יותר בהירות וכלים.</p>
+              </div>
+              <button
+                onClick={() => openContact("lecture")}
+                className="self-start inline-flex items-center gap-2 px-6 py-2.5 rounded-full border border-primary/40 text-foreground hover:bg-primary/5 transition-all duration-500 text-sm tracking-wide"
+              >
+                להזמנת הרצאה
+                <ArrowLeft className="w-4 h-4" />
+              </button>
+            </div>
+
+            {/* Workshops */}
+            <div className="bg-card border border-border/60 rounded-2xl p-8 text-right flex flex-col hover:shadow-md transition-shadow">
+              <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-5">
+                <Sparkles className="w-5 h-5 text-primary" strokeWidth={1.5} />
+              </div>
+              <h3 className="text-xl font-light mb-4">סדנאות ותהליכים קבוצתיים</h3>
+              <div className="space-y-3 text-sm text-foreground/70 leading-relaxed mb-6 flex-1">
+                <p>מרחבים קבוצתיים המבוססים על שיחה, טקסטים והתבוננות משותפת.</p>
+                <p>דרך עבודה קבוצתית וכלים מעולמות הפסיכולוגיה והביבליותרפיה, נוצר מקום לעצור, להבין מה קורה בפנים - ולנוע ממנו החוצה.</p>
+              </div>
+              <button
+                onClick={() => openContact("workshop")}
+                className="self-start inline-flex items-center gap-2 px-6 py-2.5 rounded-full border border-primary/40 text-foreground hover:bg-primary/5 transition-all duration-500 text-sm tracking-wide"
+              >
+                להזמנת סדנה
+                <ArrowLeft className="w-4 h-4" />
+              </button>
+            </div>
+
+            {/* Content & Writing */}
+            <div className="bg-card border border-border/60 rounded-2xl p-8 text-right flex flex-col hover:shadow-md transition-shadow">
+              <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-5">
+                <PenLine className="w-5 h-5 text-primary" strokeWidth={1.5} />
+              </div>
+              <h3 className="text-xl font-light mb-4">תוכן וכתיבה</h3>
+              <div className="space-y-3 text-sm text-foreground/70 leading-relaxed mb-6 flex-1">
+                <p>כתיבה על החיים כפי שהם - דרך הסתכלות פסיכולוגית ולעיתים גם רוחנית־יהודית.</p>
+                <p>מחשבות, כלים ותוכן על נפש, התמודדות, רווקות, נשיות, משמעות וחיים בתוך מציאות מורכבת.</p>
+              </div>
+              <Link
+                to="/blog"
+                className="self-start inline-flex items-center gap-2 px-6 py-2.5 rounded-full border border-primary/40 text-foreground hover:bg-primary/5 transition-all duration-500 text-sm tracking-wide"
+              >
+                לקריאה בבלוג
+                <ArrowLeft className="w-4 h-4" />
+              </Link>
+            </div>
+
+            {/* Social Initiatives */}
+            <div className="bg-card border border-border/60 rounded-2xl p-8 text-right flex flex-col hover:shadow-md transition-shadow">
+              <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-5">
+                <Heart className="w-5 h-5 text-primary" strokeWidth={1.5} />
+              </div>
+              <h3 className="text-xl font-light mb-4">יוזמות חברתיות</h3>
+              <div className="space-y-3 text-sm text-foreground/70 leading-relaxed mb-6 flex-1">
+                <p>יוזמות שנולדו מתוך מפגש עם צרכים אמיתיים - סביב נשים, קהילה ושימור פוריות.</p>
+                <p>עשייה שמבקשת לחבר בין הבנה נפשית, חיבור אנושי ושינוי בעולם.</p>
+              </div>
+              <Link
+                to="/projects"
+                className="self-start inline-flex items-center gap-2 px-6 py-2.5 rounded-full border border-primary/40 text-foreground hover:bg-primary/5 transition-all duration-500 text-sm tracking-wide"
+              >
+                לקריאה על היוזמות
+                <ArrowLeft className="w-4 h-4" />
+              </Link>
+            </div>
           </div>
         </div>
       </section>
+
 
       {/* LECTURES & WORKSHOPS */}
       <section className="py-20 md:py-28 px-6 md:px-10 bg-card/40">
