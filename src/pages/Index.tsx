@@ -391,7 +391,7 @@ const Index = () => {
                 cta: { label: "להזמנת הרצאה", action: () => openContact("lecture") },
               },
               {
-                tag: "תהליך קבוצתי",
+                tag: "\n",
                 title: "סדנאות ",
                 body: (
                   <>
@@ -405,7 +405,7 @@ const Index = () => {
                 cta: { label: "לפרטים על סדנאות", action: () => openContact("workshop") },
               },
               {
-                tag: "כתיבה",
+                tag: "\n",
                 title: "תוכן וכתיבה",
                 body: (
                   <>
@@ -419,7 +419,7 @@ const Index = () => {
                 cta: { label: "לקריאה בבלוג", to: "/blog" },
               },
               {
-                tag: "עשייה",
+                tag: "עשייה חברתית",
                 title: "עשייה חברתית",
                 body: (
                   <>
