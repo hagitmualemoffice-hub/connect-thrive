@@ -243,20 +243,13 @@ const Index = () => {
 
         {/* Mobile: title block over the image */}
         <div className="md:hidden absolute top-0 left-0 right-0 h-[86%] z-10 flex flex-col items-center justify-end text-center px-6 pb-[90px]">
-          <p className="text-white/90 text-[14px] font-light leading-snug mb-1">
-            חגית מועלם
-            <br />
-            פסיכולוגית בהתמחות קלינית
-          </p>
           <h1 className="text-white text-[1.9rem] font-light tracking-wide leading-[1.1]">
-            איך לבנות את עצמך
+            לבנות את עצמך
             <br />
-            מתוך המציאות
-            <br />
-            כפי שהיא
+            מתוך החיים כפי שהם
           </h1>
           <p className="text-white/90 text-[0.9rem] font-light leading-snug mt-3">
-            כן, כן, גם כשהיא מורכבת
+            חגית מועלם - פסיכולוגית קלינית בהתמחות | מרצה | יזמת חברתית
           </p>
         </div>
 
@@ -264,9 +257,9 @@ const Index = () => {
         <div className="md:hidden absolute top-[86%] left-0 right-0 z-20 -translate-y-1/4 -mt-[15px] px-[30px]">
           <div className="relative bg-white/95 backdrop-blur-sm rounded-xl px-4 pt-8 pb-8 md:pt-4 md:pb-4 shadow-md mx-auto">
             <p className="text-foreground text-[15px] font-light leading-relaxed text-center mb-3">
-              <strong className="font-semibold text-[16px]">הרצאות · סדנאות · תוכן</strong>
+              <strong className="font-semibold text-[16px]">הרצאות, תוכן ועשייה חברתית סביב התמודדות, משמעות ותנועה בחיים</strong>
               <br />
-              <span className="whitespace-nowrap text-[13px]">על חיים בתוך מורכבות ותנועה מתוך חוסר ודאות</span>
+              <span className="whitespace-nowrap text-[13px]"></span>
             </p>
             <div className="flex flex-col gap-2">
               <button
@@ -287,16 +280,13 @@ const Index = () => {
 
         {/* Desktop hero content */}
         <div className="hidden md:flex relative z-10 h-full flex-col items-center justify-end text-center px-6 pb-[88px]">
-          <p className="text-white/90 text-base font-light mb-[2px]">
-            חגית מועלם פסיכולוגית קלינית בהתמחות | מרצה | יזמת חברתית
-          </p>
           <h1 className="text-white text-5xl lg:text-6xl font-light tracking-wide mb-[10px] leading-tight">
-            איך לבנות את עצמך
+            לבנות את עצמך
             <br />
-            מתוך המציאות כפי שהיא
+            מתוך החיים כפי שהם
           </h1>
-          <p className="text-white/90 text-2xl lg:text-3xl font-light">
-            כן, כן, גם כשהיא מורכבת
+          <p className="text-white/90 text-2xl lg:text-base font-light">
+            חגית מועלם - פסיכולוגית קלינית בהתמחות | מרצה | יזמת חברתית
           </p>
         </div>
 
@@ -305,10 +295,10 @@ const Index = () => {
           <div className="bg-card rounded-2xl shadow-[0_15px_50px_-10px_hsl(0_0%_0%_/_0.15)] px-6 py-5 md:px-8 md:py-6 flex flex-col md:flex-row items-center justify-between gap-5">
             <div className="text-center md:text-right">
               <p className="text-foreground text-base md:text-lg font-light leading-snug">
-                הרצאות · סדנאות · תוכן
+                הרצאות, תוכן ועשייה חברתית סביב התמודדות, משמעות ותנועה בחיים
               </p>
               <p className="text-foreground/60 text-xs md:text-sm font-light leading-snug mt-1">
-                על חיים בתוך מורכבות ותנועה מתוך חוסר ודאות
+                
               </p>
             </div>
             <div className="flex flex-col sm:flex-row items-stretch gap-2 w-full md:w-auto">
