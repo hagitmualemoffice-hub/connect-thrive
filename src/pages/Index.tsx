@@ -243,20 +243,13 @@ const Index = () => {
 
         {/* Mobile: title block over the image */}
         <div className="md:hidden absolute top-0 left-0 right-0 h-[86%] z-10 flex flex-col items-center justify-end text-center px-6 pb-[90px]">
-          <p className="text-white/90 text-[14px] font-light leading-snug mb-1">
-            חגית מועלם
-            <br />
-            פסיכולוגית בהתמחות קלינית
-          </p>
           <h1 className="text-white text-[1.9rem] font-light tracking-wide leading-[1.1]">
-            איך לבנות את עצמך
+            לבנות את עצמך
             <br />
-            מתוך המציאות
-            <br />
-            כפי שהיא
+            מתוך החיים כפי שהם
           </h1>
           <p className="text-white/90 text-[0.9rem] font-light leading-snug mt-3">
-            כן, כן, גם כשהיא מורכבת
+            חגית מועלם - פסיכולוגית קלינית בהתמחות | מרצה | יזמת חברתית
           </p>
         </div>
 
