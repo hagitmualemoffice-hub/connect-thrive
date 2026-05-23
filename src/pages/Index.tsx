@@ -267,12 +267,6 @@ const Index = () => {
             </p>
             <div className="flex flex-col gap-2 items-center">
               <button
-                onClick={() => openContact("lecture")}
-                className="w-4/5 px-3 py-2.5 rounded-full bg-primary text-primary-foreground text-sm font-light hover:bg-[hsl(var(--primary-glow))] transition-all shadow-sm shadow-primary/20"
-              >
-                להזמנת הרצאה
-              </button>
-              <button
                 onClick={() => setPopupOpen(true)}
                 className="w-4/5 px-3 py-2.5 rounded-full border border-border text-foreground text-sm font-light hover:bg-muted/40 transition-all"
               >
@@ -306,12 +300,6 @@ const Index = () => {
               </p>
             </div>
             <div className="flex flex-col sm:flex-row items-stretch gap-2 w-full md:w-auto">
-              <button
-                onClick={() => openContact("lecture")}
-                className="px-6 py-2.5 rounded-full bg-primary text-primary-foreground text-sm md:text-base font-light hover:bg-[hsl(var(--primary-glow))] transition-all whitespace-nowrap shadow-sm shadow-primary/20"
-              >
-                להזמנת הרצאה
-              </button>
               <button
                 onClick={() => setPopupOpen(true)}
                 className="px-6 py-2.5 rounded-full border border-primary/40 text-foreground text-sm md:text-base font-light hover:bg-primary/5 transition-all whitespace-nowrap"
