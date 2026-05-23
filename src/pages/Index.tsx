@@ -377,7 +377,7 @@ const Index = () => {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-5 md:gap-5 items-stretch">
             {[
               {
-                tag: "מפגש חי",
+                tag: "\n",
                 title: "הרצאות",
                 body: (
                   <>
@@ -392,7 +392,7 @@ const Index = () => {
               },
               {
                 tag: "תהליך קבוצתי",
-                title: "סדנאות ותהליכים קבוצתיים",
+                title: "סדנאות ",
                 body: (
                   <>
                     מפגשים קבוצתיים המבוססים על שיחה, טקסטים והתבוננות משותפת.
