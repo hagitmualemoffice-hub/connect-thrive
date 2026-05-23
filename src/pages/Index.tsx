@@ -419,7 +419,7 @@ const Index = () => {
                 cta: { label: "לקריאה בבלוג", to: "/blog" },
               },
               {
-                tag: "עשייה חברתית",
+                tag: "\n",
                 title: "עשייה חברתית",
                 body: (
                   <>
