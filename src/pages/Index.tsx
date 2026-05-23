@@ -287,16 +287,13 @@ const Index = () => {
 
         {/* Desktop hero content */}
         <div className="hidden md:flex relative z-10 h-full flex-col items-center justify-end text-center px-6 pb-[88px]">
-          <p className="text-white/90 text-base font-light mb-[2px]">
-            חגית מועלם פסיכולוגית קלינית בהתמחות | מרצה | יזמת חברתית
-          </p>
           <h1 className="text-white text-5xl lg:text-6xl font-light tracking-wide mb-[10px] leading-tight">
-            איך לבנות את עצמך
+            לבנות את עצמך
             <br />
-            מתוך המציאות כפי שהיא
+            מתוך החיים כפי שהם
           </h1>
-          <p className="text-white/90 text-2xl lg:text-3xl font-light">
-            כן, כן, גם כשהיא מורכבת
+          <p className="text-white/90 text-2xl lg:text-base font-light">
+            חגית מועלם - פסיכולוגית קלינית בהתמחות | מרצה | יזמת חברתית
           </p>
         </div>
 
@@ -305,10 +302,10 @@ const Index = () => {
           <div className="bg-card rounded-2xl shadow-[0_15px_50px_-10px_hsl(0_0%_0%_/_0.15)] px-6 py-5 md:px-8 md:py-6 flex flex-col md:flex-row items-center justify-between gap-5">
             <div className="text-center md:text-right">
               <p className="text-foreground text-base md:text-lg font-light leading-snug">
-                הרצאות · סדנאות · תוכן
+                הרצאות, תוכן ועשייה חברתית סביב התמודדות, משמעות ותנועה בחיים
               </p>
               <p className="text-foreground/60 text-xs md:text-sm font-light leading-snug mt-1">
-                על חיים בתוך מורכבות ותנועה מתוך חוסר ודאות
+                
               </p>
             </div>
             <div className="flex flex-col sm:flex-row items-stretch gap-2 w-full md:w-auto">
