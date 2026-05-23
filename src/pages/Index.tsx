@@ -288,7 +288,7 @@ const Index = () => {
         {/* Desktop hero content */}
         <div className="hidden md:flex relative z-10 h-full flex-col items-center justify-end text-center px-6 pb-[88px]">
           <p className="text-white/90 text-base font-light mb-[2px]">
-            חגית מועלם פסיכולוגית בהתמחות קלינית
+            חגית מועלם פסיכולוגית קלינית בהתמחות | מרצה | יזמת חברתית
           </p>
           <h1 className="text-white text-5xl lg:text-6xl font-light tracking-wide mb-[10px] leading-tight">
             איך לבנות את עצמך
