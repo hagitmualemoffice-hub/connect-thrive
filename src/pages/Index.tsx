@@ -257,9 +257,9 @@ const Index = () => {
         <div className="md:hidden absolute top-[86%] left-0 right-0 z-20 -translate-y-1/4 -mt-[15px] px-[30px]">
           <div className="relative bg-white/95 backdrop-blur-sm rounded-xl px-4 pt-8 pb-8 md:pt-4 md:pb-4 shadow-md mx-auto">
             <p className="text-foreground text-[15px] font-light leading-relaxed text-center mb-3">
-              <strong className="font-semibold text-[16px]">הרצאות · סדנאות · תוכן</strong>
+              <strong className="font-semibold text-[16px]">הרצאות, תוכן ועשייה חברתית סביב התמודדות, משמעות ותנועה בחיים</strong>
               <br />
-              <span className="whitespace-nowrap text-[13px]">על חיים בתוך מורכבות ותנועה מתוך חוסר ודאות</span>
+              <span className="whitespace-nowrap text-[13px]"></span>
             </p>
             <div className="flex flex-col gap-2">
               <button
