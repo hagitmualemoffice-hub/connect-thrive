@@ -115,7 +115,7 @@ const IndexV2 = () => {
       <section className="py-20 md:py-28 px-6 md:px-10 bg-card/40">
         <div className="max-w-3xl mx-auto text-center">
           <div className="w-12 h-px bg-primary mx-auto mb-6" />
-          <h2 className="text-2xl md:text-4xl font-light tracking-tight mb-10">מה קורה כאן</h2>
+          <h2 className="text-2xl md:text-4xl font-light tracking-tight mb-10">מה אני עושה</h2>
           <div className="space-y-4 text-base md:text-lg text-foreground/75 leading-loose">
             <p>זה מרחב של מחשבה על החיים כפי שהם</p>
             <p>על תקופות שבהן דברים לא מסתדרים</p>
