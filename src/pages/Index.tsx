@@ -208,7 +208,7 @@ const Index = () => {
               onClick={() => setPopupOpen(true)}
               className="px-5 py-2.5 rounded-lg bg-muted text-foreground/70 text-sm font-light hover:bg-muted/80 transition-colors"
             >
-              להצטרפות לתפוצה
+              לקבל תוכן ועדכונים
             </button>
             <button
               onClick={() => openContact("general")}
@@ -270,7 +270,7 @@ const Index = () => {
                 onClick={() => setPopupOpen(true)}
                 className="w-4/5 px-3 py-2.5 rounded-full border border-border text-foreground text-sm font-light hover:bg-muted/40 transition-all"
               >
-                הצטרפות לתפוצה
+                לקבל תוכן ועדכונים
               </button>
             </div>
           </div>
@@ -304,7 +304,7 @@ const Index = () => {
                 onClick={() => setPopupOpen(true)}
                 className="px-6 py-2.5 rounded-full border border-primary/40 text-foreground text-sm md:text-base font-light hover:bg-primary/5 transition-all whitespace-nowrap"
               >
-                הצטרפות לתפוצה
+                לקבל תוכן ועדכונים
               </button>
             </div>
           </div>
