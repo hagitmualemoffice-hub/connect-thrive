@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Mic, Headphones, PenLine, ArrowLeft, Sparkles } from "lucide-react";
+import { Mic, Headphones, PenLine, ArrowLeft, Sparkles, Heart } from "lucide-react";
 import { z } from "zod";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "@/hooks/use-toast";
