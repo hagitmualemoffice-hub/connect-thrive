@@ -24,23 +24,6 @@ const lectureTopics = [
   "לחיות את הרגע הזה",
 ];
 
-const pillars = [
-  {
-    icon: Mic,
-    title: "הרצאות",
-    text: "שיחות על חיים בתוך מורכבות, החלטות ותנועה מתוך חוסר ודאות",
-  },
-  {
-    icon: Sparkles,
-    title: "סדנאות",
-    text: "מרחבים לחשיבה, חיבור ופעולה מתוך המציאות כפי שהיא",
-  },
-  {
-    icon: PenLine,
-    title: "תוכן",
-    text: "כתיבה והקלטות על החיים כשהם לא מסתדרים",
-  },
-];
 
 const IndexV2 = () => {
   const [contactOpen, setContactOpen] = useState(false);
