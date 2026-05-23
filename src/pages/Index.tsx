@@ -268,7 +268,7 @@ const Index = () => {
             <div className="flex flex-col gap-2 items-center">
               <button
                 onClick={() => setPopupOpen(true)}
-                className="w-4/5 px-3 py-2.5 rounded-full border border-border text-foreground text-sm font-light hover:bg-muted/40 transition-all"
+                className="w-4/5 px-3 py-2.5 rounded-full border border-primary text-primary text-sm font-light hover:bg-primary/5 transition-all"
               >
                 לקבל תוכן ועדכונים
               </button>
@@ -289,7 +289,7 @@ const Index = () => {
         </div>
 
         {/* Floating CTA bar - desktop/tablet only */}
-        <div className="hidden md:block absolute -bottom-12 left-1/2 -translate-x-1/2 w-[min(1000px,94%)] z-20">
+        <div className="hidden md:block absolute -bottom-12 left-1/2 -translate-x-1/2 w-[min(800px,75.2%)] z-20">
           <div className="bg-card rounded-2xl shadow-[0_15px_50px_-10px_hsl(0_0%_0%_/_0.15)] px-6 py-5 md:px-8 md:py-6 flex flex-col md:flex-row items-center justify-between gap-5">
             <div className="text-center md:text-right">
               <p className="text-foreground text-base md:text-lg font-light leading-snug">
@@ -302,7 +302,7 @@ const Index = () => {
             <div className="flex flex-col sm:flex-row items-stretch gap-2 w-full md:w-auto">
               <button
                 onClick={() => setPopupOpen(true)}
-                className="px-6 py-2.5 rounded-full border border-primary/40 text-foreground text-sm md:text-base font-light hover:bg-primary/5 transition-all whitespace-nowrap"
+                className="px-6 py-2.5 rounded-full border border-primary text-primary text-sm md:text-base font-light hover:bg-primary/5 transition-all whitespace-nowrap"
               >
                 לקבל תוכן ועדכונים
               </button>
