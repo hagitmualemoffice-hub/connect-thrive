@@ -244,14 +244,12 @@ const Index = () => {
         {/* Mobile: title block over the image */}
         <div className="md:hidden absolute top-0 left-0 right-0 h-[86%] z-10 flex flex-col items-center justify-end text-center px-6 pb-[90px]">
           <h1 className="text-white text-[2.15rem] font-light tracking-wide leading-[1.1]">
-            לבנות את עצמך
+            חגית מועלם
             <br />
-            מתוך החיים
-            <br />
-            כפי שהם
+            פסיכולוגית בהתמחות קלינית
           </h1>
           <p className="text-white/90 text-[0.9rem] font-light leading-snug mt-3">
-            חגית מועלם - פסיכולוגית בהתמחות קלינית
+            לבנות את עצמך מתוך החיים כפי שהם
           </p>
         </div>
 
@@ -279,12 +277,12 @@ const Index = () => {
         {/* Desktop hero content */}
         <div className="hidden md:flex relative z-10 h-full flex-col items-center justify-end text-center px-6 pb-[88px]">
           <h1 className="text-white text-5xl lg:text-6xl font-light tracking-wide mb-[10px] leading-tight">
-            לבנות את עצמך
+            חגית מועלם
             <br />
-            מתוך החיים כפי שהם
+            פסיכולוגית בהתמחות קלינית
           </h1>
           <p className="text-white/90 text-2xl lg:text-base font-light">
-            חגית מועלם - פסיכולוגית בהתמחות קלינית
+            לבנות את עצמך מתוך החיים כפי שהם
           </p>
         </div>
 
