@@ -276,14 +276,14 @@ const Index = () => {
 
         {/* Desktop hero content */}
         <div className="hidden md:flex relative z-10 h-full flex-col items-center justify-end text-center px-6 pb-[88px]">
-          <h1 className="text-white text-5xl lg:text-6xl font-light tracking-wide mb-[10px] leading-tight">
+          <p className="text-white/90 text-2xl lg:text-base font-light mb-[10px]">
             חגית מועלם
             <br />
             פסיכולוגית בהתמחות קלינית
-          </h1>
-          <p className="text-white/90 text-2xl lg:text-base font-light">
-            לבנות את עצמך מתוך החיים כפי שהם
           </p>
+          <h1 className="text-white text-5xl lg:text-6xl font-light tracking-wide leading-tight">
+            לבנות את עצמך מתוך החיים כפי שהם
+          </h1>
         </div>
 
         {/* Floating CTA bar - desktop/tablet only */}
