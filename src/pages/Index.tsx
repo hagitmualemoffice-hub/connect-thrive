@@ -243,7 +243,7 @@ const Index = () => {
 
         {/* Mobile: title block over the image */}
         <div className="md:hidden absolute top-0 left-0 right-0 h-[86%] z-10 flex flex-col items-center justify-end text-center px-6 pb-[90px]">
-          <p className="text-white/90 text-[0.9rem] font-light leading-snug mb-3">
+          <p className="text-white/90 text-[0.85rem] font-light leading-snug mb-3">
             חגית מועלם פסיכולוגית בהתמחות קלינית
           </p>
           <h1 className="text-white text-[2.15rem] font-light tracking-wide leading-[1.1]">
