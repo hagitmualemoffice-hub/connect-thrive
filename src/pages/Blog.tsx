@@ -6,18 +6,28 @@ import bereshitImg from "@/assets/blog-bereshit.jpg";
 import lagBaomerImg from "@/assets/blog-lag-baomer.jpg";
 import akedaTearsImg from "@/assets/blog-akeda-tears.jpg";
 import whenLifeHitsImg from "@/assets/blog-when-life-hits-hard.jpg";
+import anxietyMeetingsImg from "@/assets/blog-anxiety-meetings.jpg";
 
 const featuredPost = {
-  category: "מימוש עצמי",
+  category: "טיפול בחרדה",
   date: "מאי 2026",
-  title: "כשמשהו בחיים פוגש אותנו חזק מדי",
+  title: "פגישות עם חרדה | פרק ראשון - מה החרדה לוקחת מאיתנו",
   excerpt:
-    "אם היה לך רגע כזה השבוע שהוציא אותך מאיזון - שיחה אחת שנכנסה ללב, רגש שלא הצלחת להחזיק, רגע של קנאה, ייאוש, עצב או כעס שלא כל כך אהבת לפגוש בעצמך. כמה מחשבות על מה אפשר לעשות עם כאב, ואיך להישאר רגע בתוכו בלי לברוח.",
-  image: whenLifeHitsImg,
-  slug: "when-life-hits-hard",
+    "אני פותחת את הסדרה הזאת עם הבהרה קטנה - זו לא סדרה על טיפול בחרדה ברמה הקלינית. זו סדרה על החרדה שפוגשת את רובנו ביום־יום, זו שלא תמיד תקבל אבחנה אבל מצליחה להקשות, להגביל ולגרום לנו להצטמצם בדרכים שקטות. על מה החרדה לוקחת מאיתנו, ומי אנחנו יכולות להיות אם נפסיק לתת לה להחליט בשבילנו.",
+  image: anxietyMeetingsImg,
+  slug: "anxiety-meetings-part-1",
 };
 
 const posts = [
+  {
+    category: "מימוש עצמי",
+    date: "מאי 2026",
+    title: "כשמשהו בחיים פוגש אותנו חזק מדי",
+    excerpt:
+      "אם היה לך רגע כזה השבוע שהוציא אותך מאיזון - שיחה אחת שנכנסה ללב, רגש שלא הצלחת להחזיק, רגע של קנאה, ייאוש, עצב או כעס שלא כל כך אהבת לפגוש בעצמך. כמה מחשבות על מה אפשר לעשות עם כאב, ואיך להישאר רגע בתוכו בלי לברוח.",
+    image: whenLifeHitsImg,
+    slug: "when-life-hits-hard",
+  },
   {
     category: "פרשה ופסיכולוגיה",
     date: "אפריל 2026",
