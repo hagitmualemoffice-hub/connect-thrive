@@ -21,7 +21,7 @@ export type BlogPostData = {
 export const blogPosts: BlogPostData[] = [
   {
     slug: "anxiety-meetings-part-1",
-    category: "טיפול בחרדה",
+    category: "חרדה",
     date: "מאי 2026",
     title: "פגישות עם חרדה | פרק ראשון - מה החרדה לוקחת מאיתנו",
     subtitle: "על המסך עשן של החרדה, על החיים שמצטמצמים בשקט, ועל מי שאנחנו יכולות להיות אם נסכים לא לברוח",
