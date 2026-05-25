@@ -9,7 +9,7 @@ import whenLifeHitsImg from "@/assets/blog-when-life-hits-hard.jpg";
 import anxietyMeetingsImg from "@/assets/blog-anxiety-meetings.jpg";
 
 const featuredPost = {
-  category: "טיפול בחרדה",
+  category: "חרדה",
   date: "מאי 2026",
   title: "פגישות עם חרדה | פרק ראשון - מה החרדה לוקחת מאיתנו",
   excerpt:
@@ -66,7 +66,7 @@ const posts = [
   },
 ];
 
-const categories = ["הכל", "פרשה ופסיכולוגיה", "טיפול בחרדה", "מימוש עצמי", "יזמות קשובה"];
+const categories = ["הכל", "פרשה ופסיכולוגיה", "חרדה", "מימוש עצמי", "יזמות קשובה"];
 
 const Blog = () => {
   return (
