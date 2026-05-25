@@ -1,6 +1,10 @@
 import { Link } from "react-router-dom";
 import SiteHeader from "@/components/SiteHeader";
 import MobileBottomNav from "@/components/MobileBottomNav";
+import pesachFreedom from "@/assets/blog-pesach-freedom.jpg";
+import bereshitImg from "@/assets/blog-bereshit.jpg";
+import lagBaomerImg from "@/assets/blog-lag-baomer.jpg";
+import akedaTearsImg from "@/assets/blog-akeda-tears.jpg";
 import whenLifeHitsImg from "@/assets/blog-when-life-hits-hard.jpg";
 import anxietyMeetingsImg from "@/assets/blog-anxiety-meetings.jpg";
 
