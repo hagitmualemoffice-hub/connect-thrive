@@ -122,7 +122,7 @@ export const blogPosts: BlogPostData[] = [
         </p>
 
         <p className="text-foreground/80 text-base font-light pt-2">
-          אוהבת אותך,
+          שלך,
           <br />
           <span className="text-primary font-medium">חגית</span>
         </p>
@@ -351,7 +351,7 @@ export const blogPosts: BlogPostData[] = [
         </p>
 
         <p className="text-foreground/80 text-base font-light pt-2">
-          אוהבת אותך,
+          שלך,
           <br />
           <span className="text-primary font-medium">חגית</span>
         </p>
@@ -604,7 +604,7 @@ export const blogPosts: BlogPostData[] = [
         </p>
 
         <p className="text-foreground/80 text-base font-light pt-2">
-          אוהבת אותך,
+          שלך,
           <br />
           <span className="text-primary font-medium">חגית</span>
         </p>
@@ -710,7 +710,7 @@ export const blogPosts: BlogPostData[] = [
         </p>
 
         <p className="text-foreground/80 text-base font-light pt-2">
-          אוהבת אותך,
+          שלך,
           <br />
           <span className="text-primary font-medium">חגית</span>
         </p>
