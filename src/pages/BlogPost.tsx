@@ -18,7 +18,8 @@ const BlogPost = () => {
   const { slug } = useParams();
   const post = getPostBySlug(slug);
   const PostIcon = (slug && postIcons[slug]) || BookOpen;
-  const relatedPosts = blogPosts.filter((p) => p.slug !== post.slug).slice(0, 3);
+  const accent = categoryAccent[post.category];
+  const accentColor = `hsl(${accent.hsl})`;
 
   return (
     <div className="min-h-screen bg-background pb-20 md:pb-0" dir="rtl">
