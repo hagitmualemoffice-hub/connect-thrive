@@ -1,6 +1,6 @@
 import { Link, useParams } from "react-router-dom";
 import { ArrowRight, Share2, DoorOpen, Sprout, Flame, Heart, HeartHandshake, BookOpen, Rocket, LucideIcon } from "lucide-react";
-import { blogPosts, getPostBySlug } from "@/data/blogPosts";
+import { blogPosts, getPostBySlug, categoryAccent } from "@/data/blogPosts";
 import SiteHeader from "@/components/SiteHeader";
 import MobileBottomNav from "@/components/MobileBottomNav";
 import BlogComments from "@/components/BlogComments";
