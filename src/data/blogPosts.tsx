@@ -12,9 +12,9 @@ export type BlogCategory = "יזמות" | "פסיכולוגיה" | "פרשה ו�
 export const BLOG_CATEGORIES: BlogCategory[] = ["יזמות", "פסיכולוגיה", "פרשה ופסיכולוגיה"];
 
 export const categoryAccent: Record<BlogCategory, { hsl: string; label: string }> = {
-  "יזמות": { hsl: "35 75% 55%", label: "יזמות" },
-  "פסיכולוגיה": { hsl: "325 75% 60%", label: "פסיכולוגיה" },
-  "פרשה ופסיכולוגיה": { hsl: "265 45% 60%", label: "פרשה ופסיכולוגיה" },
+  "יזמות": { hsl: "326 45% 68%", label: "יזמות קשובה" },
+  "פסיכולוגיה": { hsl: "172 30% 67%", label: "פסיכולוגיה" },
+  "פרשה ופסיכולוגיה": { hsl: "268 25% 65%", label: "פרשה ופסיכולוגיה" },
 };
 
 export type BlogPostData = {

@@ -118,7 +118,7 @@ const Blog = () => {
                         backgroundColor: `hsl(${categoryAccent[featuredPost.category].hsl})`,
                       }}
                     >
-                      פוסט מומלץ · {featuredPost.category}
+                      {categoryAccent[featuredPost.category].label}
                     </span>
                     <span className="text-foreground/50 text-xs md:text-sm font-light">
                       {featuredPost.date}
@@ -161,12 +161,12 @@ const Blog = () => {
         return (
           <section key={cat} className="w-full pb-12 md:pb-16 px-[30px] md:px-6">
             <div className="w-full md:w-[min(1100px,82%)] mx-auto">
-              <div className="flex items-center gap-3 mb-5 md:mb-7 justify-end">
-                <h2 className="text-foreground text-xl md:text-3xl font-light">{accent.label}</h2>
+              <div dir="rtl" className="flex items-center gap-3 mb-5 md:mb-7 justify-start">
                 <span
                   className="block w-1 h-6 md:h-8 rounded-full"
                   style={{ backgroundColor: `hsl(${accent.hsl})` }}
                 />
+                <h2 className="text-foreground text-xl md:text-3xl font-light">{accent.label}</h2>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-8">
