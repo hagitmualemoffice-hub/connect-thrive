@@ -171,7 +171,7 @@ export const blogPosts: BlogPostData[] = [
         <p>
           אז אם פרויקט כרגע הולך ודועך, או לא נראה כמו מה שחלמתם - אולי לפני שאתם ממהרים לקרוא
           לזה כישלון, תנסו לשאול:{" "}
-          <strong className="font-medium text-foreground">מה הוא בא ללמד אותי?</strong>
+          <strong className="font-medium text-foreground">מה הוא בא ללמד אותי? ועוד יותר חשוב, לסמן לעצמינו מה למדנו בדרך.</strong>
         </p>
 
       </>
