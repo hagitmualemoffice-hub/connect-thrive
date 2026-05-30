@@ -95,7 +95,11 @@ const BlogPost = () => {
 
           <div className="mt-10 md:mt-12 pt-6 md:pt-8 border-t border-border flex flex-wrap gap-2 md:gap-3 justify-end">
             {post.tags.map((tag) => (
-              <span key={tag} className="px-3 md:px-4 py-1 md:py-1.5 rounded-full bg-accent text-primary text-xs font-light">
+              <span
+                key={tag}
+                className="px-3 md:px-4 py-1 md:py-1.5 rounded-full text-xs font-light"
+                style={{ backgroundColor: `hsl(${accent.hsl} / 0.15)`, color: accentColor }}
+              >
                 {tag}
               </span>
             ))}
