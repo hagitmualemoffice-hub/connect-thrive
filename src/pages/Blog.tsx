@@ -175,7 +175,7 @@ const Blog = () => {
                     to={`/blog/${post.slug}`}
                     key={post.slug}
                     className="group bg-card rounded-2xl md:rounded-3xl overflow-hidden shadow-[0_10px_30px_-15px_hsl(0_0%_0%_/_0.1)] hover:shadow-[0_20px_45px_-15px_hsl(var(--primary)/0.22)] transition-all duration-300 hover:-translate-y-1 flex flex-col"
-                    style={{ borderTop: `3px solid hsl(${accent.hsl})` }}
+                    style={{ borderTop: `3px solid hsl(${accent.hsl})`, ["--card-accent" as any]: accent.hsl }}
                   >
                     <div className="relative h-44 md:h-52 overflow-hidden bg-accent">
                       <img
@@ -195,7 +195,7 @@ const Blog = () => {
                         </span>
                         <span className="text-foreground/50 text-xs font-light">{post.date}</span>
                       </div>
-                      <h3 className="text-foreground text-base md:text-xl font-light leading-tight mb-3 group-hover:text-primary transition-colors">
+                      <h3 className="accent-hover text-foreground text-base md:text-xl font-light leading-tight mb-3 transition-colors">
                         {post.title}
                       </h3>
                       <p className="text-foreground/70 text-sm font-light leading-relaxed mb-5 md:mb-6 flex-1">
