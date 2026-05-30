@@ -67,11 +67,14 @@ const BlogPost = () => {
           <div className="flex items-center justify-center gap-2 text-foreground/60 text-xs md:text-sm font-light mb-5 md:mb-6">
             <span>{post.date}</span>
             <span>·</span>
-            <span className="text-primary">{post.category}</span>
+            <span style={{ color: accentColor }}>{post.category}</span>
           </div>
 
           <div className="flex flex-col items-center mb-6 md:mb-8">
-            <div className="w-14 h-14 md:w-20 md:h-20 rounded-full bg-gradient-to-br from-primary to-[hsl(var(--primary-glow))] flex items-center justify-center text-primary-foreground shadow-lg">
+            <div
+              className="w-14 h-14 md:w-20 md:h-20 rounded-full flex items-center justify-center text-white shadow-lg"
+              style={{ background: `linear-gradient(135deg, hsl(${accent.hsl}) 0%, hsl(${accent.hsl} / 0.7) 100%)` }}
+            >
               <PostIcon className="w-6 h-6 md:w-9 md:h-9" strokeWidth={1.5} />
             </div>
           </div>
