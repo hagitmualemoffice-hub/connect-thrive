@@ -7,6 +7,7 @@ import Index from "./pages/Index.tsx";
 import IndexV1 from "./pages/IndexV1.tsx";
 import IndexV2 from "./pages/IndexV2.tsx";
 import Lectures from "./pages/Lectures.tsx";
+import Workshops from "./pages/Workshops.tsx";
 import Projects from "./pages/Projects.tsx";
 import Blog from "./pages/Blog.tsx";
 import BlogPost from "./pages/BlogPost.tsx";
@@ -31,6 +32,7 @@ const App = () => (
           <Route path="/v1" element={<IndexV1 />} />
           <Route path="/v2" element={<IndexV2 />} />
           <Route path="/lectures" element={<Lectures />} />
+          <Route path="/workshops" element={<Workshops />} />
           <Route path="/projects" element={<Projects />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:slug" element={<BlogPost />} />

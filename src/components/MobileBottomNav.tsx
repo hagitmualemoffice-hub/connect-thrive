@@ -11,7 +11,7 @@ const sectionLinks = [
   { label: "אודות", href: "/#about" },
   { label: "הרצאות", href: "/lectures" },
   { label: "הפרויקטים שלי", href: "/projects" },
-  { label: "סדנאות", href: "/#workshops" },
+  { label: "סדנאות", href: "/workshops" },
 ];
 
 const contentLinks = [
