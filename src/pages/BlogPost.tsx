@@ -89,9 +89,13 @@ const BlogPost = () => {
             </h2>
           </div>
 
-          <div className="text-foreground/85 text-sm md:text-lg font-light leading-loose space-y-5 md:space-y-6">
+          <div
+            className="post-content text-foreground/85 text-sm md:text-lg font-light leading-loose space-y-5 md:space-y-6"
+            style={{ ["--post-accent" as any]: accent.hsl }}
+          >
             {post.content}
           </div>
+
 
           <div className="mt-10 md:mt-12 pt-6 md:pt-8 border-t border-border flex flex-wrap gap-2 md:gap-3 justify-end">
             {post.tags.map((tag) => (
