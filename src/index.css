@@ -72,3 +72,9 @@
     font-weight: 300;
   }
 }
+
+/* Blog post content - tint blockquotes with the category accent color */
+.post-content blockquote {
+  background-color: hsl(var(--post-accent) / 0.15) !important;
+  border-color: hsl(var(--post-accent)) !important;
+}
