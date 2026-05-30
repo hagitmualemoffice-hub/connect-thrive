@@ -291,7 +291,7 @@ export const blogPosts: BlogPostData[] = [
   },
   {
     slug: "when-life-hits-hard",
-    category: "מימוש עצמי",
+    category: "פסיכולוגיה",
     date: "מאי 2026",
     title: "כשמשהו בחיים פוגש אותנו חזק מדי",
     subtitle: "",
