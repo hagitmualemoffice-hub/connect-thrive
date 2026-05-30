@@ -1,5 +1,5 @@
 import { Link, useParams } from "react-router-dom";
-import { ArrowRight, Share2, DoorOpen, Sprout, Flame, Heart, HeartHandshake, BookOpen, LucideIcon } from "lucide-react";
+import { ArrowRight, Share2, DoorOpen, Sprout, Flame, Heart, HeartHandshake, BookOpen, Rocket, LucideIcon } from "lucide-react";
 import { blogPosts, getPostBySlug } from "@/data/blogPosts";
 import SiteHeader from "@/components/SiteHeader";
 import MobileBottomNav from "@/components/MobileBottomNav";
@@ -11,6 +11,7 @@ const postIcons: Record<string, LucideIcon> = {
   "lag-baomer-rashbi": Flame,
   "akeda-tears": Heart,
   "when-life-hits-hard": HeartHandshake,
+  "entrepreneurship-failure-part-1": Rocket,
 };
 
 const BlogPost = () => {
