@@ -7,7 +7,7 @@ const navItems = [
   { label: "אודות", href: "/#about" },
   { label: "הפרויקטים שלי", href: "/projects" },
   { label: "הרצאות", href: "/lectures" },
-  { label: "סדנאות", href: "/#workshops" },
+  { label: "סדנאות", href: "/workshops" },
   { label: "בלוג", href: "/blog" },
   { label: "פודקאסט", href: "/podcast" },
 ];
