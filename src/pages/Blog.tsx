@@ -100,6 +100,7 @@ const Blog = () => {
               className="group block bg-card rounded-2xl md:rounded-3xl overflow-hidden shadow-[0_15px_50px_-15px_hsl(0_0%_0%_/_0.12)] hover:shadow-[0_25px_60px_-15px_hsl(var(--primary)/0.25)] transition-all duration-300"
               style={{
                 borderTop: `4px solid hsl(${categoryAccent[featuredPost.category].hsl})`,
+                ["--card-accent" as any]: categoryAccent[featuredPost.category].hsl,
               }}
             >
               <div className="grid grid-cols-1 md:grid-cols-2 gap-0">
@@ -124,7 +125,7 @@ const Blog = () => {
                       {featuredPost.date}
                     </span>
                   </div>
-                  <h2 className="text-foreground text-xl md:text-3xl font-light leading-tight mb-4 md:mb-5 group-hover:text-primary transition-colors">
+                  <h2 className="accent-hover text-foreground text-xl md:text-3xl font-light leading-tight mb-4 md:mb-5 transition-colors">
                     {featuredPost.title}
                   </h2>
                   <p className="text-foreground/70 text-sm md:text-base font-light leading-relaxed mb-6 md:mb-8">
