@@ -1,6 +1,6 @@
 import { Link, useParams } from "react-router-dom";
 import { ArrowRight, Share2, DoorOpen, Sprout, Flame, Heart, HeartHandshake, BookOpen, Rocket, LucideIcon } from "lucide-react";
-import { blogPosts, getPostBySlug } from "@/data/blogPosts";
+import { blogPosts, getPostBySlug, categoryAccent } from "@/data/blogPosts";
 import SiteHeader from "@/components/SiteHeader";
 import MobileBottomNav from "@/components/MobileBottomNav";
 import BlogComments from "@/components/BlogComments";
@@ -18,6 +18,8 @@ const BlogPost = () => {
   const { slug } = useParams();
   const post = getPostBySlug(slug);
   const PostIcon = (slug && postIcons[slug]) || BookOpen;
+  const accent = categoryAccent[post.category];
+  const accentColor = `hsl(${accent.hsl})`;
   const relatedPosts = blogPosts.filter((p) => p.slug !== post.slug).slice(0, 3);
 
   return (
@@ -65,11 +67,14 @@ const BlogPost = () => {
           <div className="flex items-center justify-center gap-2 text-foreground/60 text-xs md:text-sm font-light mb-5 md:mb-6">
             <span>{post.date}</span>
             <span>·</span>
-            <span className="text-primary">{post.category}</span>
+            <span style={{ color: accentColor }}>{post.category}</span>
           </div>
 
           <div className="flex flex-col items-center mb-6 md:mb-8">
-            <div className="w-14 h-14 md:w-20 md:h-20 rounded-full bg-gradient-to-br from-primary to-[hsl(var(--primary-glow))] flex items-center justify-center text-primary-foreground shadow-lg">
+            <div
+              className="w-14 h-14 md:w-20 md:h-20 rounded-full flex items-center justify-center text-white shadow-lg"
+              style={{ background: `linear-gradient(135deg, hsl(${accent.hsl}) 0%, hsl(${accent.hsl} / 0.7) 100%)` }}
+            >
               <PostIcon className="w-6 h-6 md:w-9 md:h-9" strokeWidth={1.5} />
             </div>
           </div>
@@ -90,7 +95,11 @@ const BlogPost = () => {
 
           <div className="mt-10 md:mt-12 pt-6 md:pt-8 border-t border-border flex flex-wrap gap-2 md:gap-3 justify-end">
             {post.tags.map((tag) => (
-              <span key={tag} className="px-3 md:px-4 py-1 md:py-1.5 rounded-full bg-accent text-primary text-xs font-light">
+              <span
+                key={tag}
+                className="px-3 md:px-4 py-1 md:py-1.5 rounded-full text-xs font-light"
+                style={{ backgroundColor: `hsl(${accent.hsl} / 0.15)`, color: accentColor }}
+              >
                 {tag}
               </span>
             ))}

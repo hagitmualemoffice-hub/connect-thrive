@@ -14,7 +14,7 @@ export const BLOG_CATEGORIES: BlogCategory[] = ["יזמות", "פסיכולוג�
 export const categoryAccent: Record<BlogCategory, { hsl: string; label: string }> = {
   "יזמות": { hsl: "172 30% 67%", label: "יזמות קשובה" },
   "פסיכולוגיה": { hsl: "326 45% 68%", label: "פסיכולוגיה" },
-  "פרשה ופסיכולוגיה": { hsl: "268 25% 65%", label: "פרשה ופסיכולוגיה" },
+  "פרשה ופסיכולוגיה": { hsl: "270 55% 72%", label: "פרשה ופסיכולוגיה" },
 };
 
 export type BlogPostData = {
@@ -174,11 +174,6 @@ export const blogPosts: BlogPostData[] = [
           <strong className="font-medium text-foreground">מה הוא בא ללמד אותי?</strong>
         </p>
 
-        <p className="text-foreground/80 text-base font-light pt-2">
-          איתך ברגע הזה,
-          <br />
-          <span className="text-primary font-medium">חגית</span>
-        </p>
       </>
     ),
   },
@@ -281,11 +276,6 @@ export const blogPosts: BlogPostData[] = [
           אני רוצה להזמין אותך לשאול את עצמך שאלה אחת קטנה השבוע: איפה בחיים החרדה הפכה להיות מסך עשן שמסתיר ממני את מי שאני יכולה להיות? איפה אני נעצרת, מתרחקת, או מחליטה שזה “לא בשבילי”, לא כי באמת בדקתי - אלא כי פחדתי ממה שאפגוש בדרך? ואולי, מעבר למסך הזה, מחכה גרסה של עצמך שעוד לא יצא לך להכיר.
         </p>
 
-        <p className="text-foreground/80 text-base font-light pt-2">
-          איתך ברגע הזה,
-          <br />
-          <span className="text-primary font-medium">חגית</span>
-        </p>
       </>
     ),
   },
@@ -510,11 +500,6 @@ export const blogPosts: BlogPostData[] = [
           מזמינה אותך לתרגל את כוח החירות של פסח, בתוך אתגרי החיים שלך.
         </p>
 
-        <p className="text-foreground/80 text-base font-light pt-2">
-          איתך ברגע הזה,
-          <br />
-          <span className="text-primary font-medium">חגית</span>
-        </p>
       </>
     ),
   },
@@ -763,11 +748,6 @@ export const blogPosts: BlogPostData[] = [
           ושומר עבורנו את המקום הזה.
         </p>
 
-        <p className="text-foreground/80 text-base font-light pt-2">
-          איתך ברגע הזה,
-          <br />
-          <span className="text-primary font-medium">חגית</span>
-        </p>
       </>
     ),
   },
@@ -869,11 +849,6 @@ export const blogPosts: BlogPostData[] = [
           מאחלת לנו את היכולת להחזיק את שני הקצוות - להיות בכאב ובאמונה גם יחד.
         </p>
 
-        <p className="text-foreground/80 text-base font-light pt-2">
-          איתך ברגע הזה,
-          <br />
-          <span className="text-primary font-medium">חגית</span>
-        </p>
       </>
     ),
   },
