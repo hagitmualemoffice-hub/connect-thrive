@@ -112,7 +112,10 @@ const Blog = () => {
                   />
                 </div>
                 <div className="p-7 md:p-14 text-right flex flex-col justify-center">
-                  <div className="flex items-center gap-3 justify-start mb-4 md:mb-5">
+                  <div className="flex items-center gap-3 justify-start mb-4 md:mb-5 flex-wrap">
+                    <span className="inline-block px-3 md:px-4 py-1 md:py-1.5 rounded-full text-xs font-light bg-foreground text-background">
+                      פוסט אחרון
+                    </span>
                     <span
                       className="inline-block px-3 md:px-4 py-1 md:py-1.5 rounded-full text-xs font-light text-white"
                       style={{
