@@ -10,7 +10,7 @@ import blogBatEcholocationImg from "@/assets/blog-bat-echolocation.jpg";
 
 export type BlogCategory = "יזמות" | "פסיכולוגיה" | "פרשה ופסיכולוגיה";
 
-export const BLOG_CATEGORIES: BlogCategory[] = ["יזמות", "פסיכולוגיה", "פרשה ופסיכולוגיה"];
+export const BLOG_CATEGORIES: BlogCategory[] = ["פסיכולוגיה", "יזמות", "פרשה ופסיכולוגיה"];
 
 export const categoryAccent: Record<BlogCategory, { hsl: string; label: string }> = {
   "יזמות": { hsl: "172 30% 67%", label: "יזמות קשובה" },
