@@ -99,7 +99,15 @@ const Workshops = () => {
   };
 
   return (
-    <div dir="rtl" className="min-h-screen bg-background text-foreground font-light pb-20 md:pb-0 overflow-x-hidden">
+    <div
+      dir="rtl"
+      className="min-h-screen text-foreground font-light pb-20 md:pb-0 overflow-x-hidden"
+      style={{
+        background:
+          "linear-gradient(135deg, hsl(172 60% 85%) 0%, hsl(280 45% 88%) 50%, hsl(331 70% 86%) 100%)",
+        backgroundAttachment: "fixed",
+      }}
+    >
       <div className="hidden md:block">
         <SiteHeader />
       </div>
@@ -124,8 +132,8 @@ const Workshops = () => {
           width={1920}
           height={1080}
         />
-        <div className="absolute inset-0 bg-gradient-to-l from-background/85 via-background/40 to-background/10" />
-        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-l from-white/40 via-white/10 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[hsl(331_70%_86%)] via-transparent to-transparent" />
 
         <div className="relative z-10 h-full flex items-end pb-12 md:pb-20 px-[30px] md:px-6">
           <div className="w-full md:w-[min(1100px,82%)] mx-auto text-right">
@@ -142,9 +150,7 @@ const Workshops = () => {
             <h1 className="text-foreground text-[2rem] md:text-6xl font-light tracking-tight leading-[1.1] mb-4 md:mb-6 max-w-3xl">
               כשטקסט הופך לשער,
               <br />
-              <span className="italic" style={{ background: "linear-gradient(90deg, hsl(172 50% 50%), hsl(331 60% 65%))", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>
-                והשיחה נעשית מסע
-              </span>
+              <span className="italic">והשיחה נעשית מסע</span>
             </h1>
             <p className="text-foreground/75 text-base md:text-xl font-light max-w-2xl leading-relaxed">
               סדנאות הנבנות במיוחד עבור הקבוצה שלכם - 
@@ -224,7 +230,7 @@ const Workshops = () => {
       </section>
 
       {/* FLOW - what happens in a workshop */}
-      <section className="w-full py-16 md:py-24 px-[30px] md:px-6 bg-gradient-to-b from-background via-accent/30 to-background">
+      <section className="w-full py-16 md:py-24 px-[30px] md:px-6">
         <div className="w-full md:w-[min(1000px,82%)] mx-auto">
           <div className="text-right mb-12 md:mb-16">
             <span className="text-primary text-xs md:text-sm font-medium tracking-widest uppercase">מה קורה בסדנה</span>
