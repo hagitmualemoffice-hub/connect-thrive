@@ -116,44 +116,33 @@ const Workshops = () => {
       <div className="h-12 md:h-20" />
 
       {/* HERO */}
-      <section className="relative w-full h-[70vh] md:h-[85vh] overflow-hidden">
-        <img
-          src={workshopsHero}
-          alt="סדנאות ביבליותרפיה"
-          className="absolute inset-0 w-full h-full object-cover"
-          width={1920}
-          height={1080}
-        />
-        <div className="absolute inset-0 bg-gradient-to-l from-background/40 via-background/10 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent" />
-
-        <div className="relative z-10 h-full flex items-end pb-12 md:pb-20 px-[30px] md:px-6">
-          <div className="w-full md:w-[min(1100px,82%)] mx-auto text-right">
-            <Link
-              to="/"
-              className="inline-flex items-center gap-1.5 text-sm text-foreground/70 hover:text-primary mb-5 transition-colors"
-            >
-              <ArrowRight className="w-4 h-4" />
-              חזרה לדף הבית
-            </Link>
-            <span className="inline-block mb-4 px-4 py-1.5 rounded-full bg-white/80 backdrop-blur-sm text-primary text-xs md:text-sm font-medium tracking-wide">
-              סדנאות ביבליותרפיה
+      <section className="relative w-full px-[30px] md:px-6 pt-10 md:pt-20 pb-12 md:pb-20">
+        <div className="w-full md:w-[min(1100px,82%)] mx-auto text-right">
+          <Link
+            to="/"
+            className="inline-flex items-center gap-1.5 text-sm text-foreground/70 hover:text-primary mb-6 transition-colors"
+          >
+            <ArrowRight className="w-4 h-4" />
+            חזרה לדף הבית
+          </Link>
+          <span className="inline-block mb-5 px-4 py-1.5 rounded-full bg-primary/10 text-primary text-xs md:text-sm font-medium tracking-wide">
+            סדנאות ביבליותרפיה
+          </span>
+          <h1 className="text-foreground text-[2rem] md:text-6xl font-light tracking-tight leading-[1.1] mb-5 md:mb-7 max-w-3xl">
+            סדנאות ביבליותרפיה
+            <br />
+            <span className="italic text-primary">
+              הנבנות בקשב לצורך שלכם
             </span>
-            <h1 className="text-foreground text-[2rem] md:text-6xl font-light tracking-tight leading-[1.1] mb-4 md:mb-6 max-w-3xl">
-              סדנאות ביבליותרפיה
-              <br />
-              <span className="italic text-primary">
-                הנבנות בקשב לצורך שלכם
-              </span>
-            </h1>
-            <p className="text-foreground/80 text-base md:text-xl font-light max-w-2xl leading-relaxed">
-              מחפשים מרחב עמוק, חי ולא שגרתי לעבודה קבוצתית?
-              <br />
-              סדנאות המבוססות על קריאה משותפת של טקסטים והנחיה של שיח קבוצתי משמעותי.
-            </p>
-          </div>
+          </h1>
+          <p className="text-foreground/75 text-base md:text-xl font-light max-w-2xl leading-relaxed">
+            מחפשים מרחב עמוק, חי ולא שגרתי לעבודה קבוצתית?
+            <br />
+            סדנאות המבוססות על קריאה משותפת של טקסטים והנחיה של שיח קבוצתי משמעותי.
+          </p>
         </div>
       </section>
+
 
       {/* INTRO / WHAT IS IT */}
       <section className="w-full py-16 md:py-28 px-[30px] md:px-6">
@@ -280,16 +269,19 @@ const Workshops = () => {
             className="relative rounded-3xl md:rounded-[40px] px-7 md:px-20 py-12 md:py-20 overflow-hidden"
             style={{
               background:
-                "linear-gradient(90deg, hsl(172 79% 92%) 0%, hsl(325 75% 93%) 100%)",
+                "linear-gradient(90deg, hsl(172 79% 79%) 0%, hsl(325 75% 69%) 100%)",
             }}
-
           >
-            <Quote className="absolute top-6 right-6 md:top-10 md:right-12 w-10 h-10 md:w-16 md:h-16 text-primary/30" />
-            <blockquote className="text-foreground text-xl md:text-3xl font-light italic leading-relaxed text-right max-w-3xl mr-auto">
-              "טקסט טוב לא נותן תשובות. הוא פותח שאלות חדשות -
-              ובתוך הקבוצה, השאלות האלו מתחילות לחיות."
-            </blockquote>
+            <div className="absolute inset-0 bg-white/10 backdrop-blur-[1px]" />
+            <div className="relative">
+              <Quote className="absolute top-0 right-0 md:-top-2 md:-right-2 w-10 h-10 md:w-16 md:h-16 text-white/40" />
+              <blockquote className="text-white text-xl md:text-3xl font-light italic leading-relaxed text-right max-w-3xl mr-auto">
+                "טקסט טוב לא נותן תשובות. הוא פותח שאלות חדשות -
+                ובתוך הקבוצה, השאלות האלו מתחילות לחיות."
+              </blockquote>
+            </div>
           </div>
+
         </div>
       </section>
 
@@ -352,20 +344,11 @@ const Workshops = () => {
                     key={g}
                     className="group flex items-center gap-4 bg-card rounded-2xl px-5 md:px-7 py-4 md:py-5 shadow-[0_8px_25px_-15px_hsl(0_0%_0%_/_0.10)] hover:shadow-[0_15px_35px_-15px_hsl(var(--primary)/0.20)] hover:translate-x-[-4px] transition-all duration-300"
                   >
-                    <span
-                      className="shrink-0 w-9 h-9 rounded-full flex items-center justify-center text-xs font-medium"
-                      style={{
-                        background:
-                          i % 2 === 0
-                            ? "hsl(172 60% 92%)"
-                            : "hsl(331 60% 95%)",
-                        color:
-                          i % 2 === 0 ? "hsl(172 50% 40%)" : "hsl(331 55% 55%)",
-                      }}
-                    >
+                    <span className="shrink-0 w-9 h-9 rounded-full flex items-center justify-center text-xs font-medium bg-primary text-primary-foreground">
                       0{i + 1}
                     </span>
                     <span className="text-foreground text-sm md:text-base font-light leading-snug">
+
                       {g}
                     </span>
                   </li>
