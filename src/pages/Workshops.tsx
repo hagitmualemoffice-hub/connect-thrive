@@ -124,8 +124,8 @@ const Workshops = () => {
           width={1920}
           height={1080}
         />
-        <div className="absolute inset-0 bg-gradient-to-l from-background/85 via-background/40 to-background/10" />
-        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-l from-background/40 via-background/10 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent" />
 
         <div className="relative z-10 h-full flex items-end pb-12 md:pb-20 px-[30px] md:px-6">
           <div className="w-full md:w-[min(1100px,82%)] mx-auto text-right">
@@ -136,22 +136,20 @@ const Workshops = () => {
               <ArrowRight className="w-4 h-4" />
               חזרה לדף הבית
             </Link>
-            <span className="inline-block mb-4 px-4 py-1.5 rounded-full bg-white/70 backdrop-blur-sm text-primary text-xs md:text-sm font-medium tracking-wide">
+            <span className="inline-block mb-4 px-4 py-1.5 rounded-full bg-white/80 backdrop-blur-sm text-primary text-xs md:text-sm font-medium tracking-wide">
               סדנאות ביבליותרפיה
             </span>
             <h1 className="text-foreground text-[2rem] md:text-6xl font-light tracking-tight leading-[1.1] mb-4 md:mb-6 max-w-3xl">
-              כשטקסט הופך לשער,
+              סדנאות ביבליותרפיה
               <br />
-              <span className="italic" style={{ background: "linear-gradient(90deg, hsl(172 50% 50%), hsl(331 60% 65%))", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>
-                והשיחה נעשית מסע
+              <span className="italic text-primary">
+                הנבנות בקשב לצורך שלכם
               </span>
             </h1>
-            <p className="text-foreground/75 text-base md:text-xl font-light max-w-2xl leading-relaxed">
-              סדנאות הנבנות במיוחד עבור הקבוצה שלכם - 
+            <p className="text-foreground/80 text-base md:text-xl font-light max-w-2xl leading-relaxed">
+              מחפשים מרחב עמוק, חי ולא שגרתי לעבודה קבוצתית?
               <br />
-              מפגשים קבוצתיים המבוססים על שיחה, טקסטים והתבוננות משותפת.
-              <br />
-              מרחב עמוק, חי ולא שגרתי לעבודה קבוצתית.
+              סדנאות המבוססות על קריאה משותפת של טקסטים והנחיה של שיח קבוצתי משמעותי.
             </p>
           </div>
         </div>
@@ -164,17 +162,17 @@ const Workshops = () => {
             <BookOpen className="w-6 h-6 md:w-7 md:h-7 text-primary" />
           </div>
           <h2 className="text-foreground text-2xl md:text-4xl font-light leading-tight mb-6 md:mb-8">
-            ביבליותרפיה היא לא קריאה.
+            הטקסטים אינם רק תוכן.
             <br />
-            <span className="text-primary">היא מפגש.</span>
+            <span className="text-primary">הם שער.</span>
           </h2>
           <p className="text-foreground/75 text-base md:text-lg font-light leading-relaxed max-w-2xl mx-auto">
-            הטקסט הוא רק מעטפת - כדי לדבר על מה שבאמת חשוב.
-            על פחדים, על תקווה, על געגוע, על שייכות, על הזהות שלנו ועל האופן שבו אנחנו רוצים לחיות.
-            הוא מאפשר לנו לגעת במקומות עדינים בלי לחשוף את עצמנו ישירות, ולגלות שדווקא דרך מילים של מישהו אחר - אנחנו פוגשים את עצמנו.
+            הטקסטים פותחים רגשות, שאלות ונקודות כאב, ומאפשרים תנועה אמיתית בקבוצה.
+            הם מאפשרים לנו לגעת במקומות עדינים בלי לחשוף את עצמנו ישירות, ולגלות שדווקא דרך מילים של מישהו אחר - אנחנו פוגשים את עצמנו ואת מי שלצידנו.
           </p>
         </div>
       </section>
+
 
       {/* AUDIENCES - bento-style */}
       <section className="w-full py-12 md:py-20 px-[30px] md:px-6">
