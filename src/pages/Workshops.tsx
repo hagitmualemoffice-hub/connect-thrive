@@ -347,10 +347,8 @@ const Workshops = () => {
                     <span className="shrink-0 w-9 h-9 rounded-full flex items-center justify-center text-xs font-medium bg-primary text-primary-foreground">
                       0{i + 1}
                     </span>
-
-                      0{i + 1}
-                    </span>
                     <span className="text-foreground text-sm md:text-base font-light leading-snug">
+
                       {g}
                     </span>
                   </li>
