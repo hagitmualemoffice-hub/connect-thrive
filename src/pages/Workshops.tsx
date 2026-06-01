@@ -4,7 +4,7 @@ import { ArrowRight, BookOpen, Users, MessageCircle, Sparkles, Heart, Compass, F
 import SiteHeader from "@/components/SiteHeader";
 import ContactPopup, { type ContactTab } from "@/components/ContactPopup";
 import MobileBottomNav from "@/components/MobileBottomNav";
-import workshopsHero from "@/assets/workshops-woman-beach-book.jpg";
+
 
 const audiences = [
   {
@@ -118,14 +118,6 @@ const Workshops = () => {
       {/* HERO */}
       <section className="relative w-full px-[30px] md:px-6 pt-10 md:pt-20 pb-12 md:pb-20">
         <div className="w-full md:w-[min(1100px,82%)] mx-auto">
-          <div className="rounded-3xl overflow-hidden mb-8 md:mb-12 shadow-lg">
-            <img
-              src={workshopsHero}
-              alt="אישה יושבת על חוף הים וקוראת ספר - סדנאות ביבליותרפיה"
-              className="w-full h-[240px] md:h-[420px] object-cover"
-              loading="eager"
-            />
-          </div>
           <div className="text-right">
             <span className="inline-block mb-5 px-4 py-1.5 rounded-full bg-primary/10 text-primary text-xs md:text-sm font-medium tracking-wide">
               סדנאות ביבליותרפיה
