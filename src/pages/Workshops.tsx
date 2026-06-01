@@ -227,23 +227,14 @@ const Workshops = () => {
           <div className="relative">
             {/* vertical line */}
             <div
-              className="absolute right-[22px] md:right-[35px] top-2 bottom-2 w-px"
-              style={{
-                background:
-                  "linear-gradient(180deg, hsl(172 60% 70%) 0%, hsl(331 60% 75%) 100%)",
-              }}
+              className="absolute right-[22px] md:right-[35px] top-2 bottom-2 w-px bg-primary/30"
             />
 
             <div className="space-y-8 md:space-y-12">
               {flow.map((step, i) => (
                 <div key={step.n} className="relative flex items-start gap-5 md:gap-8">
                   <div
-                    className="relative z-10 shrink-0 w-11 h-11 md:w-[70px] md:h-[70px] rounded-full bg-background border-2 flex items-center justify-center text-xs md:text-base font-medium"
-                    style={{
-                      borderColor:
-                        i % 2 === 0 ? "hsl(172 60% 70%)" : "hsl(331 60% 75%)",
-                      color: i % 2 === 0 ? "hsl(172 50% 45%)" : "hsl(331 55% 58%)",
-                    }}
+                    className="relative z-10 shrink-0 w-11 h-11 md:w-[70px] md:h-[70px] rounded-full bg-background border-2 border-primary flex items-center justify-center text-xs md:text-base font-medium text-primary"
                   >
                     {step.n}
                   </div>
