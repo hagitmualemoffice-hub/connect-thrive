@@ -170,8 +170,8 @@ const Workshops = () => {
       <section className="w-full py-12 md:py-20 px-[30px] md:px-6">
         <div className="w-full md:w-[min(1100px,82%)] mx-auto">
           <div className="text-right mb-10 md:mb-14 max-w-2xl">
-            <span className="text-primary text-xs md:text-sm font-medium tracking-widest uppercase">למי זה מיועד</span>
-            <h2 className="text-foreground text-2xl md:text-4xl font-light leading-tight mt-2 mb-4">
+            <span className="text-primary text-sm md:text-base font-semibold tracking-widest uppercase">למי זה מיועד</span>
+            <h2 className="text-foreground text-3xl md:text-5xl font-light leading-tight mt-3 mb-4">
               קבוצות שמבקשות לגעת לעומק
             </h2>
             <p className="text-foreground/70 text-base md:text-lg font-light leading-relaxed">
