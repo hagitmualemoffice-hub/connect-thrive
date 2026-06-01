@@ -135,10 +135,11 @@ const Workshops = () => {
           </p>
           <button
             onClick={() => openContact("workshop")}
-            className="inline-flex items-center gap-2 px-7 md:px-9 py-3.5 md:py-4 rounded-full text-white text-sm md:text-base font-medium shadow-[0_15px_40px_-15px_hsl(var(--primary)/0.5)] hover:shadow-[0_20px_50px_-15px_hsl(var(--primary)/0.6)] hover:-translate-y-0.5 transition-all duration-300"
+            className="inline-flex items-center gap-2 px-7 md:px-9 py-3.5 md:py-4 rounded-full text-foreground text-sm md:text-base font-medium hover:-translate-y-0.5 transition-all duration-300"
             style={{
+              border: "2px solid transparent",
               background:
-                "linear-gradient(90deg, hsl(172 79% 65%) 0%, hsl(325 75% 65%) 100%)",
+                "linear-gradient(hsl(var(--background)), hsl(var(--background))) padding-box, linear-gradient(90deg, hsl(172 79% 65%) 0%, hsl(325 75% 65%) 100%) border-box",
             }}
           >
             בואו נתכנן לכם סדנה
