@@ -344,17 +344,10 @@ const Workshops = () => {
                     key={g}
                     className="group flex items-center gap-4 bg-card rounded-2xl px-5 md:px-7 py-4 md:py-5 shadow-[0_8px_25px_-15px_hsl(0_0%_0%_/_0.10)] hover:shadow-[0_15px_35px_-15px_hsl(var(--primary)/0.20)] hover:translate-x-[-4px] transition-all duration-300"
                   >
-                    <span
-                      className="shrink-0 w-9 h-9 rounded-full flex items-center justify-center text-xs font-medium"
-                      style={{
-                        background:
-                          i % 2 === 0
-                            ? "hsl(172 60% 92%)"
-                            : "hsl(331 60% 95%)",
-                        color:
-                          i % 2 === 0 ? "hsl(172 50% 40%)" : "hsl(331 55% 55%)",
-                      }}
-                    >
+                    <span className="shrink-0 w-9 h-9 rounded-full flex items-center justify-center text-xs font-medium bg-primary text-primary-foreground">
+                      0{i + 1}
+                    </span>
+
                       0{i + 1}
                     </span>
                     <span className="text-foreground text-sm md:text-base font-light leading-snug">
