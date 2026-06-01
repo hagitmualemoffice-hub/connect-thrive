@@ -298,12 +298,13 @@ const Workshops = () => {
           <div className="text-right mb-12 md:mb-16 max-w-2xl">
             <span className="text-primary text-xs md:text-sm font-medium tracking-widest uppercase">איך בונים את התוכן</span>
             <h2 className="text-foreground text-2xl md:text-4xl font-light leading-tight mt-2 mb-4">
-              כל סדנה נתפרת במיוחד עבורכם
+              כל סדנה נבנית במיוחד עבורכם
             </h2>
             <p className="text-foreground/70 text-base md:text-lg font-light leading-relaxed">
-              אין שתי קבוצות דומות, ואין שתי סדנאות זהות. התהליך מתחיל בהקשבה ונבנה צעד אחר צעד.
+              מתוך הקשבה לצורך, לאנשים ולשלב שבו אתם נמצאים. אני משלבת טקסטים מעולמות הפסיכולוגיה, הספרות וההגות, לצד מקורות מן המחשבה היהודית - מפגש ייחודי בין עומק רגשי, משמעות ושיח אמוני־רוחני. ניתן גם לבנות סדנאות עם דגש ייעודי על מקורות אלו.
             </p>
           </div>
+
 
           <div className="grid grid-cols-1 md:grid-cols-5 gap-4 md:gap-3">
             {buildSteps.map((s, i) => (
