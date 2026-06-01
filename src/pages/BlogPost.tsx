@@ -1,5 +1,5 @@
 import { Link, useParams } from "react-router-dom";
-import { ArrowRight, Share2, DoorOpen, Sprout, Flame, Heart, HeartHandshake, BookOpen, Rocket, Volume2, LucideIcon } from "lucide-react";
+import { ArrowRight, Share2, DoorOpen, Sprout, Flame, Heart, HeartHandshake, BookOpen, Rocket, Volume2, Dices, LucideIcon } from "lucide-react";
 import { blogPosts, getPostBySlug, categoryAccent } from "@/data/blogPosts";
 import SiteHeader from "@/components/SiteHeader";
 import MobileBottomNav from "@/components/MobileBottomNav";
@@ -13,6 +13,7 @@ const postIcons: Record<string, LucideIcon> = {
   "when-life-hits-hard": HeartHandshake,
   "entrepreneurship-failure-part-1": Rocket,
   "bat-echolocation-decisions": Volume2,
+  "playing-right-board-flipped": Dices,
 };
 
 const BlogPost = () => {
