@@ -383,8 +383,9 @@ const Workshops = () => {
             className="relative rounded-3xl md:rounded-[40px] px-7 md:px-20 py-14 md:py-24 text-center overflow-hidden"
             style={{
               background:
-                "linear-gradient(120deg, hsl(172 79% 79%) 0%, hsl(40 80% 90%) 50%, hsl(331 75% 75%) 100%)",
+                "linear-gradient(90deg, hsl(172 79% 79%) 0%, hsl(325 75% 69%) 100%)",
             }}
+
           >
             <div className="absolute inset-0 bg-white/10 backdrop-blur-[1px]" />
             <div className="relative">
