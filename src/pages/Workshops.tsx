@@ -118,13 +118,6 @@ const Workshops = () => {
       {/* HERO */}
       <section className="relative w-full px-[30px] md:px-6 pt-10 md:pt-20 pb-12 md:pb-20">
         <div className="w-full md:w-[min(1100px,82%)] mx-auto text-right">
-          <Link
-            to="/"
-            className="inline-flex items-center gap-1.5 text-sm text-foreground/70 hover:text-primary mb-6 transition-colors"
-          >
-            <ArrowRight className="w-4 h-4" />
-            חזרה לדף הבית
-          </Link>
           <span className="inline-block mb-5 px-4 py-1.5 rounded-full bg-primary/10 text-primary text-xs md:text-sm font-medium tracking-wide">
             סדנאות ביבליותרפיה
           </span>
@@ -135,11 +128,21 @@ const Workshops = () => {
               הנבנות בקשב לצורך שלכם
             </span>
           </h1>
-          <p className="text-foreground/75 text-base md:text-xl font-light max-w-2xl leading-relaxed">
+          <p className="text-foreground/75 text-base md:text-xl font-light max-w-2xl leading-relaxed mb-7 md:mb-9">
             מחפשים מרחב עמוק, חי ולא שגרתי לעבודה קבוצתית?
             <br />
             סדנאות המבוססות על קריאה משותפת של טקסטים והנחיה של שיח קבוצתי משמעותי.
           </p>
+          <button
+            onClick={() => openContact("workshop")}
+            className="inline-flex items-center gap-2 px-7 md:px-9 py-3.5 md:py-4 rounded-full text-white text-sm md:text-base font-medium shadow-[0_15px_40px_-15px_hsl(var(--primary)/0.5)] hover:shadow-[0_20px_50px_-15px_hsl(var(--primary)/0.6)] hover:-translate-y-0.5 transition-all duration-300"
+            style={{
+              background:
+                "linear-gradient(90deg, hsl(172 79% 65%) 0%, hsl(325 75% 65%) 100%)",
+            }}
+          >
+            בואו נתכנן לכם סדנה
+          </button>
         </div>
       </section>
 
@@ -167,8 +170,8 @@ const Workshops = () => {
       <section className="w-full py-12 md:py-20 px-[30px] md:px-6">
         <div className="w-full md:w-[min(1100px,82%)] mx-auto">
           <div className="text-right mb-10 md:mb-14 max-w-2xl">
-            <span className="text-primary text-xs md:text-sm font-medium tracking-widest uppercase">למי זה מיועד</span>
-            <h2 className="text-foreground text-2xl md:text-4xl font-light leading-tight mt-2 mb-4">
+            <span className="text-primary text-sm md:text-base font-semibold tracking-widest uppercase">למי זה מיועד</span>
+            <h2 className="text-foreground text-3xl md:text-5xl font-light leading-tight mt-3 mb-4">
               קבוצות שמבקשות לגעת לעומק
             </h2>
             <p className="text-foreground/70 text-base md:text-lg font-light leading-relaxed">
@@ -218,8 +221,8 @@ const Workshops = () => {
       <section className="w-full py-16 md:py-24 px-[30px] md:px-6 bg-gradient-to-b from-background via-accent/30 to-background">
         <div className="w-full md:w-[min(1000px,82%)] mx-auto">
           <div className="text-right mb-12 md:mb-16">
-            <span className="text-primary text-xs md:text-sm font-medium tracking-widest uppercase">מה קורה בסדנה</span>
-            <h2 className="text-foreground text-2xl md:text-4xl font-light leading-tight mt-2">
+            <span className="text-primary text-sm md:text-base font-semibold tracking-widest uppercase">מה קורה בסדנה</span>
+            <h2 className="text-foreground text-3xl md:text-5xl font-light leading-tight mt-3">
               חמש תחנות במסע משותף
             </h2>
           </div>
