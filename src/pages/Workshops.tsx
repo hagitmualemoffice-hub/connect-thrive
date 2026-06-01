@@ -280,8 +280,9 @@ const Workshops = () => {
             className="relative rounded-3xl md:rounded-[40px] px-7 md:px-20 py-12 md:py-20 overflow-hidden"
             style={{
               background:
-                "linear-gradient(135deg, hsl(40 80% 96%) 0%, hsl(331 65% 94%) 50%, hsl(172 50% 92%) 100%)",
+                "linear-gradient(90deg, hsl(172 79% 92%) 0%, hsl(325 75% 93%) 100%)",
             }}
+
           >
             <Quote className="absolute top-6 right-6 md:top-10 md:right-12 w-10 h-10 md:w-16 md:h-16 text-primary/30" />
             <blockquote className="text-foreground text-xl md:text-3xl font-light italic leading-relaxed text-right max-w-3xl mr-auto">
