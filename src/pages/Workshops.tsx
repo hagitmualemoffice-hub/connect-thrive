@@ -177,12 +177,16 @@ const Workshops = () => {
       {/* AUDIENCES - bento-style */}
       <section className="w-full py-12 md:py-20 px-[30px] md:px-6">
         <div className="w-full md:w-[min(1100px,82%)] mx-auto">
-          <div className="text-right mb-10 md:mb-14">
+          <div className="text-right mb-10 md:mb-14 max-w-2xl">
             <span className="text-primary text-xs md:text-sm font-medium tracking-widest uppercase">למי זה מיועד</span>
-            <h2 className="text-foreground text-2xl md:text-4xl font-light leading-tight mt-2">
+            <h2 className="text-foreground text-2xl md:text-4xl font-light leading-tight mt-2 mb-4">
               קבוצות שמבקשות לגעת לעומק
             </h2>
+            <p className="text-foreground/70 text-base md:text-lg font-light leading-relaxed">
+              הסדנאות אינטימיות - עד 20 משתתפים - ומתאימות לצוותים, לקבוצות עומק ולארגונים שמבקשים לחדד תהליכים ולהניע שינוי דרך הקשבה, טקסט ושיח מונחה.
+            </p>
           </div>
+
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
             {audiences.map((a, i) => {
