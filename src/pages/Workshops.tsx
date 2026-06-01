@@ -221,8 +221,8 @@ const Workshops = () => {
       <section className="w-full py-16 md:py-24 px-[30px] md:px-6 bg-gradient-to-b from-background via-accent/30 to-background">
         <div className="w-full md:w-[min(1000px,82%)] mx-auto">
           <div className="text-right mb-12 md:mb-16">
-            <span className="text-primary text-xs md:text-sm font-medium tracking-widest uppercase">מה קורה בסדנה</span>
-            <h2 className="text-foreground text-2xl md:text-4xl font-light leading-tight mt-2">
+            <span className="text-primary text-sm md:text-base font-semibold tracking-widest uppercase">מה קורה בסדנה</span>
+            <h2 className="text-foreground text-3xl md:text-5xl font-light leading-tight mt-3">
               חמש תחנות במסע משותף
             </h2>
           </div>
