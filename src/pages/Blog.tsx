@@ -93,13 +93,9 @@ const Blog = () => {
 
       {/* Category rows */}
       {visibleCategories.map((cat) => {
-        const posts =
-          cat === featuredPost.category && activeFilter === "הכל"
-            ? byCategory[cat]
-            : cat === featuredPost.category
-              ? [featuredPost, ...byCategory[cat]]
-              : byCategory[cat];
+        const posts = byCategory[cat];
         if (posts.length === 0) return null;
+
         const accent = categoryAccent[cat];
         return (
           <section key={cat} className="w-full pb-12 md:pb-16 px-[30px] md:px-6">
