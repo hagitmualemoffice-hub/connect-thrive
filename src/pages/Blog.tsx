@@ -89,66 +89,7 @@ const Blog = () => {
         </div>
       </section>
 
-      {/* Featured post (latest) */}
-      {(activeFilter === "הכל" || activeFilter === featuredPost.category) && (
-        <section className="w-full pb-10 md:pb-16 px-[30px] md:px-6">
-          <div className="w-full md:w-[min(1100px,82%)] mx-auto">
-            <Link
-              to={`/blog/${featuredPost.slug}`}
-              className="group block bg-card rounded-2xl md:rounded-3xl overflow-hidden shadow-[0_15px_50px_-15px_hsl(0_0%_0%_/_0.12)] hover:shadow-[0_25px_60px_-15px_hsl(var(--primary)/0.25)] transition-all duration-300"
-              style={{
-                borderTop: `4px solid hsl(${categoryAccent[featuredPost.category].hsl})`,
-                ["--card-accent" as any]: categoryAccent[featuredPost.category].hsl,
-              }}
-            >
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-0">
-                <div className="relative h-[220px] md:h-[420px] overflow-hidden bg-accent">
-                  <img
-                    src={featuredPost.image}
-                    alt={featuredPost.title}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-                </div>
-                <div className="p-7 md:p-14 text-right flex flex-col justify-center">
-                  <div className="flex items-center gap-3 justify-start mb-4 md:mb-5 flex-wrap">
-                    <span className="inline-block px-3 md:px-4 py-1 md:py-1.5 rounded-full text-xs font-light bg-foreground text-background">
-                      פוסט אחרון
-                    </span>
-                    <span
-                      className="inline-block px-3 md:px-4 py-1 md:py-1.5 rounded-full text-xs font-light text-white"
-                      style={{
-                        backgroundColor: `hsl(${categoryAccent[featuredPost.category].hsl})`,
-                      }}
-                    >
-                      {categoryAccent[featuredPost.category].label}
-                    </span>
-                    <span className="text-foreground/50 text-xs md:text-sm font-light">
-                      {featuredPost.date}
-                    </span>
-                  </div>
-                  <h2 className="accent-hover text-foreground text-xl md:text-3xl font-light leading-tight mb-4 md:mb-5 transition-colors">
-                    {featuredPost.title}
-                  </h2>
-                  <p className="text-foreground/70 text-sm md:text-base font-light leading-relaxed mb-6 md:mb-8">
-                    {featuredPost.excerpt}
-                  </p>
-                  <div className="self-start">
-                    <span
-                      className="text-sm font-medium border-b pb-0.5 transition-colors"
-                      style={{
-                        color: `hsl(${categoryAccent[featuredPost.category].hsl})`,
-                        borderColor: `hsl(${categoryAccent[featuredPost.category].hsl})`,
-                      }}
-                    >
-                      להמשיך לקרוא ←
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </Link>
-          </div>
-        </section>
-      )}
+
 
       {/* Category rows */}
       {visibleCategories.map((cat) => {
