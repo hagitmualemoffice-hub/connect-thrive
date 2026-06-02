@@ -9,18 +9,16 @@ const filters: ("הכל" | BlogCategory)[] = ["הכל", ...BLOG_CATEGORIES];
 const Blog = () => {
   const [activeFilter, setActiveFilter] = useState<(typeof filters)[number]>("הכל");
 
-  const featuredPost = blogPosts[0];
-  const restPosts = useMemo(() => blogPosts.slice(1), []);
-
   const byCategory = useMemo(() => {
     const groups: Record<BlogCategory, typeof blogPosts> = {
       "יזמות": [],
       "פסיכולוגיה": [],
       "פרשה ופסיכולוגיה": [],
     };
-    for (const p of restPosts) groups[p.category].push(p);
+    for (const p of blogPosts) groups[p.category].push(p);
     return groups;
-  }, [restPosts]);
+  }, []);
+
 
   const visibleCategories: BlogCategory[] =
     activeFilter === "הכל" ? BLOG_CATEGORIES : [activeFilter as BlogCategory];
