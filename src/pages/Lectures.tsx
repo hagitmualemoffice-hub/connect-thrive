@@ -62,61 +62,8 @@ const Lectures = () => {
         </div>
       </section>
 
-      {/* FLAGSHIP LECTURE */}
-      <section className="w-full pt-12 md:pt-20 pb-8 md:pb-10 px-[30px] md:px-6">
-        <div className="w-full md:w-[min(1100px,82%)] mx-auto">
-          <div className="relative bg-card rounded-2xl md:rounded-3xl shadow-[0_20px_60px_-15px_hsl(0_0%_0%_/_0.18)] px-5 md:px-20 py-10 md:py-16 transition-all duration-500 hover:shadow-[0_28px_70px_-15px_hsl(var(--primary)/0.25)] hover:-translate-y-1">
-            <span className="absolute top-4 left-4 md:top-6 md:left-6 inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-[10px] md:text-xs font-medium">
-              הרצאת הדגל
-            </span>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-16 text-right mt-6 md:mt-0">
-              <div>
-                <h2 className="text-foreground text-xl md:text-3xl font-bold mb-2">
-                  החיים שנועדו לי
-                </h2>
-                <p className="text-foreground text-xs md:text-sm font-medium leading-relaxed mb-3 md:mb-4">
-                  חיבור לייעוד, לבהירות פנימית ולכיוון אישי - ככוח לחיים מלאים ומשמעותיים
-                </p>
-                <ExpandableText
-                  mobileLines={4}
-                  className="text-foreground/75 text-xs md:text-sm font-light leading-relaxed"
-                >
-                  הרצאה על היכולת לחיות חיים שלמים מתוך חיבור לעצמי - לא כמצב יציב, אלא כתנועה שנעה בגלים: בין בהירות לחוסר ודאות, בין שמחה לקושי. על הקשבה פנימית, בחירה, והאפשרות לבנות דרך גם כשהכול לא לגמרי ברור.
-                </ExpandableText>
-              </div>
 
-              <div className="space-y-3 md:space-y-4">
-                <div>
-                  <h4 className="text-foreground text-sm md:text-base font-semibold mb-1.5">
-                    קהל יעד
-                  </h4>
-                  <p className="text-foreground/75 text-xs md:text-sm font-light leading-relaxed">
-                    קבוצות מתמודדות, ארגונים, מוסדות לימוד, ימי עיון, צעירים, גיל זהב
-                  </p>
-                </div>
-                <div>
-                  <h4 className="text-foreground text-sm md:text-base font-semibold mb-1.5">
-                    סוג פעילות
-                  </h4>
-                  <div className="text-foreground/75 text-xs md:text-sm font-light space-y-0.5">
-                    <p>הרצאה <span className="mx-2 text-border">|</span> עד 1.5 שעות</p>
-                    <p>סדנה אינטימית <span className="mx-2 text-border">|</span> עד שעתיים</p>
-                  </div>
-                </div>
-              </div>
-            </div>
 
-            <div className="mt-6 flex justify-start">
-              <button
-                onClick={() => openContact("lecture")}
-                className="px-6 md:px-8 py-2.5 rounded-lg bg-primary text-primary-foreground text-sm font-light hover:bg-[hsl(var(--primary-glow))] transition-colors"
-              >
-                להזמנת הרצאה
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* LECTURE GRID */}
       <section className="w-full py-10 md:py-16 px-[30px] md:px-6">
