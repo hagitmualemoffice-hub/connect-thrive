@@ -587,6 +587,15 @@ const Index = () => {
               לכל ההרצאות
             </Link>
           </div>
+
+          <div className="mt-8 hidden md:flex justify-center">
+            <Link
+              to="/lectures"
+              className="px-8 py-3.5 rounded-full bg-primary text-primary-foreground hover:bg-[hsl(var(--primary-glow))] transition-all duration-500 shadow-md shadow-primary/20 text-base tracking-wide"
+            >
+              לכל ההרצאות
+            </Link>
+          </div>
         </div>
       </section>
 
