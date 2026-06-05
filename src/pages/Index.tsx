@@ -578,6 +578,15 @@ const Index = () => {
               </div>
             ))}
           </div>
+
+          <div className="mt-6 flex justify-center md:hidden">
+            <Link
+              to="/lectures"
+              className="px-7 py-3 rounded-full bg-primary text-primary-foreground hover:bg-[hsl(var(--primary-glow))] transition-all duration-500 shadow-md shadow-primary/20 text-sm tracking-wide"
+            >
+              לכל ההרצאות
+            </Link>
+          </div>
         </div>
       </section>
 
