@@ -4,6 +4,7 @@ import { ArrowRight, BookOpen, Users, MessageCircle, Sparkles, Heart, Compass, F
 import SiteHeader from "@/components/SiteHeader";
 import ContactPopup, { type ContactTab } from "@/components/ContactPopup";
 import MobileBottomNav from "@/components/MobileBottomNav";
+import workshopsHero from "@/assets/workshops-hero.jpeg.asset.json";
 
 
 const audiences = [
