@@ -4,6 +4,7 @@ import { ArrowRight, BookOpen, Users, MessageCircle, Sparkles, Heart, Compass, F
 import SiteHeader from "@/components/SiteHeader";
 import ContactPopup, { type ContactTab } from "@/components/ContactPopup";
 import MobileBottomNav from "@/components/MobileBottomNav";
+import workshopsHero from "@/assets/workshops-hero.jpeg.asset.json";
 
 
 const audiences = [
@@ -115,33 +116,39 @@ const Workshops = () => {
 
       <div className="h-12 md:h-20" />
 
+      {/* HERO IMAGE */}
+      <section className="w-full px-[30px] md:px-6 pt-6 md:pt-10">
+        <div className="w-full md:w-[min(1100px,82%)] mx-auto">
+          <div className="rounded-2xl md:rounded-3xl overflow-hidden shadow-[0_20px_50px_-20px_hsl(0_0%_0%_/_0.18)]">
+            <img
+              src={workshopsHero.url}
+              alt="ספרים פתוחים, פרחים ויד אוחזת בדף - מרחב של ביבליותרפיה"
+              className="w-full h-[180px] md:h-[380px] object-cover"
+              loading="eager"
+            />
+          </div>
+        </div>
+      </section>
+
       {/* HERO */}
-      <section className="relative w-full px-[30px] md:px-6 pt-10 md:pt-20 pb-12 md:pb-20">
+      <section className="relative w-full px-[30px] md:px-6 pt-10 md:pt-16 pb-12 md:pb-20">
         <div className="w-full md:w-[min(1100px,82%)] mx-auto">
           <div className="text-right">
-            <span className="inline-block mb-5 px-4 py-1.5 rounded-full bg-primary/10 text-primary text-xs md:text-sm font-medium tracking-wide">
-              סדנאות ביבליותרפיה
-            </span>
             <h1 className="text-foreground text-[2rem] md:text-6xl font-light tracking-tight leading-[1.1] mb-5 md:mb-7 max-w-3xl">
-              סדנאות ביבליותרפיה
-              <br />
               <span className="italic text-primary">
-                הנבנות בקשב לצורך שלכם
+                מילים שפוגשות חיים
               </span>
             </h1>
             <p className="text-foreground/75 text-base md:text-xl font-light max-w-2xl leading-relaxed mb-7 md:mb-9">
+              סדנאות ביבליותרפיה הנבנות בקשב לצורך שלכם.
+              <br />
               מחפשים מרחב עמוק, חי ולא שגרתי לעבודה קבוצתית?
               <br />
               סדנאות המבוססות על קריאה משותפת של טקסטים והנחיה של שיח קבוצתי משמעותי.
             </p>
             <button
               onClick={() => openContact("workshop")}
-              className="inline-flex items-center gap-2 px-7 md:px-9 py-3.5 md:py-4 rounded-full text-foreground text-sm md:text-base font-medium hover:-translate-y-0.5 transition-all duration-300"
-              style={{
-                border: "2px solid transparent",
-                background:
-                  "linear-gradient(hsl(var(--background)), hsl(var(--background))) padding-box, linear-gradient(90deg, hsl(172 79% 65%) 0%, hsl(325 75% 65%) 100%) border-box",
-              }}
+              className="inline-flex items-center gap-2 px-7 md:px-9 py-3.5 md:py-4 rounded-full bg-primary text-primary-foreground text-sm md:text-base font-medium shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300"
             >
               בואו נתכנן לכם סדנה
             </button>
