@@ -116,39 +116,33 @@ const Workshops = () => {
 
       <div className="h-12 md:h-20" />
 
-      {/* HERO IMAGE */}
-      <section className="w-full px-[30px] md:px-6 pt-6 md:pt-10">
-        <div className="w-full md:w-[min(1100px,82%)] mx-auto">
-          <div className="rounded-2xl md:rounded-3xl overflow-hidden shadow-[0_20px_50px_-20px_hsl(0_0%_0%_/_0.18)]">
-            <img
-              src={workshopsHero.url}
-              alt="ספרים פתוחים, פרחים ויד אוחזת בדף - מרחב של ביבליותרפיה"
-              className="w-full h-[180px] md:h-[380px] object-cover"
-              loading="eager"
-            />
-          </div>
-        </div>
-      </section>
+      {/* Hero with background image (≈ 75vh) */}
+      <section className="relative w-full h-[60vh] md:h-[75vh] overflow-hidden">
+        <img
+          src={workshopsHero.url}
+          alt="ספרים פתוחים, פרחים ויד אוחזת בדף - מרחב של ביבליותרפיה"
+          className="absolute inset-0 w-full h-full object-cover [object-position:50%_center]"
+        />
+        <div className="absolute inset-0 bg-gradient-to-l from-black/55 via-black/30 to-black/15" />
 
-      {/* HERO */}
-      <section className="relative w-full px-[30px] md:px-6 pt-10 md:pt-16 pb-12 md:pb-20">
-        <div className="w-full md:w-[min(1100px,82%)] mx-auto">
-          <div className="text-right">
-            <h1 className="text-foreground text-[2rem] md:text-6xl font-light tracking-tight leading-[1.1] mb-5 md:mb-7 max-w-3xl">
-              <span className="italic text-primary">
-                מילים שפוגשות חיים
-              </span>
+        <div className="relative z-10 h-full flex items-end pb-10 md:pb-16 px-[30px] md:px-6">
+          <div className="w-full md:w-[min(1100px,82%)] mx-auto text-right">
+            <Link
+              to="/"
+              className="inline-flex items-center gap-1.5 text-sm text-white/85 hover:text-white mb-5 transition-colors"
+            >
+              <ArrowRight className="w-4 h-4" />
+              חזרה לדף הבית
+            </Link>
+            <h1 className="text-white text-[1.75rem] md:text-6xl font-light tracking-tight leading-tight mb-3 md:mb-4">
+              מילים שפוגשות חיים | <br /> סדנאות ביבליותרפיה
             </h1>
-            <p className="text-foreground/75 text-base md:text-xl font-light max-w-2xl leading-relaxed mb-7 md:mb-9">
-              סדנאות ביבליותרפיה הנבנות בקשב לצורך שלכם.
-              <br />
-              מחפשים מרחב עמוק, חי ולא שגרתי לעבודה קבוצתית?
-              <br />
-              סדנאות המבוססות על קריאה משותפת של טקסטים והנחיה של שיח קבוצתי משמעותי.
+            <p className="text-white/90 text-sm md:text-xl font-light max-w-2xl leading-relaxed mb-6 md:mb-8">
+              סדנאות ביבליותרפיה הנבנות בקשב לצורך שלכם. מחפשים מרחב עמוק, חי ולא שגרתי לעבודה קבוצתית? סדנאות המבוססות על קריאה משותפת של טקסטים והנחיה של שיח קבוצתי משמעותי.
             </p>
             <button
               onClick={() => openContact("workshop")}
-              className="inline-flex items-center gap-2 px-7 md:px-9 py-3.5 md:py-4 rounded-full bg-primary text-primary-foreground text-sm md:text-base font-medium shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300"
+              className="inline-flex items-center gap-2 px-7 md:px-9 py-3 md:py-3.5 rounded-full bg-primary text-primary-foreground text-sm md:text-base font-medium shadow-md hover:bg-[hsl(var(--primary-glow))] hover:-translate-y-0.5 transition-all duration-300"
             >
               בואו נתכנן לכם סדנה
             </button>
