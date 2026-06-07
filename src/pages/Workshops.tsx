@@ -135,7 +135,7 @@ const Workshops = () => {
               חזרה לדף הבית
             </Link>
             <h1 className="text-white text-[1.75rem] md:text-6xl font-light tracking-tight leading-tight mb-3 md:mb-4">
-              מילים שפוגשות חיים | <br /> סדנאות ביבליותרפיה
+              מילים לחיות איתן | <br /> סדנאות ביבליותרפיה
             </h1>
             <p className="text-white/90 text-sm md:text-xl font-light max-w-2xl leading-relaxed mb-6 md:mb-8 whitespace-pre-line">
               {"סדנאות ביבליותרפיה הנבנות בקשב לצורך שלכם. \nמחפשים מרחב עמוק, חי ולא שגרתי לעבודה קבוצתית? סדנאות המבוססות על קריאה משותפת של טקסטים והנחיה של שיח קבוצתי משמעותי."}
