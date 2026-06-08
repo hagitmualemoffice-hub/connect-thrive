@@ -1144,7 +1144,7 @@ export const blogPosts: BlogPostData[] = [
           לסמוך. להרגיש ועדיין למצוא מקום לשמחה.
         </p>
 
-        <p className=\"text-foreground text-lg md:text-xl font-light leading-relaxed pt-4\">
+        <p className="text-foreground text-lg md:text-xl font-light leading-relaxed pt-4">
           {"\n"}
         </p>
 
