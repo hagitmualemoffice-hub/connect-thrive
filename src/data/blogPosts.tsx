@@ -1145,7 +1145,7 @@ export const blogPosts: BlogPostData[] = [
         </p>
 
         <p className="text-foreground text-lg md:text-xl font-light leading-relaxed pt-4">
-          מאחלת לנו את היכולת להחזיק את שני הקצוות - להיות בכאב ובאמונה גם יחד.
+          {"\n"}
         </p>
 
       </>
