@@ -8,6 +8,7 @@ import anxietyMeetingsImg from "@/assets/blog-anxiety-meetings.jpg";
 import entrepreneurshipFailureImg from "@/assets/blog-entrepreneurship-failure.jpg";
 import blogBatEcholocationImg from "@/assets/blog-bat-echolocation.jpg";
 import blogGameBoardImg from "@/assets/blog-game-board.jpg";
+import blogLechLechaImg from "@/assets/blog-lech-lecha.jpg";
 
 export type BlogCategory = "יזמות" | "פסיכולוגיה" | "פרשה ופסיכולוגיה";
 
