@@ -14,6 +14,7 @@ const postIcons: Record<string, LucideIcon> = {
   "entrepreneurship-failure-part-1": Rocket,
   "bat-echolocation-decisions": Volume2,
   "playing-right-board-flipped": Dices,
+  "experiential-values": Coffee,
 };
 
 const BlogPost = () => {
