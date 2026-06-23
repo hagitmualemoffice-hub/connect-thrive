@@ -27,7 +27,11 @@ const SiteHeader = () => {
     <>
       <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm shadow-sm">
         <div className="flex items-center justify-between px-10 py-5">
-          <Link to="/" className="text-foreground text-xl font-semibold tracking-tight">
+          <Link
+            to="/"
+            onDoubleClick={() => navigate("/admin/login")}
+            className="text-foreground text-xl font-semibold tracking-tight select-none"
+          >
             חגית מועלם
           </Link>
 
