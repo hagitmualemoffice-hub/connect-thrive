@@ -48,6 +48,13 @@ const SiteHeader = () => {
                 {item.label}
               </Link>
             ))}
+            <Link
+              to="/admin/login"
+              className="opacity-0 hover:opacity-40 transition-opacity"
+              title="ניהול"
+            >
+              <Lock className="w-3.5 h-3.5 text-foreground/50" />
+            </Link>
           </nav>
 
           <div className="flex items-center gap-3">
