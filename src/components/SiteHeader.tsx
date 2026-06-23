@@ -16,6 +16,7 @@ const SiteHeader = () => {
   const [mailingOpen, setMailingOpen] = useState(false);
   const [contactOpen, setContactOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
 
   const isActive = (href: string) => {
     if (href.startsWith("/#")) return false;
