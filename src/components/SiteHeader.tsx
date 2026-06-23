@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Lock } from "lucide-react";
 import MailingListPopup from "@/components/MailingListPopup";
 import ContactPopup from "@/components/ContactPopup";
 
