@@ -1,16 +1,18 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
 import { ArrowRight } from "lucide-react";
 import SiteHeader from "@/components/SiteHeader";
 import ContactPopup, { type ContactTab } from "@/components/ContactPopup";
 import MobileBottomNav from "@/components/MobileBottomNav";
 import ExpandableText from "@/components/ExpandableText";
 import lectureBg from "@/assets/woman-beach.jpg";
-import { lectureCards } from "@/data/lectures";
+import { fetchLectures } from "@/lib/contentServices";
 
 const Lectures = () => {
   const [contactOpen, setContactOpen] = useState(false);
   const [contactTab, setContactTab] = useState<ContactTab>("lecture");
+  const { data: lectureCards = [] } = useQuery({ queryKey: ["lectures"], queryFn: () => fetchLectures() });
 
   const openContact = (tab: ContactTab) => {
     setContactTab(tab);
@@ -73,7 +75,7 @@ const Lectures = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
             {lectureCards.map((card) => (
               <article
-                key={card.title}
+                key={card.id}
                 className="bg-card rounded-2xl md:rounded-3xl shadow-[0_15px_40px_-15px_hsl(0_0%_0%_/_0.12)] px-7 md:px-10 py-9 md:py-12 text-right flex flex-col transition-all duration-300 ease-out hover:scale-[1.03] hover:shadow-[0_25px_50px_-15px_hsl(var(--primary)/0.25)]"
               >
                 <div className="h-7 mb-3 flex flex-wrap gap-2 justify-start">
@@ -96,7 +98,7 @@ const Lectures = () => {
                   mobileLines={4}
                   className="text-foreground/70 text-xs md:text-sm font-light leading-relaxed mb-2 md:mb-1 flex-1"
                 >
-                  {card.desc}
+                  {card.description}
                 </ExpandableText>
                 <div className="mb-5 md:mb-6">
                   <h4 className="text-foreground text-xs md:text-sm font-semibold mb-1.5 md:mb-2">
