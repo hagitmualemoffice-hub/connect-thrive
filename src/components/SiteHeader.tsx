@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import MailingListPopup from "@/components/MailingListPopup";
 import ContactPopup from "@/components/ContactPopup";
 
@@ -16,6 +16,7 @@ const SiteHeader = () => {
   const [mailingOpen, setMailingOpen] = useState(false);
   const [contactOpen, setContactOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
 
   const isActive = (href: string) => {
     if (href.startsWith("/#")) return false;
@@ -26,7 +27,11 @@ const SiteHeader = () => {
     <>
       <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm shadow-sm">
         <div className="flex items-center justify-between px-10 py-5">
-          <Link to="/" className="text-foreground text-xl font-semibold tracking-tight">
+          <Link
+            to="/"
+            onDoubleClick={() => navigate("/admin/login")}
+            className="text-foreground text-xl font-semibold tracking-tight select-none"
+          >
             חגית מועלם
           </Link>
 
