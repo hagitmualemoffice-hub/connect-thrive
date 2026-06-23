@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
 import { ArrowRight } from "lucide-react";
 import SiteHeader from "@/components/SiteHeader";
 import MailingListPopup from "@/components/MailingListPopup";
@@ -8,12 +9,13 @@ import ContactPopup from "@/components/ContactPopup";
 import MobileBottomNav from "@/components/MobileBottomNav";
 import ExpandableText from "@/components/ExpandableText";
 import projectsBg from "@/assets/woman-beach-projects.jpg";
-import { projectCards } from "@/data/projects";
+import { fetchProjects } from "@/lib/contentServices";
 
 const Projects = () => {
   const [mailingOpen, setMailingOpen] = useState(false);
   const [hostingOpen, setHostingOpen] = useState(false);
   const [contactOpen, setContactOpen] = useState(false);
+  const { data: projectCards = [] } = useQuery({ queryKey: ["projects"], queryFn: () => fetchProjects() });
 
   return (
     <div dir="rtl" className="min-h-screen bg-background text-foreground font-light pb-20 md:pb-0">
@@ -69,7 +71,7 @@ const Projects = () => {
           <div className="space-y-6 md:space-y-10">
             {projectCards.map((card, idx) => (
               <article
-                key={idx}
+                key={card.id}
                 className="bg-card rounded-2xl md:rounded-3xl shadow-[0_20px_60px_-15px_hsl(0_0%_0%_/_0.18)] px-7 md:px-20 py-8 md:py-16 text-right w-full transition-all duration-500 hover:shadow-[0_28px_70px_-15px_hsl(var(--primary)/0.18)] hover:-translate-y-1"
               >
                 <div className="w-full md:w-[min(696px,100%)] mr-0 ml-auto">

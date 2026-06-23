@@ -1,60 +1,16 @@
 import { Link } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
 import { Play, ExternalLink } from "lucide-react";
 import podcastCover from "@/assets/podcast-cover.png";
 import SiteHeader from "@/components/SiteHeader";
 import MobileBottomNav from "@/components/MobileBottomNav";
+import { fetchPodcastEpisodes } from "@/lib/contentServices";
 
 const SPOTIFY_SHOW =
   "https://open.spotify.com/show/2FIal7yOO7htlBkKUwCbxW?si=dtVPb1AQQomBBOTazo3hWA";
 
-const episodes = [
-  {
-    num: "01",
-    title: "על חיבור לגוף עם נעם ארז",
-    description:
-      "על חיבור לגוף, למה שימור פוריות ואיך את יכולה לעשות את התהליך מתוך חיבור ובחירה.",
-    duration: "47 דק׳",
-    date: "מרץ 2026",
-    spotifyUrl: SPOTIFY_SHOW,
-    driveUrl:
-      "https://drive.google.com/file/d/1kEgTm8iRMiUmhaZ6Si4HXalrsmF2HKR5/view?usp=drive_link",
-  },
-  {
-    num: "02",
-    title: 'על הקשבה לגוף עם ד"ר מיכל פרנסט',
-    description:
-      "על הקשבה לגוף בתהליך שימור פוריות, ואיך זו יכולת שיכולה לעזור לך בתהליך.",
-    duration: "52 דק׳",
-    date: "פברואר 2026",
-    spotifyUrl: SPOTIFY_SHOW,
-    driveUrl:
-      "https://drive.google.com/file/d/1w628JudX26Cx5_1szSSlCpO4mOGlolo7/view?usp=sharing",
-  },
-  {
-    num: "03",
-    title: "על חרדה והימנעות עם דורית בנגד אלבד",
-    description:
-      "על חרדה והימנעות בתהליך שימור פוריות, ואיך את יכולה לעזור לעצמך עם זה.",
-    duration: "58 דק׳",
-    date: "ינואר 2026",
-    spotifyUrl: SPOTIFY_SHOW,
-    driveUrl:
-      "https://drive.google.com/file/d/1sobWuQQdj3UCgq0z40kI2zZxSchr1pyQ/view?usp=drive_link",
-  },
-  {
-    num: "04",
-    title: 'על התהליך עצמו עם ד"ר ירדנה היימן',
-    description:
-      'כל מה שאת רוצה לדעת על ההליך עצמו. ד"ר היימן עם הסבר בהיר ומענה לכל השאלות.',
-    duration: "44 דק׳",
-    date: "דצמבר 2025",
-    spotifyUrl: SPOTIFY_SHOW,
-    driveUrl:
-      "https://drive.google.com/file/d/1E6uK-c1ABAzDFdKcBvgJRcXMAIPskOxk/view?usp=drive_link",
-  },
-];
-
 const Podcast = () => {
+  const { data: episodes = [] } = useQuery({ queryKey: ["podcast"], queryFn: () => fetchPodcastEpisodes() });
   return (
     <div className="min-h-screen bg-background pb-20 md:pb-0" dir="rtl">
       <div className="hidden md:block">
