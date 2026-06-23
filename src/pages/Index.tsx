@@ -14,7 +14,9 @@ import lectureBg from "@/assets/woman-beach.jpg";
 import projectsBg from "@/assets/woman-beach-projects.jpg";
 import podcastCover from "@/assets/podcast-cover.png";
 import contactHeart from "@/assets/contact-heart.png";
-import { blogPosts as allBlogPosts } from "@/data/blogPosts";
+import { useQuery } from "@tanstack/react-query";
+import { fetchBlogPosts } from "@/lib/contentServices";
+import { resolveImageUrl } from "@/lib/imageRegistry";
 
 const podcastEpisodes = [
   {
@@ -127,7 +129,7 @@ const lectureCards: LectureCard[] = [
   },
 ];
 
-const blogPosts = allBlogPosts.slice(0, 3);
+
 
 const topNav = [
   { label: "אודות", href: "#about" },
