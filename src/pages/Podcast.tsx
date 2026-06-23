@@ -86,7 +86,7 @@ const Podcast = () => {
                     <span className="inline-block px-3 py-1 rounded-md bg-accent text-primary text-xs font-light">
                       פרק {ep.num}
                     </span>
-                    <span className="text-foreground/50 text-xs font-light">{ep.date}</span>
+                    <span className="text-foreground/50 text-xs font-light">{ep.date_label}</span>
                     <span className="text-foreground/30">·</span>
                     <span className="text-foreground/50 text-xs font-light">{ep.duration}</span>
                   </div>
@@ -100,7 +100,7 @@ const Podcast = () => {
 
                   <div className="flex flex-wrap gap-2 md:gap-3 justify-start">
                     <a
-                      href={ep.spotifyUrl}
+                      href={ep.spotify_url || SPOTIFY_SHOW}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="inline-flex items-center gap-2 px-4 md:px-5 py-2 md:py-2.5 rounded-lg bg-primary text-primary-foreground text-xs md:text-sm font-light hover:bg-[hsl(var(--primary-glow))] transition-colors"
@@ -109,7 +109,7 @@ const Podcast = () => {
                       האזנה ב-Spotify
                     </a>
                     <a
-                      href={ep.driveUrl}
+                      href={ep.drive_url || "#"}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="inline-flex items-center gap-2 px-4 md:px-5 py-2 md:py-2.5 rounded-lg bg-card border border-border text-foreground text-xs md:text-sm font-light hover:bg-accent hover:text-accent-foreground transition-colors"
