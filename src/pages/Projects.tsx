@@ -124,6 +124,16 @@ const Projects = () => {
                         </button>
                       );
                     })}
+                    {card.title.includes("שימור פוריות") && (
+                      <a
+                        href="https://shimurporiut.com"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="px-7 py-2.5 rounded-lg bg-primary text-primary-foreground text-sm font-light hover:bg-[hsl(var(--primary-glow))] transition-colors"
+                      >
+                        בקרי באתר שימור פוריות
+                      </a>
+                    )}
                   </div>
                 </div>
               </article>
