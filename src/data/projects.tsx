@@ -43,6 +43,7 @@ export const projectCards: ProjectCard[] = [
         label: "מקרר התרופות השיתופי",
         href: "https://docs.google.com/spreadsheets/d/1fgakciTdJORHhOip1MwBzUrU4k0H15f5IZY6Liewdi0/edit?gid=0#gid=0&fvid=709051320",
       },
+      { label: "בקרי באתר שימור פוריות", href: "https://shimurporiut.com" },
     ],
   },
   {
