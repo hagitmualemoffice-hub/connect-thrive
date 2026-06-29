@@ -822,6 +822,16 @@ const Index = () => {
                   <br />
                   ומתוך העבודה בו התחדדה גם הדרך שבה אני פוגשת מורכבות, ומתרגמת אותה לחשיבה, עשייה ותנועה בעולם.
                 </p>
+                <p>
+                  <a
+                    href="https://shimurporiut.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-primary hover:underline font-normal"
+                  >
+                    בקרי באתר שימור פוריות
+                  </a>
+                </p>
               </div>
             </div>
           </div>
