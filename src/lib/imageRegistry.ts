@@ -11,8 +11,10 @@ import blogBatEcholocationImg from "@/assets/blog-bat-echolocation.jpg";
 import blogGameBoardImg from "@/assets/blog-game-board.jpg";
 import blogExperientialValuesImg from "@/assets/blog-experiential-values.jpg";
 import blogShlachAsset from "@/assets/blog-shlach.jpg.asset.json";
+import blogBalakEyesOpened from "@/assets/blog-balak-eyes-opened.jpg";
 
 const registry: Record<string, string> = {
+  "blog-balak-eyes-opened.jpg": blogBalakEyesOpened,
   "blog-pesach-freedom.jpg": pesachFreedom,
   "blog-bereshit.jpg": bereshitImg,
   "blog-lag-baomer.jpg": lagBaomerImg,
