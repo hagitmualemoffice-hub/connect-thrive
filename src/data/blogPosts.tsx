@@ -8,8 +8,7 @@ import anxietyMeetingsImg from "@/assets/blog-anxiety-meetings.jpg";
 import entrepreneurshipFailureImg from "@/assets/blog-entrepreneurship-failure.jpg";
 import blogBatEcholocationImg from "@/assets/blog-bat-echolocation.jpg";
 import blogGameBoardImg from "@/assets/blog-game-board.jpg";
-import blogShlachAsset from "@/assets/blog-shlach.jpg.asset.json";
-const blogShlachImg = blogShlachAsset.url;
+import blogShlachImg from "@/assets/blog-shlach.jpg";
 import blogExperientialValuesImg from "@/assets/blog-experiential-values.jpg";
 
 export type BlogCategory = "יזמות" | "פסיכולוגיה" | "פרשה ופסיכולוגיה";

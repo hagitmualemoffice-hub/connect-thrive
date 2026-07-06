@@ -10,8 +10,9 @@ import entrepreneurshipFailureImg from "@/assets/blog-entrepreneurship-failure.j
 import blogBatEcholocationImg from "@/assets/blog-bat-echolocation.jpg";
 import blogGameBoardImg from "@/assets/blog-game-board.jpg";
 import blogExperientialValuesImg from "@/assets/blog-experiential-values.jpg";
-import blogShlachAsset from "@/assets/blog-shlach.jpg.asset.json";
+import blogShlachImg from "@/assets/blog-shlach.jpg";
 import blogBalakEyesOpened from "@/assets/blog-balak-eyes-opened.jpg";
+import blogPinchasPeace from "@/assets/blog-pinchas-peace.jpg";
 
 const registry: Record<string, string> = {
   "blog-balak-eyes-opened.jpg": blogBalakEyesOpened,
@@ -25,7 +26,8 @@ const registry: Record<string, string> = {
   "blog-bat-echolocation.jpg": blogBatEcholocationImg,
   "blog-game-board.jpg": blogGameBoardImg,
   "blog-experiential-values.jpg": blogExperientialValuesImg,
-  "blog-shlach.jpg": blogShlachAsset.url,
+  "blog-shlach.jpg": blogShlachImg,
+  "blog-pinchas-peace.jpg": blogPinchasPeace,
 };
 
 export function resolveImageUrl(input?: string | null): string | undefined {
