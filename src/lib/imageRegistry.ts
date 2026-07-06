@@ -26,7 +26,8 @@ const registry: Record<string, string> = {
   "blog-bat-echolocation.jpg": blogBatEcholocationImg,
   "blog-game-board.jpg": blogGameBoardImg,
   "blog-experiential-values.jpg": blogExperientialValuesImg,
-  "blog-shlach.jpg": blogShlachAsset.url,
+  "blog-shlach.jpg": blogShlachImg,
+  "blog-pinchas-peace.jpg": blogPinchasPeace,
 };
 
 export function resolveImageUrl(input?: string | null): string | undefined {
