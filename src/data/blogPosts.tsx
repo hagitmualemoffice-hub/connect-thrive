@@ -11,6 +11,8 @@ import blogGameBoardImg from "@/assets/blog-game-board.jpg";
 import blogShlachAsset from "@/assets/blog-shlach.jpg.asset.json";
 const blogShlachImg = blogShlachAsset.url;
 import blogExperientialValuesImg from "@/assets/blog-experiential-values.jpg";
+import blogMatotHonestyImg from "@/assets/blog-matot-honesty.jpg";
+
 
 export type BlogCategory = "יזמות" | "פסיכולוגיה" | "פרשה ופסיכולוגיה";
 
