@@ -14,11 +14,13 @@ import blogShlachAsset from "@/assets/blog-shlach.jpg.asset.json";
 import blogBalakEyesOpened from "@/assets/blog-balak-eyes-opened.jpg";
 import blogPinchasPeace from "@/assets/blog-pinchas-peace.jpg";
 import blogShlachPromisedLand from "@/assets/blog-shlach-promised-land.jpg";
+import blogMatotHonesty from "@/assets/blog-matot-honesty.jpg";
 
 const registry: Record<string, string> = {
   "blog-balak-eyes-opened.jpg": blogBalakEyesOpened,
   "blog-pinchas-peace.jpg": blogPinchasPeace,
   "blog-shlach-promised-land.jpg": blogShlachPromisedLand,
+  "blog-matot-honesty.jpg": blogMatotHonesty,
   "blog-pesach-freedom.jpg": pesachFreedom,
   "blog-bereshit.jpg": bereshitImg,
   "blog-lag-baomer.jpg": lagBaomerImg,
