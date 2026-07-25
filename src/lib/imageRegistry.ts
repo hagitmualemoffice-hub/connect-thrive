@@ -15,6 +15,7 @@ import blogBalakEyesOpened from "@/assets/blog-balak-eyes-opened.jpg";
 import blogPinchasPeace from "@/assets/blog-pinchas-peace.jpg";
 import blogShlachPromisedLand from "@/assets/blog-shlach-promised-land.jpg";
 import blogMatotHonesty from "@/assets/blog-matot-honesty.jpg";
+import blogTefilaPrayer from "@/assets/blog-tefila-prayer.jpg";
 
 const registry: Record<string, string> = {
   "blog-balak-eyes-opened.jpg": blogBalakEyesOpened,
