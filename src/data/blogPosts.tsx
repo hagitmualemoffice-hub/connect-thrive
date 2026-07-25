@@ -12,6 +12,7 @@ import blogShlachAsset from "@/assets/blog-shlach.jpg.asset.json";
 const blogShlachImg = blogShlachAsset.url;
 import blogExperientialValuesImg from "@/assets/blog-experiential-values.jpg";
 import blogMatotHonestyImg from "@/assets/blog-matot-honesty.jpg";
+import blogTefilaImg from "@/assets/blog-tefila-prayer.jpg";
 
 
 export type BlogCategory = "יזמות" | "פסיכולוגיה" | "פרשה ופסיכולוגיה";
