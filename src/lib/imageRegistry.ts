@@ -22,6 +22,7 @@ const registry: Record<string, string> = {
   "blog-pinchas-peace.jpg": blogPinchasPeace,
   "blog-shlach-promised-land.jpg": blogShlachPromisedLand,
   "blog-matot-honesty.jpg": blogMatotHonesty,
+  "blog-tefila-prayer.jpg": blogTefilaPrayer,
   "blog-pesach-freedom.jpg": pesachFreedom,
   "blog-bereshit.jpg": bereshitImg,
   "blog-lag-baomer.jpg": lagBaomerImg,
