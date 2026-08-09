@@ -16,8 +16,10 @@ import blogPinchasPeace from "@/assets/blog-pinchas-peace.jpg";
 import blogShlachPromisedLand from "@/assets/blog-shlach-promised-land.jpg";
 import blogMatotHonesty from "@/assets/blog-matot-honesty.jpg";
 import blogTefilaPrayer from "@/assets/blog-tefila-prayer.jpg";
+import blogPlayAbility from "@/assets/blog-play-ability.jpg";
 
 const registry: Record<string, string> = {
+  "blog-play-ability.jpg": blogPlayAbility,
   "blog-balak-eyes-opened.jpg": blogBalakEyesOpened,
   "blog-pinchas-peace.jpg": blogPinchasPeace,
   "blog-shlach-promised-land.jpg": blogShlachPromisedLand,
