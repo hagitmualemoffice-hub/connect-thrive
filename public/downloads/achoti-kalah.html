@@ -118,6 +118,65 @@
     });
   }
 
+  /* ---------------- ערוץ ההעברה: קבצי .js אמיתיים בתג script ---------------- */
+  var AK = window.AK = window.AK || {};
+  var partSink = null;
+  AK.part = function (hash, index, total, b64) {
+    if (partSink && partSink.hash === hash) partSink.receive(index, total, b64);
+  };
+  function b64ToBytes(b64) {
+    var bin = atob(b64), len = bin.length, out = new Uint8Array(len);
+    for (var i = 0; i < len; i++) out[i] = bin.charCodeAt(i);
+    return out;
+  }
+  function loadPartScript(url, hash, index) {
+    return new Promise(function (res, rej) {
+      var s = document.createElement("script");
+      s.src = url;
+      s.onload = function () { s.remove(); res(); };
+      s.onerror = function () {
+        s.remove();
+        var e = new Error("part-blocked");
+        e.detail = { stage: "טעינת חלק JS", url: url, file: hash, index: index };
+        rej(e);
+      };
+      document.head.appendChild(s);
+      setTimeout(function () { rej(new Error("part-timeout")); }, 60000);
+    });
+  }
+  /** מוריד קובץ שלם דרך חלקי ה-JS שלו ומחזיר ArrayBuffer מאומת */
+  function downloadFile(f) {
+    var urls = f.j || [];
+    if (!urls.length) return Promise.reject(new Error("no-js-parts"));
+    var chunks = new Array(urls.length);
+    partSink = { hash: f.h, receive: function (i, n, b64) { chunks[i] = b64ToBytes(b64); } };
+    var chain = Promise.resolve();
+    urls.forEach(function (u, i) {
+      chain = chain.then(function () { return loadPartScript(ORIGIN + u, f.h, i); });
+    });
+    return chain.then(function () {
+      partSink = null;
+      var total = 0, i;
+      for (i = 0; i < chunks.length; i++) {
+        if (!chunks[i]) {
+          var e = new Error("part-missing");
+          e.detail = { stage: "חלק חסר", url: ORIGIN + urls[i], file: f.p, index: i };
+          throw e;
+        }
+        total += chunks[i].length;
+      }
+      var out = new Uint8Array(total), off = 0;
+      for (i = 0; i < chunks.length; i++) { out.set(chunks[i], off); off += chunks[i].length; }
+      var buf = out.buffer;
+      if (buf.byteLength !== f.s || djb2(buf) !== f.c) {
+        var e2 = new Error("קובץ פגום (checksum)");
+        e2.detail = { stage: "אימות קובץ", url: ORIGIN + urls[0], file: f.p, expectedBytes: f.s, gotBytes: buf.byteLength };
+        throw e2;
+      }
+      return buf;
+    }).catch(function (e) { partSink = null; throw e; });
+  }
+
   /* ---------------- הורדת קבצים חסרים ---------------- */
   function downloadMissing(db, manifest, onProgress) {
     return keys(db, BLOBS).then(function (have) {
@@ -134,57 +193,26 @@
       function next() {
         if (failed || idx >= need.length) return Promise.resolve();
         var f = need[idx++];
-        var url = ORIGIN + f.u;
-        return fetch(url, { cache: "no-store" })
-          .then(function (r) {
-            if (!r.ok) {
-              var err = new Error("HTTP " + r.status + " " + (r.statusText || ""));
-              err.detail = {
-                stage: "הורדת קובץ מהאתר",
-                url: url,
-                file: f.p,
-                expectedBytes: f.s,
-                status: r.status,
-                contentType: r.headers.get("content-type") || "(לא ידוע)",
-                contentLength: r.headers.get("content-length") || "(לא ידוע)"
-              };
-              throw err;
-            }
-            return r.arrayBuffer().then(function (buf) {
-              if (buf.byteLength !== f.s || djb2(buf) !== f.c) {
-                var e2 = new Error("קובץ פגום (checksum)");
-                e2.detail = {
-                  stage: "אימות קובץ",
-                  url: url,
-                  file: f.p,
-                  expectedBytes: f.s,
-                  gotBytes: buf.byteLength,
-                  status: r.status,
-                  contentType: r.headers.get("content-type") || "(לא ידוע)"
-                };
-                throw e2;
-              }
-              return put(db, BLOBS, f.h, buf);
-            });
-          })
+        return downloadFile(f)
+          .then(function (buf) { return put(db, BLOBS, f.h, buf); })
           .then(function () {
             doneBytes += f.s;
             if (onProgress) onProgress(doneBytes, totalBytes);
             return next();
           })
           .catch(function (e) {
-            if (!e.detail) e.detail = { stage: "הורדת קובץ מהאתר", url: url, file: f.p, expectedBytes: f.s, error: String(e && e.message || e) };
+            if (!e.detail) e.detail = { stage: "הורדת קובץ מהאתר", file: f.p, expectedBytes: f.s, error: String(e && e.message || e) };
             failed = e;
           });
       }
-      var lanes = [];
-      for (var i = 0; i < Math.min(6, need.length); i++) lanes.push(next());
-      return Promise.all(lanes).then(function () {
+      // תגי script חייבים לרוץ אחד אחרי השני (הקריאה ל-AK.part גלובלית)
+      return next().then(function () {
         if (failed) throw failed;
         return { need: need.length, bytes: totalBytes };
       });
     });
   }
+
 
   /* ---------------- ניקוי קבצים שכבר לא בשימוש ---------------- */
   function gc(db, manifests) {
