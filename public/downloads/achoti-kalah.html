@@ -88,7 +88,7 @@
     return new Promise(function (res, rej) {
       var t = db.transaction(store, mode);
       var out = fn(t.objectStore(store));
-      t.oncomplete = function () { res(out && out.result !== undefined ? out.result : out); };
+      t.oncomplete = function () { res(out && typeof IDBRequest !== "undefined" && out instanceof IDBRequest ? out.result : out); };
       t.onerror = function () { rej(t.error); };
     });
   }
