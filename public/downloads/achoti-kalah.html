@@ -583,7 +583,7 @@
 
   function start(manifest, previous) {
     return buildApp(db, manifest).then(function (app) {
-      return mount(app, manifest.version);
+      return mount(app, manifest.version).then(function () { installDiagnostics(manifest, app); });
     }).then(function () {
       setTimeout(function () {
         put(db, META, "boot", { version: manifest.version, attempts: 0, verified: true });
@@ -601,9 +601,14 @@
   }
 
   function checkForUpdate(current, previous) {
+    // התקנה ישנה ללא תמונות — מעדכנים מיד, עם התקדמות גלויה, ופותחים מחדש לבד
+    var stale = (current.stage || "core") !== MIN_STAGE;
     loadManifest(20000).then(function (remote) {
-      if (!remote || remote.version <= current.version) return;
-      return downloadMissing(db, remote).then(function () {
+      if (!remote || (remote.version <= current.version && !stale)) return;
+      if (stale) toast("מורידה את התמונות של האתר… 0%");
+      return downloadMissing(db, remote, function (d, t) {
+        if (stale && t) toast("מורידה את התמונות של האתר… " + Math.round((d / t) * 100) + "%");
+      }).then(function () {
         return Promise.all([
           put(db, META, "previous", current),
           put(db, META, "current", remote)
@@ -611,9 +616,18 @@
       }).then(function () {
         return gc(db, [remote, current]);
       }).then(function () {
-        toast("עדכון חדש הותקן ומוכן", "פתחי מחדש", function () { location.reload(); });
+        put(db, META, "bootRev", BOOT_REV);
+        if (stale) {
+          toast("העדכון הותקן — פותחת מחדש…");
+          setTimeout(function () { location.reload(); }, 1500);
+        } else {
+          toast("עדכון חדש הותקן ומוכן", "פתחי מחדש", function () { location.reload(); });
+        }
       });
-    }).catch(function () { /* אין אינטרנט או שהעדכון נכשל — האתר המקומי ממשיך כרגיל */ });
+    }).catch(function (e) {
+      window.ACHOTIKALA_UPDATE_ERROR = e && (e.detail || e.message || String(e));
+      if (stale) toast("לא הצלחנו להוריד את התמונות כרגע — ננסה שוב בפתיחה הבאה");
+    });
   }
 })();
 </script>
