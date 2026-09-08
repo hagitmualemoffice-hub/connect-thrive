@@ -29,3 +29,20 @@ node scripts/build-offline-update.mjs /path/to/app-folder --version 42
 3. לפרסם את האתר. זהו — כל המשתמשות יקבלו את העדכון אוטומטית בפתיחה הבאה.
 
 רישום הקבצים שכבר הועלו: `scripts/offline-update-registry.json` (לא למחוק — הוא מה שמונע העלאות כפולות).
+
+## שלב א' — ליבה בלבד (גרסה 42)
+
+המניפסט הנוכחי כולל רק את קבצי הליבה: `index.html`, `app.js`, `assets/style.css`,
+אייקונים, `favicon.ico`, `manifest.webmanifest`, `placeholder.svg` (סה"כ ~2.3MB, ~3.1MB כחלקי JS).
+תמונות, PDF ומדיה כבדה עדיין לא הועלו — ה־bootstrap מחליף אותן אוטומטית בתמונה שקופה
+כך שהאפליקציה נטענת ועובדת במלואה.
+
+המניפסט המלא (186 קבצים) שמור ב-`scripts/offline-full-manifest.json`.
+
+### להוספת המדיה בשלב ב'
+```bash
+cp scripts/offline-full-manifest.json public/updates/manifest.json
+# לעדכן version למספר הבא, ואז:
+node scripts/convert-parts.mjs
+```
+כל מה שכבר הומר לא יומר שוב (רישום ב-`scripts/offline-parts-registry.json`).
