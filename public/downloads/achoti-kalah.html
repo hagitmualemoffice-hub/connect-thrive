@@ -88,7 +88,7 @@
     return new Promise(function (res, rej) {
       var t = db.transaction(store, mode);
       var out = fn(t.objectStore(store));
-      t.oncomplete = function () { res(out && out.result !== undefined ? out.result : out); };
+      t.oncomplete = function () { res(out && typeof IDBRequest !== "undefined" && out instanceof IDBRequest ? out.result : out); };
       t.onerror = function () { rej(t.error); };
     });
   }
@@ -243,6 +243,20 @@
       document.head.appendChild(document.importNode(el, true));
     });
 
+    // גיליונות עיצוב שלא מקושרים ישירות מה-HTML (הטוען הישן של האפליקציה הזריק אותם)
+    var linked = {};
+    Array.prototype.slice.call(document.head.querySelectorAll('link[rel="stylesheet"]')).forEach(function (l) {
+      linked[l.getAttribute("href")] = 1;
+    });
+    Object.keys(app.urlMap).forEach(function (p) {
+      if (!/\.css$/i.test(p) || linked[app.urlMap[p]]) return;
+      var l = document.createElement("link");
+      l.rel = "stylesheet";
+      l.href = app.urlMap[p];
+      document.head.appendChild(l);
+    });
+
+
     var scripts = [];
     Array.prototype.slice.call(doc.body.children).forEach(function (el) {
       if (el.tagName.toLowerCase() === "script") { scripts.push(el); return; }
@@ -263,10 +277,14 @@
       // המנגנון הישן של העדכונים בתוך האפליקציה אינו רץ יותר — הקובץ הזה אחראי לעדכונים.
       var origPath = null;
       for (var p in app.urlMap) if (app.urlMap[p] === src) origPath = p;
-      if (origPath === "update-config.js") return runNext(i + 1);
-      if (origPath === "bootstrap.js") {
+      if (!origPath && src.indexOf("blob:") !== 0) origPath = src.replace(/^\.?\//, "").split("?")[0];
+      if (origPath === "bootstrap.js" || origPath === "boot-core.js") {
         if (!app.urlMap["app.js"]) return runNext(i + 1);
         src = app.urlMap["app.js"];
+      } else if (src.indexOf("blob:") !== 0) {
+        // קובץ שאינו חלק מהחבילה (למשל update-config.js הישן) — מדלגים
+        if (!app.urlMap[origPath]) return runNext(i + 1);
+        src = app.urlMap[origPath];
       }
       return new Promise(function (res) {
         s.onload = s.onerror = function () { res(); };
