@@ -32,7 +32,7 @@ const PARTS_DIR = path.join(OUT_DIR, "parts");
 const MANIFEST_JSON = path.join(OUT_DIR, "manifest.json");
 const MANIFEST_JS = path.join(OUT_DIR, "manifest.js");
 const PARTS_REGISTRY = path.join(root, "scripts/offline-parts-registry.json");
-const CHUNK_RAW = 600 * 1024;
+const CHUNK_RAW = 200 * 1024; // חלקים קטנים — אמינים יותר ברשתות מסוננות
 
 const parts = fs.existsSync(PARTS_REGISTRY) ? JSON.parse(fs.readFileSync(PARTS_REGISTRY, "utf8")) : {};
 const previous = fs.existsSync(MANIFEST_JSON) ? JSON.parse(fs.readFileSync(MANIFEST_JSON, "utf8")) : null;
@@ -124,21 +124,26 @@ for (const rel of [...wanted].sort()) {
 /* ---------- 3. אריזה של מה שהשתנה בלבד ---------- */
 fs.mkdirSync(PARTS_DIR, { recursive: true });
 let packed = 0, reused = 0;
+const asMeta = (v) => (Array.isArray(v) ? null : v && Array.isArray(v.k) ? v : null);
 for (const f of entries) {
-  if (parts[f.h] && parts[f.h].every((u) => fs.existsSync(path.join(root, "public", u)))) {
-    f.j = parts[f.h];
+  const prev = asMeta(parts[f.h]);
+  if (prev && prev.k.every((c) => fs.existsSync(path.join(root, "public", c.u)))) {
+    f.k = prev.k;
+    f.j = prev.k.map((c) => c.u);
     reused++;
   } else {
     const n = Math.max(1, Math.ceil(f.buf.length / CHUNK_RAW));
-    const urls = [];
+    const k = [];
     for (let i = 0; i < n; i++) {
       const slice = f.buf.subarray(i * CHUNK_RAW, (i + 1) * CHUNK_RAW);
       const name = `${f.h}.${i}.js`;
       fs.writeFileSync(path.join(PARTS_DIR, name), `AK.part("${f.h}",${i},${n},"${slice.toString("base64")}");\n`);
-      urls.push("/updates/parts/" + name);
+      // u=כתובת, l=אורך בבתים, c=חתימה של החלק
+      k.push({ u: "/updates/parts/" + name, l: slice.length, c: djb2(slice) });
     }
-    parts[f.h] = urls;
-    f.j = urls;
+    parts[f.h] = { k };
+    f.k = k;
+    f.j = k.map((c) => c.u);
     packed++;
     console.log(`↑ ${f.p} (${n} חלקים)`);
   }
