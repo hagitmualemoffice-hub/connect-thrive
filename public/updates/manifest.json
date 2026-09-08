@@ -1,29 +1,29 @@
 {
-  "version": 42,
-  "generated": "2026-09-08T20:43:49.321Z",
+  "version": 43,
+  "generated": "2026-09-08T21:25:56.836Z",
   "entry": "index.html",
+  "source": "https://achotikala.com",
+  "stage": "core",
   "files": [
     {
-      "p": "app.js",
-      "h": "6111930d5baced52fb695bf1a578749b",
-      "s": 2151685,
-      "c": "b4b3b4d7",
-      "u": "/__l5e/assets-v1/79c3d688-bdfb-421e-812c-2db5e761f2a7/6111930d5baced52fb695bf1a578749b.bin",
-      "j": [
-        "/updates/parts/6111930d5baced52fb695bf1a578749b.0.js",
-        "/updates/parts/6111930d5baced52fb695bf1a578749b.1.js",
-        "/updates/parts/6111930d5baced52fb695bf1a578749b.2.js",
-        "/updates/parts/6111930d5baced52fb695bf1a578749b.3.js"
-      ]
-    },
-    {
-      "p": "assets/style.css",
+      "p": "assets/index-C5RpXQ-G.css",
       "h": "def196108ac4466dacf2786df74f03e1",
       "s": 143294,
       "c": "1e895653",
-      "u": "/__l5e/assets-v1/088f2ce8-dd66-4c42-ba22-1f65d2bfd57b/def196108ac4466dacf2786df74f03e1.bin",
       "j": [
         "/updates/parts/def196108ac4466dacf2786df74f03e1.0.js"
+      ]
+    },
+    {
+      "p": "assets/index-D72rqkiy.js",
+      "h": "42f9c31f6453a49f8e4a3d845593e861",
+      "s": 2135450,
+      "c": "2dc57e0a",
+      "j": [
+        "/updates/parts/42f9c31f6453a49f8e4a3d845593e861.0.js",
+        "/updates/parts/42f9c31f6453a49f8e4a3d845593e861.1.js",
+        "/updates/parts/42f9c31f6453a49f8e4a3d845593e861.2.js",
+        "/updates/parts/42f9c31f6453a49f8e4a3d845593e861.3.js"
       ]
     },
     {
@@ -31,7 +31,6 @@
       "h": "8ebfdf4fcbe6548e11a8df19a669cc15",
       "s": 14518,
       "c": "23fc31a",
-      "u": "/__l5e/assets-v1/e3b089fc-731c-4277-9c1d-1d700a8ec735/8ebfdf4fcbe6548e11a8df19a669cc15.bin",
       "j": [
         "/updates/parts/8ebfdf4fcbe6548e11a8df19a669cc15.0.js"
       ]
@@ -41,7 +40,6 @@
       "h": "7803f6b0d550f7de68b0d54792c0ccdc",
       "s": 3915,
       "c": "d6a0699",
-      "u": "/__l5e/assets-v1/f0436623-3f3c-4378-941b-7eefd789f512/7803f6b0d550f7de68b0d54792c0ccdc.bin",
       "j": [
         "/updates/parts/7803f6b0d550f7de68b0d54792c0ccdc.0.js"
       ]
@@ -51,7 +49,6 @@
       "h": "94b529d1e3edb4facde146182a7b8f12",
       "s": 15168,
       "c": "c5d48700",
-      "u": "/__l5e/assets-v1/2b7c9f94-1eb3-4127-a3ae-ddf90bffed66/94b529d1e3edb4facde146182a7b8f12.bin",
       "j": [
         "/updates/parts/94b529d1e3edb4facde146182a7b8f12.0.js"
       ]
@@ -61,19 +58,17 @@
       "h": "6ad20e5e54e7b866b131643643e45f70",
       "s": 10798,
       "c": "9b8a4461",
-      "u": "/__l5e/assets-v1/caa5efa2-872b-4811-9da6-f4b5bcc0c26e/6ad20e5e54e7b866b131643643e45f70.bin",
       "j": [
         "/updates/parts/6ad20e5e54e7b866b131643643e45f70.0.js"
       ]
     },
     {
       "p": "index.html",
-      "h": "1c67520e6b23578c57717d66e385d5e3",
-      "s": 2490,
-      "c": "d5b92d0e",
-      "u": "/__l5e/assets-v1/3df8e88c-c743-4c05-843f-306bdf6dbd06/1c67520e6b23578c57717d66e385d5e3.bin",
+      "h": "e575e39e3e65763c2a8f64cba4ac76f7",
+      "s": 2621,
+      "c": "599819f8",
       "j": [
-        "/updates/parts/1c67520e6b23578c57717d66e385d5e3.0.js"
+        "/updates/parts/e575e39e3e65763c2a8f64cba4ac76f7.0.js"
       ]
     },
     {
@@ -81,31 +76,9 @@
       "h": "7a13391db2861b4d96d0a6af3919f670",
       "s": 752,
       "c": "5bde15ec",
-      "u": "/__l5e/assets-v1/c2be810b-4aaf-4d64-aca9-ddd371f15d11/7a13391db2861b4d96d0a6af3919f670.bin",
       "j": [
         "/updates/parts/7a13391db2861b4d96d0a6af3919f670.0.js"
       ]
-    },
-    {
-      "p": "placeholder.svg",
-      "h": "c7f8fef98e76c2621a69fb6a06ebad4e",
-      "s": 28625,
-      "c": "d66157d6",
-      "u": "/__l5e/assets-v1/4bc84a59-72eb-4c89-82f4-f3bdfc0e735a/c7f8fef98e76c2621a69fb6a06ebad4e.bin",
-      "j": [
-        "/updates/parts/c7f8fef98e76c2621a69fb6a06ebad4e.0.js"
-      ]
-    },
-    {
-      "p": "אחותי כלה — פתיחת האתר.html",
-      "h": "1c67520e6b23578c57717d66e385d5e3",
-      "s": 2490,
-      "c": "d5b92d0e",
-      "u": "/__l5e/assets-v1/3df8e88c-c743-4c05-843f-306bdf6dbd06/1c67520e6b23578c57717d66e385d5e3.bin",
-      "j": [
-        "/updates/parts/1c67520e6b23578c57717d66e385d5e3.0.js"
-      ]
     }
-  ],
-  "stage": "core"
+  ]
 }
