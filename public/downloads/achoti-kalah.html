@@ -231,7 +231,11 @@
       function next() {
         if (failed || idx >= need.length) return Promise.resolve();
         var f = need[idx++];
-        return downloadFile(f)
+        var fileDone = 0;
+        return downloadFile(f, function (n) {
+          fileDone += n;
+          if (onProgress) onProgress(Math.min(doneBytes + fileDone, totalBytes), totalBytes);
+        })
           .then(function (buf) { return put(db, BLOBS, f.h, buf); })
           .then(function () {
             doneBytes += f.s;
