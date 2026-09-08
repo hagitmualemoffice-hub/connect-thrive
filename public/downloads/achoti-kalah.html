@@ -369,9 +369,28 @@
         return start(manifest, null);
       });
     }).catch(function (e) {
-      say("ההתקנה הראשונה דורשת חיבור לאינטרנט");
-      fail("לא הצלחנו להוריד את האתר כרגע (" + (e.message || e) + ").<br>" +
-        "בדקי חיבור לאינטרנט ופתחי את הקובץ שוב.");
+      say("ההתקנה הראשונה נכשלה");
+      var d = e && e.detail;
+      var rows = "";
+      if (d) {
+        rows =
+          "<div style='text-align:start;direction:ltr;background:#faf6f8;border-radius:10px;padding:12px;margin-top:12px;font-size:12px;word-break:break-all'>" +
+          "<div><b>stage:</b> " + (d.stage || "") + "</div>" +
+          "<div><b>url:</b> " + (d.url || "") + "</div>" +
+          "<div><b>file:</b> " + (d.file || "") + "</div>" +
+          "<div><b>status:</b> " + (d.status !== undefined ? d.status : "(no response)") + "</div>" +
+          "<div><b>content-type:</b> " + (d.contentType || "") + "</div>" +
+          "<div><b>expected bytes:</b> " + (d.expectedBytes !== undefined ? d.expectedBytes : "") + "</div>" +
+          (d.gotBytes !== undefined ? "<div><b>got bytes:</b> " + d.gotBytes + "</div>" : "") +
+          (d.contentLength ? "<div><b>content-length:</b> " + d.contentLength + "</div>" : "") +
+          (d.error ? "<div><b>error:</b> " + d.error + "</div>" : "") +
+          "</div>";
+      } else {
+        rows = "<div style='margin-top:10px;font-size:13px'>שלב: טעינת רשימת העדכונים (manifest.js) — " +
+          ORIGIN + "/updates/manifest.js</div>";
+      }
+      fail("לא הצלחנו להוריד את האתר כרגע (" + (e.message || e) + ")." + rows +
+        "<div style='margin-top:10px'>צלמי את המסך הזה ושלחי אותו.</div>");
     });
   }
 
