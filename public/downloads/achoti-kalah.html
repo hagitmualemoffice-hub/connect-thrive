@@ -263,10 +263,14 @@
       // המנגנון הישן של העדכונים בתוך האפליקציה אינו רץ יותר — הקובץ הזה אחראי לעדכונים.
       var origPath = null;
       for (var p in app.urlMap) if (app.urlMap[p] === src) origPath = p;
-      if (origPath === "update-config.js") return runNext(i + 1);
-      if (origPath === "bootstrap.js") {
+      if (!origPath && src.indexOf("blob:") !== 0) origPath = src.replace(/^\.?\//, "").split("?")[0];
+      if (origPath === "bootstrap.js" || origPath === "boot-core.js") {
         if (!app.urlMap["app.js"]) return runNext(i + 1);
         src = app.urlMap["app.js"];
+      } else if (src.indexOf("blob:") !== 0) {
+        // קובץ שאינו חלק מהחבילה (למשל update-config.js הישן) — מדלגים
+        if (!app.urlMap[origPath]) return runNext(i + 1);
+        src = app.urlMap[origPath];
       }
       return new Promise(function (res) {
         s.onload = s.onerror = function () { res(); };
