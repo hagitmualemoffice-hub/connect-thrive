@@ -243,6 +243,20 @@
       document.head.appendChild(document.importNode(el, true));
     });
 
+    // גיליונות עיצוב שלא מקושרים ישירות מה-HTML (הטוען הישן של האפליקציה הזריק אותם)
+    var linked = {};
+    Array.prototype.slice.call(document.head.querySelectorAll('link[rel="stylesheet"]')).forEach(function (l) {
+      linked[l.getAttribute("href")] = 1;
+    });
+    Object.keys(app.urlMap).forEach(function (p) {
+      if (!/\.css$/i.test(p) || linked[app.urlMap[p]]) return;
+      var l = document.createElement("link");
+      l.rel = "stylesheet";
+      l.href = app.urlMap[p];
+      document.head.appendChild(l);
+    });
+
+
     var scripts = [];
     Array.prototype.slice.call(doc.body.children).forEach(function (el) {
       if (el.tagName.toLowerCase() === "script") { scripts.push(el); return; }
