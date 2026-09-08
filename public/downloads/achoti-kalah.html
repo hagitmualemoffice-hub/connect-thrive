@@ -261,6 +261,9 @@
       var dec = new TextDecoder("utf-8");
       var sortedPaths = paths.slice().sort(function (a, b) { return b.length - a.length; });
 
+      // מדיה שעדיין לא הועברה לערוץ העדכונים (שלב ב') — מוחלפת בתמונה שקופה זמנית
+      var PLACEHOLDER = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7";
+      var MEDIA_RE = /(["'(])(?:\.\/|\/)?((?:assets|images|img|media|files|fonts)\/[^"')?#]+\.(?:jpe?g|png|webp|gif|avif|bmp|pdf|mp3|m4a|wav|ogg|mp4|webm|zip|woff2?|ttf|otf))(["')])/g;
       function rewrite(text) {
         sortedPaths.forEach(function (p) {
           var u = urlMap[p];
@@ -268,8 +271,13 @@
           var re = new RegExp("([\"'(])(?:\\./|/)?" + esc(p) + "([\"')])", "g");
           text = text.replace(re, "$1" + u + "$2");
         });
+        // כל מה שנשאר ולא קיים מקומית — כתובת חוקית שלא שוברת את האפליקציה
+        text = text.replace(MEDIA_RE, function (m, a, p, b) {
+          return byPath[p] ? m : a + PLACEHOLDER + b;
+        });
         return text;
       }
+
 
       var entryHtml = null;
       textPaths.forEach(function (p) {
