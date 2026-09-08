@@ -40,6 +40,8 @@
   var qs = new URLSearchParams(location.search);
   var ORIGIN = qs.get("origin") || "https://hagitmualem.com";
   var DB_NAME = "achotikala-app";
+  var BOOT_REV = 2;           // גרסת קובץ הפתיחה
+  var MIN_STAGE = "full";     // התקנות ישנות ללא תמונות — יעודכנו מיד
   var BLOBS = "blobs";
   var META = "meta";
 
@@ -290,6 +292,153 @@
     });
   }
 
+  /* ---------------- פותר כתובות תמונות בזמן ריצה ---------------- */
+  /* החלפת הטקסט הסטטית מכסה רק כתובות שכתובות במפורש בקוד.
+     תמונות שנבנות דינמית (מהתוכן, מהמסד, מ-srcset או מרקע ב-CSS)
+     מתורגמות כאן בזמן אמת לקבצים ששמורים במחשב. */
+  function installResolver(app) {
+    var byName = {}, byPath = {};
+    Object.keys(app.urlMap).forEach(function (p) {
+      byPath[p] = app.urlMap[p];
+      byName[p.split("/").pop()] = app.urlMap[p];
+    });
+    var misses = window.ACHOTIKALA_MEDIA_MISSES = window.ACHOTIKALA_MEDIA_MISSES || [];
+    var hits = 0;
+
+    function resolve(v) {
+      if (!v || typeof v !== "string") return v;
+      if (/^(blob:|data:)/i.test(v)) return v;
+      var clean = v.split("?")[0].split("#")[0].replace(/^https?:\/\/[^/]+/i, "");
+      var rel = clean.replace(/^\.?\//, "");
+      var u = byPath[rel] || byName[rel.split("/").pop()];
+      if (u) { hits++; return u; }
+      if (/\.(jpe?g|png|webp|gif|avif|svg|ico|bmp|mp3|m4a|wav|ogg|mp4|webm|pdf|woff2?|ttf|otf)$/i.test(clean)) {
+        misses.push({ requested: v, normalized: rel, name: rel.split("/").pop(), inPackage: false, at: Date.now() });
+      }
+      return v;
+    }
+    window.ACHOTIKALA_RESOLVE_ASSET = resolve;
+    window.ACHOTIKALA_ASSET_STATS = function () {
+      return { packaged: Object.keys(byPath).length, resolved: hits, misses: misses.length };
+    };
+
+    function resolveSrcset(v) {
+      if (!v) return v;
+      return v.split(",").map(function (part) {
+        var bits = part.trim().split(/\s+/);
+        if (bits[0]) bits[0] = resolve(bits[0]);
+        return bits.join(" ");
+      }).join(", ");
+    }
+    function resolveStyle(v) {
+      if (!v || v.indexOf("url(") < 0) return v;
+      return v.replace(/url\((['"]?)([^'")]+)\1\)/g, function (m, q, u) { return "url(" + q + resolve(u) + q + ")"; });
+    }
+
+    ["HTMLImageElement", "HTMLSourceElement", "HTMLAudioElement", "HTMLVideoElement", "HTMLIFrameElement"].forEach(function (n) {
+      var C = window[n];
+      if (!C) return;
+      var d = Object.getOwnPropertyDescriptor(C.prototype, "src");
+      if (d && d.set) {
+        Object.defineProperty(C.prototype, "src", {
+          configurable: true, enumerable: d.enumerable,
+          get: function () { return d.get.call(this); },
+          set: function (v) { d.set.call(this, resolve(v)); }
+        });
+      }
+      var ss = Object.getOwnPropertyDescriptor(C.prototype, "srcset");
+      if (ss && ss.set) {
+        Object.defineProperty(C.prototype, "srcset", {
+          configurable: true, enumerable: ss.enumerable,
+          get: function () { return ss.get.call(this); },
+          set: function (v) { ss.set.call(this, resolveSrcset(v)); }
+        });
+      }
+    });
+
+    var origSet = Element.prototype.setAttribute;
+    Element.prototype.setAttribute = function (name, value) {
+      var n = String(name).toLowerCase();
+      if (n === "src" || n === "poster") value = resolve(value);
+      else if (n === "srcset" || n === "imagesrcset") value = resolveSrcset(value);
+      else if (n === "style") value = resolveStyle(value);
+      else if (n === "href" && /^(link|image)$/i.test(this.tagName)) value = resolve(value);
+      return origSet.call(this, name, value);
+    };
+
+    function fixEl(el) {
+      if (!el || el.nodeType !== 1) return;
+      var tag = el.tagName.toLowerCase();
+      if (tag === "img" || tag === "source" || tag === "video" || tag === "audio" || tag === "iframe") {
+        var s = el.getAttribute("src");
+        if (s) { var r = resolve(s); if (r !== s) origSet.call(el, "src", r); }
+        var ss2 = el.getAttribute("srcset");
+        if (ss2) { var r2 = resolveSrcset(ss2); if (r2 !== ss2) origSet.call(el, "srcset", r2); }
+        var po = el.getAttribute("poster");
+        if (po) { var r3 = resolve(po); if (r3 !== po) origSet.call(el, "poster", r3); }
+      }
+      var st = el.getAttribute && el.getAttribute("style");
+      if (st && st.indexOf("url(") >= 0) { var r4 = resolveStyle(st); if (r4 !== st) origSet.call(el, "style", r4); }
+    }
+    function scan(root) {
+      fixEl(root);
+      if (root.querySelectorAll) Array.prototype.forEach.call(root.querySelectorAll("img,source,video,audio,iframe,[style*='url(']"), fixEl);
+    }
+    new MutationObserver(function (recs) {
+      recs.forEach(function (r) {
+        if (r.type === "attributes") fixEl(r.target);
+        else Array.prototype.forEach.call(r.addedNodes, function (n) { if (n.nodeType === 1) scan(n); });
+      });
+    }).observe(document.documentElement, {
+      childList: true, subtree: true, attributes: true,
+      attributeFilter: ["src", "srcset", "poster", "style"]
+    });
+    scan(document.documentElement);
+  }
+
+  /* ---------------- מסך אבחון (לחיצה ארוכה על הפינה או ?diag=1) ---------------- */
+  function installDiagnostics(manifest, app) {
+    function show() {
+      var misses = window.ACHOTIKALA_MEDIA_MISSES || [];
+      var uniq = {}, list = [];
+      misses.forEach(function (m) { if (!uniq[m.normalized]) { uniq[m.normalized] = 1; list.push(m); } });
+      var stats = window.ACHOTIKALA_ASSET_STATS ? window.ACHOTIKALA_ASSET_STATS() : {};
+      var d = document.createElement("div");
+      d.style.cssText = "position:fixed;inset:0;background:#fff;z-index:2147483600;overflow:auto;padding:16px;" +
+        "font:13px/1.6 monospace;direction:ltr;text-align:left";
+      d.innerHTML = "<button style='float:right;padding:6px 12px'>סגירה</button>" +
+        "<h3>Achoti Kalah offline diagnostics</h3>" +
+        "<div>manifest version: <b>" + manifest.version + "</b> (" + (manifest.stage || "?") + ")</div>" +
+        "<div>generated: " + (manifest.generated || "") + "</div>" +
+        "<div>files in package: " + manifest.files.length + "</div>" +
+        "<div>assets resolved locally: " + (stats.resolved || 0) + "</div>" +
+        "<div>unresolved assets: <b>" + list.length + "</b></div>" +
+        "<div>update source: " + ORIGIN + "</div>" +
+        "<div>bootstrap rev: " + BOOT_REV + "</div><hr>" +
+        (list.length
+          ? list.map(function (m) {
+              return "<div style='margin-bottom:8px;word-break:break-all'>" +
+                "requested: " + m.requested + "<br>normalized: " + m.normalized +
+                "<br>filename: " + m.name + "<br>in package: NO (no stored blob)" +
+                "<br>rendered as: original URL (network)</div>";
+            }).join("")
+          : "<div>all requested assets resolved from local storage ✔</div>");
+      d.querySelector("button").onclick = function () { d.remove(); };
+      document.body.appendChild(d);
+    }
+    window.ACHOTIKALA_DIAGNOSTICS = show;
+    var hot = document.createElement("div");
+    hot.style.cssText = "position:fixed;bottom:0;inset-inline-start:0;width:38px;height:38px;z-index:2147483500";
+    hot.title = "אבחון";
+    var timer = null;
+    hot.addEventListener("pointerdown", function () { timer = setTimeout(show, 1500); });
+    ["pointerup", "pointerleave", "pointercancel"].forEach(function (e) {
+      hot.addEventListener(e, function () { clearTimeout(timer); });
+    });
+    document.body.appendChild(hot);
+    if (qs.get("diag") === "1") setTimeout(show, 1500);
+  }
+
   function mount(app, version) {
     var doc = new DOMParser().parseFromString(app.html, "text/html");
     document.documentElement.setAttribute("lang", doc.documentElement.getAttribute("lang") || "he");
@@ -320,6 +469,7 @@
       document.head.appendChild(l);
     });
 
+    installResolver(app);
 
     var scripts = [];
     Array.prototype.slice.call(doc.body.children).forEach(function (el) {
@@ -433,7 +583,7 @@
 
   function start(manifest, previous) {
     return buildApp(db, manifest).then(function (app) {
-      return mount(app, manifest.version);
+      return mount(app, manifest.version).then(function () { installDiagnostics(manifest, app); });
     }).then(function () {
       setTimeout(function () {
         put(db, META, "boot", { version: manifest.version, attempts: 0, verified: true });
@@ -451,9 +601,14 @@
   }
 
   function checkForUpdate(current, previous) {
+    // התקנה ישנה ללא תמונות — מעדכנים מיד, עם התקדמות גלויה, ופותחים מחדש לבד
+    var stale = (current.stage || "core") !== MIN_STAGE;
     loadManifest(20000).then(function (remote) {
-      if (!remote || remote.version <= current.version) return;
-      return downloadMissing(db, remote).then(function () {
+      if (!remote || (remote.version <= current.version && !stale)) return;
+      if (stale) toast("מורידה את התמונות של האתר… 0%");
+      return downloadMissing(db, remote, function (d, t) {
+        if (stale && t) toast("מורידה את התמונות של האתר… " + Math.round((d / t) * 100) + "%");
+      }).then(function () {
         return Promise.all([
           put(db, META, "previous", current),
           put(db, META, "current", remote)
@@ -461,9 +616,18 @@
       }).then(function () {
         return gc(db, [remote, current]);
       }).then(function () {
-        toast("עדכון חדש הותקן ומוכן", "פתחי מחדש", function () { location.reload(); });
+        put(db, META, "bootRev", BOOT_REV);
+        if (stale) {
+          toast("העדכון הותקן — פותחת מחדש…");
+          setTimeout(function () { location.reload(); }, 1500);
+        } else {
+          toast("עדכון חדש הותקן ומוכן", "פתחי מחדש", function () { location.reload(); });
+        }
       });
-    }).catch(function () { /* אין אינטרנט או שהעדכון נכשל — האתר המקומי ממשיך כרגיל */ });
+    }).catch(function (e) {
+      window.ACHOTIKALA_UPDATE_ERROR = e && (e.detail || e.message || String(e));
+      if (stale) toast("לא הצלחנו להוריד את התמונות כרגע — ננסה שוב בפתיחה הבאה");
+    });
   }
 })();
 </script>
