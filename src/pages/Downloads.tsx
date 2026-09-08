@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { Download } from "lucide-react";
-import offlineAsset from "../../public/downloads/achotikala-offline.zip.asset.json";
+import offlineAsset from "@/assets/achotikala-offline.zip.asset.json";
 
 const files: Record<string, { url: string; name: string; sizeLabel: string; title: string }> = {
   "achotikala-offline.zip": {
