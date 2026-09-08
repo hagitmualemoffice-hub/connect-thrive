@@ -1,6 +1,6 @@
 {
-  "version": 44,
-  "generated": "2026-09-08T21:40:25.195Z",
+  "version": 45,
+  "generated": "2026-09-08T21:53:44.058Z",
   "entry": "index.html",
   "source": "https://achotikala.com",
   "stage": "full",
@@ -462,24 +462,24 @@
       ]
     },
     {
-      "p": "assets/index-BcQou4JW.css",
-      "h": "7d096a350ed8c34edb0e673099c129a9",
-      "s": 143352,
-      "c": "b8b10e4b",
+      "p": "assets/index-Ci7Y_8qZ.js",
+      "h": "38b34faea023ffe08dd2537ff32441cc",
+      "s": 2138277,
+      "c": "f7346902",
       "j": [
-        "/updates/parts/7d096a350ed8c34edb0e673099c129a9.0.js"
+        "/updates/parts/38b34faea023ffe08dd2537ff32441cc.0.js",
+        "/updates/parts/38b34faea023ffe08dd2537ff32441cc.1.js",
+        "/updates/parts/38b34faea023ffe08dd2537ff32441cc.2.js",
+        "/updates/parts/38b34faea023ffe08dd2537ff32441cc.3.js"
       ]
     },
     {
-      "p": "assets/index-CAHWFSQ1.js",
-      "h": "98c9102b2375cbee95f2296ead023336",
-      "s": 2138130,
-      "c": "98491787",
+      "p": "assets/index-HFV3rH8c.css",
+      "h": "40329e685e4039baa20afb10839da3c5",
+      "s": 143322,
+      "c": "4853bd1",
       "j": [
-        "/updates/parts/98c9102b2375cbee95f2296ead023336.0.js",
-        "/updates/parts/98c9102b2375cbee95f2296ead023336.1.js",
-        "/updates/parts/98c9102b2375cbee95f2296ead023336.2.js",
-        "/updates/parts/98c9102b2375cbee95f2296ead023336.3.js"
+        "/updates/parts/40329e685e4039baa20afb10839da3c5.0.js"
       ]
     },
     {
@@ -651,11 +651,11 @@
     },
     {
       "p": "index.html",
-      "h": "42db8aad994dd704aa8505d3e376abd4",
+      "h": "02eb24a7ca60f7ef8c069ba6aeb24d69",
       "s": 2621,
-      "c": "c12d19dd",
+      "c": "357fb674",
       "j": [
-        "/updates/parts/42db8aad994dd704aa8505d3e376abd4.0.js"
+        "/updates/parts/02eb24a7ca60f7ef8c069ba6aeb24d69.0.js"
       ]
     },
     {
