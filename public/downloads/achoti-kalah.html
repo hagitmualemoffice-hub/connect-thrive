@@ -297,7 +297,8 @@
     var t = doc.querySelector("title");
     if (t) document.title = t.textContent;
 
-    window.ACHOTIKALA_OFFLINE_HOST = { version: version };
+    window.ACHOTIKALA_OFFLINE_HOST = true;
+    window.ACHOTIKALA_OFFLINE = true;
     window.ACHOTIKALA_APP_VERSION = version;
 
     Array.prototype.forEach.call(doc.head.children, function (el) {

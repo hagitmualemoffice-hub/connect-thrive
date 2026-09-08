@@ -23,7 +23,8 @@ const args = process.argv.slice(2);
 const arg = (n, d) => (args.includes(n) ? args[args.indexOf(n) + 1] : d);
 
 const SOURCE = (arg("--source", "https://achotikala.com")).replace(/\/$/, "");
-const WITH_MEDIA = args.includes("--with-media");
+const WITH_IMAGES = args.includes("--with-images");
+const WITH_MEDIA = args.includes("--with-media") || WITH_IMAGES;
 const versionArg = args.includes("--version") ? Number(arg("--version")) : null;
 
 const OUT_DIR = path.join(root, "public/updates");
@@ -81,15 +82,27 @@ if (wm) {
   } catch {}
 }
 
-// מדיה שמוזכרת בתוך ה-JS/CSS (שלב ב')
+// מדיה שמוזכרת בתוך ה-JS/CSS/HTML (תמונות, אייקונים, גופנים, רקעים ב-CSS)
+const IMAGE_EXT = /\.(jpe?g|png|webp|gif|avif|svg|ico|woff2?|ttf|otf)$/i;
 if (WITH_MEDIA) {
+  const wantExt = WITH_IMAGES && !args.includes("--with-media") ? IMAGE_EXT : MEDIA_EXT;
+  const scan = (text) => {
+    for (const m of text.matchAll(/["'(]\s*\/?((?:assets|images|img|media|files|fonts|lovable-uploads)\/[A-Za-z0-9._%\-\u0590-\u05FF ]+)\s*["')]/g)) {
+      const p = m[1].split("?")[0];
+      if (wantExt.test(p)) wanted.add(p);
+    }
+  };
+  scan(html);
   for (const rel of [...wanted]) {
     if (!/\.(js|css)$/i.test(rel)) continue;
     const buf = await get(rel);
-    if (!buf) continue;
-    for (const m of buf.toString("utf8").matchAll(/["'(]\/?((?:assets|images|img|media|files|fonts)\/[A-Za-z0-9._\-]+)["')]/g)) {
-      if (MEDIA_EXT.test(m[1])) wanted.add(m[1]);
-    }
+    if (buf) scan(buf.toString("utf8"));
+  }
+  // סבב שני: CSS שהתגלה בתוך ה-JS
+  for (const rel of [...wanted]) {
+    if (!/\.css$/i.test(rel)) continue;
+    const buf = await get(rel);
+    if (buf) scan(buf.toString("utf8"));
   }
 }
 
