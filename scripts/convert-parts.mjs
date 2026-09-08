@@ -34,12 +34,11 @@ async function fetchBuf(url) {
   return Buffer.from(await r.arrayBuffer());
 }
 
-function uploadJs(name, text) {
-  const tmp = path.join(os.tmpdir(), name);
-  fs.writeFileSync(tmp, text);
-  const out = execFileSync("lovable-assets", ["create", "--file", tmp], { encoding: "utf8" });
-  fs.rmSync(tmp, { force: true });
-  return JSON.parse(out).url;
+const PARTS_DIR = path.join(OUT_DIR, "parts");
+function writeJs(name, text) {
+  fs.mkdirSync(PARTS_DIR, { recursive: true });
+  fs.writeFileSync(path.join(PARTS_DIR, name), text);
+  return "/updates/parts/" + name;
 }
 
 const targets = manifest.files.filter((f) => (only ? f.p === only : true));
@@ -60,7 +59,7 @@ for (const f of targets) {
   for (let i = 0; i < n; i++) {
     const slice = buf.subarray(i * CHUNK_RAW, (i + 1) * CHUNK_RAW);
     const js = `AK.part("${f.h}",${i},${n},"${slice.toString("base64")}");\n`;
-    urls.push(uploadJs(`${f.h}.${i}.js`, js));
+    urls.push(writeJs(`${f.h}.${i}.js`, js));
   }
   parts[f.h] = urls;
   f.j = urls;
