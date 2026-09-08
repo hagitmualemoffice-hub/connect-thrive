@@ -134,21 +134,48 @@
       function next() {
         if (failed || idx >= need.length) return Promise.resolve();
         var f = need[idx++];
-        return fetch(ORIGIN + f.u, { cache: "no-store" })
+        var url = ORIGIN + f.u;
+        return fetch(url, { cache: "no-store" })
           .then(function (r) {
-            if (!r.ok) throw new Error("http " + r.status);
-            return r.arrayBuffer();
-          })
-          .then(function (buf) {
-            if (buf.byteLength !== f.s || djb2(buf) !== f.c) throw new Error("checksum " + f.p);
-            return put(db, BLOBS, f.h, buf);
+            if (!r.ok) {
+              var err = new Error("HTTP " + r.status + " " + (r.statusText || ""));
+              err.detail = {
+                stage: "הורדת קובץ מהאתר",
+                url: url,
+                file: f.p,
+                expectedBytes: f.s,
+                status: r.status,
+                contentType: r.headers.get("content-type") || "(לא ידוע)",
+                contentLength: r.headers.get("content-length") || "(לא ידוע)"
+              };
+              throw err;
+            }
+            return r.arrayBuffer().then(function (buf) {
+              if (buf.byteLength !== f.s || djb2(buf) !== f.c) {
+                var e2 = new Error("קובץ פגום (checksum)");
+                e2.detail = {
+                  stage: "אימות קובץ",
+                  url: url,
+                  file: f.p,
+                  expectedBytes: f.s,
+                  gotBytes: buf.byteLength,
+                  status: r.status,
+                  contentType: r.headers.get("content-type") || "(לא ידוע)"
+                };
+                throw e2;
+              }
+              return put(db, BLOBS, f.h, buf);
+            });
           })
           .then(function () {
             doneBytes += f.s;
             if (onProgress) onProgress(doneBytes, totalBytes);
             return next();
           })
-          .catch(function (e) { failed = e; });
+          .catch(function (e) {
+            if (!e.detail) e.detail = { stage: "הורדת קובץ מהאתר", url: url, file: f.p, expectedBytes: f.s, error: String(e && e.message || e) };
+            failed = e;
+          });
       }
       var lanes = [];
       for (var i = 0; i < Math.min(6, need.length); i++) lanes.push(next());
@@ -342,9 +369,28 @@
         return start(manifest, null);
       });
     }).catch(function (e) {
-      say("ההתקנה הראשונה דורשת חיבור לאינטרנט");
-      fail("לא הצלחנו להוריד את האתר כרגע (" + (e.message || e) + ").<br>" +
-        "בדקי חיבור לאינטרנט ופתחי את הקובץ שוב.");
+      say("ההתקנה הראשונה נכשלה");
+      var d = e && e.detail;
+      var rows = "";
+      if (d) {
+        rows =
+          "<div style='text-align:start;direction:ltr;background:#faf6f8;border-radius:10px;padding:12px;margin-top:12px;font-size:12px;word-break:break-all'>" +
+          "<div><b>stage:</b> " + (d.stage || "") + "</div>" +
+          "<div><b>url:</b> " + (d.url || "") + "</div>" +
+          "<div><b>file:</b> " + (d.file || "") + "</div>" +
+          "<div><b>status:</b> " + (d.status !== undefined ? d.status : "(no response)") + "</div>" +
+          "<div><b>content-type:</b> " + (d.contentType || "") + "</div>" +
+          "<div><b>expected bytes:</b> " + (d.expectedBytes !== undefined ? d.expectedBytes : "") + "</div>" +
+          (d.gotBytes !== undefined ? "<div><b>got bytes:</b> " + d.gotBytes + "</div>" : "") +
+          (d.contentLength ? "<div><b>content-length:</b> " + d.contentLength + "</div>" : "") +
+          (d.error ? "<div><b>error:</b> " + d.error + "</div>" : "") +
+          "</div>";
+      } else {
+        rows = "<div style='margin-top:10px;font-size:13px'>שלב: טעינת רשימת העדכונים (manifest.js) — " +
+          ORIGIN + "/updates/manifest.js</div>";
+      }
+      fail("לא הצלחנו להוריד את האתר כרגע (" + (e.message || e) + ")." + rows +
+        "<div style='margin-top:10px'>צלמי את המסך הזה ושלחי אותו.</div>");
     });
   }
 
