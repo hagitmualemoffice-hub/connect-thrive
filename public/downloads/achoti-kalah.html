@@ -40,6 +40,8 @@
   var qs = new URLSearchParams(location.search);
   var ORIGIN = qs.get("origin") || "https://hagitmualem.com";
   var DB_NAME = "achotikala-app";
+  var BOOT_REV = 2;           // גרסת קובץ הפתיחה
+  var MIN_STAGE = "full";     // התקנות ישנות ללא תמונות — יעודכנו מיד
   var BLOBS = "blobs";
   var META = "meta";
 
@@ -467,6 +469,7 @@
       document.head.appendChild(l);
     });
 
+    installResolver(app);
 
     var scripts = [];
     Array.prototype.slice.call(doc.body.children).forEach(function (el) {
