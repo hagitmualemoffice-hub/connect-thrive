@@ -23,7 +23,8 @@ const args = process.argv.slice(2);
 const arg = (n, d) => (args.includes(n) ? args[args.indexOf(n) + 1] : d);
 
 const SOURCE = (arg("--source", "https://achotikala.com")).replace(/\/$/, "");
-const WITH_MEDIA = args.includes("--with-media");
+const WITH_IMAGES = args.includes("--with-images");
+const WITH_MEDIA = args.includes("--with-media") || WITH_IMAGES;
 const versionArg = args.includes("--version") ? Number(arg("--version")) : null;
 
 const OUT_DIR = path.join(root, "public/updates");
