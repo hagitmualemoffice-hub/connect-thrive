@@ -1,0 +1,370 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>אחותי כלה</title>
+<style>
+  html,body{margin:0;padding:0;font-family:"Segoe UI",Arial,sans-serif;background:#fff;color:#2b2b2b}
+  #ak-boot{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:#fff;z-index:2147483000}
+  #ak-boot .box{max-width:460px;width:88%;text-align:center}
+  #ak-boot h1{font-size:22px;margin:0 0 10px;font-weight:600}
+  #ak-boot p{font-size:15px;color:#666;margin:0 0 18px;line-height:1.6}
+  #ak-bar{height:10px;background:#f0eaf0;border-radius:99px;overflow:hidden}
+  #ak-bar i{display:block;height:100%;width:0;background:#c98ba9;transition:width .25s}
+  #ak-pct{font-size:13px;color:#999;margin-top:10px}
+  #ak-err{display:none;margin-top:16px;font-size:14px;color:#a33;line-height:1.6}
+  #ak-toast{position:fixed;bottom:16px;inset-inline-start:16px;background:#2b2b2b;color:#fff;padding:12px 16px;
+    border-radius:12px;font-size:14px;z-index:2147483001;display:none;box-shadow:0 6px 24px rgba(0,0,0,.2)}
+  #ak-toast button{margin-inline-start:12px;background:#c98ba9;color:#fff;border:0;border-radius:8px;padding:6px 12px;cursor:pointer;font-size:13px}
+</style>
+</head>
+<body>
+<div id="ak-boot"><div class="box">
+  <h1>אחותי כלה</h1>
+  <p id="ak-msg">פותחת את האתר…</p>
+  <div id="ak-bar"><i></i></div>
+  <div id="ak-pct"></div>
+  <div id="ak-err"></div>
+</div></div>
+<div id="ak-toast"></div>
+
+<script>
+/* ================================================================
+   אחותי כלה — קובץ הפתיחה הקבוע (bootstrap)
+   מוריד את האתר פעם אחת, שומר אותו במחשב, ומעדכן רק מה שהשתנה.
+   ================================================================ */
+(function () {
+  "use strict";
+
+  var qs = new URLSearchParams(location.search);
+  var ORIGIN = qs.get("origin") || "https://hagitmualem.com";
+  var DB_NAME = "achotikala-app";
+  var BLOBS = "blobs";
+  var META = "meta";
+
+  var boxEl = document.getElementById("ak-boot");
+  var msgEl = document.getElementById("ak-msg");
+  var barEl = document.querySelector("#ak-bar i");
+  var pctEl = document.getElementById("ak-pct");
+  var errEl = document.getElementById("ak-err");
+  var toastEl = document.getElementById("ak-toast");
+
+  function say(t) { msgEl.textContent = t; }
+  function progress(done, total) {
+    var p = total ? Math.round((done / total) * 100) : 0;
+    barEl.style.width = p + "%";
+    pctEl.textContent = total ? p + "%" : "";
+  }
+  function fail(html) {
+    errEl.style.display = "block";
+    errEl.innerHTML = html;
+  }
+  function toast(text, actionText, action) {
+    toastEl.textContent = text;
+    if (actionText) {
+      var b = document.createElement("button");
+      b.textContent = actionText;
+      b.onclick = action;
+      toastEl.appendChild(b);
+    }
+    toastEl.style.display = "block";
+  }
+
+  /* ---------------- IndexedDB ---------------- */
+  function openDb() {
+    return new Promise(function (res, rej) {
+      var r = indexedDB.open(DB_NAME, 1);
+      r.onupgradeneeded = function () {
+        var db = r.result;
+        if (!db.objectStoreNames.contains(BLOBS)) db.createObjectStore(BLOBS);
+        if (!db.objectStoreNames.contains(META)) db.createObjectStore(META);
+      };
+      r.onsuccess = function () { res(r.result); };
+      r.onerror = function () { rej(r.error); };
+    });
+  }
+  function tx(db, store, mode, fn) {
+    return new Promise(function (res, rej) {
+      var t = db.transaction(store, mode);
+      var out = fn(t.objectStore(store));
+      t.oncomplete = function () { res(out && out.result !== undefined ? out.result : out); };
+      t.onerror = function () { rej(t.error); };
+    });
+  }
+  function get(db, store, key) { return tx(db, store, "readonly", function (s) { return s.get(key); }); }
+  function put(db, store, key, val) { return tx(db, store, "readwrite", function (s) { return s.put(val, key); }); }
+  function del(db, store, key) { return tx(db, store, "readwrite", function (s) { return s.delete(key); }); }
+  function keys(db, store) { return tx(db, store, "readonly", function (s) { return s.getAllKeys(); }); }
+
+  /* ---------------- checksum (crypto.subtle לא זמין ב-file://) ---------------- */
+  function djb2(buf) {
+    var v = new Uint8Array(buf), h = 5381;
+    for (var i = 0; i < v.length; i++) h = ((h * 33) ^ v[i]) >>> 0;
+    return h.toString(16);
+  }
+
+  /* ---------------- הבאת המניפסט דרך תג script (הערוץ המוכח) ---------------- */
+  function loadManifest(timeoutMs) {
+    return new Promise(function (res, rej) {
+      var done = false;
+      var s = document.createElement("script");
+      window.AKUPD_MANIFEST = function (m) { done = true; cleanup(); res(m); };
+      function cleanup() { try { s.remove(); } catch (e) {} }
+      s.onerror = function () { if (!done) { cleanup(); rej(new Error("manifest-blocked")); } };
+      s.src = ORIGIN + "/updates/manifest.js?t=" + Date.now();
+      document.head.appendChild(s);
+      setTimeout(function () { if (!done) { cleanup(); rej(new Error("manifest-timeout")); } }, timeoutMs || 15000);
+    });
+  }
+
+  /* ---------------- הורדת קבצים חסרים ---------------- */
+  function downloadMissing(db, manifest, onProgress) {
+    return keys(db, BLOBS).then(function (have) {
+      var haveSet = new Set(have);
+      var seen = new Set();
+      var need = manifest.files.filter(function (f) {
+        if (haveSet.has(f.h) || seen.has(f.h)) return false;
+        seen.add(f.h); return true;
+      });
+      var totalBytes = need.reduce(function (a, f) { return a + f.s; }, 0);
+      var doneBytes = 0, idx = 0, failed = null;
+      if (!need.length) return { need: 0 };
+
+      function next() {
+        if (failed || idx >= need.length) return Promise.resolve();
+        var f = need[idx++];
+        return fetch(ORIGIN + f.u, { cache: "no-store" })
+          .then(function (r) {
+            if (!r.ok) throw new Error("http " + r.status);
+            return r.arrayBuffer();
+          })
+          .then(function (buf) {
+            if (buf.byteLength !== f.s || djb2(buf) !== f.c) throw new Error("checksum " + f.p);
+            return put(db, BLOBS, f.h, buf);
+          })
+          .then(function () {
+            doneBytes += f.s;
+            if (onProgress) onProgress(doneBytes, totalBytes);
+            return next();
+          })
+          .catch(function (e) { failed = e; });
+      }
+      var lanes = [];
+      for (var i = 0; i < Math.min(6, need.length); i++) lanes.push(next());
+      return Promise.all(lanes).then(function () {
+        if (failed) throw failed;
+        return { need: need.length, bytes: totalBytes };
+      });
+    });
+  }
+
+  /* ---------------- ניקוי קבצים שכבר לא בשימוש ---------------- */
+  function gc(db, manifests) {
+    var keep = new Set();
+    manifests.forEach(function (m) { if (m) m.files.forEach(function (f) { keep.add(f.h); }); });
+    return keys(db, BLOBS).then(function (all) {
+      return Promise.all(all.filter(function (k) { return !keep.has(k); })
+        .map(function (k) { return del(db, BLOBS, k); }));
+    });
+  }
+
+  /* ---------------- הרכבת האתר מהקבצים המקומיים ---------------- */
+  var MIME = {
+    html: "text/html", js: "text/javascript", mjs: "text/javascript", css: "text/css",
+    json: "application/json", webmanifest: "application/manifest+json", svg: "image/svg+xml",
+    txt: "text/plain", md: "text/plain", png: "image/png", jpg: "image/jpeg", jpeg: "image/jpeg",
+    gif: "image/gif", webp: "image/webp", ico: "image/x-icon", pdf: "application/pdf",
+    mp3: "audio/mpeg", m4a: "audio/mp4", wav: "audio/wav", mp4: "video/mp4",
+    woff: "font/woff", woff2: "font/woff2", ttf: "font/ttf", otf: "font/otf", zip: "application/zip"
+  };
+  var TEXT = { html: 1, js: 1, mjs: 1, css: 1, json: 1, webmanifest: 1, svg: 1, txt: 1, md: 1 };
+  function ext(p) { var i = p.lastIndexOf("."); return i < 0 ? "" : p.slice(i + 1).toLowerCase(); }
+  function esc(s) { return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"); }
+
+  function buildApp(db, manifest) {
+    var entryPath = manifest.entry || "index.html";
+    var files = manifest.files;
+    return Promise.all(files.map(function (f) { return get(db, BLOBS, f.h); })).then(function (bufs) {
+      var byPath = {};
+      files.forEach(function (f, i) { byPath[f.p] = { e: f, buf: bufs[i] }; });
+      for (var p in byPath) if (!byPath[p].buf) throw new Error("missing " + p);
+
+      var urlMap = {};
+      function makeUrl(p, data) {
+        var u = URL.createObjectURL(new Blob([data], { type: MIME[ext(p)] || "application/octet-stream" }));
+        urlMap[p] = u; return u;
+      }
+      var paths = Object.keys(byPath);
+      var order = { svg: 1, css: 2, json: 3, webmanifest: 3, txt: 3, md: 3, js: 4, html: 5 };
+      var textPaths = paths.filter(function (p) { return TEXT[ext(p)]; })
+        .sort(function (a, b) { return (order[ext(a)] || 3) - (order[ext(b)] || 3); });
+
+      // 1. בינאריים
+      paths.forEach(function (p) { if (!TEXT[ext(p)]) makeUrl(p, byPath[p].buf); });
+
+      var dec = new TextDecoder("utf-8");
+      var sortedPaths = paths.slice().sort(function (a, b) { return b.length - a.length; });
+
+      function rewrite(text) {
+        sortedPaths.forEach(function (p) {
+          var u = urlMap[p];
+          if (!u) return;
+          var re = new RegExp("([\"'(])(?:\\./|/)?" + esc(p) + "([\"')])", "g");
+          text = text.replace(re, "$1" + u + "$2");
+        });
+        return text;
+      }
+
+      var entryHtml = null;
+      textPaths.forEach(function (p) {
+        var text = rewrite(dec.decode(byPath[p].buf));
+        if (p === entryPath) { entryHtml = text; return; }
+        makeUrl(p, text);
+      });
+      if (entryHtml === null) throw new Error("no entry");
+      return { html: entryHtml, urlMap: urlMap, byPath: byPath };
+    });
+  }
+
+  function mount(app, version) {
+    var doc = new DOMParser().parseFromString(app.html, "text/html");
+    document.documentElement.setAttribute("lang", doc.documentElement.getAttribute("lang") || "he");
+    document.documentElement.setAttribute("dir", doc.documentElement.getAttribute("dir") || "rtl");
+    var t = doc.querySelector("title");
+    if (t) document.title = t.textContent;
+
+    window.ACHOTIKALA_OFFLINE_HOST = { version: version };
+    window.ACHOTIKALA_APP_VERSION = version;
+
+    Array.prototype.forEach.call(doc.head.children, function (el) {
+      var tag = el.tagName.toLowerCase();
+      if (tag === "title" || tag === "script") return;
+      document.head.appendChild(document.importNode(el, true));
+    });
+
+    var scripts = [];
+    Array.prototype.slice.call(doc.body.children).forEach(function (el) {
+      if (el.tagName.toLowerCase() === "script") { scripts.push(el); return; }
+      document.body.appendChild(document.importNode(el, true));
+    });
+    Array.prototype.slice.call(doc.head.querySelectorAll("script")).forEach(function (el) { scripts.unshift(el); });
+
+    function runNext(i) {
+      if (i >= scripts.length) return Promise.resolve();
+      var src = scripts[i].getAttribute("src");
+      var s = document.createElement("script");
+      if (scripts[i].type) s.type = scripts[i].type;
+      if (!src) {
+        s.textContent = scripts[i].textContent;
+        document.body.appendChild(s);
+        return runNext(i + 1);
+      }
+      // המנגנון הישן של העדכונים בתוך האפליקציה אינו רץ יותר — הקובץ הזה אחראי לעדכונים.
+      var origPath = null;
+      for (var p in app.urlMap) if (app.urlMap[p] === src) origPath = p;
+      if (origPath === "update-config.js") return runNext(i + 1);
+      if (origPath === "bootstrap.js") {
+        if (!app.urlMap["app.js"]) return runNext(i + 1);
+        src = app.urlMap["app.js"];
+      }
+      return new Promise(function (res) {
+        s.onload = s.onerror = function () { res(); };
+        s.src = src;
+        document.body.appendChild(s);
+      }).then(function () { return runNext(i + 1); });
+    }
+    return runNext(0).then(function () {
+      boxEl.parentNode && boxEl.parentNode.removeChild(boxEl);
+    });
+  }
+
+  /* ---------------- זרימה ראשית ---------------- */
+  var db;
+  openDb().then(function (d) {
+    db = d;
+    return Promise.all([get(db, META, "current"), get(db, META, "previous"), get(db, META, "boot")]);
+  }).then(function (r) {
+    var current = r[0], previous = r[1], boot = r[2] || {};
+
+    // גיבוי אוטומטי: אם הגרסה הנוכחית נכשלה פעמיים בפתיחה — חזרה לגרסה הקודמת
+    if (current && previous && boot.version === current.version && !boot.verified && (boot.attempts || 0) >= 2) {
+      current = previous; previous = null;
+      return Promise.all([put(db, META, "current", current), del(db, META, "previous"),
+        put(db, META, "boot", { version: current.version, attempts: 1, verified: true })])
+        .then(function () { return start(current, null); });
+    }
+
+    if (current) {
+      var attempts = boot.version === current.version ? (boot.attempts || 0) + 1 : 1;
+      var verified = boot.version === current.version ? !!boot.verified : false;
+      return put(db, META, "boot", { version: current.version, attempts: attempts, verified: verified })
+        .then(function () { return start(current, previous); });
+    }
+    return firstRun();
+  }).catch(function (e) {
+    say("לא הצלחנו לפתוח את האתר");
+    fail("שגיאה: " + (e && e.message ? e.message : e) +
+      "<br>נסי לפתוח את הקובץ שוב, ואם זה חוזר — יש צורך בחיבור לאינטרנט לפתיחה הראשונה.");
+  });
+
+  function firstRun() {
+    say("מתקינה את האתר במחשב לפעם הראשונה…");
+    return loadManifest(20000).then(function (manifest) {
+      return downloadMissing(db, manifest, function (d, t) {
+        progress(d, t);
+        say("מורידה את תוכן האתר…");
+      }).then(function () {
+        return Promise.all([
+          put(db, META, "current", manifest),
+          put(db, META, "boot", { version: manifest.version, attempts: 1, verified: false })
+        ]);
+      }).then(function () {
+        say("כמעט מוכן…");
+        return start(manifest, null);
+      });
+    }).catch(function (e) {
+      say("ההתקנה הראשונה דורשת חיבור לאינטרנט");
+      fail("לא הצלחנו להוריד את האתר כרגע (" + (e.message || e) + ").<br>" +
+        "בדקי חיבור לאינטרנט ופתחי את הקובץ שוב.");
+    });
+  }
+
+  function start(manifest, previous) {
+    return buildApp(db, manifest).then(function (app) {
+      return mount(app, manifest.version);
+    }).then(function () {
+      setTimeout(function () {
+        put(db, META, "boot", { version: manifest.version, attempts: 0, verified: true });
+      }, 4000);
+      setTimeout(function () { checkForUpdate(manifest, previous); }, 2500);
+    }).catch(function (e) {
+      // הגרסה הנוכחית לא ניתנת להרכבה — ניסיון מיידי בגרסה הקודמת
+      if (previous) {
+        return Promise.all([put(db, META, "current", previous), del(db, META, "previous")])
+          .then(function () { return start(previous, null); });
+      }
+      say("לא הצלחנו לפתוח את האתר");
+      fail("שגיאה: " + (e && e.message ? e.message : e));
+    });
+  }
+
+  function checkForUpdate(current, previous) {
+    loadManifest(20000).then(function (remote) {
+      if (!remote || remote.version <= current.version) return;
+      return downloadMissing(db, remote).then(function () {
+        return Promise.all([
+          put(db, META, "previous", current),
+          put(db, META, "current", remote)
+        ]);
+      }).then(function () {
+        return gc(db, [remote, current]);
+      }).then(function () {
+        toast("עדכון חדש הותקן ומוכן", "פתחי מחדש", function () { location.reload(); });
+      });
+    }).catch(function () { /* אין אינטרנט או שהעדכון נכשל — האתר המקומי ממשיך כרגיל */ });
+  }
+})();
+</script>
+</body>
+</html>
