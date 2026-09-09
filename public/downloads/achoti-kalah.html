@@ -123,12 +123,14 @@
   /* ---------------- ערוץ ההעברה: קבצי .js אמיתיים בתג script ---------------- */
   var AK = window.AK = window.AK || {};
   var partSink = null;
-  AK.part = function (hash, index, total, b64) {
-    if (partSink && partSink.hash === hash) partSink.receive(index, total, b64);
+  AK.part = function (hash, index, total, b64, masked) {
+    if (partSink && partSink.hash === hash) partSink.receive(index, total, b64, masked);
   };
-  function b64ToBytes(b64) {
+  var XOR_KEY = [0x5a, 0x3c, 0xa7, 0x11, 0x6d, 0xf2, 0x89, 0x24];
+  function b64ToBytes(b64, masked) {
     var bin = atob(b64), len = bin.length, out = new Uint8Array(len);
     for (var i = 0; i < len; i++) out[i] = bin.charCodeAt(i);
+    if (masked) for (var j = 0; j < len; j++) out[j] ^= XOR_KEY[j % 8];
     return out;
   }
   function loadPartScript(url, hash, index) {
