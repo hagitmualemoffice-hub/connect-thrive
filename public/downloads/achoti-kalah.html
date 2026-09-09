@@ -158,7 +158,7 @@
   function downloadChunk(f, meta, i, total, attempt) {
     attempt = attempt || 1;
     var received = null;
-    partSink = { hash: f.h, receive: function (idx, n, b64) { if (idx === i) received = b64ToBytes(b64); } };
+    partSink = { hash: f.h, receive: function (idx, n, b64, masked) { if (idx === i) received = b64ToBytes(b64, masked); } };
     var url = ORIGIN + meta.u + (attempt > 1 ? "?r=" + attempt + "." + Date.now() : "");
     return loadPartScript(url, f.p, i).then(function () {
       partSink = null;
