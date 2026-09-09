@@ -32,7 +32,7 @@ const PARTS_DIR = path.join(OUT_DIR, "parts");
 const MANIFEST_JSON = path.join(OUT_DIR, "manifest.json");
 const MANIFEST_JS = path.join(OUT_DIR, "manifest.js");
 const PARTS_REGISTRY = path.join(root, "scripts/offline-parts-registry.json");
-const CHUNK_RAW = 200 * 1024; // חלקים קטנים — אמינים יותר ברשתות מסוננות
+const CHUNK_RAW = 90 * 1024; // חלקים קטנים (~123KB אחרי base64) — עוברים סינון NetFree
 
 const parts = fs.existsSync(PARTS_REGISTRY) ? JSON.parse(fs.readFileSync(PARTS_REGISTRY, "utf8")) : {};
 const previous = fs.existsSync(MANIFEST_JSON) ? JSON.parse(fs.readFileSync(MANIFEST_JSON, "utf8")) : null;
