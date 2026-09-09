@@ -137,7 +137,10 @@ for (const f of entries) {
     for (let i = 0; i < n; i++) {
       const slice = f.buf.subarray(i * CHUNK_RAW, (i + 1) * CHUNK_RAW);
       const name = `${f.h}.${i}.js`;
-      fs.writeFileSync(path.join(PARTS_DIR, name), `AK.part("${f.h}",${i},${n},"${slice.toString("base64")}");\n`);
+      // ערבול XOR כדי שהמטען לא ייראה כתמונה/קובץ מדיה למסנני רשת (NetFree)
+      const masked = Buffer.from(slice);
+      for (let b = 0; b < masked.length; b++) masked[b] ^= XOR_KEY[b % XOR_KEY.length];
+      fs.writeFileSync(path.join(PARTS_DIR, name), `AK.part("${f.h}",${i},${n},"${masked.toString("base64")}",1);\n`);
       // u=כתובת, l=אורך בבתים, c=חתימה של החלק
       k.push({ u: "/updates/parts/" + name, l: slice.length, c: djb2(slice) });
     }
