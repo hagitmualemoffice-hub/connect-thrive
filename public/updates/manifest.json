@@ -1,6 +1,6 @@
 {
-  "version": 52,
-  "generated": "2026-09-09T12:50:51.451Z",
+  "version": 53,
+  "generated": "2026-09-09T14:54:54.523Z",
   "entry": "index.html",
   "source": "https://achotikala.com",
   "stage": "full",
@@ -1208,179 +1208,179 @@
       ]
     },
     {
-      "p": "assets/index-BZf2_adn.css",
-      "h": "68a302df2c9d3c4f102f92877474463f",
-      "s": 146523,
-      "c": "a5a8fa90",
+      "p": "assets/index-BgBwGQyi.js",
+      "h": "4649c953745396ddf8ec6cc7ac686a0b",
+      "s": 2198190,
+      "c": "a2e8d4f5",
       "k": [
         {
-          "u": "/updates/parts/68a302df2c9d3c4f102f92877474463f.0.js",
+          "u": "/updates/parts/4649c953745396ddf8ec6cc7ac686a0b.0.js",
           "l": 92160,
-          "c": "802e6646"
+          "c": "c21925a0"
         },
         {
-          "u": "/updates/parts/68a302df2c9d3c4f102f92877474463f.1.js",
-          "l": 54363,
-          "c": "3a3b6bf3"
+          "u": "/updates/parts/4649c953745396ddf8ec6cc7ac686a0b.1.js",
+          "l": 92160,
+          "c": "845bcc6d"
+        },
+        {
+          "u": "/updates/parts/4649c953745396ddf8ec6cc7ac686a0b.2.js",
+          "l": 92160,
+          "c": "c13f0f81"
+        },
+        {
+          "u": "/updates/parts/4649c953745396ddf8ec6cc7ac686a0b.3.js",
+          "l": 92160,
+          "c": "6b0e4aba"
+        },
+        {
+          "u": "/updates/parts/4649c953745396ddf8ec6cc7ac686a0b.4.js",
+          "l": 92160,
+          "c": "1ef75aa4"
+        },
+        {
+          "u": "/updates/parts/4649c953745396ddf8ec6cc7ac686a0b.5.js",
+          "l": 92160,
+          "c": "1e093f58"
+        },
+        {
+          "u": "/updates/parts/4649c953745396ddf8ec6cc7ac686a0b.6.js",
+          "l": 92160,
+          "c": "7d3e44bc"
+        },
+        {
+          "u": "/updates/parts/4649c953745396ddf8ec6cc7ac686a0b.7.js",
+          "l": 92160,
+          "c": "f08938ca"
+        },
+        {
+          "u": "/updates/parts/4649c953745396ddf8ec6cc7ac686a0b.8.js",
+          "l": 92160,
+          "c": "e9e08763"
+        },
+        {
+          "u": "/updates/parts/4649c953745396ddf8ec6cc7ac686a0b.9.js",
+          "l": 92160,
+          "c": "1fe6c93b"
+        },
+        {
+          "u": "/updates/parts/4649c953745396ddf8ec6cc7ac686a0b.10.js",
+          "l": 92160,
+          "c": "b9b5b6b6"
+        },
+        {
+          "u": "/updates/parts/4649c953745396ddf8ec6cc7ac686a0b.11.js",
+          "l": 92160,
+          "c": "5404ae8d"
+        },
+        {
+          "u": "/updates/parts/4649c953745396ddf8ec6cc7ac686a0b.12.js",
+          "l": 92160,
+          "c": "b0b45836"
+        },
+        {
+          "u": "/updates/parts/4649c953745396ddf8ec6cc7ac686a0b.13.js",
+          "l": 92160,
+          "c": "fa68fee2"
+        },
+        {
+          "u": "/updates/parts/4649c953745396ddf8ec6cc7ac686a0b.14.js",
+          "l": 92160,
+          "c": "23b2d38f"
+        },
+        {
+          "u": "/updates/parts/4649c953745396ddf8ec6cc7ac686a0b.15.js",
+          "l": 92160,
+          "c": "36a1c39"
+        },
+        {
+          "u": "/updates/parts/4649c953745396ddf8ec6cc7ac686a0b.16.js",
+          "l": 92160,
+          "c": "2b59e5b5"
+        },
+        {
+          "u": "/updates/parts/4649c953745396ddf8ec6cc7ac686a0b.17.js",
+          "l": 92160,
+          "c": "1624907c"
+        },
+        {
+          "u": "/updates/parts/4649c953745396ddf8ec6cc7ac686a0b.18.js",
+          "l": 92160,
+          "c": "bc224838"
+        },
+        {
+          "u": "/updates/parts/4649c953745396ddf8ec6cc7ac686a0b.19.js",
+          "l": 92160,
+          "c": "53c2364f"
+        },
+        {
+          "u": "/updates/parts/4649c953745396ddf8ec6cc7ac686a0b.20.js",
+          "l": 92160,
+          "c": "22a8009b"
+        },
+        {
+          "u": "/updates/parts/4649c953745396ddf8ec6cc7ac686a0b.21.js",
+          "l": 92160,
+          "c": "5167da9c"
+        },
+        {
+          "u": "/updates/parts/4649c953745396ddf8ec6cc7ac686a0b.22.js",
+          "l": 92160,
+          "c": "1f65dec6"
+        },
+        {
+          "u": "/updates/parts/4649c953745396ddf8ec6cc7ac686a0b.23.js",
+          "l": 78510,
+          "c": "74634972"
         }
       ],
       "j": [
-        "/updates/parts/68a302df2c9d3c4f102f92877474463f.0.js",
-        "/updates/parts/68a302df2c9d3c4f102f92877474463f.1.js"
+        "/updates/parts/4649c953745396ddf8ec6cc7ac686a0b.0.js",
+        "/updates/parts/4649c953745396ddf8ec6cc7ac686a0b.1.js",
+        "/updates/parts/4649c953745396ddf8ec6cc7ac686a0b.2.js",
+        "/updates/parts/4649c953745396ddf8ec6cc7ac686a0b.3.js",
+        "/updates/parts/4649c953745396ddf8ec6cc7ac686a0b.4.js",
+        "/updates/parts/4649c953745396ddf8ec6cc7ac686a0b.5.js",
+        "/updates/parts/4649c953745396ddf8ec6cc7ac686a0b.6.js",
+        "/updates/parts/4649c953745396ddf8ec6cc7ac686a0b.7.js",
+        "/updates/parts/4649c953745396ddf8ec6cc7ac686a0b.8.js",
+        "/updates/parts/4649c953745396ddf8ec6cc7ac686a0b.9.js",
+        "/updates/parts/4649c953745396ddf8ec6cc7ac686a0b.10.js",
+        "/updates/parts/4649c953745396ddf8ec6cc7ac686a0b.11.js",
+        "/updates/parts/4649c953745396ddf8ec6cc7ac686a0b.12.js",
+        "/updates/parts/4649c953745396ddf8ec6cc7ac686a0b.13.js",
+        "/updates/parts/4649c953745396ddf8ec6cc7ac686a0b.14.js",
+        "/updates/parts/4649c953745396ddf8ec6cc7ac686a0b.15.js",
+        "/updates/parts/4649c953745396ddf8ec6cc7ac686a0b.16.js",
+        "/updates/parts/4649c953745396ddf8ec6cc7ac686a0b.17.js",
+        "/updates/parts/4649c953745396ddf8ec6cc7ac686a0b.18.js",
+        "/updates/parts/4649c953745396ddf8ec6cc7ac686a0b.19.js",
+        "/updates/parts/4649c953745396ddf8ec6cc7ac686a0b.20.js",
+        "/updates/parts/4649c953745396ddf8ec6cc7ac686a0b.21.js",
+        "/updates/parts/4649c953745396ddf8ec6cc7ac686a0b.22.js",
+        "/updates/parts/4649c953745396ddf8ec6cc7ac686a0b.23.js"
       ]
     },
     {
-      "p": "assets/index-CUyzClKv.js",
-      "h": "bb0b1dc51972b9b36ccb2bdf05c4feb4",
-      "s": 2196396,
-      "c": "97f0474d",
+      "p": "assets/index-CEbdga26.css",
+      "h": "5a737d9a49b50c33b993e42463d8036a",
+      "s": 146584,
+      "c": "4c7d5931",
       "k": [
         {
-          "u": "/updates/parts/bb0b1dc51972b9b36ccb2bdf05c4feb4.0.js",
+          "u": "/updates/parts/5a737d9a49b50c33b993e42463d8036a.0.js",
           "l": 92160,
-          "c": "9d106c17"
+          "c": "2535df6b"
         },
         {
-          "u": "/updates/parts/bb0b1dc51972b9b36ccb2bdf05c4feb4.1.js",
-          "l": 92160,
-          "c": "d55dbd9f"
-        },
-        {
-          "u": "/updates/parts/bb0b1dc51972b9b36ccb2bdf05c4feb4.2.js",
-          "l": 92160,
-          "c": "4bc7b483"
-        },
-        {
-          "u": "/updates/parts/bb0b1dc51972b9b36ccb2bdf05c4feb4.3.js",
-          "l": 92160,
-          "c": "f186f3e"
-        },
-        {
-          "u": "/updates/parts/bb0b1dc51972b9b36ccb2bdf05c4feb4.4.js",
-          "l": 92160,
-          "c": "839e1d85"
-        },
-        {
-          "u": "/updates/parts/bb0b1dc51972b9b36ccb2bdf05c4feb4.5.js",
-          "l": 92160,
-          "c": "a0e75d3"
-        },
-        {
-          "u": "/updates/parts/bb0b1dc51972b9b36ccb2bdf05c4feb4.6.js",
-          "l": 92160,
-          "c": "298f7f57"
-        },
-        {
-          "u": "/updates/parts/bb0b1dc51972b9b36ccb2bdf05c4feb4.7.js",
-          "l": 92160,
-          "c": "f4a4a6e8"
-        },
-        {
-          "u": "/updates/parts/bb0b1dc51972b9b36ccb2bdf05c4feb4.8.js",
-          "l": 92160,
-          "c": "642240e"
-        },
-        {
-          "u": "/updates/parts/bb0b1dc51972b9b36ccb2bdf05c4feb4.9.js",
-          "l": 92160,
-          "c": "9d7e13f8"
-        },
-        {
-          "u": "/updates/parts/bb0b1dc51972b9b36ccb2bdf05c4feb4.10.js",
-          "l": 92160,
-          "c": "c606d4f6"
-        },
-        {
-          "u": "/updates/parts/bb0b1dc51972b9b36ccb2bdf05c4feb4.11.js",
-          "l": 92160,
-          "c": "479ef13d"
-        },
-        {
-          "u": "/updates/parts/bb0b1dc51972b9b36ccb2bdf05c4feb4.12.js",
-          "l": 92160,
-          "c": "c4774153"
-        },
-        {
-          "u": "/updates/parts/bb0b1dc51972b9b36ccb2bdf05c4feb4.13.js",
-          "l": 92160,
-          "c": "47e8b115"
-        },
-        {
-          "u": "/updates/parts/bb0b1dc51972b9b36ccb2bdf05c4feb4.14.js",
-          "l": 92160,
-          "c": "98fc2dfd"
-        },
-        {
-          "u": "/updates/parts/bb0b1dc51972b9b36ccb2bdf05c4feb4.15.js",
-          "l": 92160,
-          "c": "6e60be5f"
-        },
-        {
-          "u": "/updates/parts/bb0b1dc51972b9b36ccb2bdf05c4feb4.16.js",
-          "l": 92160,
-          "c": "534d9e7e"
-        },
-        {
-          "u": "/updates/parts/bb0b1dc51972b9b36ccb2bdf05c4feb4.17.js",
-          "l": 92160,
-          "c": "c8971d43"
-        },
-        {
-          "u": "/updates/parts/bb0b1dc51972b9b36ccb2bdf05c4feb4.18.js",
-          "l": 92160,
-          "c": "dd62abf"
-        },
-        {
-          "u": "/updates/parts/bb0b1dc51972b9b36ccb2bdf05c4feb4.19.js",
-          "l": 92160,
-          "c": "28f24c84"
-        },
-        {
-          "u": "/updates/parts/bb0b1dc51972b9b36ccb2bdf05c4feb4.20.js",
-          "l": 92160,
-          "c": "a80b88d9"
-        },
-        {
-          "u": "/updates/parts/bb0b1dc51972b9b36ccb2bdf05c4feb4.21.js",
-          "l": 92160,
-          "c": "b11dcd0f"
-        },
-        {
-          "u": "/updates/parts/bb0b1dc51972b9b36ccb2bdf05c4feb4.22.js",
-          "l": 92160,
-          "c": "1c843160"
-        },
-        {
-          "u": "/updates/parts/bb0b1dc51972b9b36ccb2bdf05c4feb4.23.js",
-          "l": 76716,
-          "c": "5aaf71fd"
+          "u": "/updates/parts/5a737d9a49b50c33b993e42463d8036a.1.js",
+          "l": 54424,
+          "c": "9454a91f"
         }
       ],
       "j": [
-        "/updates/parts/bb0b1dc51972b9b36ccb2bdf05c4feb4.0.js",
-        "/updates/parts/bb0b1dc51972b9b36ccb2bdf05c4feb4.1.js",
-        "/updates/parts/bb0b1dc51972b9b36ccb2bdf05c4feb4.2.js",
-        "/updates/parts/bb0b1dc51972b9b36ccb2bdf05c4feb4.3.js",
-        "/updates/parts/bb0b1dc51972b9b36ccb2bdf05c4feb4.4.js",
-        "/updates/parts/bb0b1dc51972b9b36ccb2bdf05c4feb4.5.js",
-        "/updates/parts/bb0b1dc51972b9b36ccb2bdf05c4feb4.6.js",
-        "/updates/parts/bb0b1dc51972b9b36ccb2bdf05c4feb4.7.js",
-        "/updates/parts/bb0b1dc51972b9b36ccb2bdf05c4feb4.8.js",
-        "/updates/parts/bb0b1dc51972b9b36ccb2bdf05c4feb4.9.js",
-        "/updates/parts/bb0b1dc51972b9b36ccb2bdf05c4feb4.10.js",
-        "/updates/parts/bb0b1dc51972b9b36ccb2bdf05c4feb4.11.js",
-        "/updates/parts/bb0b1dc51972b9b36ccb2bdf05c4feb4.12.js",
-        "/updates/parts/bb0b1dc51972b9b36ccb2bdf05c4feb4.13.js",
-        "/updates/parts/bb0b1dc51972b9b36ccb2bdf05c4feb4.14.js",
-        "/updates/parts/bb0b1dc51972b9b36ccb2bdf05c4feb4.15.js",
-        "/updates/parts/bb0b1dc51972b9b36ccb2bdf05c4feb4.16.js",
-        "/updates/parts/bb0b1dc51972b9b36ccb2bdf05c4feb4.17.js",
-        "/updates/parts/bb0b1dc51972b9b36ccb2bdf05c4feb4.18.js",
-        "/updates/parts/bb0b1dc51972b9b36ccb2bdf05c4feb4.19.js",
-        "/updates/parts/bb0b1dc51972b9b36ccb2bdf05c4feb4.20.js",
-        "/updates/parts/bb0b1dc51972b9b36ccb2bdf05c4feb4.21.js",
-        "/updates/parts/bb0b1dc51972b9b36ccb2bdf05c4feb4.22.js",
-        "/updates/parts/bb0b1dc51972b9b36ccb2bdf05c4feb4.23.js"
+        "/updates/parts/5a737d9a49b50c33b993e42463d8036a.0.js",
+        "/updates/parts/5a737d9a49b50c33b993e42463d8036a.1.js"
       ]
     },
     {
@@ -1967,18 +1967,18 @@
     },
     {
       "p": "index.html",
-      "h": "f3e8b75df6c0cef6860389c6324cd5c6",
+      "h": "32f469bb818969a8380bee94df96ea88",
       "s": 2621,
-      "c": "c7602629",
+      "c": "205d3da2",
       "k": [
         {
-          "u": "/updates/parts/f3e8b75df6c0cef6860389c6324cd5c6.0.js",
+          "u": "/updates/parts/32f469bb818969a8380bee94df96ea88.0.js",
           "l": 2621,
-          "c": "c7602629"
+          "c": "205d3da2"
         }
       ],
       "j": [
-        "/updates/parts/f3e8b75df6c0cef6860389c6324cd5c6.0.js"
+        "/updates/parts/32f469bb818969a8380bee94df96ea88.0.js"
       ]
     },
     {
