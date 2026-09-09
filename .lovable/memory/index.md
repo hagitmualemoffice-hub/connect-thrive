@@ -9,3 +9,4 @@ Offline/NetFree "אחותי כלה" bootstrap + updater is PROTECTED infrastruct
 ## Memories
 - [Design tokens](mem://design/tokens) — Pink primary, soft accent, gradient CTA cyan→pink
 - [Offline/NetFree architecture](mem://offline-netfree-architecture) — Protected file:// bootstrap, script-tag updater, auth bridge, regression checklist
+- [Offline update procedure](mem://offline-update-procedure) — Trigger phrase "עדכן את גרסת האופליין של אחותי כלה" + exact publish steps
