@@ -1,5 +1,8 @@
 #!/usr/bin/env node
 /**
+ * PROTECTED: packager for the file:// + NetFree offline app. See docs/OFFLINE-ARCHITECTURE.md.
+ * Chunk size, XOR mask, manifest fields (u/l/c) and DJB2 must stay in sync with the bootstrap.
+ *
  * מסנכרן את גרסת האופליין ("אחותי כלה") ישירות מהאתר החי שפורסם.
  *
  *   node scripts/sync-offline-from-live.mjs                 # ליבה בלבד (HTML/CSS/JS/אייקונים)
