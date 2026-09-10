@@ -226,7 +226,7 @@
         throw e2;
       }
       return buf;
-    }).catch(function (e) { partSink = null; throw e; });
+    }).catch(function (e) { delete partSinks[f.h]; throw e; });
   }
 
   /* ---------------- הורדת קבצים חסרים ---------------- */
