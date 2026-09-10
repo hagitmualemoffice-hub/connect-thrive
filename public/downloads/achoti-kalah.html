@@ -182,7 +182,7 @@
       }
       return received;
     }).catch(function (e) {
-      partSink = null;
+      if (partSinks[f.h]) delete partSinks[f.h][i];
       if (attempt < 4) {
         return new Promise(function (r) { setTimeout(r, 400 * attempt); })
           .then(function () { return downloadChunk(f, meta, i, total, attempt + 1); });
