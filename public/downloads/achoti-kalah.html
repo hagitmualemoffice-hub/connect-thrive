@@ -42,7 +42,7 @@
   var qs = new URLSearchParams(location.search);
   var ORIGIN = qs.get("origin") || "https://hagitmualem.com";
   var DB_NAME = "achotikala-app";
-  var BOOT_REV = 2;           // גרסת קובץ הפתיחה
+  var BOOT_REV = 3;           // גרסת קובץ הפתיחה
   var MIN_STAGE = "full";     // התקנות ישנות ללא תמונות — יעודכנו מיד
   var BLOBS = "blobs";
   var META = "meta";
@@ -124,8 +124,11 @@
 
   /* ---------------- ערוץ ההעברה: קבצי .js אמיתיים בתג script ---------------- */
   var AK = window.AK = window.AK || {};
-  var partSink = null;
+  var partSink = null;            // תאימות לאחור
+  var partSinks = Object.create(null); // hash -> { index: b64 } (מאפשר הורדה מקבילה)
   AK.part = function (hash, index, total, b64, masked) {
+    var sink = partSinks[hash];
+    if (sink) sink[index] = { b64: b64, masked: masked };
     if (partSink && partSink.hash === hash) partSink.receive(index, total, b64, masked);
   };
   var XOR_KEY = [0x5a, 0x3c, 0xa7, 0x11, 0x6d, 0xf2, 0x89, 0x24];
@@ -160,10 +163,11 @@
   function downloadChunk(f, meta, i, total, attempt) {
     attempt = attempt || 1;
     var received = null;
-    partSink = { hash: f.h, receive: function (idx, n, b64, masked) { if (idx === i) received = b64ToBytes(b64, masked); } };
+    if (!partSinks[f.h]) partSinks[f.h] = Object.create(null);
     var url = ORIGIN + meta.u + (attempt > 1 ? "?r=" + attempt + "." + Date.now() : "");
     return loadPartScript(url, f.p, i).then(function () {
-      partSink = null;
+      var slot = partSinks[f.h] && partSinks[f.h][i];
+      if (slot) { received = b64ToBytes(slot.b64, slot.masked); delete partSinks[f.h][i]; }
       var bad = null;
       if (!received) bad = "חלק לא התקבל";
       else if (meta.l != null && received.length !== meta.l) bad = "חלק קטוע";
@@ -178,7 +182,7 @@
       }
       return received;
     }).catch(function (e) {
-      partSink = null;
+      if (partSinks[f.h]) delete partSinks[f.h][i];
       if (attempt < 4) {
         return new Promise(function (r) { setTimeout(r, 400 * attempt); })
           .then(function () { return downloadChunk(f, meta, i, total, attempt + 1); });
@@ -194,17 +198,23 @@
       : (f.j || []).map(function (u) { return { u: u }; });
     if (!metas.length) return Promise.reject(new Error("no-js-parts"));
     var chunks = new Array(metas.length);
-    var chain = Promise.resolve();
-    metas.forEach(function (m, i) {
-      chain = chain.then(function () {
-        return downloadChunk(f, m, i, metas.length).then(function (bytes) {
-          chunks[i] = bytes; // חלק שאומת נשמר — כישלון בחלק אחר לא מבטל אותו
-          if (onChunk) onChunk(bytes.length);
-        });
-      });
-    });
-    return chain.then(function () {
-      partSink = null;
+    // הורדה מקבילה מוגבלת — כל חלק עדיין מאומת בנפרד (אורך + checksum)
+    var CONCURRENCY = 4;
+    var nextIdx = 0, firstErr = null;
+    function worker() {
+      if (firstErr || nextIdx >= metas.length) return Promise.resolve();
+      var i = nextIdx++;
+      return downloadChunk(f, metas[i], i, metas.length).then(function (bytes) {
+        chunks[i] = bytes; // חלק שאומת נשמר — כישלון בחלק אחר לא מבטל אותו
+        if (onChunk) onChunk(bytes.length);
+        return worker();
+      }).catch(function (e) { if (!firstErr) firstErr = e; });
+    }
+    var lanes = [];
+    for (var w = 0; w < Math.min(CONCURRENCY, metas.length); w++) lanes.push(worker());
+    return Promise.all(lanes).then(function () {
+      if (firstErr) throw firstErr;
+      delete partSinks[f.h];
       var total = 0, i;
       for (i = 0; i < chunks.length; i++) total += chunks[i].length;
       var out = new Uint8Array(total), off = 0;
@@ -216,7 +226,7 @@
         throw e2;
       }
       return buf;
-    }).catch(function (e) { partSink = null; throw e; });
+    }).catch(function (e) { delete partSinks[f.h]; throw e; });
   }
 
   /* ---------------- הורדת קבצים חסרים ---------------- */
@@ -251,7 +261,7 @@
             failed = e;
           });
       }
-      // תגי script חייבים לרוץ אחד אחרי השני (הקריאה ל-AK.part גלובלית)
+      // קבצים בזה אחר זה; החלקים בתוך כל קובץ יורדים במקביל (עד 4)
       return next().then(function () {
         if (failed) throw failed;
         return { need: need.length, bytes: totalBytes };
@@ -632,7 +642,7 @@
       setTimeout(function () {
         put(db, META, "boot", { version: manifest.version, attempts: 0, verified: true });
       }, 4000);
-      setTimeout(function () { checkForUpdate(manifest, previous); }, 2500);
+      setTimeout(function () { checkForUpdate(manifest, previous); }, 600);
     }).catch(function (e) {
       // הגרסה הנוכחית לא ניתנת להרכבה — ניסיון מיידי בגרסה הקודמת
       if (previous) {
