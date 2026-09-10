@@ -53,7 +53,8 @@ Permanent, self-contained shell. Responsibilities:
   **before** app scripts run. The source app uses this to switch to `HashRouter`
   (`file://` cannot use history routing) and to enable offline-specific auth behavior.
 - Stores every app file in **IndexedDB**, keyed by content hash.
-- Runs a background update check when online.
+- Runs a cache-busted remote manifest check on every launch and supports a manual check
+  from diagnostics. The remote result is never inferred from locally resolved assets.
 - Verifies, activates, and can roll back.
 - Runtime media resolver: rewrites dynamically constructed `src`, `srcset`, `poster`,
   inline `style` assignments and DOM mutations to the locally stored blob/data URLs.
@@ -79,13 +80,15 @@ Permanent, self-contained shell. Responsibilities:
   A chunk is accepted only if length **and** checksum match; up to 4 retries with a
   cache-busting `?r=` parameter; verified chunks are kept across retries.
 - After all chunks, the **whole file checksum** must match before it is stored.
-- A new version is activated only after **every** required file verified.
+- A new version is activated only after **every** required file verified. The active and
+  previous manifests are then switched atomically in one IndexedDB transaction, including
+  when all new-version hashes already exist locally and zero payloads need downloading.
 
 ## 4. Update flow
 
 ```
 open shell -> render local version (instant, offline-capable)
-           -> background: <script src="/updates/manifest.js">
+           -> background: unique <script src="/updates/manifest.js?t=...&nonce=...">
            -> compare hashes with IndexedDB
            -> download only changed/new files, chunk by chunk
            -> verify lengths + checksums + file checksums
@@ -97,6 +100,8 @@ open shell -> render local version (instant, offline-capable)
 - Rollback: the previous verified version is kept. If a new version fails to open twice
   in a row, the shell returns to it automatically.
 - Unchanged images, audio, fonts are never re-downloaded.
+- Diagnostics must show local installed version and freshly fetched remote server version
+  as two separate values, plus check time, network/error source, and result.
 
 Hosted files on `hagitmualem.com`:
 

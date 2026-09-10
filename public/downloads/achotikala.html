@@ -1,4 +1,6 @@
 <!doctype html>
+<!-- PROTECTED: production file:// + NetFree bootstrap/updater. Do not refactor casually.
+     See docs/OFFLINE-ARCHITECTURE.md (chunk size, XOR key, AK.part signature, DJB2 are invariants). -->
 <html lang="he" dir="rtl">
 <head>
 <meta charset="utf-8" />
@@ -40,7 +42,7 @@
   var qs = new URLSearchParams(location.search);
   var ORIGIN = qs.get("origin") || "https://hagitmualem.com";
   var DB_NAME = "achotikala-app";
-  var BOOT_REV = 2;           // גרסת קובץ הפתיחה
+  var BOOT_REV = 4;           // גרסת קובץ הפתיחה
   var MIN_STAGE = "full";     // התקנות ישנות ללא תמונות — יעודכנו מיד
   var BLOBS = "blobs";
   var META = "meta";
@@ -51,6 +53,14 @@
   var pctEl = document.getElementById("ak-pct");
   var errEl = document.getElementById("ak-err");
   var toastEl = document.getElementById("ak-toast");
+  var updateState = window.ACHOTIKALA_UPDATE_STATUS = {
+    localVersion: null,
+    remoteVersion: null,
+    lastCheck: null,
+    source: "NOT CHECKED",
+    result: "Update check has not run yet",
+    error: ""
+  };
 
   function say(t) { msgEl.textContent = t; }
   function progress(done, total) {
@@ -98,6 +108,18 @@
   function put(db, store, key, val) { return tx(db, store, "readwrite", function (s) { return s.put(val, key); }); }
   function del(db, store, key) { return tx(db, store, "readwrite", function (s) { return s.delete(key); }); }
   function keys(db, store) { return tx(db, store, "readonly", function (s) { return s.getAllKeys(); }); }
+  function switchManifest(db, current, remote) {
+    return new Promise(function (res, rej) {
+      var t = db.transaction(META, "readwrite");
+      var s = t.objectStore(META);
+      s.put(current, "previous");
+      s.put(remote, "current");
+      s.put({ version: remote.version, attempts: 0, verified: false }, "boot");
+      t.oncomplete = function () { res(); };
+      t.onerror = function () { rej(t.error); };
+      t.onabort = function () { rej(t.error || new Error("manifest-switch-aborted")); };
+    });
+  }
 
   /* ---------------- checksum (crypto.subtle לא זמין ב-file://) ---------------- */
   function djb2(buf) {
@@ -111,19 +133,39 @@
     return new Promise(function (res, rej) {
       var done = false;
       var s = document.createElement("script");
-      window.AKUPD_MANIFEST = function (m) { done = true; cleanup(); res(m); };
-      function cleanup() { try { s.remove(); } catch (e) {} }
+      var callback = function (m) {
+        if (done) return;
+        done = true;
+        updateState.remoteVersion = m && m.version != null ? m.version : null;
+        updateState.source = "NETWORK (cache-busted script)";
+        cleanup();
+        res(m);
+      };
+      window.AKUPD_MANIFEST = callback;
+      function cleanup() {
+        if (window.AKUPD_MANIFEST === callback) delete window.AKUPD_MANIFEST;
+        try { s.remove(); } catch (e) {}
+      }
       s.onerror = function () { if (!done) { cleanup(); rej(new Error("manifest-blocked")); } };
-      s.src = ORIGIN + "/updates/manifest.js?t=" + Date.now();
+      // A unique URL forces a network request. A file:// app has no Service Worker
+      // controller, and the update manifest is never read from IndexedDB/Cache Storage.
+      s.src = ORIGIN + "/updates/manifest.js?t=" + Date.now() + "&nonce=" +
+        Math.random().toString(36).slice(2);
+      s.setAttribute("data-cache", "no-store");
       document.head.appendChild(s);
-      setTimeout(function () { if (!done) { cleanup(); rej(new Error("manifest-timeout")); } }, timeoutMs || 15000);
+      setTimeout(function () {
+        if (!done) { done = true; cleanup(); rej(new Error("manifest-timeout")); }
+      }, timeoutMs || 15000);
     });
   }
 
   /* ---------------- ערוץ ההעברה: קבצי .js אמיתיים בתג script ---------------- */
   var AK = window.AK = window.AK || {};
-  var partSink = null;
+  var partSink = null;            // תאימות לאחור
+  var partSinks = Object.create(null); // hash -> { index: b64 } (מאפשר הורדה מקבילה)
   AK.part = function (hash, index, total, b64, masked) {
+    var sink = partSinks[hash];
+    if (sink) sink[index] = { b64: b64, masked: masked };
     if (partSink && partSink.hash === hash) partSink.receive(index, total, b64, masked);
   };
   var XOR_KEY = [0x5a, 0x3c, 0xa7, 0x11, 0x6d, 0xf2, 0x89, 0x24];
@@ -158,10 +200,11 @@
   function downloadChunk(f, meta, i, total, attempt) {
     attempt = attempt || 1;
     var received = null;
-    partSink = { hash: f.h, receive: function (idx, n, b64, masked) { if (idx === i) received = b64ToBytes(b64, masked); } };
+    if (!partSinks[f.h]) partSinks[f.h] = Object.create(null);
     var url = ORIGIN + meta.u + (attempt > 1 ? "?r=" + attempt + "." + Date.now() : "");
     return loadPartScript(url, f.p, i).then(function () {
-      partSink = null;
+      var slot = partSinks[f.h] && partSinks[f.h][i];
+      if (slot) { received = b64ToBytes(slot.b64, slot.masked); delete partSinks[f.h][i]; }
       var bad = null;
       if (!received) bad = "חלק לא התקבל";
       else if (meta.l != null && received.length !== meta.l) bad = "חלק קטוע";
@@ -176,7 +219,7 @@
       }
       return received;
     }).catch(function (e) {
-      partSink = null;
+      if (partSinks[f.h]) delete partSinks[f.h][i];
       if (attempt < 4) {
         return new Promise(function (r) { setTimeout(r, 400 * attempt); })
           .then(function () { return downloadChunk(f, meta, i, total, attempt + 1); });
@@ -192,17 +235,23 @@
       : (f.j || []).map(function (u) { return { u: u }; });
     if (!metas.length) return Promise.reject(new Error("no-js-parts"));
     var chunks = new Array(metas.length);
-    var chain = Promise.resolve();
-    metas.forEach(function (m, i) {
-      chain = chain.then(function () {
-        return downloadChunk(f, m, i, metas.length).then(function (bytes) {
-          chunks[i] = bytes; // חלק שאומת נשמר — כישלון בחלק אחר לא מבטל אותו
-          if (onChunk) onChunk(bytes.length);
-        });
-      });
-    });
-    return chain.then(function () {
-      partSink = null;
+    // הורדה מקבילה מוגבלת — כל חלק עדיין מאומת בנפרד (אורך + checksum)
+    var CONCURRENCY = 4;
+    var nextIdx = 0, firstErr = null;
+    function worker() {
+      if (firstErr || nextIdx >= metas.length) return Promise.resolve();
+      var i = nextIdx++;
+      return downloadChunk(f, metas[i], i, metas.length).then(function (bytes) {
+        chunks[i] = bytes; // חלק שאומת נשמר — כישלון בחלק אחר לא מבטל אותו
+        if (onChunk) onChunk(bytes.length);
+        return worker();
+      }).catch(function (e) { if (!firstErr) firstErr = e; });
+    }
+    var lanes = [];
+    for (var w = 0; w < Math.min(CONCURRENCY, metas.length); w++) lanes.push(worker());
+    return Promise.all(lanes).then(function () {
+      if (firstErr) throw firstErr;
+      delete partSinks[f.h];
       var total = 0, i;
       for (i = 0; i < chunks.length; i++) total += chunks[i].length;
       var out = new Uint8Array(total), off = 0;
@@ -214,7 +263,7 @@
         throw e2;
       }
       return buf;
-    }).catch(function (e) { partSink = null; throw e; });
+    }).catch(function (e) { delete partSinks[f.h]; throw e; });
   }
 
   /* ---------------- הורדת קבצים חסרים ---------------- */
@@ -249,7 +298,7 @@
             failed = e;
           });
       }
-      // תגי script חייבים לרוץ אחד אחרי השני (הקריאה ל-AK.part גלובלית)
+      // קבצים בזה אחר זה; החלקים בתוך כל קובץ יורדים במקביל (עד 4)
       return next().then(function () {
         if (failed) throw failed;
         return { need: need.length, bytes: totalBytes };
@@ -448,9 +497,18 @@
       var d = document.createElement("div");
       d.style.cssText = "position:fixed;inset:0;background:#fff;z-index:2147483600;overflow:auto;padding:16px;" +
         "font:13px/1.6 monospace;direction:ltr;text-align:left";
-      d.innerHTML = "<button style='float:right;padding:6px 12px'>סגירה</button>" +
+      var checkedAt = updateState.lastCheck ? new Date(updateState.lastCheck).toLocaleString() : "Not checked yet";
+      d.innerHTML = "<button data-close style='float:right;padding:6px 12px'>סגירה</button>" +
         "<h3>Achoti Kalah offline diagnostics</h3>" +
-        "<div>manifest version: <b>" + manifest.version + "</b> (" + (manifest.stage || "?") + ")</div>" +
+        "<div style='font-size:17px;margin:10px 0'><b>Local installed version: " + manifest.version + "</b></div>" +
+        "<div style='font-size:17px;margin:10px 0'><b>Remote server version: " +
+          (updateState.remoteVersion == null ? "—" : updateState.remoteVersion) + "</b></div>" +
+        "<div>Package stage: " + (manifest.stage || "?") + "</div>" +
+        "<div>Last update check: " + checkedAt + "</div>" +
+        "<div>Manifest source: <b>" + updateState.source + "</b></div>" +
+        "<div>Update result: <b>" + updateState.result + "</b></div>" +
+        (updateState.error ? "<div style='color:#a33;word-break:break-all'>Update error: " + updateState.error + "</div>" : "") +
+        "<button data-update style='margin:12px 0;padding:8px 14px'>בדיקה ועדכון עכשיו</button>" +
         "<div>generated: " + (manifest.generated || "") + "</div>" +
         "<div>files in package: " + manifest.files.length + "</div>" +
         "<div>assets resolved locally: " + (stats.resolved || 0) + "</div>" +
@@ -465,7 +523,13 @@
                 "<br>rendered as: original URL (network)</div>";
             }).join("")
           : "<div>all requested assets resolved from local storage ✔</div>");
-      d.querySelector("button").onclick = function () { d.remove(); };
+      d.querySelector("[data-close]").onclick = function () { d.remove(); };
+      d.querySelector("[data-update]").onclick = function () {
+        updateState.result = "Checking now…";
+        d.remove();
+        checkForUpdate(manifest, null, true);
+        setTimeout(show, 250);
+      };
       document.body.appendChild(d);
     }
     window.ACHOTIKALA_DIAGNOSTICS = show;
@@ -624,13 +688,14 @@
   }
 
   function start(manifest, previous) {
+    updateState.localVersion = manifest.version;
     return buildApp(db, manifest).then(function (app) {
       return mount(app, manifest.version).then(function () { installDiagnostics(manifest, app); });
     }).then(function () {
       setTimeout(function () {
         put(db, META, "boot", { version: manifest.version, attempts: 0, verified: true });
       }, 4000);
-      setTimeout(function () { checkForUpdate(manifest, previous); }, 2500);
+      setTimeout(function () { checkForUpdate(manifest, previous); }, 600);
     }).catch(function (e) {
       // הגרסה הנוכחית לא ניתנת להרכבה — ניסיון מיידי בגרסה הקודמת
       if (previous) {
@@ -642,34 +707,54 @@
     });
   }
 
-  function checkForUpdate(current, previous) {
+  var updateCheckPromise = null;
+  function checkForUpdate(current, previous, manual) {
+    if (updateCheckPromise) return updateCheckPromise;
     // התקנה ישנה ללא תמונות — מעדכנים מיד, עם התקדמות גלויה, ופותחים מחדש לבד
     var stale = (current.stage || "core") !== MIN_STAGE;
-    loadManifest(20000).then(function (remote) {
-      if (!remote || (remote.version <= current.version && !stale)) return;
+    updateState.localVersion = current.version;
+    updateState.remoteVersion = null;
+    updateState.lastCheck = Date.now();
+    updateState.source = "NETWORK REQUEST IN PROGRESS";
+    updateState.result = "Checking for update…";
+    updateState.error = "";
+    updateCheckPromise = loadManifest(20000).then(function (remote) {
+      if (!remote || remote.version == null) throw new Error("invalid-remote-manifest");
+      updateState.remoteVersion = remote.version;
+      if (Number(remote.version) <= Number(current.version) && !stale) {
+        updateState.result = "Already current";
+        if (manual) toast("הגרסה במחשב מעודכנת");
+        return;
+      }
+      updateState.result = "Update " + current.version + " → " + remote.version + " found";
       if (stale) toast("מורידה את התמונות של האתר… 0%");
       return downloadMissing(db, remote, function (d, t) {
         if (stale && t) toast("מורידה את התמונות של האתר… " + Math.round((d / t) * 100) + "%");
       }).then(function () {
-        return Promise.all([
-          put(db, META, "previous", current),
-          put(db, META, "current", remote)
-        ]);
+        // This runs even when every remote file hash is already present locally.
+        // The active manifest version is switched in one IndexedDB transaction.
+        return switchManifest(db, current, remote);
       }).then(function () {
         return gc(db, [remote, current]);
       }).then(function () {
-        put(db, META, "bootRev", BOOT_REV);
-        if (stale) {
-          toast("העדכון הותקן — פותחת מחדש…");
-          setTimeout(function () { location.reload(); }, 1500);
-        } else {
-          toast("עדכון חדש הותקן ומוכן", "פתחי מחדש", function () { location.reload(); });
-        }
+        updateState.result = "Updated to version " + remote.version + "; reloading";
+        return put(db, META, "bootRev", BOOT_REV);
+      }).then(function () {
+        toast("העדכון הותקן — פותחת מחדש…");
+        setTimeout(function () { location.reload(); }, 900);
       });
     }).catch(function (e) {
-      window.ACHOTIKALA_UPDATE_ERROR = e && (e.detail || e.message || String(e));
+      var detail = e && (e.detail || e.message || String(e));
+      window.ACHOTIKALA_UPDATE_ERROR = detail;
+      updateState.source = updateState.remoteVersion == null ? "NETWORK ERROR" : updateState.source;
+      updateState.result = "Update check failed";
+      updateState.error = typeof detail === "string" ? detail : JSON.stringify(detail);
       if (stale) toast("לא הצלחנו להוריד את התמונות כרגע — ננסה שוב בפתיחה הבאה");
+      else if (manual) toast("בדיקת העדכון נכשלה — הפרטים מופיעים באבחון");
+    }).then(function () {
+      updateCheckPromise = null;
     });
+    return updateCheckPromise;
   }
 })();
 </script>
