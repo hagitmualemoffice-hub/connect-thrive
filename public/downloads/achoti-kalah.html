@@ -42,7 +42,7 @@
   var qs = new URLSearchParams(location.search);
   var ORIGIN = qs.get("origin") || "https://hagitmualem.com";
   var DB_NAME = "achotikala-app";
-  var BOOT_REV = 5;           // גרסת קובץ הפתיחה
+  var BOOT_REV = 6;           // גרסת קובץ הפתיחה
   var MIN_STAGE = "full";     // התקנות ישנות ללא תמונות — יעודכנו מיד
   var BLOBS = "blobs";
   var META = "meta";
@@ -510,6 +510,16 @@
         (updateState.error ? "<div style='color:#a33;word-break:break-all'>Update error: " + updateState.error + "</div>" : "") +
         "<button data-update style='margin:12px 0;padding:8px 14px'>בדיקה ועדכון עכשיו</button>" +
         "<div>generated: " + (manifest.generated || "") + "</div>" +
+        "<div>active content: <b>" + (function () {
+          var mainJs = "";
+          var entryHash = "";
+          for (var i = 0; i < manifest.files.length; i++) {
+            var f = manifest.files[i];
+            if (/^assets\/index-.*\.js$/.test(f.p)) mainJs = f.p;
+            if (f.p === "index.html") entryHash = String(f.h || "").slice(0, 8);
+          }
+          return (mainJs || "?") + " / index.html " + (entryHash || "?");
+        })() + "</b></div>" +
         "<div>files in package: " + manifest.files.length + "</div>" +
         "<div>assets resolved locally: " + (stats.resolved || 0) + "</div>" +
         "<div>unresolved assets: <b>" + list.length + "</b></div>" +
