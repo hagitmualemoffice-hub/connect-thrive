@@ -42,7 +42,7 @@
   var qs = new URLSearchParams(location.search);
   var ORIGIN = qs.get("origin") || "https://hagitmualem.com";
   var DB_NAME = "achotikala-app";
-  var BOOT_REV = 4;           // גרסת קובץ הפתיחה
+  var BOOT_REV = 5;           // גרסת קובץ הפתיחה
   var MIN_STAGE = "full";     // התקנות ישנות ללא תמונות — יעודכנו מיד
   var BLOBS = "blobs";
   var META = "meta";
@@ -692,9 +692,9 @@
     return buildApp(db, manifest).then(function (app) {
       return mount(app, manifest.version).then(function () { installDiagnostics(manifest, app); });
     }).then(function () {
-      setTimeout(function () {
-        put(db, META, "boot", { version: manifest.version, attempts: 0, verified: true });
-      }, 4000);
+      // הגרסה נחשבת תקינה ברגע שהאפליקציה עלתה — אחרת סגירה מהירה פעמיים
+      // אחרי עדכון הייתה מחזירה אוטומטית לגרסה הקודמת (59) ומבטלת את ההתקנה.
+      put(db, META, "boot", { version: manifest.version, attempts: 0, verified: true });
       setTimeout(function () { checkForUpdate(manifest, previous); }, 600);
     }).catch(function (e) {
       // הגרסה הנוכחית לא ניתנת להרכבה — ניסיון מיידי בגרסה הקודמת
