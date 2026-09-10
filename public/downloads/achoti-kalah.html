@@ -198,17 +198,23 @@
       : (f.j || []).map(function (u) { return { u: u }; });
     if (!metas.length) return Promise.reject(new Error("no-js-parts"));
     var chunks = new Array(metas.length);
-    var chain = Promise.resolve();
-    metas.forEach(function (m, i) {
-      chain = chain.then(function () {
-        return downloadChunk(f, m, i, metas.length).then(function (bytes) {
-          chunks[i] = bytes; // חלק שאומת נשמר — כישלון בחלק אחר לא מבטל אותו
-          if (onChunk) onChunk(bytes.length);
-        });
-      });
-    });
-    return chain.then(function () {
-      partSink = null;
+    // הורדה מקבילה מוגבלת — כל חלק עדיין מאומת בנפרד (אורך + checksum)
+    var CONCURRENCY = 4;
+    var nextIdx = 0, firstErr = null;
+    function worker() {
+      if (firstErr || nextIdx >= metas.length) return Promise.resolve();
+      var i = nextIdx++;
+      return downloadChunk(f, metas[i], i, metas.length).then(function (bytes) {
+        chunks[i] = bytes; // חלק שאומת נשמר — כישלון בחלק אחר לא מבטל אותו
+        if (onChunk) onChunk(bytes.length);
+        return worker();
+      }).catch(function (e) { if (!firstErr) firstErr = e; });
+    }
+    var lanes = [];
+    for (var w = 0; w < Math.min(CONCURRENCY, metas.length); w++) lanes.push(worker());
+    return Promise.all(lanes).then(function () {
+      if (firstErr) throw firstErr;
+      delete partSinks[f.h];
       var total = 0, i;
       for (i = 0; i < chunks.length; i++) total += chunks[i].length;
       var out = new Uint8Array(total), off = 0;
