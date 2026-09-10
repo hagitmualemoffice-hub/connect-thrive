@@ -42,7 +42,7 @@
   var qs = new URLSearchParams(location.search);
   var ORIGIN = qs.get("origin") || "https://hagitmualem.com";
   var DB_NAME = "achotikala-app";
-  var BOOT_REV = 2;           // גרסת קובץ הפתיחה
+  var BOOT_REV = 3;           // גרסת קובץ הפתיחה
   var MIN_STAGE = "full";     // התקנות ישנות ללא תמונות — יעודכנו מיד
   var BLOBS = "blobs";
   var META = "meta";
@@ -261,7 +261,7 @@
             failed = e;
           });
       }
-      // תגי script חייבים לרוץ אחד אחרי השני (הקריאה ל-AK.part גלובלית)
+      // קבצים בזה אחר זה; החלקים בתוך כל קובץ יורדים במקביל (עד 4)
       return next().then(function () {
         if (failed) throw failed;
         return { need: need.length, bytes: totalBytes };
@@ -642,7 +642,7 @@
       setTimeout(function () {
         put(db, META, "boot", { version: manifest.version, attempts: 0, verified: true });
       }, 4000);
-      setTimeout(function () { checkForUpdate(manifest, previous); }, 2500);
+      setTimeout(function () { checkForUpdate(manifest, previous); }, 600);
     }).catch(function (e) {
       // הגרסה הנוכחית לא ניתנת להרכבה — ניסיון מיידי בגרסה הקודמת
       if (previous) {
