@@ -158,7 +158,32 @@ for (const f of entries) {
 }
 fs.writeFileSync(PARTS_REGISTRY, JSON.stringify(parts, null, 2));
 
-/* ---------- 4. מניפסט ---------- */
+/* ---------- 4. אימות: כל חלק שמופיע במניפסט חייב להיות קיים ותקין על הדיסק ---------- */
+const problems = [];
+for (const f of entries) {
+  let sum = 0;
+  for (const c of f.k) {
+    const abs = path.join(root, "public", c.u);
+    if (!fs.existsSync(abs)) { problems.push(`${f.p}: חסר ${c.u}`); continue; }
+    const txt = fs.readFileSync(abs, "utf8");
+    const m = txt.match(/^AK\.part\("([0-9a-f]+)",(\d+),(\d+),"([^"]*)",1\);/);
+    if (!m || m[1] !== f.h) { problems.push(`${f.p}: ${c.u} פגום`); continue; }
+    const masked = Buffer.from(m[4], "base64");
+    for (let b = 0; b < masked.length; b++) masked[b] ^= XOR_KEY[b % XOR_KEY.length];
+    if (masked.length !== c.l) { problems.push(`${f.p}: ${c.u} אורך ${masked.length} במקום ${c.l}`); continue; }
+    if (djb2(masked) !== c.c) { problems.push(`${f.p}: ${c.u} חתימה שגויה`); continue; }
+    sum += masked.length;
+  }
+  if (sum !== f.s) problems.push(`${f.p}: סכום החלקים ${sum} במקום ${f.s}`);
+}
+if (problems.length) {
+  console.error(`\n✗ העדכון בוטל — ${problems.length} בעיות בחלקים. המניפסט לא נכתב:`);
+  for (const p of problems.slice(0, 30)) console.error("  - " + p);
+  process.exit(1);
+}
+console.log(`✓ אומתו ${entries.reduce((n, f) => n + f.k.length, 0)} חלקים (אורך + חתימה) לפני כתיבת המניפסט.`);
+
+/* ---------- 5. מניפסט ---------- */
 const sameAsPrev =
   previous &&
   previous.files.length === entries.length &&
@@ -180,14 +205,22 @@ fs.writeFileSync(
     `window.AKUPD_MANIFEST && window.AKUPD_MANIFEST(${JSON.stringify(manifest)});\n`,
 );
 
-/* ---------- 5. ניקוי חלקים שאינם בשימוש ---------- */
+/* ---------- 6. ניקוי חלקים שאינם בשימוש (משאירים גם את הגרסה הקודמת) ---------- */
 const keep = new Set(entries.flatMap((f) => f.j.map((u) => path.basename(u))));
+const keptHashes = new Set(entries.map((f) => f.h));
+// חלקים של הגרסה הקודמת נשמרים כדי שמשתמשות שנמצאות באמצע עדכון לא יקבלו 404
+if (previous) {
+  for (const f of previous.files || []) {
+    keptHashes.add(f.h);
+    for (const c of f.k || []) keep.add(path.basename(c.u));
+  }
+}
 let removed = 0;
 for (const name of fs.readdirSync(PARTS_DIR)) {
   if (!keep.has(name)) { fs.rmSync(path.join(PARTS_DIR, name)); removed++; }
 }
 for (const h of Object.keys(parts)) {
-  if (!entries.some((f) => f.h === h)) delete parts[h];
+  if (!keptHashes.has(h)) delete parts[h];
 }
 fs.writeFileSync(PARTS_REGISTRY, JSON.stringify(parts, null, 2));
 
