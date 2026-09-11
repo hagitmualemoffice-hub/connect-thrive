@@ -385,11 +385,24 @@
   /* ---------------- ניקוי קבצים שכבר לא בשימוש ---------------- */
   function gc(db, manifests) {
     var keep = new Set();
-    manifests.forEach(function (m) { if (m) m.files.forEach(function (f) { keep.add(f.h); }); });
+    manifests.forEach(function (m) { if (m && m.files) m.files.forEach(function (f) { keep.add(f.h); }); });
     return keys(db, BLOBS).then(function (all) {
-      return Promise.all(all.filter(function (k) { return !keep.has(k); })
-        .map(function (k) { return del(db, BLOBS, k); }));
+      var drop = all.filter(function (k) { return !keep.has(k); });
+      return Promise.all(drop.map(function (k) { return del(db, BLOBS, k); }))
+        .then(function () { return drop; });
     });
+  }
+
+  /** תיאור קצר של התוכן הפעיל בפועל (קובץ הכניסה וה-JS הראשי) */
+  function activeContent(manifest) {
+    if (!manifest || !manifest.files) return "?";
+    var mainJs = "", entryHash = "";
+    for (var i = 0; i < manifest.files.length; i++) {
+      var f = manifest.files[i];
+      if (/^assets\/index-.*\.js$/.test(f.p)) mainJs = f.p;
+      if (f.p === (manifest.entry || "index.html")) entryHash = String(f.h || "").slice(0, 8);
+    }
+    return (mainJs || "?") + " / index.html " + (entryHash || "?");
   }
 
   /* ---------------- הרכבת האתר מהקבצים המקומיים ---------------- */
