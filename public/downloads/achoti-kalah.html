@@ -598,19 +598,13 @@
         (updateState.error ? "<div style='color:#a33;word-break:break-all'>Update error: " + updateState.error + "</div>" : "") +
         "<button data-update style='margin:12px 0;padding:8px 14px'>בדיקה ועדכון עכשיו</button>" +
         "<div>generated: " + (manifest.generated || "") + "</div>" +
-        "<div>active content: <b>" + (function () {
-          var mainJs = "";
-          var entryHash = "";
-          for (var i = 0; i < manifest.files.length; i++) {
-            var f = manifest.files[i];
-            if (/^assets\/index-.*\.js$/.test(f.p)) mainJs = f.p;
-            if (f.p === "index.html") entryHash = String(f.h || "").slice(0, 8);
-          }
-          return (mainJs || "?") + " / index.html " + (entryHash || "?");
-        })() + "</b></div>" +
+        "<div>active content: <b>" + activeContent(manifest) + "</b></div>" +
         "<div>files in package: " + manifest.files.length + "</div>" +
-        "<div>assets resolved locally: " + (stats.resolved || 0) + "</div>" +
-        "<div>unresolved assets: <b>" + list.length + "</b></div>" +
+        "<div>assets resolved dynamically at runtime: " + (stats.resolved || 0) +
+          " <span style='color:#888'>(0 is normal — it only counts images built by code)</span></div>" +
+        "<div>missing assets: <b>" + list.length + "</b>" +
+          (list.length ? "" : " <span style='color:#888'>(no image or file is missing from the local package — this says nothing about the update)</span>") +
+          "</div>" +
         "<div>update source: " + ORIGIN + "</div>" +
         "<div>bootstrap rev: " + BOOT_REV + "</div><hr>" +
         (list.length
@@ -620,7 +614,11 @@
                 "<br>filename: " + m.name + "<br>in package: NO (no stored blob)" +
                 "<br>rendered as: original URL (network)</div>";
             }).join("")
-          : "<div>all requested assets resolved from local storage ✔</div>");
+          : "") +
+        "<h4 style='margin:14px 0 6px'>Update log (survives reload and rollback)</h4>" +
+        "<button data-copy style='padding:6px 12px;margin-bottom:8px'>העתקת היומן</button>" +
+        "<pre data-log style='white-space:pre-wrap;word-break:break-all;background:#f7f5f6;padding:10px;border-radius:8px;font-size:12px'>" +
+          logText().replace(/[<&]/g, function (c) { return c === "<" ? "&lt;" : "&amp;"; }) + "</pre>";
       d.querySelector("[data-close]").onclick = function () { d.remove(); };
       d.querySelector("[data-update]").onclick = function () {
         updateState.result = "Checking now…";
