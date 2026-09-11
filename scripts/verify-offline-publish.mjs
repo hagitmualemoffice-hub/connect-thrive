@@ -26,8 +26,15 @@ if (local && local.version !== manifest.version) {
   console.log(`⚠ הגרסה החיה היא ${manifest.version} והמקומית ${local.version} — כנראה טרם פורסם.`);
 }
 
+const XOR_KEY = [0x5a, 0x3c, 0xa7, 0x11, 0x6d, 0xf2, 0x89, 0x24];
+function djb2(buf) {
+  let h = 5381;
+  for (let i = 0; i < buf.length; i++) h = ((h * 33) ^ buf[i]) >>> 0;
+  return h.toString(16);
+}
+
 const urls = new Map();
-for (const f of manifest.files) for (const c of f.k) urls.set(c.u, { file: f.p, min: Math.ceil(c.l * 4 / 3) });
+for (const f of manifest.files) for (const c of f.k) urls.set(c.u, { file: f.p, len: c.l, sum: c.c });
 
 let ok = 0;
 const bad = [];
@@ -39,10 +46,14 @@ async function worker() {
     try {
       const r = await fetch(`${ORIGIN}${u}?t=${Date.now()}`);
       const text = r.ok ? await r.text() : "";
-      if (!r.ok) bad.push(`${u} → ${r.status} (${meta.file})`);
-      else if (!text.startsWith("AK.part(")) bad.push(`${u} → תוכן לא תקין (${meta.file})`);
-      else if (text.length < meta.min) bad.push(`${u} → קטן מדי ${text.length} (${meta.file})`);
-      else ok++;
+      if (!r.ok) { bad.push(`${u} → ${r.status} (${meta.file})`); continue; }
+      const m = text.match(/^AK\.part\("([0-9a-f]+)",(\d+),(\d+),"([^"]*)",([01])\);/);
+      if (!m) { bad.push(`${u} → תוכן לא תקין (${meta.file})`); continue; }
+      const raw = Buffer.from(m[4], "base64");
+      if (m[5] === "1") for (let b = 0; b < raw.length; b++) raw[b] ^= XOR_KEY[b % XOR_KEY.length];
+      if (raw.length !== meta.len) { bad.push(`${u} → אורך ${raw.length} במקום ${meta.len} (${meta.file})`); continue; }
+      if (djb2(raw) !== meta.sum) { bad.push(`${u} → חתימה שגויה (${meta.file})`); continue; }
+      ok++;
     } catch (e) {
       bad.push(`${u} → ${e.message} (${meta.file})`);
     }

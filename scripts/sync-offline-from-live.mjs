@@ -128,7 +128,8 @@ for (const rel of [...wanted].sort()) {
 /* ---------- 3. אריזה של מה שהשתנה בלבד ---------- */
 fs.mkdirSync(PARTS_DIR, { recursive: true });
 let packed = 0, reused = 0;
-const asMeta = (v) => (Array.isArray(v) ? null : v && Array.isArray(v.k) ? v : null);
+// m:0 = חלקים ללא ערבול XOR. רשומות ישנות (ממוסכות) נארזות מחדש כדי לעבור סינון NetFree.
+const asMeta = (v) => (Array.isArray(v) ? null : v && Array.isArray(v.k) && v.m === 0 ? v : null);
 for (const f of entries) {
   const prev = asMeta(parts[f.h]);
   if (prev && prev.k.every((c) => fs.existsSync(path.join(root, "public", c.u)))) {
@@ -141,14 +142,13 @@ for (const f of entries) {
     for (let i = 0; i < n; i++) {
       const slice = f.buf.subarray(i * CHUNK_RAW, (i + 1) * CHUNK_RAW);
       const name = `${f.h}.${i}.js`;
-      // ערבול XOR כדי שהמטען לא ייראה כתמונה/קובץ מדיה למסנני רשת (NetFree)
-      const masked = Buffer.from(slice);
-      for (let b = 0; b < masked.length; b++) masked[b] ^= XOR_KEY[b % XOR_KEY.length];
-      fs.writeFileSync(path.join(PARTS_DIR, name), `AK.part("${f.h}",${i},${n},"${masked.toString("base64")}",1);\n`);
+      // ללא ערבול XOR: תוכן "רגיל" עובר טוב יותר במסנני תוכן (NetFree).
+      // הדגל האחרון (0) אומר לקובץ הפתיחה לא לבצע פענוח XOR.
+      fs.writeFileSync(path.join(PARTS_DIR, name), `AK.part("${f.h}",${i},${n},"${Buffer.from(slice).toString("base64")}",0);\n`);
       // u=כתובת, l=אורך בבתים, c=חתימה של החלק
       k.push({ u: "/updates/parts/" + name, l: slice.length, c: djb2(slice) });
     }
-    parts[f.h] = { k };
+    parts[f.h] = { k, m: 0 };
     f.k = k;
     f.j = k.map((c) => c.u);
     packed++;
@@ -166,13 +166,13 @@ for (const f of entries) {
     const abs = path.join(root, "public", c.u);
     if (!fs.existsSync(abs)) { problems.push(`${f.p}: חסר ${c.u}`); continue; }
     const txt = fs.readFileSync(abs, "utf8");
-    const m = txt.match(/^AK\.part\("([0-9a-f]+)",(\d+),(\d+),"([^"]*)",1\);/);
+    const m = txt.match(/^AK\.part\("([0-9a-f]+)",(\d+),(\d+),"([^"]*)",([01])\);/);
     if (!m || m[1] !== f.h) { problems.push(`${f.p}: ${c.u} פגום`); continue; }
-    const masked = Buffer.from(m[4], "base64");
-    for (let b = 0; b < masked.length; b++) masked[b] ^= XOR_KEY[b % XOR_KEY.length];
-    if (masked.length !== c.l) { problems.push(`${f.p}: ${c.u} אורך ${masked.length} במקום ${c.l}`); continue; }
-    if (djb2(masked) !== c.c) { problems.push(`${f.p}: ${c.u} חתימה שגויה`); continue; }
-    sum += masked.length;
+    const raw = Buffer.from(m[4], "base64");
+    if (m[5] === "1") for (let b = 0; b < raw.length; b++) raw[b] ^= XOR_KEY[b % XOR_KEY.length];
+    if (raw.length !== c.l) { problems.push(`${f.p}: ${c.u} אורך ${raw.length} במקום ${c.l}`); continue; }
+    if (djb2(raw) !== c.c) { problems.push(`${f.p}: ${c.u} חתימה שגויה`); continue; }
+    sum += raw.length;
   }
   if (sum !== f.s) problems.push(`${f.p}: סכום החלקים ${sum} במקום ${f.s}`);
 }

@@ -71,11 +71,12 @@ Permanent, self-contained shell. Responsibilities:
   `AK.part(hash, index, total, base64, masked)`.
 - Files are split into **90 KB raw chunks** (~123 KB encoded). Larger chunks were
   truncated by the filter.
-- Each chunk is **XOR-masked** before base64 encoding, key
-  `[0x5a,0x3c,0xa7,0x11,0x6d,0xf2,0x89,0x24]`, so media payloads are not recognized and
-  stubbed by the filter (NetFree previously returned a 70-byte stub for image chunks).
-  The mask is applied *before* base64 and removed *before* validation — checksum
-  protection is unchanged and not weakened.
+- Chunks are published **unmasked** (`masked = 0`, since Sep 2026). XOR masking made the
+  payload look like packed/obfuscated binary data, which NetFree began blocking outright.
+  The bootstrap still honours the per-part `masked` flag, so parts written earlier with
+  `masked = 1` (XOR key `[0x5a,0x3c,0xa7,0x11,0x6d,0xf2,0x89,0x24]`) keep decoding
+  correctly — no bootstrap revision is needed to switch. Masking never touched the
+  checksums: length and DJB2 are always computed on the raw bytes.
 - Per chunk the manifest carries `u` (index), `l` (raw length), `c` (DJB2 checksum).
   A chunk is accepted only if length **and** checksum match; up to 4 retries with a
   cache-busting `?r=` parameter; verified chunks are kept across retries.
@@ -160,7 +161,7 @@ are excluded by default.
 This project (`hagitmualem.com`):
 - `public/downloads/achoti-kalah.html` — the permanent bootstrap/updater shell
 - `public/downloads/achoti-kala.html`, `achotikala.html`, `index.html` — aliases/landing
-- `scripts/sync-offline-from-live.mjs` — packager (chunking, XOR mask, manifest)
+- `scripts/sync-offline-from-live.mjs` — packager (chunking, unmasked parts, manifest)
 - `scripts/offline-parts-registry.json`, `offline-update-registry.json` — incremental state
 - `public/updates/manifest.js|json`, `public/updates/parts/**` — published payload
 - `src/pages/Downloads.tsx` — download page
@@ -169,7 +170,8 @@ Source project (`achotikala.com`):
 - `AuthBridge.tsx`, the googleOffline flow, and the `window.ACHOTIKALA_OFFLINE_HOST`
   `HashRouter` switch.
 
-Invariants that must not change silently: the chunk size (90 KB raw), the XOR key, the
+Invariants that must not change silently: the chunk size (90 KB raw), the per-part
+`masked` flag semantics (XOR key kept for old parts), the
 `AK.part(...)` signature, the DJB2 checksum, and the manifest field names `u`/`l`/`c`.
 
 ## 8. Regression checklist
@@ -202,9 +204,9 @@ unless necessary, and tell the owner when it happens.
 | Item | Value |
 | --- | --- |
 | Offline package version | **49** (`public/updates/manifest.json`, stage `full`) |
-| Files / parts | 72 files, 212 masked JS chunks |
+| Files / parts | 73 files, 215 unmasked JS chunks |
 | Bootstrap | `public/downloads/achoti-kalah.html`, ~31.9 KB |
-| Chunk size / mask | 90 KB raw / XOR `5a 3c a7 11 6d f2 89 24` |
+| Chunk size / mask | 90 KB raw / no mask (`masked=0`); XOR `5a 3c a7 11 6d f2 89 24` still decoded for legacy parts |
 | Date verified on real NetFree | 2026-09-09 |
 | Verified behaviors | first install, offline reopen, incremental update, rollback, images offline, login |
 
