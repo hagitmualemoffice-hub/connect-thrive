@@ -792,6 +792,23 @@
     });
   }
 
+  /** פסק זמן כולל — עדכון לא יכול להישאר תלוי בלי שגיאה מתועדת */
+  var UPDATE_TIMEOUT_MS = 15 * 60 * 1000;
+  function withTimeout(p, ms, label) {
+    return new Promise(function (res, rej) {
+      var done = false;
+      var timer = setTimeout(function () {
+        if (done) return;
+        done = true;
+        var e = new Error(label + " timed out after " + Math.round(ms / 1000) + "s");
+        e.name = "UpdateTimeoutError";
+        rej(e);
+      }, ms);
+      p.then(function (v) { if (!done) { done = true; clearTimeout(timer); res(v); } },
+             function (e) { if (!done) { done = true; clearTimeout(timer); rej(e); } });
+    });
+  }
+
   var updateCheckPromise = null;
   function checkForUpdate(current, previous, manual) {
     if (updateCheckPromise) return updateCheckPromise;
@@ -803,39 +820,60 @@
     updateState.source = "NETWORK REQUEST IN PROGRESS";
     updateState.result = "Checking for update…";
     updateState.error = "";
-    updateCheckPromise = loadManifest(20000).then(function (remote) {
+    logAdd("check-start", "local " + current.version + (manual ? " (manual)" : "") + (stale ? " [stale stage]" : ""));
+    var flow = loadManifest(20000).then(function (remote) {
       if (!remote || remote.version == null) throw new Error("invalid-remote-manifest");
       updateState.remoteVersion = remote.version;
+      logAdd("remote-version", String(remote.version) + " (NETWORK, cache-busted script)");
       if (Number(remote.version) <= Number(current.version) && !stale) {
         updateState.result = "Already current";
+        logAdd("already-current", "local " + current.version + " >= remote " + remote.version);
         if (manual) toast("הגרסה במחשב מעודכנת");
         return;
       }
       updateState.result = "Update " + current.version + " → " + remote.version + " found";
+      logAdd("update-detected", current.version + " -> " + remote.version + ", files in remote package: " + remote.files.length);
       if (stale) toast("מורידה את התמונות של האתר… 0%");
-      return downloadMissing(db, remote, function (d, t) {
-        if (stale && t) toast("מורידה את התמונות של האתר… " + Math.round((d / t) * 100) + "%");
+      // ניקוי מקדים: משחרר blobs יתומים מגרסאות ישנות לפני שממלאים אחסון
+      return gc(db, [current, previous, remote]).then(function (freed) {
+        logAdd("pre-download-gc", "orphan blobs removed: " + (freed && freed.length ? freed.length : 0));
+      }).catch(function (e) {
+        logAdd("pre-download-gc-failed", errInfo(e)); // לא חוסם את העדכון
+      }).then(function () {
+        return downloadMissing(db, remote, function (d, t) {
+          if (stale && t) toast("מורידה את התמונות של האתר… " + Math.round((d / t) * 100) + "%");
+        });
       }).then(function () {
         // This runs even when every remote file hash is already present locally.
         // The active manifest version is switched in one IndexedDB transaction.
+        logAdd("activation-start", "active before: " + current.version + " (" + activeContent(current) + ")");
         return switchManifest(db, current, remote);
       }).then(function () {
+        logAdd("activation-ok", "active after: " + remote.version + " (" + activeContent(remote) + ")");
         return gc(db, [remote, current]);
       }).then(function () {
         updateState.result = "Updated to version " + remote.version + "; reloading";
         return put(db, META, "bootRev", BOOT_REV);
       }).then(function () {
+        logAdd("reload", "restarting into version " + remote.version);
         toast("העדכון הותקן — פותחת מחדש…");
         setTimeout(function () { location.reload(); }, 900);
       });
-    }).catch(function (e) {
+    });
+    updateCheckPromise = withTimeout(flow, UPDATE_TIMEOUT_MS, "update").catch(function (e) {
       var detail = e && (e.detail || e.message || String(e));
       window.ACHOTIKALA_UPDATE_ERROR = detail;
       updateState.source = updateState.remoteVersion == null ? "NETWORK ERROR" : updateState.source;
-      updateState.result = "Update check failed";
-      updateState.error = typeof detail === "string" ? detail : JSON.stringify(detail);
+      if (e && e.quota) {
+        updateState.result = "Update failed — no storage space";
+        toast("אין מספיק מקום פנוי במחשב להתקנת הגרסה החדשה");
+      } else {
+        updateState.result = "Update check failed";
+      }
+      updateState.error = errInfo(e);
+      logAdd("UPDATE-FAILED", errInfo(e));
       if (stale) toast("לא הצלחנו להוריד את התמונות כרגע — ננסה שוב בפתיחה הבאה");
-      else if (manual) toast("בדיקת העדכון נכשלה — הפרטים מופיעים באבחון");
+      else if (manual && !(e && e.quota)) toast("בדיקת העדכון נכשלה — הפרטים מופיעים באבחון");
     }).then(function () {
       updateCheckPromise = null;
     });
