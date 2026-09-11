@@ -719,12 +719,22 @@
   var db;
   openDb().then(function (d) {
     db = d;
+    return get(db, META, "updateLog").catch(function () { return null; });
+  }).then(function (saved) {
+    if (saved && saved.entries) updateLog = saved;
+    updateLog.rev = BOOT_REV;
+    logAdd("open", "bootstrap rev " + BOOT_REV);
     return Promise.all([get(db, META, "current"), get(db, META, "previous"), get(db, META, "boot")]);
   }).then(function (r) {
     var current = r[0], previous = r[1], boot = r[2] || {};
+    logAdd("local-state", "current: " + (current ? current.version : "none") +
+      ", previous: " + (previous ? previous.version : "none") +
+      ", boot: v" + boot.version + " attempts " + (boot.attempts || 0) + " verified " + !!boot.verified);
 
     // גיבוי אוטומטי: אם הגרסה הנוכחית נכשלה פעמיים בפתיחה — חזרה לגרסה הקודמת
     if (current && previous && boot.version === current.version && !boot.verified && (boot.attempts || 0) >= 2) {
+      logAdd("ROLLBACK", "version " + current.version + " failed to open " + (boot.attempts || 0) +
+        " times without being verified — returning to " + previous.version);
       current = previous; previous = null;
       return Promise.all([put(db, META, "current", current), del(db, META, "previous"),
         put(db, META, "boot", { version: current.version, attempts: 1, verified: true })])
@@ -739,8 +749,9 @@
     }
     return firstRun();
   }).catch(function (e) {
+    logAdd("BOOT-FAILED", errInfo(e));
     say("לא הצלחנו לפתוח את האתר");
-    fail("שגיאה: " + (e && e.message ? e.message : e) +
+    fail("שגיאה: " + errInfo(e) +
       "<br>נסי לפתוח את הקובץ שוב, ואם זה חוזר — יש צורך בחיבור לאינטרנט לפתיחה הראשונה.");
   });
 
