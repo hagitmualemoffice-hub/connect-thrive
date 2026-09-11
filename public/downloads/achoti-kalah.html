@@ -337,8 +337,9 @@
         seen.add(f.h); return true;
       });
       var totalBytes = need.reduce(function (a, f) { return a + f.s; }, 0);
-      var doneBytes = 0, idx = 0, failed = null;
-      if (!need.length) return { need: 0 };
+      var doneBytes = 0, idx = 0, failed = null, doneFiles = 0;
+      logAdd("download-start", "files needed: " + need.length + ", bytes: " + totalBytes);
+      if (!need.length) { logAdd("download-done", "0 files needed (all hashes already stored)"); return { need: 0 }; }
 
       function next() {
         if (failed || idx >= need.length) return Promise.resolve();
@@ -348,13 +349,25 @@
           fileDone += n;
           if (onProgress) onProgress(Math.min(doneBytes + fileDone, totalBytes), totalBytes);
         })
-          .then(function (buf) { return put(db, BLOBS, f.h, buf); })
+          .then(function (buf) {
+            logAdd("validated", f.p + " (" + buf.byteLength + " bytes)");
+            logAdd("store-start", f.p);
+            return put(db, BLOBS, f.h, buf);
+          })
           .then(function () {
+            doneFiles++;
             doneBytes += f.s;
+            logAdd("store-ok", f.p + " [" + doneFiles + "/" + need.length + "]");
             if (onProgress) onProgress(doneBytes, totalBytes);
             return next();
           })
           .catch(function (e) {
+            if (isQuotaError(e)) {
+              e.quota = true;
+              logAdd("QUOTA-EXCEEDED", "no room to store " + f.p + " — " + errInfo(e));
+            } else {
+              logAdd("file-failed", f.p + " — " + errInfo(e));
+            }
             if (!e.detail) e.detail = { stage: "הורדת קובץ מהאתר", file: f.p, expectedBytes: f.s, error: String(e && e.message || e) };
             failed = e;
           });
@@ -362,6 +375,7 @@
       // קבצים בזה אחר זה; החלקים בתוך כל קובץ יורדים במקביל (עד 4)
       return next().then(function () {
         if (failed) throw failed;
+        logAdd("download-done", doneFiles + "/" + need.length + " files stored");
         return { need: need.length, bytes: totalBytes };
       });
     });
