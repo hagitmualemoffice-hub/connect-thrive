@@ -83,26 +83,87 @@
     toastEl.style.display = "block";
   }
 
+  /* ---------------- יומן עדכון מתמיד (שורד רענון וגיבוי לאחור) ----------------
+     נשמר ב-meta.updateLog. אין בו שום מידע אישי — רק שלבים, גרסאות ושגיאות. */
+  var LOG_MAX = 160;
+  var updateLog = { rev: null, entries: [] };
+  function logAdd(step, info) {
+    var e = { t: Date.now(), s: step };
+    if (info !== undefined && info !== null && info !== "") e.d = info;
+    updateLog.entries.push(e);
+    if (updateLog.entries.length > LOG_MAX) updateLog.entries.splice(0, updateLog.entries.length - LOG_MAX);
+    updateLog.rev = BOOT_REV;
+    persistLog();
+    return e;
+  }
+  function errInfo(e) {
+    if (!e) return "unknown";
+    var name = (e.name || "Error");
+    var msg = (e.message || String(e));
+    var extra = "";
+    try { if (e.detail) extra = " | " + JSON.stringify(e.detail); } catch (x) {}
+    return name + ": " + msg + extra;
+  }
+  var logSaving = false, logDirty = false;
+  function persistLog() {
+    if (!db) return;
+    if (logSaving) { logDirty = true; return; }
+    logSaving = true;
+    put(db, META, "updateLog", JSON.parse(JSON.stringify(updateLog)))
+      .catch(function () {})
+      .then(function () {
+        logSaving = false;
+        if (logDirty) { logDirty = false; persistLog(); }
+      });
+  }
+
   /* ---------------- IndexedDB ---------------- */
   function openDb() {
     return new Promise(function (res, rej) {
+      var settled = false;
       var r = indexedDB.open(DB_NAME, 1);
       r.onupgradeneeded = function () {
-        var db = r.result;
-        if (!db.objectStoreNames.contains(BLOBS)) db.createObjectStore(BLOBS);
-        if (!db.objectStoreNames.contains(META)) db.createObjectStore(META);
+        var d = r.result;
+        if (!d.objectStoreNames.contains(BLOBS)) d.createObjectStore(BLOBS);
+        if (!d.objectStoreNames.contains(META)) d.createObjectStore(META);
       };
-      r.onsuccess = function () { res(r.result); };
-      r.onerror = function () { rej(r.error); };
+      r.onsuccess = function () { if (!settled) { settled = true; res(r.result); } };
+      r.onerror = function () { if (!settled) { settled = true; rej(r.error || new Error("idb-open-error")); } };
+      r.onblocked = function () {
+        if (settled) return;
+        settled = true;
+        var e = new Error("idb-open-blocked (another copy of the app is probably open)");
+        e.name = "BlockedError";
+        rej(e);
+      };
     });
   }
   function tx(db, store, mode, fn) {
     return new Promise(function (res, rej) {
-      var t = db.transaction(store, mode);
-      var out = fn(t.objectStore(store));
+      var t;
+      try { t = db.transaction(store, mode); }
+      catch (e) { rej(e); return; }
+      var out;
+      try { out = fn(t.objectStore(store)); }
+      catch (e2) { try { t.abort(); } catch (e3) {} rej(e2); return; }
+      if (out && typeof IDBRequest !== "undefined" && out instanceof IDBRequest) {
+        out.onerror = function () { /* מטופל ב-onerror/onabort של הטרנזקציה */ };
+      }
       t.oncomplete = function () { res(out && typeof IDBRequest !== "undefined" && out instanceof IDBRequest ? out.result : out); };
-      t.onerror = function () { rej(t.error); };
+      t.onerror = function () { rej(t.error || new Error("idb-tx-error")); };
+      // ללא onabort טרנזקציה שנקטעה (למשל QuotaExceededError) הייתה משאירה
+      // את ההבטחה תלויה לנצח — והעדכון היה נתקע בלי שום שגיאה גלויה.
+      t.onabort = function () {
+        var err = t.error || new Error("idb-tx-aborted");
+        if (!err.name) err.name = "AbortError";
+        rej(err);
+      };
     });
+  }
+  function isQuotaError(e) {
+    if (!e) return false;
+    var n = String(e.name || ""), m = String(e.message || "");
+    return n === "QuotaExceededError" || /quota|storage is full|not enough space/i.test(n + " " + m);
   }
   function get(db, store, key) { return tx(db, store, "readonly", function (s) { return s.get(key); }); }
   function put(db, store, key, val) { return tx(db, store, "readwrite", function (s) { return s.put(val, key); }); }
