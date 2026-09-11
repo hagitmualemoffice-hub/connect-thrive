@@ -626,6 +626,26 @@
         checkForUpdate(manifest, null, true);
         setTimeout(show, 250);
       };
+      var logEl = d.querySelector("[data-log]");
+      d.querySelector("[data-copy]").onclick = function (ev) {
+        var text = logEl.textContent;
+        var ok = function () { ev.target.textContent = "הועתק ✔"; };
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(ok, function () { selectLog(); });
+        } else selectLog();
+        function selectLog() {
+          var r = document.createRange();
+          r.selectNodeContents(logEl);
+          var sel = window.getSelection();
+          sel.removeAllRanges(); sel.addRange(r);
+          ev.target.textContent = "סמני והעתיקי ידנית";
+        }
+      };
+      // רענון היומן בזמן שהמסך פתוח, כדי לראות את התקדמות העדכון
+      var tick = setInterval(function () {
+        if (!d.isConnected) { clearInterval(tick); return; }
+        logEl.textContent = logText();
+      }, 1000);
       document.body.appendChild(d);
     }
     window.ACHOTIKALA_DIAGNOSTICS = show;
