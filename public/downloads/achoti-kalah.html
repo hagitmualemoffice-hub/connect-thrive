@@ -116,6 +116,16 @@
         if (logDirty) { logDirty = false; persistLog(); }
       });
   }
+  function two(n) { return (n < 10 ? "0" : "") + n; }
+  function logText() {
+    return "bootstrap rev: " + BOOT_REV + "\n" +
+      updateLog.entries.map(function (e) {
+        var d = new Date(e.t);
+        return d.getFullYear() + "-" + two(d.getMonth() + 1) + "-" + two(d.getDate()) + " " +
+          two(d.getHours()) + ":" + two(d.getMinutes()) + ":" + two(d.getSeconds()) +
+          "  " + e.s + (e.d ? "  " + e.d : "");
+      }).join("\n");
+  }
 
   /* ---------------- IndexedDB ---------------- */
   function openDb() {
