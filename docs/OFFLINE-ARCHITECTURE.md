@@ -71,11 +71,12 @@ Permanent, self-contained shell. Responsibilities:
   `AK.part(hash, index, total, base64, masked)`.
 - Files are split into **90 KB raw chunks** (~123 KB encoded). Larger chunks were
   truncated by the filter.
-- Each chunk is **XOR-masked** before base64 encoding, key
-  `[0x5a,0x3c,0xa7,0x11,0x6d,0xf2,0x89,0x24]`, so media payloads are not recognized and
-  stubbed by the filter (NetFree previously returned a 70-byte stub for image chunks).
-  The mask is applied *before* base64 and removed *before* validation — checksum
-  protection is unchanged and not weakened.
+- Chunks are published **unmasked** (`masked = 0`, since Sep 2026). XOR masking made the
+  payload look like packed/obfuscated binary data, which NetFree began blocking outright.
+  The bootstrap still honours the per-part `masked` flag, so parts written earlier with
+  `masked = 1` (XOR key `[0x5a,0x3c,0xa7,0x11,0x6d,0xf2,0x89,0x24]`) keep decoding
+  correctly — no bootstrap revision is needed to switch. Masking never touched the
+  checksums: length and DJB2 are always computed on the raw bytes.
 - Per chunk the manifest carries `u` (index), `l` (raw length), `c` (DJB2 checksum).
   A chunk is accepted only if length **and** checksum match; up to 4 retries with a
   cache-busting `?r=` parameter; verified chunks are kept across retries.
