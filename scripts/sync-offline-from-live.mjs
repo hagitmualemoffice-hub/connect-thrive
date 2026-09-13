@@ -166,7 +166,7 @@ for (const f of entries) {
       // u=כתובת, l=אורך בבתים, c=חתימה של החלק
       k.push({ u: "/updates/parts/" + name, l: slice.length, c: djb2(slice) });
     }
-    parts[f.h] = { k, m: 0, z: CHUNK_RAW };
+    parts[f.h] = { k, m: 0, z: CHUNK_RAW, x: f.x || 0 };
     f.k = k;
     f.j = k.map((c) => c.u);
     packed++;
