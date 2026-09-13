@@ -260,3 +260,14 @@ the bootstrap, the packager, and the manifest field/chunk conventions above.
   header-masked package fails safely with a checksum error (verified) — no corruption, but a fresh
   install cannot complete. Existing installs keep working (blobs are keyed by content hash) but
   need the new launcher to fetch changed binary files.
+- **(BOOT_REV 9, Sep 2026) Visible version line.** After v64 a real user failed again on
+  `15e7e86034c7cfb5b6b0c10bc31261abh.29.js` (woman-beach-projects, 88-chunk 2.8 MB JPEG, ~82%).
+  The `h` suffix in that URL exists **only** in v64+, and it matches the live v64 manifest exactly,
+  so the user *was* running v64 — the header-mask fix did work (35% → 82%), but blocking still hits
+  **continuation** chunks that contain no magic bytes. So magic-byte matching is not the whole story
+  for very large binary files; volume/aggregate behaviour on a single huge file is the open suspect.
+  To remove "which version is she running?" from every future investigation, the boot screen now
+  permanently shows `launcher rev N | package vX | server vY` (`#ak-ver`, `showVer()`/`setVer()`),
+  updated when the local package loads and when the remote manifest is read. Display-only change,
+  no transport/format/encoding change. BOOT_REV bumped to 9 so the launcher identity is provable
+  on screen.
