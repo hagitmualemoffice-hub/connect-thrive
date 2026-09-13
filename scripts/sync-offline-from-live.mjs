@@ -147,7 +147,7 @@ let packed = 0, reused = 0;
 // x = מספר הבתים ששובשו בתחילת הקובץ; רשומות שנארזו בפורמט אחר נארזות מחדש.
 const asMeta = (v, x) =>
   Array.isArray(v) ? null
-    : v && Array.isArray(v.k) && v.m === 0 && v.z === CHUNK_RAW && (v.x || 0) === x ? v : null;
+    : v && Array.isArray(v.k) && v.m === 0 && v.z === CHUNK_RAW && (v.x || 0) === x && v.v === 2 ? v : null;
 for (const f of entries) {
   const prev = asMeta(parts[f.h], f.x || 0);
   if (prev && prev.k.every((c) => fs.existsSync(path.join(root, "public", c.u)))) {
@@ -159,14 +159,16 @@ for (const f of entries) {
     const k = [];
     for (let i = 0; i < n; i++) {
       const slice = f.buf.subarray(i * CHUNK_RAW, (i + 1) * CHUNK_RAW);
-      const name = `${f.h}.${i}.js`;
+      // שם הקובץ כולל סימון פורמט (h = חתימת פתיחה משובשת): שינוי תוכן חייב שינוי כתובת,
+      // אחרת מטמון ה-CDN ממשיך להגיש את התוכן הישן מאותה כתובת.
+      const name = `${f.h}${f.x ? "h" : ""}.${i}.js`;
       // ללא ערבול XOR: תוכן "רגיל" עובר טוב יותר במסנני תוכן (NetFree).
       // הדגל האחרון (0) אומר לקובץ הפתיחה לא לבצע פענוח XOR.
       fs.writeFileSync(path.join(PARTS_DIR, name), `AK.part("${f.h}",${i},${n},"${Buffer.from(slice).toString("base64")}",0);\n`);
       // u=כתובת, l=אורך בבתים, c=חתימה של החלק
       k.push({ u: "/updates/parts/" + name, l: slice.length, c: djb2(slice) });
     }
-    parts[f.h] = { k, m: 0, z: CHUNK_RAW, x: f.x || 0 };
+    parts[f.h] = { k, m: 0, z: CHUNK_RAW, x: f.x || 0, v: 2 };
     f.k = k;
     f.j = k.map((c) => c.u);
     packed++;
