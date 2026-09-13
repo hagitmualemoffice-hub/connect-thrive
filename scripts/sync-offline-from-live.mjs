@@ -192,8 +192,13 @@ for (const f of entries) {
     if (raw.length !== c.l) { problems.push(`${f.p}: ${c.u} אורך ${raw.length} במקום ${c.l}`); continue; }
     if (djb2(raw) !== c.c) { problems.push(`${f.p}: ${c.u} חתימה שגויה`); continue; }
     sum += raw.length;
+    pieces.push(raw);
   }
-  if (sum !== f.s) problems.push(`${f.p}: סכום החלקים ${sum} במקום ${f.s}`);
+  if (sum !== f.s) { problems.push(`${f.p}: סכום החלקים ${sum} במקום ${f.s}`); continue; }
+  // הרכבה מלאה + שחזור חתימת הפתיחה — בדיוק כמו בקובץ ההפעלה
+  const whole = Buffer.concat(pieces);
+  for (let b = 0; b < (f.x || 0); b++) whole[b] ^= HDR_XOR;
+  if (djb2(whole) !== f.c) problems.push(`${f.p}: חתימת הקובץ המורכב שגויה`);
 }
 if (problems.length) {
   console.error(`\n✗ העדכון בוטל — ${problems.length} בעיות בחלקים. המניפסט לא נכתב:`);
