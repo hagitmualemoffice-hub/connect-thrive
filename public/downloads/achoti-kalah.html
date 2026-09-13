@@ -15,6 +15,7 @@
   #ak-bar{height:10px;background:#f0eaf0;border-radius:99px;overflow:hidden}
   #ak-bar i{display:block;height:100%;width:0;background:#c98ba9;transition:width .25s}
   #ak-pct{font-size:13px;color:#999;margin-top:10px}
+  #ak-ver{font-size:12px;color:#b3a6ae;margin-top:14px;direction:ltr;font-family:monospace;letter-spacing:.3px}
   #ak-err{display:none;margin-top:16px;font-size:14px;color:#a33;line-height:1.6}
   #ak-toast{position:fixed;bottom:16px;inset-inline-start:16px;background:#2b2b2b;color:#fff;padding:12px 16px;
     border-radius:12px;font-size:14px;z-index:2147483001;display:none;box-shadow:0 6px 24px rgba(0,0,0,.2)}
@@ -28,6 +29,7 @@
   <div id="ak-bar"><i></i></div>
   <div id="ak-pct"></div>
   <div id="ak-err"></div>
+  <div id="ak-ver"></div>
 </div></div>
 <div id="ak-toast"></div>
 
@@ -42,7 +44,7 @@
   var qs = new URLSearchParams(location.search);
   var ORIGIN = qs.get("origin") || "https://hagitmualem.com";
   var DB_NAME = "achotikala-app";
-  var BOOT_REV = 8;           // גרסת קובץ הפתיחה
+  var BOOT_REV = 9;           // גרסת קובץ הפתיחה
   var MIN_STAGE = "full";     // התקנות ישנות ללא תמונות — יעודכנו מיד
   var BLOBS = "blobs";
   var META = "meta";
@@ -53,6 +55,18 @@
   var pctEl = document.getElementById("ak-pct");
   var errEl = document.getElementById("ak-err");
   var toastEl = document.getElementById("ak-toast");
+  var verEl = document.getElementById("ak-ver");
+  // שורת גרסאות קבועה על המסך: גרסת קובץ ההפעלה + גרסת החבילה המקומית + זו שבשרת.
+  var verInfo = { local: null, remote: null };
+  function showVer() {
+    if (!verEl) return;
+    verEl.textContent =
+      "launcher rev " + BOOT_REV +
+      " | package " + (verInfo.local == null ? "—" : "v" + verInfo.local) +
+      " | server " + (verInfo.remote == null ? "—" : "v" + verInfo.remote);
+  }
+  function setVer(which, v) { verInfo[which] = v; showVer(); }
+  showVer();
   var updateState = window.ACHOTIKALA_UPDATE_STATUS = {
     localVersion: null,
     remoteVersion: null,
@@ -208,6 +222,7 @@
         if (done) return;
         done = true;
         updateState.remoteVersion = m && m.version != null ? m.version : null;
+        setVer("remote", updateState.remoteVersion);
         updateState.source = "NETWORK (cache-busted script)";
         cleanup();
         res(m);
@@ -830,6 +845,7 @@
 
   function start(manifest, previous) {
     updateState.localVersion = manifest.version;
+    setVer("local", manifest.version);
     logAdd("render", "version " + manifest.version + " — " + activeContent(manifest));
     return buildApp(db, manifest).then(function (app) {
       return mount(app, manifest.version).then(function () { installDiagnostics(manifest, app); });
@@ -876,6 +892,7 @@
     // התקנה ישנה ללא תמונות — מעדכנים מיד, עם התקדמות גלויה, ופותחים מחדש לבד
     var stale = (current.stage || "core") !== MIN_STAGE;
     updateState.localVersion = current.version;
+    setVer("local", current.version);
     updateState.remoteVersion = null;
     updateState.lastCheck = Date.now();
     updateState.source = "NETWORK REQUEST IN PROGRESS";
