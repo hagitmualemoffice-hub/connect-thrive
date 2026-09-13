@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>בדיקת חיבור — אחותי כלה</title>
+<style>
+  body { font-family: system-ui, "Segoe UI", Arial, sans-serif; background:#fdf7f8; color:#2b2b2b;
+         margin:0; padding:20px; line-height:1.6; }
+  .wrap { max-width:640px; margin:0 auto; }
+  h1 { font-size:20px; margin:0 0 4px; }
+  p.sub { margin:0 0 18px; color:#6b6b6b; font-size:14px; }
+  .row { background:#fff; border:1px solid #eadfe2; border-radius:12px; padding:12px 14px; margin-bottom:10px; }
+  .name { font-weight:600; font-size:15px; }
+  .res { font-size:14px; margin-top:4px; }
+  .ok { color:#1a7f4b; } .bad { color:#b3261e; } .wait { color:#8a8a8a; }
+  .bytes { font-size:12px; color:#777; direction:ltr; text-align:right; }
+  .done { margin-top:16px; padding:12px 14px; border-radius:12px; background:#fff; border:1px solid #eadfe2; font-size:14px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>בדיקת חיבור — אחותי כלה</h1>
+  <p class="sub">הבדיקה מתחילה מיד ולוקחת עד דקה. בסיום — נא לצלם את המסך ולשלוח.</p>
+  <div id="rows"></div>
+  <div class="done" id="done">הבדיקה פועלת…</div>
+</div>
+<script>
+(function () {
+  var ORIGIN = location.origin;
+  var TESTS = [
+    { name: "1. קטע קוד רגיל (90KB)", url: "/updates/parts/ed683a0f421e6a34631ed59ba6483385.0.js", hash: "ed683a0f421e6a34631ed59ba6483385", index: 0, expect: 92160 },
+    { name: "2. קטע תמונה (90KB)",   url: "/updates/parts/a6db23d53470785199243018a3f5c465.0.js", hash: "a6db23d53470785199243018a3f5c465", index: 0, expect: 92160 },
+    { name: "3. קטע תמונה קטן (50KB)", url: "/updates/parts/a6db23d53470785199243018a3f5c465.1.js", hash: "a6db23d53470785199243018a3f5c465", index: 1, expect: 51213 },
+    { name: "4. קטע טקסט קריא (90KB)", url: "/updates/probe-text.0.js", hash: "probetext", index: 0, expect: 92160 }
+  ];
+
+  var received = {};
+  window.AK = window.AK || {};
+  window.AK.part = function (hash, index, total, b64) {
+    var len = 0;
+    try { len = atob(b64).length; } catch (e) { len = -1; }
+    received[hash + ":" + index] = len;
+  };
+
+  var rowsEl = document.getElementById("rows");
+  TESTS.forEach(function (t, i) {
+    var d = document.createElement("div");
+    d.className = "row";
+    d.innerHTML = '<div class="name">' + t.name + '</div>' +
+                  '<div class="res wait" id="r' + i + '">בבדיקה…</div>' +
+                  '<div class="bytes" id="b' + i + '"></div>';
+    rowsEl.appendChild(d);
+  });
+
+  function show(i, cls, text, bytes) {
+    var r = document.getElementById("r" + i);
+    r.className = "res " + cls;
+    r.textContent = text;
+    document.getElementById("b" + i).textContent = bytes || "";
+  }
+
+  function run(i) {
+    if (i >= TESTS.length) {
+      document.getElementById("done").textContent = "הבדיקה הסתיימה. נא לצלם את המסך ולשלוח.";
+      return;
+    }
+    var t = TESTS[i];
+    var key = t.hash + ":" + t.index;
+    var settled = false;
+    var s = document.createElement("script");
+    s.src = ORIGIN + t.url + "?r=" + Date.now();
+
+    function finish() {
+      if (settled) return;
+      settled = true;
+      try { s.remove(); } catch (e) {}
+      var got = received[key];
+      var info = "expected " + t.expect + " / got " + (got === undefined ? 0 : got);
+      if (got === t.expect) show(i, "ok", "עבר בהצלחה ✔", info);
+      else if (got === undefined) show(i, "bad", "נחסם — לא התקבל תוכן ✖", info);
+      else show(i, "bad", "התקבל תוכן חסר ✖", info);
+      setTimeout(function () { run(i + 1); }, 300);
+    }
+
+    s.onload = function () { setTimeout(finish, 50); };
+    s.onerror = function () { finish(); };
+    document.head.appendChild(s);
+    setTimeout(finish, 30000);
+  }
+
+  run(0);
+})();
+</script>
+</body>
+</html>
