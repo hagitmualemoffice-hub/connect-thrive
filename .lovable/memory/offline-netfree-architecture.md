@@ -26,3 +26,16 @@ channel proven to work on real NetFree machines.
 CORS, domains, deployment, the updater, ליבה, apartment board or authorization — run the
 regression checklist in `docs/OFFLINE-ARCHITECTURE.md`. If a feature requires changing a
 protected component, STOP and report what would change, why, and what could break.
+
+## Header-signature masking (v64 / BOOT_REV 8, Sep 2026)
+- NetFree does magic-byte matching at the START of the response (JPEG `FFD8FFE0…`), not deep
+  scanning: image chunk 0 was blocked at 90 KB and at 32 KB; the same chunk with its first 24
+  bytes XORed passed (probe test 5). Code/text chunks always passed.
+- Fix: packager XORs only the first 24 bytes (`HDR_LEN`/`HDR_XOR=0x5a`) of binary files
+  (images/fonts/pdf/audio/video) before chunking and sets `x: 24` on the manifest entry;
+  `h`/`s`/`c` stay over original bytes. Bootstrap restores them once on the reassembled file,
+  before whole-file verification. Never re-introduce full-content XOR (that was the v61 bug).
+- Part URLs get an `h` suffix when header-masked. Rule: if a part's bytes change, its URL must
+  change — the CDN served stale bodies from identical URLs (seen on v63).
+- Requires a one-time launcher redownload. Rev-7 launchers fail safely (checksum error), no
+  corruption. Live baseline: v64, 73 files, 535 parts, 69 header-masked files.
