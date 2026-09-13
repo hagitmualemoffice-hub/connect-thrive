@@ -144,10 +144,12 @@ fs.mkdirSync(PARTS_DIR, { recursive: true });
 let packed = 0, reused = 0;
 // m:0 = חלקים ללא ערבול XOR, z = גודל החלק הגולמי שבו נארזו.
 // רשומות ישנות (ממוסכות או בגודל חלק אחר) נארזות מחדש כדי לעבור סינון NetFree.
-const asMeta = (v) =>
-  Array.isArray(v) ? null : v && Array.isArray(v.k) && v.m === 0 && v.z === CHUNK_RAW ? v : null;
+// x = מספר הבתים ששובשו בתחילת הקובץ; רשומות שנארזו בפורמט אחר נארזות מחדש.
+const asMeta = (v, x) =>
+  Array.isArray(v) ? null
+    : v && Array.isArray(v.k) && v.m === 0 && v.z === CHUNK_RAW && (v.x || 0) === x ? v : null;
 for (const f of entries) {
-  const prev = asMeta(parts[f.h]);
+  const prev = asMeta(parts[f.h], f.x || 0);
   if (prev && prev.k.every((c) => fs.existsSync(path.join(root, "public", c.u)))) {
     f.k = prev.k;
     f.j = prev.k.map((c) => c.u);
