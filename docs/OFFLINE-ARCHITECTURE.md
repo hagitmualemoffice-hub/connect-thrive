@@ -242,3 +242,21 @@ the bootstrap, the packager, and the manifest field/chunk conventions above.
   the registry reuse guard now also keys on chunk size (`z`) so old 90 KB parts are repacked.
   If binary payloads are blocked again, the next suspect is the random 32-char hash filenames
   (`/updates/parts/<hash>.N.js`) — discuss readable paths with the owner before changing them.
+- **(v64 / BOOT_REV 8, Sep 2026)** 32 KB chunks were **not** enough: a first-time install still
+  stalled on image **chunk 0** (expected 32768, got 70). Probe test 5 (same chunk, first 24 bytes
+  XORed) passed while the untouched chunk failed → the filter does **magic-byte matching at the
+  start of the response** (`FFD8FFE0…`), not deep content scanning. Size and masking were never
+  the real variable for chunk 0. Fix: the packager XORs only the **first 24 bytes** (`HDR_LEN`,
+  `HDR_XOR = 0x5a`) of **binary** files (`BINARY_EXT`: images/fonts/pdf/audio/video) before
+  chunking, and records `x: 24` on the manifest file entry; `h`/`s`/`c` stay over the *original*
+  bytes. The bootstrap (`downloadFile`) restores those bytes **once, on the reassembled file**,
+  before the whole-file length/checksum check. Code/text files are untouched, so nothing looks
+  "encrypted" — this is deliberately not the v61 full-XOR mistake.
+  Part filenames now carry an `h` suffix when header-masked (`<hash>h.N.js`): part content changed
+  while the content hash stayed the same, and the CDN kept serving the old body from the identical
+  URL (observed live on v63). **Rule: if a part's bytes change, its URL must change.** The
+  registry meta gained `v: 2` to force a repack.
+  This is the first change that required a launcher redownload since rev 7: a rev-7 launcher on a
+  header-masked package fails safely with a checksum error (verified) — no corruption, but a fresh
+  install cannot complete. Existing installs keep working (blobs are keyed by content hash) but
+  need the new launcher to fetch changed binary files.

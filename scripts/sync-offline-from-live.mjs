@@ -39,6 +39,12 @@ const PARTS_REGISTRY = path.join(root, "scripts/offline-parts-registry.json");
 // חוסם מטענים "בינאריים" מעל סף שבין 50KB ל-90KB; 32KB נותן מרווח ביטחון נוח.
 const CHUNK_RAW = 32 * 1024;
 const XOR_KEY = [0x5a, 0x3c, 0xa7, 0x11, 0x6d, 0xf2, 0x89, 0x24];
+// שיבוש חתימת הפתיחה (magic bytes) של קבצים בינאריים בלבד: NetFree חוסם תגובה שמתחילה
+// בחתימת JPEG וכו'. רק 24 הבתים הראשונים מעורבלים (XOR 0x5a); קובץ ההפעלה (rev 8+)
+// משחזר אותם פעם אחת אחרי הרכבת הקובץ, לפני אימות האורך/החתימה.
+const HDR_LEN = 24;
+const HDR_XOR = 0x5a;
+const BINARY_EXT = /\.(jpe?g|png|webp|gif|avif|bmp|ico|pdf|mp3|m4a|wav|ogg|mp4|webm|woff2?|ttf|otf)$/i;
 
 const parts = fs.existsSync(PARTS_REGISTRY) ? JSON.parse(fs.readFileSync(PARTS_REGISTRY, "utf8")) : {};
 const previous = fs.existsSync(MANIFEST_JSON) ? JSON.parse(fs.readFileSync(MANIFEST_JSON, "utf8")) : null;
@@ -118,13 +124,19 @@ const missing = [];
 for (const rel of [...wanted].sort()) {
   const buf = await get(rel);
   if (!buf) { missing.push(rel); continue; }
-  entries.push({
+  // x = מספר בתים בתחילת הקובץ ששובשו (רק בקבצים בינאריים). h/s/c תמיד על התוכן המקורי.
+  const x = BINARY_EXT.test(rel) && buf.length > HDR_LEN ? HDR_LEN : 0;
+  const packBuf = Buffer.from(buf);
+  for (let i = 0; i < x; i++) packBuf[i] ^= HDR_XOR;
+  const e = {
     p: rel,
     h: createHash("sha256").update(buf).digest("hex").slice(0, 32),
     s: buf.length,
     c: djb2(buf),
-    buf,
-  });
+    buf: packBuf,
+  };
+  if (x) e.x = x;
+  entries.push(e);
 }
 
 /* ---------- 3. אריזה של מה שהשתנה בלבד ---------- */
@@ -132,10 +144,12 @@ fs.mkdirSync(PARTS_DIR, { recursive: true });
 let packed = 0, reused = 0;
 // m:0 = חלקים ללא ערבול XOR, z = גודל החלק הגולמי שבו נארזו.
 // רשומות ישנות (ממוסכות או בגודל חלק אחר) נארזות מחדש כדי לעבור סינון NetFree.
-const asMeta = (v) =>
-  Array.isArray(v) ? null : v && Array.isArray(v.k) && v.m === 0 && v.z === CHUNK_RAW ? v : null;
+// x = מספר הבתים ששובשו בתחילת הקובץ; רשומות שנארזו בפורמט אחר נארזות מחדש.
+const asMeta = (v, x) =>
+  Array.isArray(v) ? null
+    : v && Array.isArray(v.k) && v.m === 0 && v.z === CHUNK_RAW && (v.x || 0) === x && v.v === 2 ? v : null;
 for (const f of entries) {
-  const prev = asMeta(parts[f.h]);
+  const prev = asMeta(parts[f.h], f.x || 0);
   if (prev && prev.k.every((c) => fs.existsSync(path.join(root, "public", c.u)))) {
     f.k = prev.k;
     f.j = prev.k.map((c) => c.u);
@@ -145,14 +159,16 @@ for (const f of entries) {
     const k = [];
     for (let i = 0; i < n; i++) {
       const slice = f.buf.subarray(i * CHUNK_RAW, (i + 1) * CHUNK_RAW);
-      const name = `${f.h}.${i}.js`;
+      // שם הקובץ כולל סימון פורמט (h = חתימת פתיחה משובשת): שינוי תוכן חייב שינוי כתובת,
+      // אחרת מטמון ה-CDN ממשיך להגיש את התוכן הישן מאותה כתובת.
+      const name = `${f.h}${f.x ? "h" : ""}.${i}.js`;
       // ללא ערבול XOR: תוכן "רגיל" עובר טוב יותר במסנני תוכן (NetFree).
       // הדגל האחרון (0) אומר לקובץ הפתיחה לא לבצע פענוח XOR.
       fs.writeFileSync(path.join(PARTS_DIR, name), `AK.part("${f.h}",${i},${n},"${Buffer.from(slice).toString("base64")}",0);\n`);
       // u=כתובת, l=אורך בבתים, c=חתימה של החלק
       k.push({ u: "/updates/parts/" + name, l: slice.length, c: djb2(slice) });
     }
-    parts[f.h] = { k, m: 0, z: CHUNK_RAW };
+    parts[f.h] = { k, m: 0, z: CHUNK_RAW, x: f.x || 0, v: 2 };
     f.k = k;
     f.j = k.map((c) => c.u);
     packed++;
@@ -166,6 +182,7 @@ fs.writeFileSync(PARTS_REGISTRY, JSON.stringify(parts, null, 2));
 const problems = [];
 for (const f of entries) {
   let sum = 0;
+  const pieces = [];
   for (const c of f.k) {
     const abs = path.join(root, "public", c.u);
     if (!fs.existsSync(abs)) { problems.push(`${f.p}: חסר ${c.u}`); continue; }
@@ -177,8 +194,13 @@ for (const f of entries) {
     if (raw.length !== c.l) { problems.push(`${f.p}: ${c.u} אורך ${raw.length} במקום ${c.l}`); continue; }
     if (djb2(raw) !== c.c) { problems.push(`${f.p}: ${c.u} חתימה שגויה`); continue; }
     sum += raw.length;
+    pieces.push(raw);
   }
-  if (sum !== f.s) problems.push(`${f.p}: סכום החלקים ${sum} במקום ${f.s}`);
+  if (sum !== f.s) { problems.push(`${f.p}: סכום החלקים ${sum} במקום ${f.s}`); continue; }
+  // הרכבה מלאה + שחזור חתימת הפתיחה — בדיוק כמו בקובץ ההפעלה
+  const whole = Buffer.concat(pieces);
+  for (let b = 0; b < (f.x || 0); b++) whole[b] ^= HDR_XOR;
+  if (djb2(whole) !== f.c) problems.push(`${f.p}: חתימת הקובץ המורכב שגויה`);
 }
 if (problems.length) {
   console.error(`\n✗ העדכון בוטל — ${problems.length} בעיות בחלקים. המניפסט לא נכתב:`);
