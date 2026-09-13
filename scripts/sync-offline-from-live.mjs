@@ -39,6 +39,12 @@ const PARTS_REGISTRY = path.join(root, "scripts/offline-parts-registry.json");
 // חוסם מטענים "בינאריים" מעל סף שבין 50KB ל-90KB; 32KB נותן מרווח ביטחון נוח.
 const CHUNK_RAW = 32 * 1024;
 const XOR_KEY = [0x5a, 0x3c, 0xa7, 0x11, 0x6d, 0xf2, 0x89, 0x24];
+// שיבוש חתימת הפתיחה (magic bytes) של קבצים בינאריים בלבד: NetFree חוסם תגובה שמתחילה
+// בחתימת JPEG וכו'. רק 24 הבתים הראשונים מעורבלים (XOR 0x5a); קובץ ההפעלה (rev 8+)
+// משחזר אותם פעם אחת אחרי הרכבת הקובץ, לפני אימות האורך/החתימה.
+const HDR_LEN = 24;
+const HDR_XOR = 0x5a;
+const BINARY_EXT = /\.(jpe?g|png|webp|gif|avif|bmp|ico|pdf|mp3|m4a|wav|ogg|mp4|webm|woff2?|ttf|otf)$/i;
 
 const parts = fs.existsSync(PARTS_REGISTRY) ? JSON.parse(fs.readFileSync(PARTS_REGISTRY, "utf8")) : {};
 const previous = fs.existsSync(MANIFEST_JSON) ? JSON.parse(fs.readFileSync(MANIFEST_JSON, "utf8")) : null;
