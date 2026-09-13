@@ -7,7 +7,7 @@ Trigger phrase from the user: "עדכן את גרסת האופליין של אח
 
 When said, run the procedure in docs/OFFLINE-UPDATE-PROCEDURE.md exactly:
 1. `node scripts/sync-offline-from-live.mjs --with-images`
-2. verify new version in public/updates/manifest.json (baseline 72 files / 212 parts)
+2. verify new version in public/updates/manifest.json (baseline 73 files / 535 parts of 32 KB)
 3. locally validate all parts (XOR unmask + length + DJB2) — must be 0 errors
 4. NEVER modify public/downloads/achoti-kalah.html (bootstrap) — that forces every user to re-download
 5. publish hagitmualem.com

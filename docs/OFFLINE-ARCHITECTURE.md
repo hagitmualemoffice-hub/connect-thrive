@@ -69,8 +69,13 @@ Permanent, self-contained shell. Responsibilities:
   never `.bin`, never ZIP. NetFree passes real `.js` files from `hagitmualem.com`.
 - Each payload file calls back into the shell:
   `AK.part(hash, index, total, base64, masked)`.
-- Files are split into **90 KB raw chunks** (~123 KB encoded). Larger chunks were
-  truncated by the filter.
+- Files are split into **32 KB raw chunks** (~44 KB encoded), since Sep 2026. Larger chunks
+  were truncated by the filter, and a live probe (`/updates/probe.html`) proved NetFree
+  blocks *binary-looking* payloads above a threshold **between 50 KB and 90 KB raw**
+  (90 KB image chunk → 70-byte stub; the same image at 50 KB, and 90 KB of code or plain
+  text → passed). 32 KB is deliberately well below that edge. If the threshold ever needs
+  revisiting, re-run the probe page; only `CHUNK_RAW` in the packager changes — the
+  bootstrap derives chunk count and sizes entirely from the manifest.
 - Chunks are published **unmasked** (`masked = 0`, since Sep 2026). XOR masking made the
   payload look like packed/obfuscated binary data, which NetFree began blocking outright.
   The bootstrap still honours the per-part `masked` flag, so parts written earlier with
@@ -203,12 +208,37 @@ unless necessary, and tell the owner when it happens.
 
 | Item | Value |
 | --- | --- |
-| Offline package version | **49** (`public/updates/manifest.json`, stage `full`) |
-| Files / parts | 73 files, 215 unmasked JS chunks |
-| Bootstrap | `public/downloads/achoti-kalah.html`, ~31.9 KB |
-| Chunk size / mask | 90 KB raw / no mask (`masked=0`); XOR `5a 3c a7 11 6d f2 89 24` still decoded for legacy parts |
-| Date verified on real NetFree | 2026-09-09 |
+| Offline package version | **62** (`public/updates/manifest.json`, stage `full`) |
+| Files / parts | 73 files, 535 unmasked JS chunks |
+| Bootstrap | `public/downloads/achoti-kalah.html`, rev 7 (~31.9 KB) |
+| Chunk size / mask | 32 KB raw / no mask (`masked=0`); XOR `5a 3c a7 11 6d f2 89 24` still decoded for legacy parts |
+| Date verified on real NetFree | 2026-09-13 |
 | Verified behaviors | first install, offline reopen, incremental update, rollback, images offline, login |
 
 If a future change breaks the offline app, compare against this baseline first:
 the bootstrap, the packager, and the manifest field/chunk conventions above.
+
+## 10. Known-fixed issues (do not re-discover)
+
+- **(bootstrap rev ~5)** Remote manifest was cached → version checks returned stale data.
+  Fixed with a cache-busted `<script>` load of the manifest straight from network.
+- **(bootstrap rev ~6)** Premature health-check marked a new version healthy ~4s after open →
+  spurious rollback. Health is now marked only after the site actually renders.
+- **(bootstrap rev 7)** Silent IndexedDB hangs: `tx()` ignored `onabort` → an aborted
+  transaction (e.g. `QuotaExceededError`) hung the update forever. Added `onabort`/`onblocked`,
+  a persistent update log, pre-download `gc()`, and explicit quota handling.
+- **(v60→61)** Publishing deleted the previous version's parts → users mid-upgrade got 404s.
+  The packager now retains previous-version parts, validates every part before writing the
+  manifest, and `scripts/verify-offline-publish.mjs` checks the live manifest after publish.
+- **(v61, Sep 2026)** NetFree blocked the part files because they were XOR-masked (fixed public
+  key, no real security) and therefore looked like packed binary. Parts are now published
+  unmasked (`masked=0`); no bootstrap change was needed.
+- **(v62, Sep 2026)** NetFree returned a ~70-byte stub for **image** chunks of 90 KB raw while
+  code and plain-text chunks of the same size passed. Probe page (`public/updates/probe.html`)
+  isolated a size threshold for binary-looking payloads **between 50 KB and 90 KB raw**.
+  Fixed by lowering `CHUNK_RAW` in `scripts/sync-offline-from-live.mjs` from 90 KB to **32 KB**
+  for all file types (safety margin), which raised the package to 535 parts. The bootstrap
+  derives chunk count/size entirely from the manifest, so no bootstrap change was needed;
+  the registry reuse guard now also keys on chunk size (`z`) so old 90 KB parts are repacked.
+  If binary payloads are blocked again, the next suspect is the random 32-char hash filenames
+  (`/updates/parts/<hash>.N.js`) — discuss readable paths with the owner before changing them.

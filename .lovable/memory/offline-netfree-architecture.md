@@ -9,7 +9,9 @@ The offline/NetFree architecture is APPROVED and PROTECTED. Never redesign it to
 Must always be preserved:
 - one permanent bootstrap `public/downloads/achoti-kalah.html` opened from `file://`
 - script-tag (`AK.part`) transport only — never fetch/XHR/.bin/ZIP for payloads
-- 90 KB raw chunks, DJB2 checksums, manifest fields u/l/c. Parts are published UNMASKED
+- 32 KB raw chunks (since Sep 2026; NetFree blocks binary-looking payloads above a
+  threshold between 50 KB and 90 KB — proved with /updates/probe.html), DJB2 checksums,
+  manifest fields u/l/c. Parts are published UNMASKED
   (`masked=0`) since Sep 2026 — XOR masking triggered NetFree blocking. The bootstrap still
   unmasks legacy parts via the per-part flag (key `5a 3c a7 11 6d f2 89 24`); never re-enable masking.
 - IndexedDB storage, incremental updates, verification before activation, rollback
