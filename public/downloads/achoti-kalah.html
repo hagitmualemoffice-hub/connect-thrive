@@ -222,6 +222,7 @@
         if (done) return;
         done = true;
         updateState.remoteVersion = m && m.version != null ? m.version : null;
+        setVer("remote", updateState.remoteVersion);
         updateState.source = "NETWORK (cache-busted script)";
         cleanup();
         res(m);
@@ -844,6 +845,7 @@
 
   function start(manifest, previous) {
     updateState.localVersion = manifest.version;
+    setVer("local", manifest.version);
     logAdd("render", "version " + manifest.version + " — " + activeContent(manifest));
     return buildApp(db, manifest).then(function (app) {
       return mount(app, manifest.version).then(function () { installDiagnostics(manifest, app); });
@@ -890,6 +892,7 @@
     // התקנה ישנה ללא תמונות — מעדכנים מיד, עם התקדמות גלויה, ופותחים מחדש לבד
     var stale = (current.stage || "core") !== MIN_STAGE;
     updateState.localVersion = current.version;
+    setVer("local", current.version);
     updateState.remoteVersion = null;
     updateState.lastCheck = Date.now();
     updateState.source = "NETWORK REQUEST IN PROGRESS";
