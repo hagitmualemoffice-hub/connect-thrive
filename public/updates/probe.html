@@ -30,9 +30,9 @@
 (function () {
   var ORIGIN = location.origin;
   var TESTS = [
-    { name: "1. קטע קוד רגיל (90KB)", url: "/updates/parts/ed683a0f421e6a34631ed59ba6483385.0.js", hash: "ed683a0f421e6a34631ed59ba6483385", index: 0, expect: 92160 },
-    { name: "2. קטע תמונה (90KB)",   url: "/updates/parts/a6db23d53470785199243018a3f5c465.0.js", hash: "a6db23d53470785199243018a3f5c465", index: 0, expect: 92160 },
-    { name: "3. קטע תמונה קטן (50KB)", url: "/updates/parts/a6db23d53470785199243018a3f5c465.1.js", hash: "a6db23d53470785199243018a3f5c465", index: 1, expect: 51213 },
+    { name: "1. קטע תמונה חדש 32KB (א)", url: "/updates/parts/15e7e86034c7cfb5b6b0c10bc31261ab.0.js", hash: "15e7e86034c7cfb5b6b0c10bc31261ab", index: 0, expect: 32768 },
+    { name: "2. קטע תמונה חדש 32KB (ב)", url: "/updates/parts/553893c59bc6bdb0343aec5a62592baa.0.js", hash: "553893c59bc6bdb0343aec5a62592baa", index: 0, expect: 32768 },
+    { name: "3. קטע תמונה חדש 32KB (ג)", url: "/updates/parts/15e7e86034c7cfb5b6b0c10bc31261ab.40.js", hash: "15e7e86034c7cfb5b6b0c10bc31261ab", index: 40, expect: 32768 },
     { name: "4. קטע טקסט קריא (90KB)", url: "/updates/probe-text.0.js", hash: "probetext", index: 0, expect: 92160 }
   ];
 

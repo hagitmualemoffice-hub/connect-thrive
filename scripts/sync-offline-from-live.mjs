@@ -35,7 +35,9 @@ const PARTS_DIR = path.join(OUT_DIR, "parts");
 const MANIFEST_JSON = path.join(OUT_DIR, "manifest.json");
 const MANIFEST_JS = path.join(OUT_DIR, "manifest.js");
 const PARTS_REGISTRY = path.join(root, "scripts/offline-parts-registry.json");
-const CHUNK_RAW = 90 * 1024; // חלקים קטנים (~123KB אחרי base64) — עוברים סינון NetFree
+// 32KB גולמי (~44KB אחרי base64). נמצא בבדיקה חיה (probe.html, ספט' 2026) שסינון NetFree
+// חוסם מטענים "בינאריים" מעל סף שבין 50KB ל-90KB; 32KB נותן מרווח ביטחון נוח.
+const CHUNK_RAW = 32 * 1024;
 const XOR_KEY = [0x5a, 0x3c, 0xa7, 0x11, 0x6d, 0xf2, 0x89, 0x24];
 
 const parts = fs.existsSync(PARTS_REGISTRY) ? JSON.parse(fs.readFileSync(PARTS_REGISTRY, "utf8")) : {};
@@ -128,8 +130,10 @@ for (const rel of [...wanted].sort()) {
 /* ---------- 3. אריזה של מה שהשתנה בלבד ---------- */
 fs.mkdirSync(PARTS_DIR, { recursive: true });
 let packed = 0, reused = 0;
-// m:0 = חלקים ללא ערבול XOR. רשומות ישנות (ממוסכות) נארזות מחדש כדי לעבור סינון NetFree.
-const asMeta = (v) => (Array.isArray(v) ? null : v && Array.isArray(v.k) && v.m === 0 ? v : null);
+// m:0 = חלקים ללא ערבול XOR, z = גודל החלק הגולמי שבו נארזו.
+// רשומות ישנות (ממוסכות או בגודל חלק אחר) נארזות מחדש כדי לעבור סינון NetFree.
+const asMeta = (v) =>
+  Array.isArray(v) ? null : v && Array.isArray(v.k) && v.m === 0 && v.z === CHUNK_RAW ? v : null;
 for (const f of entries) {
   const prev = asMeta(parts[f.h]);
   if (prev && prev.k.every((c) => fs.existsSync(path.join(root, "public", c.u)))) {
@@ -148,7 +152,7 @@ for (const f of entries) {
       // u=כתובת, l=אורך בבתים, c=חתימה של החלק
       k.push({ u: "/updates/parts/" + name, l: slice.length, c: djb2(slice) });
     }
-    parts[f.h] = { k, m: 0 };
+    parts[f.h] = { k, m: 0, z: CHUNK_RAW };
     f.k = k;
     f.j = k.map((c) => c.u);
     packed++;
