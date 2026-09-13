@@ -55,6 +55,18 @@
   var pctEl = document.getElementById("ak-pct");
   var errEl = document.getElementById("ak-err");
   var toastEl = document.getElementById("ak-toast");
+  var verEl = document.getElementById("ak-ver");
+  // שורת גרסאות קבועה על המסך: גרסת קובץ ההפעלה + גרסת החבילה המקומית + זו שבשרת.
+  var verInfo = { local: null, remote: null };
+  function showVer() {
+    if (!verEl) return;
+    verEl.textContent =
+      "launcher rev " + BOOT_REV +
+      " | package " + (verInfo.local == null ? "—" : "v" + verInfo.local) +
+      " | server " + (verInfo.remote == null ? "—" : "v" + verInfo.remote);
+  }
+  function setVer(which, v) { verInfo[which] = v; showVer(); }
+  showVer();
   var updateState = window.ACHOTIKALA_UPDATE_STATUS = {
     localVersion: null,
     remoteVersion: null,
