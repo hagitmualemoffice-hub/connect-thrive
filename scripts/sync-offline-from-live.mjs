@@ -180,6 +180,7 @@ fs.writeFileSync(PARTS_REGISTRY, JSON.stringify(parts, null, 2));
 const problems = [];
 for (const f of entries) {
   let sum = 0;
+  const pieces = [];
   for (const c of f.k) {
     const abs = path.join(root, "public", c.u);
     if (!fs.existsSync(abs)) { problems.push(`${f.p}: חסר ${c.u}`); continue; }
