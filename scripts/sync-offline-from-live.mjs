@@ -124,13 +124,19 @@ const missing = [];
 for (const rel of [...wanted].sort()) {
   const buf = await get(rel);
   if (!buf) { missing.push(rel); continue; }
-  entries.push({
+  // x = מספר בתים בתחילת הקובץ ששובשו (רק בקבצים בינאריים). h/s/c תמיד על התוכן המקורי.
+  const x = BINARY_EXT.test(rel) && buf.length > HDR_LEN ? HDR_LEN : 0;
+  const packBuf = Buffer.from(buf);
+  for (let i = 0; i < x; i++) packBuf[i] ^= HDR_XOR;
+  const e = {
     p: rel,
     h: createHash("sha256").update(buf).digest("hex").slice(0, 32),
     s: buf.length,
     c: djb2(buf),
-    buf,
-  });
+    buf: packBuf,
+  };
+  if (x) e.x = x;
+  entries.push(e);
 }
 
 /* ---------- 3. אריזה של מה שהשתנה בלבד ---------- */
