@@ -8,8 +8,9 @@
 <style>
   body { font-family: system-ui, "Segoe UI", Arial, sans-serif; background:#fdf7f8; color:#2b2b2b;
          margin:0; padding:20px; line-height:1.6; }
-  .wrap { max-width:640px; margin:0 auto; }
+  .wrap { max-width:660px; margin:0 auto; }
   h1 { font-size:20px; margin:0 0 4px; }
+  h2 { font-size:16px; margin:22px 0 8px; }
   p.sub { margin:0 0 18px; color:#6b6b6b; font-size:14px; }
   .row { background:#fff; border:1px solid #eadfe2; border-radius:12px; padding:12px 14px; margin-bottom:10px; }
   .name { font-weight:600; font-size:15px; }
@@ -17,25 +18,48 @@
   .ok { color:#1a7f4b; } .bad { color:#b3261e; } .wait { color:#8a8a8a; }
   .bytes { font-size:12px; color:#777; direction:ltr; text-align:right; }
   .done { margin-top:16px; padding:12px 14px; border-radius:12px; background:#fff; border:1px solid #eadfe2; font-size:14px; }
+  .grid { display:flex; flex-wrap:wrap; gap:4px; direction:ltr; margin-top:6px; }
+  .cell { width:34px; height:24px; border-radius:5px; font-size:11px; display:flex; align-items:center;
+          justify-content:center; background:#efe7ea; color:#555; }
+  .cell.p { background:#d8f0e2; color:#0f5c33; }
+  .cell.f { background:#fadbd8; color:#8c1d18; }
+  .sum { font-size:13px; margin-top:8px; direction:rtl; }
 </style>
 </head>
 <body>
 <div class="wrap">
   <h1>בדיקת חיבור — אחותי כלה</h1>
-  <p class="sub">הבדיקה מתחילה מיד ולוקחת עד דקה. בסיום — נא לצלם את המסך ולשלוח.</p>
+  <p class="sub">הבדיקה מתחילה מיד ולוקחת עד 3 דקות. נא לא לסגור עד שכתוב "הבדיקה הסתיימה", ואז לצלם את כל המסך ולשלוח.</p>
+
+  <h2>חלק א׳ — בדיקות בודדות</h2>
   <div id="rows"></div>
+
+  <h2>חלק ב׳ — בדיקת נפח: 30 קטעי טקסט רצופים</h2>
+  <div class="row">
+    <div class="name">טקסט קריא, 30 קטעים של 32KB (סה״כ ~960KB)</div>
+    <div class="grid" id="gridA"></div>
+    <div class="sum wait" id="sumA">בבדיקה…</div>
+  </div>
+
+  <h2>חלק ג׳ — בדיקת נפח: 30 קטעי תמונה רצופים</h2>
+  <div class="row">
+    <div class="name">תמונה אמיתית מהחבילה, קטעים 1–30 של 32KB (סה״כ ~960KB)</div>
+    <div class="grid" id="gridB"></div>
+    <div class="sum wait" id="sumB">ממתין…</div>
+  </div>
+
   <div class="done" id="done">הבדיקה פועלת…</div>
 </div>
 <script>
 (function () {
   var ORIGIN = location.origin;
   var TESTS = [
-    { name: "1. קטע תמונה חדש 32KB (א)", url: "/updates/parts/15e7e86034c7cfb5b6b0c10bc31261ab.0.js", hash: "15e7e86034c7cfb5b6b0c10bc31261ab", index: 0, expect: 32768 },
-    { name: "2. קטע תמונה חדש 32KB (ב)", url: "/updates/parts/553893c59bc6bdb0343aec5a62592baa.0.js", hash: "553893c59bc6bdb0343aec5a62592baa", index: 0, expect: 32768 },
-    { name: "3. קטע תמונה חדש 32KB (ג)", url: "/updates/parts/15e7e86034c7cfb5b6b0c10bc31261ab.40.js", hash: "15e7e86034c7cfb5b6b0c10bc31261ab", index: 40, expect: 32768 },
+    { name: "1. קטע תמונה 32KB עם חתימה (א)", url: "/updates/parts/15e7e86034c7cfb5b6b0c10bc31261abh.0.js", hash: "15e7e86034c7cfb5b6b0c10bc31261ab", index: 0, expect: 32768 },
+    { name: "2. קטע תמונה 32KB עם חתימה (ב)", url: "/updates/parts/553893c59bc6bdb0343aec5a62592baah.0.js", hash: "553893c59bc6bdb0343aec5a62592baa", index: 0, expect: 32768 },
+    { name: "3. קטע תמונה — המשך (לא תחילת קובץ)", url: "/updates/parts/15e7e86034c7cfb5b6b0c10bc31261abh.40.js", hash: "15e7e86034c7cfb5b6b0c10bc31261ab", index: 40, expect: 32768 },
     { name: "4. קטע טקסט קריא (90KB)", url: "/updates/probe-text.0.js", hash: "probetext", index: 0, expect: 92160 },
     { name: "5. אותה תמונה בלי חתימת פתיחה (32KB)", url: "/updates/probe-nosig.0.js", hash: "probenosig", index: 0, expect: 32768 },
-    { name: "6. הגרסה החדשה — תמונה אמיתית מהחבילה (32KB)", url: "/updates/parts/553893c59bc6bdb0343aec5a62592baah.0.js", hash: "553893c59bc6bdb0343aec5a62592baa", index: 0, expect: 32768 }
+    { name: "6. קטע תמונה 32KB — הקטע ה-29 של קובץ גדול", url: "/updates/parts/15e7e86034c7cfb5b6b0c10bc31261abh.29.js", hash: "15e7e86034c7cfb5b6b0c10bc31261ab", index: 29, expect: 32768 }
   ];
 
   var received = {};
@@ -46,6 +70,24 @@
     received[hash + ":" + index] = len;
   };
 
+  function load(url, key, expect, cb) {
+    var settled = false;
+    var s = document.createElement("script");
+    s.src = ORIGIN + url + "?r=" + Date.now() + "." + Math.random();
+    function finish() {
+      if (settled) return;
+      settled = true;
+      try { s.remove(); } catch (e) {}
+      var got = received[key];
+      cb(got === undefined ? 0 : got, got === expect);
+    }
+    s.onload = function () { setTimeout(finish, 40); };
+    s.onerror = function () { finish(); };
+    document.head.appendChild(s);
+    setTimeout(finish, 25000);
+  }
+
+  /* ---------- part 1: single tests ---------- */
   var rowsEl = document.getElementById("rows");
   TESTS.forEach(function (t, i) {
     var d = document.createElement("div");
@@ -63,36 +105,80 @@
     document.getElementById("b" + i).textContent = bytes || "";
   }
 
-  function run(i) {
-    if (i >= TESTS.length) {
-      document.getElementById("done").textContent = "הבדיקה הסתיימה. נא לצלם את המסך ולשלוח.";
-      return;
-    }
+  function runSingles(i, done) {
+    if (i >= TESTS.length) return done();
     var t = TESTS[i];
-    var key = t.hash + ":" + t.index;
-    var settled = false;
-    var s = document.createElement("script");
-    s.src = ORIGIN + t.url + "?r=" + Date.now();
-
-    function finish() {
-      if (settled) return;
-      settled = true;
-      try { s.remove(); } catch (e) {}
-      var got = received[key];
-      var info = "expected " + t.expect + " / got " + (got === undefined ? 0 : got);
-      if (got === t.expect) show(i, "ok", "עבר בהצלחה ✔", info);
-      else if (got === undefined) show(i, "bad", "נחסם — לא התקבל תוכן ✖", info);
+    load(t.url, t.hash + ":" + t.index, t.expect, function (got, ok) {
+      var info = "expected " + t.expect + " / got " + got;
+      if (ok) show(i, "ok", "עבר בהצלחה ✔", info);
+      else if (got === 0) show(i, "bad", "נחסם — לא התקבל תוכן ✖", info);
       else show(i, "bad", "התקבל תוכן חסר ✖", info);
-      setTimeout(function () { run(i + 1); }, 300);
-    }
-
-    s.onload = function () { setTimeout(finish, 50); };
-    s.onerror = function () { finish(); };
-    document.head.appendChild(s);
-    setTimeout(finish, 30000);
+      setTimeout(function () { runSingles(i + 1, done); }, 200);
+    });
   }
 
-  run(0);
+  /* ---------- volume tests ---------- */
+  function makeGrid(id, n, labels) {
+    var g = document.getElementById(id);
+    for (var i = 0; i < n; i++) {
+      var c = document.createElement("div");
+      c.className = "cell";
+      c.id = id + "c" + i;
+      c.textContent = labels[i];
+      g.appendChild(c);
+    }
+  }
+
+  function runVolume(cfg, done) {
+    var n = cfg.count;
+    makeGrid(cfg.gridId, n, cfg.labels);
+    var sum = document.getElementById(cfg.sumId);
+    var okCount = 0, firstFail = -1, cumulative = 0;
+
+    function step(i) {
+      if (i >= n) {
+        sum.className = "sum " + (firstFail === -1 ? "ok" : "bad");
+        sum.textContent = firstFail === -1
+          ? "כל " + n + " הקטעים עברו ✔ (סה״כ " + cumulative + " בייט)"
+          : "הכשל הראשון בקטע מספר " + cfg.labels[firstFail] +
+            " (אחרי " + cumulative + " בייט שהתקבלו) — " + okCount + " מתוך " + n + " עברו";
+        return done();
+      }
+      sum.className = "sum wait";
+      sum.textContent = "בבדיקה… קטע " + (i + 1) + " מתוך " + n;
+      load(cfg.url(i), cfg.key(i), 32768, function (got, ok) {
+        var c = document.getElementById(cfg.gridId + "c" + i);
+        c.className = "cell " + (ok ? "p" : "f");
+        if (ok) { okCount++; cumulative += got; }
+        else if (firstFail === -1) firstFail = i;
+        setTimeout(function () { step(i + 1); }, 120);
+      });
+    }
+    step(0);
+  }
+
+  var IMG = "15e7e86034c7cfb5b6b0c10bc31261ab";
+  var labelsA = [], labelsB = [];
+  for (var i = 0; i < 30; i++) { labelsA.push(String(i)); labelsB.push(String(i + 1)); }
+
+  var volA = {
+    count: 30, gridId: "gridA", sumId: "sumA", labels: labelsA,
+    url: function (i) { return "/updates/vol/text." + i + ".js"; },
+    key: function (i) { return "probevoltext:" + i; }
+  };
+  var volB = {
+    count: 30, gridId: "gridB", sumId: "sumB", labels: labelsB,
+    url: function (i) { return "/updates/parts/" + IMG + "h." + (i + 1) + ".js"; },
+    key: function (i) { return IMG + ":" + (i + 1); }
+  };
+
+  runSingles(0, function () {
+    runVolume(volA, function () {
+      runVolume(volB, function () {
+        document.getElementById("done").textContent = "הבדיקה הסתיימה. נא לצלם את כל המסך (לגלול ולצלם גם את החלק התחתון) ולשלוח.";
+      });
+    });
+  });
 })();
 </script>
 </body>
