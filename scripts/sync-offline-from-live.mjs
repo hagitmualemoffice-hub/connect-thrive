@@ -35,6 +35,7 @@ const PARTS_DIR = path.join(OUT_DIR, "parts");
 const MANIFEST_JSON = path.join(OUT_DIR, "manifest.json");
 const MANIFEST_JS = path.join(OUT_DIR, "manifest.js");
 const PARTS_REGISTRY = path.join(root, "scripts/offline-parts-registry.json");
+const LOCK_FILE = path.join(root, ".offline-update.lock");
 // 32KB גולמי (~44KB אחרי base64). נמצא בבדיקה חיה (probe.html, ספט' 2026) שסינון NetFree
 // חוסם מטענים "בינאריים" מעל סף שבין 50KB ל-90KB; 32KB נותן מרווח ביטחון נוח.
 const CHUNK_RAW = 32 * 1024;
@@ -48,6 +49,25 @@ const BINARY_EXT = /\.(jpe?g|png|webp|gif|avif|bmp|ico|pdf|mp3|m4a|wav|ogg|mp4|w
 
 const parts = fs.existsSync(PARTS_REGISTRY) ? JSON.parse(fs.readFileSync(PARTS_REGISTRY, "utf8")) : {};
 const previous = fs.existsSync(MANIFEST_JSON) ? JSON.parse(fs.readFileSync(MANIFEST_JSON, "utf8")) : null;
+
+let lockHandle;
+try {
+  lockHandle = fs.openSync(LOCK_FILE, "wx");
+  fs.writeFileSync(lockHandle, `${process.pid}\n${new Date().toISOString()}\n`);
+} catch (error) {
+  if (error?.code === "EEXIST") {
+    console.error("✗ כבר מתבצעת אריזת אופליין אחרת. יש להמתין לסיומה ולהריץ שוב.");
+    process.exit(1);
+  }
+  throw error;
+}
+const releaseLock = () => {
+  try { if (lockHandle !== undefined) fs.closeSync(lockHandle); } catch {}
+  try { fs.rmSync(LOCK_FILE, { force: true }); } catch {}
+};
+process.on("exit", releaseLock);
+process.on("SIGINT", () => process.exit(130));
+process.on("SIGTERM", () => process.exit(143));
 
 function djb2(buf) {
   let h = 5381;
@@ -150,7 +170,16 @@ const asMeta = (v, x) =>
     : v && Array.isArray(v.k) && v.m === 0 && v.z === CHUNK_RAW && (v.x || 0) === x && v.v === 2 ? v : null;
 for (const f of entries) {
   const prev = asMeta(parts[f.h], f.x || 0);
-  if (prev && prev.k.every((c) => fs.existsSync(path.join(root, "public", c.u)))) {
+  if (prev && prev.k.every((c) => {
+    const abs = path.join(root, "public", c.u);
+    if (!fs.existsSync(abs)) return false;
+    const txt = fs.readFileSync(abs, "utf8");
+    const match = txt.match(/^AK\.part\("([0-9a-f]+)",(\d+),(\d+),"([^"]*)",([01])\);/);
+    if (!match || match[1] !== f.h || Number(match[2]) !== prev.k.indexOf(c) || Number(match[3]) !== prev.k.length) return false;
+    const raw = Buffer.from(match[4], "base64");
+    if (match[5] === "1") for (let b = 0; b < raw.length; b++) raw[b] ^= XOR_KEY[b % XOR_KEY.length];
+    return raw.length === c.l && djb2(raw) === c.c;
+  })) {
     f.k = prev.k;
     f.j = prev.k.map((c) => c.u);
     reused++;
