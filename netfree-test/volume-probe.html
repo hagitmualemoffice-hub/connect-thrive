@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>בדיקת נפח - אחותי כלה</title>
+<style>
+  body{font-family:Arial,Helvetica,sans-serif;background:#faf7f5;color:#222;margin:0;padding:14px;font-size:15px}
+  h1{font-size:19px;margin:0 0 4px}
+  .sub{color:#666;font-size:13px;margin-bottom:12px}
+  .grp{background:#fff;border:1px solid #e3d9d4;border-radius:10px;padding:10px 12px;margin-bottom:14px}
+  .grp h2{font-size:16px;margin:0 0 8px}
+  .sum{font-weight:bold;padding:8px 10px;border-radius:8px;margin-top:8px}
+  .ok{background:#e6f6e9;color:#14682a}
+  .bad{background:#fdeaea;color:#8d1616}
+  .wait{background:#f1f1f1;color:#555}
+  .rows{display:flex;flex-wrap:wrap;gap:4px}
+  .r{font-size:12px;padding:3px 6px;border-radius:5px;background:#f2f2f2;border:1px solid #ddd;min-width:96px}
+  .r.p{background:#e6f6e9;border-color:#b9e2c3}
+  .r.f{background:#fdeaea;border-color:#f0bcbc}
+  button{font-size:16px;padding:10px 18px;border:0;border-radius:8px;background:#c96a86;color:#fff;font-weight:bold}
+  #total{font-size:16px;font-weight:bold;margin:10px 0}
+</style>
+</head>
+<body>
+<h1>בדיקת נפח - טעינת 64 קבצים אמיתיים</h1>
+<div class="sub">הבדיקה טוענת חלקי קבצים אמיתיים בזה אחר זה (כ-1 מ"ב לכל קבוצה), כדי לבדוק אם החסימה מתרחשת אחרי נפח מסוים. לא נוגע בשום מערכת אחרת.</div>
+<button id="go">התחלת הבדיקה</button>
+<div id="total"></div>
+<div id="out"></div>
+
+<script>
+var RAW = "https://raw.githubusercontent.com/hagitmualemoffice-hub/connect-thrive/main/netfree-test/vol/";
+var JSD = "https://cdn.jsdelivr.net/gh/hagitmualemoffice-hub/connect-thrive@main/netfree-test/vol/";
+var N = 32;
+
+var lastLen = 0;
+window.AK = { part: function(h, i, t, b64, masked){
+  try { lastLen = atob(b64).length; } catch(e) { lastLen = -1; }
+}};
+
+function pad(n){ return (n<10?"0":"")+n; }
+
+function loadOne(url, cb){
+  lastLen = 0;
+  var s = document.createElement("script");
+  var done = false;
+  var timer = setTimeout(function(){ finish("פסק זמן"); }, 20000);
+  function finish(err){
+    if(done) return; done = true;
+    clearTimeout(timer);
+    s.parentNode && s.parentNode.removeChild(s);
+    cb(err ? {ok:false, msg:err} : (lastLen > 0 ? {ok:true, len:lastLen} : {ok:false, msg:"תגובה ריקה"}));
+  }
+  s.onload = function(){ finish(null); };
+  s.onerror = function(){ finish("שגיאת טעינה"); };
+  s.src = url + "?r=" + Date.now() + Math.random();
+  document.head.appendChild(s);
+}
+
+function runGroup(title, base, kind, done){
+  var box = document.createElement("div");
+  box.className = "grp";
+  var h = document.createElement("h2"); h.textContent = title; box.appendChild(h);
+  var rows = document.createElement("div"); rows.className = "rows"; box.appendChild(rows);
+  var sum = document.createElement("div"); sum.className = "sum wait"; sum.textContent = "מריץ..."; box.appendChild(sum);
+  document.getElementById("out").appendChild(box);
+
+  var i = 0, okCount = 0, bytes = 0;
+  function next(){
+    if(i >= N){
+      if(okCount === N){ sum.className = "sum ok"; sum.textContent = "הצליח " + okCount + "/" + N + " - סה\"כ " + Math.round(bytes/1024) + " ק\"ב"; }
+      else { sum.className = "sum bad"; sum.textContent = "עבר " + okCount + "/" + N + " - נחסם בחלק מספר " + (okCount+1) + " (אחרי " + Math.round(bytes/1024) + " ק\"ב)"; }
+      done(okCount === N);
+      return;
+    }
+    var idx = i;
+    var r = document.createElement("div"); r.className = "r"; r.textContent = "#" + pad(idx) + " ..."; rows.appendChild(r);
+    loadOne(base + kind + "." + pad(idx) + ".js", function(res){
+      if(res.ok){
+        okCount++; bytes += res.len;
+        r.className = "r p"; r.textContent = "#" + pad(idx) + " ✓ " + res.len;
+        i++; setTimeout(next, 60);
+      } else {
+        r.className = "r f"; r.textContent = "#" + pad(idx) + " ✗ " + res.msg;
+        i = N; setTimeout(next, 0);
+      }
+    });
+  }
+  next();
+}
+
+document.getElementById("go").onclick = function(){
+  this.disabled = true;
+  document.getElementById("out").innerHTML = "";
+  document.getElementById("total").textContent = "";
+  var results = [];
+  var groups = [
+    ["1. טקסט/קוד - שרת GitHub (raw)", RAW, "txt"],
+    ["2. תמונות - שרת GitHub (raw)", RAW, "img"],
+    ["3. טקסט/קוד - שרת jsDelivr", JSD, "txt"],
+    ["4. תמונות - שרת jsDelivr", JSD, "img"]
+  ];
+  var g = 0;
+  function nextGroup(){
+    if(g >= groups.length){
+      var allOk = results.every(function(x){ return x; });
+      document.getElementById("total").textContent = allOk
+        ? "סיכום: כל 4 הבדיקות עברו במלואן ✓"
+        : "סיכום: לא כל הבדיקות עברו - ראי את הפירוט למעלה";
+      document.getElementById("go").disabled = false;
+      return;
+    }
+    var gr = groups[g++];
+    runGroup(gr[0], gr[1], gr[2], function(ok){ results.push(ok); setTimeout(nextGroup, 300); });
+  }
+  nextGroup();
+};
+</script>
+</body>
+</html>
