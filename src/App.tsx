@@ -14,7 +14,8 @@ import Blog from "./pages/Blog.tsx";
 import BlogPost from "./pages/BlogPost.tsx";
 import Podcast from "./pages/Podcast.tsx";
 import ApiTester from "./pages/ApiTester.tsx";
-import Downloads, { DownloadFile } from "./pages/Downloads.tsx";
+// Offline distribution download page is intentionally disconnected from the public site.
+// The page and the offline system remain in the project (src/pages/Downloads.tsx, offline-dist/).
 import NotFound from "./pages/NotFound.tsx";
 import ScrollToTop from "./components/ScrollToTop";
 import V2Link from "./components/V2Link";
@@ -50,8 +51,6 @@ const App = () => (
             <Route path="/blog/:slug" element={<BlogPost />} />
             <Route path="/podcast" element={<Podcast />} />
             <Route path="/api-tester" element={<ApiTester />} />
-            <Route path="/downloads" element={<Downloads />} />
-            <Route path="/downloads/:filename" element={<DownloadFile />} />
             <Route path="/admin/login" element={<AdminLogin />} />
             <Route path="/admin" element={<AdminLayout />}>
               <Route index element={<AdminDashboard />} />
