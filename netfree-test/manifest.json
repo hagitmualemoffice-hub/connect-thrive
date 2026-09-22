@@ -1,0 +1,25 @@
+{
+  "version": 999,
+  "generated": "2026-09-22T00:00:00.000Z",
+  "entry": "index.html",
+  "source": "https://example.com",
+  "stage": "full",
+  "files": [
+    {
+      "p": "assets/example.js",
+      "h": "00000000000000000000000000000000",
+      "s": 32768,
+      "c": "deadbeef",
+      "k": [
+        {
+          "u": "/netfree-test/sample-text-chunk.js",
+          "l": 32768,
+          "c": "deadbeef"
+        }
+      ],
+      "j": [
+        "/netfree-test/sample-text-chunk.js"
+      ]
+    }
+  ]
+}
